@@ -1,0 +1,22 @@
+{
+  "name": "sxo-docs",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "docs:dev": "vitepress dev .",
+    "docs:build": "vitepress build .",
+    "docs:preview": "vitepress preview ."
+  },
+  "devDependencies": {
+    "vitepress": "^1.0.0",
+    "vue": "^3.4.0",
+    "vite-plugin-sxo": "workspace:*",
+    "vue-sxo": "workspace:*",
+    "@sxo/design": "workspace:*",
+    "@sxo/engine": "workspace:*",
+    "@sxo/ui": "workspace:*",
+    "@sxo/theme-github": "workspace:*",
+    "@sxo/theme-material": "workspace:*",
+    "@sxo/theme-fate": "workspace:*"
+  }
+}

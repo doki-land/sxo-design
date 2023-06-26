@@ -1,0 +1,23 @@
+{
+  "name": "@sxo/theme-pornhub",
+  "version": "0.0.1",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "dependencies": {
+    "@sxo/design": "workspace:*"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "sxo",
+    "theme",
+    "pornhub"
+  ],
+  "author": "",
+  "license": "ISC"
+}
