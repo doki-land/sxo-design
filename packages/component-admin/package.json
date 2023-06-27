@@ -1,0 +1,53 @@
+{
+    "name": "@sxo/component-admin",
+    "version": "0.0.0",
+    "description": "Admin dashboard components and layouts for SXO.",
+    "keywords": [
+        "sxo",
+        "design-system",
+        "ui",
+        "components"
+    ],
+    "license": "MIT",
+    "author": "sxo team",
+    "main": "./dist/index.cjs",
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.js",
+            "require": "./dist/index.cjs"
+        }
+    },
+    "files": [
+        "dist"
+    ],
+    "dependencies": {
+        "@sxo/design": "workspace:*",
+        "@sxo/ui": "workspace:*"
+    },
+    "packageManager": "pnpm@10.27.0",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/doki-land/sxo-engine.git",
+        "directory": "packages/component-admin"
+    },
+    "bugs": {
+        "url": "https://github.com/doki-land/sxo-engine/issues"
+    },
+    "homepage": "https://github.com/doki-land/sxo-engine/tree/main/packages/component-admin#readme",
+    "publishConfig": {
+        "access": "public"
+    },
+    "scripts": {
+        "build": "vite build",
+        "dev": "vite build --watch"
+    },
+    "devDependencies": {
+        "vite": "^5.0.0",
+        "vite-plugin-dts": "^4.0.0",
+        "typescript": "^5.0.0"
+    },
+    "type": "module"
+}

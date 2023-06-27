@@ -1,21 +1,66 @@
 {
-  "name": "vue-sxo",
-  "version": "0.0.1",
-  "main": "./dist/index.js",
-  "module": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
-  "dependencies": {
-    "@sxo/ui": "workspace:*",
-    "vue": "^3.0.0"
-  },
-  "peerDependencies": {
-    "vue": "^3.0.0"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "packageManager": "pnpm@10.27.0"
+    "name": "vue-sxo",
+    "version": "0.0.0",
+    "description": "Vue 3 adaptor for SXO Design System.",
+    "keywords": [
+        "sxo",
+        "design-system",
+        "ui",
+        "components",
+        "vue"
+    ],
+    "license": "MIT",
+    "author": "sxo team",
+    "main": "./dist/index.cjs",
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.js",
+            "require": "./dist/index.cjs"
+        }
+    },
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "build": "vite build",
+        "dev": "vite build --watch",
+        "test": "vitest run"
+    },
+    "dependencies": {
+        "@sxo/component-admin": "workspace:*",
+        "@sxo/design": "workspace:*",
+        "@sxo/engine": "workspace:*",
+        "@sxo/ui": "workspace:*",
+        "vue": "^3.0.0"
+    },
+    "peerDependencies": {
+        "vue": "^3.0.0"
+    },
+    "devDependencies": {
+        "@vitejs/plugin-vue": "^5.0.0",
+        "@vue/test-utils": "^2.4.6",
+        "happy-dom": "^20.1.0",
+        "jsdom": "^27.4.0",
+        "typescript": "^5.0.0",
+        "vite": "^5.0.0",
+        "vite-plugin-dts": "^4.0.0",
+        "vitest": "^3.0.0"
+    },
+    "packageManager": "pnpm@10.27.0",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/doki-land/sxo-engine.git",
+        "directory": "adaptors/vue-sxo"
+    },
+    "bugs": {
+        "url": "https://github.com/doki-land/sxo-engine/issues"
+    },
+    "homepage": "https://github.com/doki-land/sxo-engine/tree/main/adaptors/vue-sxo#readme",
+    "publishConfig": {
+        "access": "public"
+    },
+    "type": "module"
 }

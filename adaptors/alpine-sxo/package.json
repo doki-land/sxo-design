@@ -1,20 +1,55 @@
 {
-  "name": "alpine-sxo",
-  "version": "0.0.1",
-  "main": "./dist/index.js",
-  "module": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
-  "dependencies": {
-    "@sxo/ui": "workspace:*"
-  },
-  "peerDependencies": {
-    "alpinejs": "^3.0.0"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "packageManager": "pnpm@10.27.0"
+    "name": "alpine-sxo",
+    "version": "0.0.0",
+    "description": "Alpine.js adaptor for SXO Design System.",
+    "keywords": [
+        "sxo",
+        "design-system",
+        "ui",
+        "components"
+    ],
+    "license": "MIT",
+    "author": "sxo team",
+    "main": "./dist/index.cjs",
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "build": "vite build",
+        "dev": "vite build --watch"
+    },
+    "dependencies": {
+        "@sxo/ui": "workspace:*"
+    },
+    "peerDependencies": {
+        "alpinejs": "^3.0.0"
+    },
+    "packageManager": "pnpm@10.27.0",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/doki-land/sxo-engine.git",
+        "directory": "adaptors/alpine-sxo"
+    },
+    "bugs": {
+        "url": "https://github.com/doki-land/sxo-engine/issues"
+    },
+    "homepage": "https://github.com/doki-land/sxo-engine/tree/main/adaptors/alpine-sxo#readme",
+    "publishConfig": {
+        "access": "public"
+    },
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.js",
+            "require": "./dist/index.cjs"
+        }
+    },
+    "devDependencies": {
+        "vite": "^5.0.0",
+        "vite-plugin-dts": "^4.0.0",
+        "typescript": "^5.0.0"
+    },
+    "type": "module"
 }

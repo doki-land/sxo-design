@@ -1,2 +1,12 @@
 node_modules/
 dist/
+
+# Vite temporary files
+vite.config.js
+vite.config.js.*
+vite.config.ts.*
+*.mjs.map
+
+
+# IDE
+.idea/

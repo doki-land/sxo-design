@@ -1,22 +1,57 @@
 {
-  "name": "vite-plugin-sxo",
-  "version": "0.0.1",
-  "main": "./dist/index.js",
-  "module": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
-  "dependencies": {
-    "@sxo/design": "workspace:*",
-    "@sxo/engine": "workspace:*",
-    "vite": "^4.0.0"
-  },
-  "peerDependencies": {
-    "vite": "^4.0.0"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "packageManager": "pnpm@10.27.0"
+    "name": "vite-plugin-sxo",
+    "version": "0.0.0",
+    "description": "Vite plugin for SXO Design System with auto-import and HMR support.",
+    "keywords": [
+        "sxo",
+        "design-system",
+        "ui",
+        "components"
+    ],
+    "license": "MIT",
+    "author": "sxo team",
+    "type": "module",
+    "main": "./dist/index.cjs",
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.js",
+            "require": "./dist/index.cjs"
+        }
+    },
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "build": "vite build",
+        "dev": "vite build --watch"
+    },
+    "dependencies": {
+        "@sxo/design": "workspace:*",
+        "@sxo/engine": "workspace:*",
+        "vite": "^4.0.0"
+    },
+    "peerDependencies": {
+        "vite": "^4.0.0"
+    },
+    "packageManager": "pnpm@10.27.0",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/doki-land/sxo-engine.git",
+        "directory": "adaptors/vite-plugin-sxo"
+    },
+    "bugs": {
+        "url": "https://github.com/doki-land/sxo-engine/issues"
+    },
+    "homepage": "https://github.com/doki-land/sxo-engine/tree/main/adaptors/vite-plugin-sxo#readme",
+    "publishConfig": {
+        "access": "public"
+    },
+    "devDependencies": {
+        "vite": "^5.0.0",
+        "vite-plugin-dts": "^4.0.0",
+        "typescript": "^5.0.0"
+    }
 }

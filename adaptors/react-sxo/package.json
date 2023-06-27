@@ -1,21 +1,62 @@
 {
-  "name": "react-sxo",
-  "version": "0.0.1",
-  "main": "./src/index.ts",
-  "module": "./src/index.ts",
-  "types": "./src/index.ts",
-  "dependencies": {
-    "@sxo/ui": "workspace:*",
-    "react": "^18.0.0"
-  },
-  "peerDependencies": {
-    "react": "^18.0.0"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "packageManager": "pnpm@10.27.0"
+    "name": "react-sxo",
+    "version": "0.0.0",
+    "description": "React adaptor for SXO Design System.",
+    "keywords": [
+        "sxo",
+        "design-system",
+        "ui",
+        "components",
+        "react"
+    ],
+    "license": "MIT",
+    "author": "sxo team",
+    "type": "module",
+    "main": "./dist/index.cjs",
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.js",
+            "require": "./dist/index.cjs"
+        }
+    },
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "build": "vite build",
+        "dev": "vite build --watch"
+    },
+    "dependencies": {
+        "@sxo/component-icons": "workspace:*",
+        "@sxo/component-table": "workspace:*",
+        "@sxo/design": "workspace:*",
+        "@sxo/engine": "workspace:*",
+        "@sxo/ui": "workspace:*",
+        "react": "^18.0.0"
+    },
+    "peerDependencies": {
+        "react": "^18.0.0"
+    },
+    "packageManager": "pnpm@10.27.0",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/doki-land/sxo-engine.git",
+        "directory": "adaptors/react-sxo"
+    },
+    "bugs": {
+        "url": "https://github.com/doki-land/sxo-engine/issues"
+    },
+    "homepage": "https://github.com/doki-land/sxo-engine/tree/main/adaptors/react-sxo#readme",
+    "publishConfig": {
+        "access": "public"
+    },
+    "devDependencies": {
+        "vite": "^5.0.0",
+        "vite-plugin-dts": "^4.0.0",
+        "typescript": "^5.0.0",
+        "@vitejs/plugin-react": "^4.0.0"
+    }
 }

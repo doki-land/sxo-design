@@ -1,0 +1,11 @@
+node_modules
+**/__tests__
+**/*.spec.ts
+**/*.test.ts
+tsconfig.json
+vite.config.*
+vitest.config.*
+biome.json
+*.log
+*.map
+.DS_Store

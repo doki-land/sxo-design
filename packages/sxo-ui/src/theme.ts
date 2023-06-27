@@ -1,9 +1,9 @@
-import { DesignTokens, defaultTokens } from '@sxo/design';
+import { type DesignTokens, defaultTokens } from '@sxo/design';
 
 export interface ThemeContext {
-  tokens: DesignTokens;
+    tokens: DesignTokens;
 }
 
 export const defaultTheme: ThemeContext = {
-  tokens: defaultTokens,
+    tokens: defaultTokens,
 };

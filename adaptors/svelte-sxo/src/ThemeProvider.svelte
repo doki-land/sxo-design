@@ -1,12 +1,12 @@
 <script lang="ts">
-  import { setContext } from 'svelte';
-  import { defaultTheme, type ThemeContext } from '@sxo/ui';
+import { defaultTheme, type ThemeContext } from '@sxo/ui';
+import { setContext } from 'svelte';
 
-  const THEME_KEY = Symbol('sxo-theme');
-  
-  export let theme: ThemeContext = defaultTheme;
+const THEME_KEY = Symbol('sxo-theme');
 
-  setContext(THEME_KEY, theme);
+export const theme: ThemeContext = defaultTheme;
+
+setContext(THEME_KEY, theme);
 </script>
 
 <slot />

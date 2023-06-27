@@ -1,67 +1,72 @@
-import { useMemo, useEffect, useState, useCallback } from 'react';
-import { useSxo } from './context';
-import { TokenPath, resolveToken } from '@sxo/design';
+import { resolveToken, type TokenPath } from '@sxo/design';
+import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useSxo } from './context.ts';
 
 /**
  * 核心 Hook：解析类名并生成样式
  */
 export function useStyle(classNames: string) {
-  const { engine } = useSxo();
+    const { engine } = useSxo();
 
-  const css = useMemo(() => {
-    const classes = classNames.split(/\s+/).filter(Boolean);
-    return engine.generateBatch(classes);
-  }, [classNames, engine]);
+    const css = useMemo(() => {
+        const classes = classNames.split(/\s+/).filter(Boolean);
+        return engine.generateSheet(classes);
+    }, [classNames, engine]);
 
-  useEffect(() => {
-    if (css) {
-      const styleTag = document.getElementById('sxo-engine');
-      if (styleTag) {
-        if (!styleTag.innerHTML.includes(css)) {
-          styleTag.innerHTML += css;
+    useEffect(() => {
+        if (css) {
+            let styleTag = document.getElementById('sxo-engine');
+            if (!styleTag) {
+                styleTag = document.createElement('style');
+                styleTag.id = 'sxo-engine';
+                document.head.appendChild(styleTag);
+            }
+
+            // 简单的去重注入
+            if (!styleTag.innerHTML.includes(css)) {
+                styleTag.innerHTML += css;
+            }
         }
-      }
-    }
-  }, [css]);
+    }, [css]);
 
-  return classNames;
+    return classNames;
 }
 
 /**
  * 获取当前主题下的令牌值
  */
 export function useToken(path: TokenPath): string | undefined {
-  const { tokens } = useSxo();
-  return useMemo(() => resolveToken(tokens, path), [tokens, path]);
+    const { tokens } = useSxo();
+    return useMemo(() => resolveToken(tokens, path), [tokens, path]);
 }
 
 /**
  * 响应式断点 Hook
  */
 export function useBreakpoint() {
-  const { tokens } = useSxo();
-  const [breakpoint, setBreakpoint] = useState<string>('xs');
+    const { tokens } = useSxo();
+    const [breakpoint, setBreakpoint] = useState<string>('xs');
 
-  const updateBreakpoint = useCallback(() => {
-    const width = window.innerWidth;
-    const sorted = Object.entries(tokens.breakpoints).sort(
-      (a, b) => parseInt(b[1]) - parseInt(a[1]),
-    );
+    const updateBreakpoint = useCallback(() => {
+        const width = window.innerWidth;
+        const sorted = Object.entries(tokens.breakpoints).sort(
+            (a, b) => parseInt(b[1]) - parseInt(a[1]),
+        );
 
-    for (const [name, minWidth] of sorted) {
-      if (width >= parseInt(minWidth)) {
-        setBreakpoint(name);
-        return;
-      }
-    }
-    setBreakpoint('xs');
-  }, [tokens.breakpoints]);
+        for (const [name, minWidth] of sorted) {
+            if (width >= parseInt(minWidth)) {
+                setBreakpoint(name);
+                return;
+            }
+        }
+        setBreakpoint('xs');
+    }, [tokens.breakpoints]);
 
-  useEffect(() => {
-    updateBreakpoint();
-    window.addEventListener('resize', updateBreakpoint);
-    return () => window.removeEventListener('resize', updateBreakpoint);
-  }, [updateBreakpoint]);
+    useEffect(() => {
+        updateBreakpoint();
+        window.addEventListener('resize', updateBreakpoint);
+        return () => window.removeEventListener('resize', updateBreakpoint);
+    }, [updateBreakpoint]);
 
-  return breakpoint;
+    return breakpoint;
 }

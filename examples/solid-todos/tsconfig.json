@@ -1,0 +1,14 @@
+{
+    "extends": "../../tsconfig.json",
+    "compilerOptions": {
+        "outDir": "./dist",
+        "noEmit": true,
+        "jsx": "preserve",
+        "jsxImportSource": "solid-js",
+        "skipLibCheck": true,
+        "allowImportingTsExtensions": true
+    },
+    "include": [
+        "src"
+    ]
+}

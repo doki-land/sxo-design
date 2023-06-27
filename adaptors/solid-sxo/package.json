@@ -1,21 +1,58 @@
 {
-  "name": "solid-sxo",
-  "version": "0.0.1",
-  "main": "./dist/index.js",
-  "module": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
-  "dependencies": {
-    "@sxo/ui": "workspace:*",
-    "solid-js": "^1.7.0"
-  },
-  "peerDependencies": {
-    "solid-js": "^1.7.0"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "packageManager": "pnpm@10.27.0"
+    "name": "solid-sxo",
+    "version": "0.0.0",
+    "description": "SolidJS adaptor for SXO Design System.",
+    "keywords": [
+        "sxo",
+        "design-system",
+        "ui",
+        "components",
+        "solid"
+    ],
+    "license": "MIT",
+    "author": "sxo team",
+    "main": "./dist/index.cjs",
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.js",
+            "require": "./dist/index.cjs"
+        }
+    },
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "build": "vite build",
+        "dev": "vite build --watch"
+    },
+    "dependencies": {
+        "@sxo/ui": "workspace:*"
+    },
+    "peerDependencies": {
+        "solid-js": "^1.7.0"
+    },
+    "packageManager": "pnpm@10.27.0",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/doki-land/sxo-engine.git",
+        "directory": "adaptors/solid-sxo"
+    },
+    "bugs": {
+        "url": "https://github.com/doki-land/sxo-engine/issues"
+    },
+    "homepage": "https://github.com/doki-land/sxo-engine/tree/main/adaptors/solid-sxo#readme",
+    "publishConfig": {
+        "access": "public"
+    },
+    "devDependencies": {
+        "solid-js": "^1.9.10",
+        "typescript": "^5.0.0",
+        "vite": "^5.0.0",
+        "vite-plugin-dts": "^4.0.0",
+        "vite-plugin-solid": "^2.11.10"
+    },
+    "type": "module"
 }

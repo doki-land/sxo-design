@@ -1,31 +1,47 @@
 export interface CardOptions {
-  variant?: 'outline' | 'elevated' | 'accent' | 'ghost';
-  padding?: 'none' | 'sm' | 'md' | 'lg';
-  interactive?: boolean;
+    variant?: 'outline' | 'elevated' | 'accent' | 'ghost';
+    padding?: 'none' | 'sm' | 'md' | 'lg' | 'xl';
+    rounded?: 'none' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | 'full';
+    interactive?: boolean;
 }
 
 export function getCardClasses(options: CardOptions = {}) {
-  const { variant = 'outline', padding = 'md', interactive = false } = options;
+    const { variant = 'outline', padding = 'md', rounded = 'lg', interactive = false } = options;
 
-  const base = 'bg-white transition-all duration-300 overflow-hidden';
+    const base =
+        'bg-background-primary text-text-primary transition-all duration-300 overflow-hidden border border-neutral-200 hover:shadow-md';
 
-  const variants = {
-    outline: 'border-2 border-primary',
-    elevated: 'border-2 border-primary shadow-hard',
-    accent: 'border-2 border-accent-vivid shadow-hard',
-    ghost: 'border-none bg-neutral-50',
-  };
+    const variants = {
+        outline: 'border-neutral-200 bg-background-primary/80 backdrop-blur-md',
+        elevated: 'border-neutral-200 shadow-md bg-background-primary',
+        accent: 'border-primary/10 shadow-lg bg-gradient-to-br from-background-primary to-neutral-50',
+        ghost: 'border-none bg-neutral-50/50 backdrop-blur-sm',
+    };
 
-  const paddings = {
-    none: 'p-0',
-    sm: 'p-4',
-    md: 'p-6',
-    lg: 'p-8',
-  };
+    const paddings = {
+        none: 'p-0',
+        sm: 'p-4',
+        md: 'p-6',
+        lg: 'p-8',
+        xl: 'p-12',
+    };
 
-  const interactiveClass = interactive
-    ? 'cursor-pointer hover:-translate-x-1 hover:-translate-y-1 hover:shadow-hard active:translate-x-0 active:translate-y-0 active:shadow-none'
-    : '';
+    const roundeds = {
+        none: 'rounded-none',
+        sm: 'rounded-sm',
+        md: 'rounded-md',
+        lg: 'rounded-lg',
+        xl: 'rounded-xl',
+        '2xl': 'rounded-2xl',
+        '3xl': 'rounded-3xl',
+        full: 'rounded-full',
+    };
 
-  return [base, variants[variant], paddings[padding], interactiveClass].join(' ');
+    const interactiveClass = interactive
+        ? 'cursor-pointer hover:border-neutral-300 hover:shadow-md active:scale-[0.99]'
+        : '';
+
+    return [base, variants[variant], paddings[padding], roundeds[rounded], interactiveClass].join(
+        ' ',
+    );
 }

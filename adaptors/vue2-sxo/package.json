@@ -1,0 +1,60 @@
+{
+    "name": "vue2-sxo",
+    "version": "0.0.0",
+    "description": "Vue 2 adaptor for SXO Design System.",
+    "keywords": [
+        "sxo",
+        "design-system",
+        "ui",
+        "components",
+        "vue"
+    ],
+    "license": "MIT",
+    "author": "sxo team",
+    "main": "./dist/index.cjs",
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.js",
+            "require": "./dist/index.cjs"
+        }
+    },
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "build": "vite build",
+        "dev": "vite build --watch"
+    },
+    "dependencies": {
+        "@sxo/design": "workspace:*",
+        "@sxo/engine": "workspace:*",
+        "@sxo/ui": "workspace:*",
+        "vue": "^2.7.16"
+    },
+    "peerDependencies": {
+        "vue": "^2.7.16"
+    },
+    "packageManager": "pnpm@10.27.0",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/doki-land/sxo-engine.git",
+        "directory": "adaptors/vue2-sxo"
+    },
+    "bugs": {
+        "url": "https://github.com/doki-land/sxo-engine/issues"
+    },
+    "homepage": "https://github.com/doki-land/sxo-engine/tree/main/adaptors/vue2-sxo#readme",
+    "publishConfig": {
+        "access": "public"
+    },
+    "devDependencies": {
+        "vite": "^5.0.0",
+        "vite-plugin-dts": "^4.0.0",
+        "typescript": "^5.0.0",
+        "@vitejs/plugin-vue2": "^2.0.0"
+    },
+    "type": "module"
+}
