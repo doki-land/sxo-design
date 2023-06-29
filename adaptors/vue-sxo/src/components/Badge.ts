@@ -1,5 +1,5 @@
-import { defineComponent, h, computed, PropType } from 'vue';
-import { getBadgeClasses, BadgeOptions } from '@sxo/ui';
+import { type BadgeOptions, getBadgeClasses } from '@sxo/ui';
+import { computed, defineComponent, h, type PropType } from 'vue';
 import { useStyle } from '../hooks';
 
 export const Badge = defineComponent({

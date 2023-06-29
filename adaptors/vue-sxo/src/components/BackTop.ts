@@ -1,5 +1,5 @@
-import { defineComponent, h, computed, ref, onMounted, onUnmounted } from 'vue';
 import { getBackTopClasses } from '@sxo/ui';
+import { computed, defineComponent, h, onMounted, onUnmounted, ref } from 'vue';
 import { useStyle } from '../hooks';
 
 export const BackTop = defineComponent({

@@ -7,6 +7,7 @@
 点击按钮即可展开菜单项。
 
 <SxoCodeGroup>
+
 <SxoCodeBlock framework="vue">
 
 ```vue
@@ -33,6 +34,7 @@ const handleSelect = (item) => {
 </script>
 ```
 
+
 </SxoCodeBlock>
 <SxoCodeBlock framework="react">
 
@@ -54,6 +56,7 @@ const App = () => {
   );
 };
 ```
+
 
 </SxoCodeBlock>
 <SxoCodeBlock framework="vue2">
@@ -90,7 +93,9 @@ export default {
 </script>
 ```
 
+
 </SxoCodeBlock>
+
 </SxoCodeGroup>
 
 ## 变体
@@ -98,6 +103,7 @@ export default {
 支持 `default`, `bordered`, `flat` 等变体样式。
 
 <SxoCodeGroup>
+
 <SxoCodeBlock framework="vue">
 
 ```vue
@@ -115,7 +121,9 @@ const items = [{ id: '1', label: 'Option 1' }];
 </script>
 ```
 
+
 </SxoCodeBlock>
+
 </SxoCodeGroup>
 
 ## API

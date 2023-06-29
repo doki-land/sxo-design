@@ -1,13 +1,13 @@
 import { useTooltip } from '@sxo/design';
 import { getTooltipClasses, type TooltipOptions } from '@sxo/ui';
-import { computed, defineComponent, h, ref, getCurrentInstance } from 'vue';
+import { computed, defineComponent, getCurrentInstance, h, ref } from 'vue';
 import { useStyle } from '../hooks';
 
 export const Tooltip = defineComponent({
     name: 'SxoTooltip',
     props: {
         content: {
-            type: [String, Object] as () => string | any,
+            type: [String, Object] as any,
             required: true,
         },
         delay: {
@@ -42,13 +42,22 @@ export const Tooltip = defineComponent({
             },
         );
 
-        return () =>
-            h('div', { class: 'relative inline-block' }, [
+        return () => {
+            const tooltipProps = getTooltipProps();
+            return h('div', { class: 'relative inline-block' }, [
                 h(
                     'div',
                     {
-                        attrs: { ...triggerProps.attrs },
-                        on: { ...triggerProps.on, ...listeners },
+                        attrs: {
+                            'aria-describedby': triggerProps['aria-describedby'],
+                        },
+                        on: {
+                            mouseenter: triggerProps.onMouseEnter,
+                            mouseleave: triggerProps.onMouseLeave,
+                            focus: triggerProps.onFocus,
+                            blur: triggerProps.onBlur,
+                            ...listeners,
+                        },
                     },
                     slots.default?.(),
                 ),
@@ -56,7 +65,10 @@ export const Tooltip = defineComponent({
                     ? h(
                           'div',
                           {
-                              attrs: { ...getTooltipProps().attrs },
+                              attrs: {
+                                  id: tooltipProps.id,
+                                  role: tooltipProps.role,
+                              },
                               class: `${styles.value.content} ${
                                   attrs.class || ''
                               } bottom-full left-1/2 -translate-x-1/2 mb-2`.trim(),
@@ -65,5 +77,6 @@ export const Tooltip = defineComponent({
                       )
                     : null,
             ]);
+        };
     },
 });

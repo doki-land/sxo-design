@@ -1,5 +1,5 @@
-import { type ResultOptions, getResultClasses } from '@sxo/ui';
-import { computed, defineComponent, h, getCurrentInstance } from 'vue';
+import { getResultClasses, type ResultOptions } from '@sxo/ui';
+import { computed, defineComponent, getCurrentInstance, h } from 'vue';
 import { useStyle } from '../hooks';
 
 export const Result = defineComponent({

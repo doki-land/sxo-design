@@ -1,5 +1,6 @@
-import React, { useRef, useState, useEffect, useCallback } from 'react';
 import { getSliderClasses } from '@sxo/ui';
+import type React from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { useStyle } from '../hooks.ts';
 
 export interface SliderProps {

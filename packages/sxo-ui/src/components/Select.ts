@@ -1,5 +1,6 @@
 export interface SelectOptions {
     size?: 'sm' | 'md' | 'lg';
+    disabled?: boolean;
 }
 
 export function getSelectClasses(isOpen: boolean, options: SelectOptions = {}) {

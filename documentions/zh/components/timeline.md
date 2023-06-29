@@ -7,6 +7,7 @@
 最基础的用法。
 
 <SxoCodeGroup>
+
 <SxoCodeBlock framework="vue">
 
 ```vue
@@ -18,6 +19,7 @@
   </SxoTimeline>
 </template>
 ```
+
 
 </SxoCodeBlock>
 <SxoCodeBlock framework="react">
@@ -34,6 +36,7 @@ export default () => (
 );
 ```
 
+
 </SxoCodeBlock>
 <SxoCodeBlock framework="vue2">
 
@@ -47,7 +50,9 @@ export default () => (
 </template>
 ```
 
+
 </SxoCodeBlock>
+
 </SxoCodeGroup>
 
 ## 带标签的时间轴
@@ -55,6 +60,7 @@ export default () => (
 通过 `label` 属性展示额外的时间或分类信息。
 
 <SxoCodeGroup>
+
 <SxoCodeBlock framework="vue">
 
 ```vue
@@ -65,6 +71,7 @@ export default () => (
   </SxoTimeline>
 </template>
 ```
+
 
 </SxoCodeBlock>
 <SxoCodeBlock framework="react">
@@ -80,6 +87,7 @@ export default () => (
 );
 ```
 
+
 </SxoCodeBlock>
 <SxoCodeBlock framework="vue2">
 
@@ -92,7 +100,9 @@ export default () => (
 </template>
 ```
 
+
 </SxoCodeBlock>
+
 </SxoCodeGroup>
 
 ## 自定义节点颜色
@@ -100,6 +110,7 @@ export default () => (
 通过 `color` 属性自定义圆点颜色。
 
 <SxoCodeGroup>
+
 <SxoCodeBlock framework="vue">
 
 ```vue
@@ -111,6 +122,7 @@ export default () => (
   </SxoTimeline>
 </template>
 ```
+
 
 </SxoCodeBlock>
 <SxoCodeBlock framework="react">
@@ -127,6 +139,7 @@ export default () => (
 );
 ```
 
+
 </SxoCodeBlock>
 <SxoCodeBlock framework="vue2">
 
@@ -140,7 +153,9 @@ export default () => (
 </template>
 ```
 
+
 </SxoCodeBlock>
+
 </SxoCodeGroup>
 
 ## API

@@ -1,3 +1,4 @@
+/** @jsxImportSource solid-js */
 import { defaultTheme, type ThemeContext } from '@sxo/ui';
 import { createContext, type JSX, useContext } from 'solid-js';
 

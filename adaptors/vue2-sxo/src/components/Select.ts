@@ -1,6 +1,6 @@
 import { useSelect } from '@sxo/design';
 import { getSelectClasses, type SelectOptions } from '@sxo/ui';
-import { computed, defineComponent, h, inject, provide, ref, watch, getCurrentInstance } from 'vue';
+import { computed, defineComponent, getCurrentInstance, h, inject, provide, ref, watch } from 'vue';
 import { useStyle } from '../hooks';
 
 const SelectSymbol = Symbol('Select');
@@ -35,9 +35,11 @@ export const Select = defineComponent({
             },
         );
 
-        const { isOpen, setValue, getTriggerProps, getListboxProps } = useSelect({
+        const { setValue, getTriggerProps, getListboxProps } = useSelect({
             defaultValue: internalValue.value,
         });
+
+        const isOpen = ref(false);
 
         const classes = computed(() => getSelectClasses(isOpen.value, { size: props.size }));
 
@@ -48,6 +50,7 @@ export const Select = defineComponent({
             setValue(val);
             emit('input', val);
             emit('change', val);
+            isOpen.value = false;
         };
 
         provide(SelectSymbol, {
@@ -58,8 +61,11 @@ export const Select = defineComponent({
         const instance = getCurrentInstance();
         const listeners = instance?.proxy.$listeners || {};
 
-        return () =>
-            h(
+        return () => {
+            const triggerProps = getTriggerProps();
+            const listboxProps = getListboxProps();
+
+            return h(
                 'div',
                 {
                     class: `relative inline-block w-full ${attrs.class || ''}`.trim(),
@@ -68,9 +74,21 @@ export const Select = defineComponent({
                     h(
                         'div',
                         {
-                            attrs: { ...getTriggerProps().attrs },
+                            attrs: {
+                                id: triggerProps.id,
+                                role: triggerProps.role,
+                                'aria-expanded': isOpen.value,
+                                'aria-haspopup': triggerProps['aria-haspopup'],
+                                'aria-controls': triggerProps['aria-controls'],
+                                tabIndex: triggerProps.tabIndex,
+                            },
                             class: classes.value.trigger,
-                            on: { ...getTriggerProps().on, ...listeners },
+                            on: {
+                                click: () => {
+                                    if (!props.disabled) isOpen.value = !isOpen.value;
+                                },
+                                ...listeners,
+                            },
                         },
                         [
                             h(
@@ -99,19 +117,23 @@ export const Select = defineComponent({
                             ),
                         ],
                     ),
-                    isOpen.value
-                        ? h(
-                              'div',
-                              {
-                                  attrs: { ...getListboxProps().attrs },
-                                  class: classes.value.listbox,
-                                  on: { ...getListboxProps().on },
-                              },
-                              slots.default?.(),
-                          )
-                        : null,
+                    h(
+                        'ul',
+                        {
+                            attrs: {
+                                id: listboxProps.id,
+                                role: listboxProps.role,
+                                tabIndex: listboxProps.tabIndex,
+                                hidden: !isOpen.value,
+                            },
+                            class: classes.value.listbox,
+                            style: { display: isOpen.value ? 'block' : 'none' },
+                        },
+                        slots.default?.(),
+                    ),
                 ],
             );
+        };
     },
 });
 

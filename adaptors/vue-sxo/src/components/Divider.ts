@@ -1,5 +1,5 @@
-import { defineComponent, h, PropType, computed } from 'vue';
-import { getDividerClasses, DividerOptions } from '@sxo/ui';
+import { type DividerOptions, getDividerClasses } from '@sxo/ui';
+import { computed, defineComponent, h, type PropType } from 'vue';
 import { useStyle } from '../hooks';
 
 export const Divider = defineComponent({
@@ -47,7 +47,11 @@ export const Divider = defineComponent({
 
             return h('div', { class: [styles.value.container, attrs.class] }, [
                 h('div', { class: [styles.value.line, styles.value.lineLeft] }),
-                h('span', { class: styles.value.text }, slots.default()),
+                h(
+                    'span',
+                    { class: styles.value.text },
+                    (slots.default ? slots.default() : null) as any,
+                ),
                 h('div', { class: [styles.value.line, styles.value.lineRight] }),
             ]);
         };

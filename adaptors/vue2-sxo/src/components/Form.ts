@@ -1,5 +1,5 @@
 import { useForm, type ValidationRule } from '@sxo/design';
-import { defineComponent, h, inject, provide, reactive, getCurrentInstance } from 'vue';
+import { defineComponent, getCurrentInstance, h, inject, provide, reactive } from 'vue';
 
 const FormSymbol = 'SxoForm';
 

@@ -1,5 +1,5 @@
-import { defineComponent, h, computed } from 'vue';
 import { getStatisticClasses } from '@sxo/ui';
+import { computed, defineComponent, h } from 'vue';
 
 export const Statistic = defineComponent({
     name: 'SxoStatistic',

@@ -1,3 +1,4 @@
+/** @jsxImportSource solid-js */
 import { getTagClasses, type TagOptions } from '@sxo/ui';
 import { type JSX, splitProps } from 'solid-js';
 
@@ -16,8 +17,8 @@ export function Tag(props: TagProps) {
     };
 
     return (
-        <span {...others} class={classes()}>
-            {props.children}
+        <span {...others} class={classes() as any}>
+            {props.children as any}
         </span>
     );
 }

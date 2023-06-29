@@ -9,7 +9,7 @@
 
 ## 代码演示
 
-<SxoPlayground component="mentions" />
+<SxoDemo component="Mentions" />
 
 ## API
 

@@ -5,8 +5,6 @@
 </template>
 
 <script setup>
-import { currentFramework } from '../theme/framework-state';
-
 defineProps({
     framework: {
         type: String,

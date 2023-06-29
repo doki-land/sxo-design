@@ -7,6 +7,7 @@
 基础的、简洁的标签页。
 
 <SxoCodeGroup>
+
 <SxoCodeBlock framework="vue">
 
 ```vue
@@ -29,6 +30,7 @@ import { Tabs as SxoTabs, TabList as SxoTabList, Tab as SxoTab, TabPanel as SxoT
 const activeName = ref('first');
 </script>
 ```
+
 
 </SxoCodeBlock>
 <SxoCodeBlock framework="react">
@@ -54,6 +56,7 @@ export default () => {
   );
 };
 ```
+
 
 </SxoCodeBlock>
 <SxoCodeBlock framework="vue2">
@@ -83,7 +86,9 @@ export default {
 </script>
 ```
 
+
 </SxoCodeBlock>
+
 </SxoCodeGroup>
 
 ## 卡片样式
@@ -91,6 +96,7 @@ export default {
 设置 `variant="pill"` 即可设置为卡片样式。
 
 <SxoCodeGroup>
+
 <SxoCodeBlock framework="vue">
 
 ```vue
@@ -105,6 +111,7 @@ export default {
   </SxoTabs>
 </template>
 ```
+
 
 </SxoCodeBlock>
 <SxoCodeBlock framework="react">
@@ -124,6 +131,7 @@ export default () => (
 );
 ```
 
+
 </SxoCodeBlock>
 <SxoCodeBlock framework="vue2">
 
@@ -140,7 +148,9 @@ export default () => (
 </template>
 ```
 
+
 </SxoCodeBlock>
+
 </SxoCodeGroup>
 
 ## API

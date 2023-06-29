@@ -7,6 +7,7 @@ Box 组件是 SXO 的基础原子组件，它允许你通过属性直接控制�
 最基础的用法，默认为 `div` 标签。
 
 <SxoCodeGroup>
+
 <SxoCodeBlock framework="vue">
 
 ```vue
@@ -21,6 +22,7 @@ import { Box as SxoBox } from '@sxo/vue';
 </script>
 ```
 
+
 </SxoCodeBlock>
 <SxoCodeBlock framework="react">
 
@@ -33,6 +35,7 @@ export default () => (
   </Box>
 );
 ```
+
 
 </SxoCodeBlock>
 <SxoCodeBlock framework="vue2">
@@ -52,7 +55,9 @@ export default {
 </script>
 ```
 
+
 </SxoCodeBlock>
+
 </SxoCodeGroup>
 
 ## 渲染为其他标签
@@ -60,6 +65,7 @@ export default {
 通过 `as` 属性，你可以将 Box 渲染为任何 HTML 标签。
 
 <SxoCodeGroup>
+
 <SxoCodeBlock framework="vue">
 
 ```vue
@@ -69,6 +75,7 @@ export default {
   </SxoBox>
 </template>
 ```
+
 
 </SxoCodeBlock>
 <SxoCodeBlock framework="react">
@@ -83,6 +90,7 @@ export default () => (
 );
 ```
 
+
 </SxoCodeBlock>
 <SxoCodeBlock framework="vue2">
 
@@ -94,7 +102,9 @@ export default () => (
 </template>
 ```
 
+
 </SxoCodeBlock>
+
 </SxoCodeGroup>
 
 ## 常用属性映射

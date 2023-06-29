@@ -46,68 +46,59 @@ export const Dialog: React.FC<DialogProps> = ({
 
     if (!isOpen) return null;
 
-    return React.createElement('div', { className: styles.container }, [
-        // 遮罩层
-        React.createElement('div', {
-            key: 'overlay',
-            ...getOverlayProps(),
-            className: styles.overlay,
-        }),
+    return (
+        <div className={styles.container}>
+            {/* 遮罩层 */}
+            <div key="overlay" {...(getOverlayProps() as any)} className={styles.overlay} />
 
-        // 内容层
-        React.createElement(
-            'div',
-            {
-                key: 'content',
-                ...getDialogProps(),
-                className: styles.content,
-                style: {
+            {/* 内容层 */}
+            <div
+                key="content"
+                {...(getDialogProps() as any)}
+                className={styles.content}
+                style={{
                     transform: `translate(${offset.x}px, ${offset.y}px)`,
-                },
-            },
-            [
-                // 关闭按钮
-                React.createElement(
-                    'button',
-                    {
-                        key: 'close',
-                        ...getCloseButtonProps(),
-                        className: styles.closeButton,
-                    },
-                    '✕',
-                ),
+                }}
+            >
+                {/* 关闭按钮 */}
+                <button
+                    key="close"
+                    {...(getCloseButtonProps() as any)}
+                    className={styles.closeButton}
+                >
+                    ✕
+                </button>
 
-                // 头部
-                React.createElement(
-                    'div',
-                    {
-                        key: 'header',
-                        className: styles.header,
-                        ...(isDraggable ? getDragProps() : {}),
-                    },
-                    [
-                        title &&
-                            React.createElement(
-                                'h2',
-                                { key: 'title', className: styles.title },
-                                title,
-                            ),
-                        description &&
-                            React.createElement(
-                                'p',
-                                { key: 'desc', className: styles.description },
-                                description,
-                            ),
-                    ],
-                ),
+                {/* 头部 */}
+                <div
+                    key="header"
+                    className={styles.header}
+                    {...(isDraggable ? (getDragProps() as any) : {})}
+                >
+                    {title && (
+                        <h2 key="title" className={styles.title}>
+                            {title}
+                        </h2>
+                    )}
+                    {description && (
+                        <p key="desc" className={styles.description}>
+                            {description}
+                        </p>
+                    )}
+                </div>
 
-                // 内容
-                React.createElement('div', { key: 'body', className: 'dialog-body' }, children),
+                {/* 主体 */}
+                <div key="body" className={styles.body}>
+                    {children}
+                </div>
 
-                // 底部
-                footer &&
-                    React.createElement('div', { key: 'footer', className: styles.footer }, footer),
-            ],
-        ),
-    ]);
+                {/* 底部 */}
+                {footer && (
+                    <div key="footer" className={styles.footer}>
+                        {footer}
+                    </div>
+                )}
+            </div>
+        </div>
+    );
 };

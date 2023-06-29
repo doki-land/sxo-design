@@ -1,11 +1,11 @@
+import { defaultTokens } from '@sxo/design';
+import { StyleEngine } from '@sxo/engine';
 import { mount } from '@vue/test-utils';
-import { describe, it, expect, vi } from 'vitest';
+import { describe, expect, it } from 'vitest';
+import { h, markRaw, nextTick } from 'vue';
 import { Form, FormItem } from '../src/components/Form';
 import { Input as SxoInput } from '../src/components/Input';
-import { nextTick, ref, h, markRaw } from 'vue';
 import { SXO_KEY } from '../src/plugin';
-import { StyleEngine } from '@sxo/engine';
-import { defaultTokens } from '@sxo/design';
 
 const mockSxo = {
     tokens: defaultTokens,
@@ -49,12 +49,20 @@ describe('SxoForm', () => {
                 rules,
             },
             slots: {
-                default: () => h(FormItem, { label: 'Username', name: 'username' }, {
-                    default: () => h(SxoInput, {
-                        modelValue: initialValues.username,
-                        'onUpdate:modelValue': (val: string) => { initialValues.username = val; }
-                    })
-                })
+                default: () =>
+                    h(
+                        FormItem,
+                        { label: 'Username', name: 'username' },
+                        {
+                            default: () =>
+                                h(SxoInput, {
+                                    modelValue: initialValues.username,
+                                    'onUpdate:modelValue': (val: string) => {
+                                        initialValues.username = val;
+                                    },
+                                }),
+                        },
+                    ),
             },
             global: {
                 components: { SxoFormItem: FormItem, SxoInput },

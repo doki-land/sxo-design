@@ -24,7 +24,7 @@ export interface FormItemOptions {
 }
 
 export function getFormItemClasses(options: FormItemOptions = {}) {
-    const { layout = 'vertical', required = false, hasError = false } = options;
+    const { layout = 'vertical', required = false } = options;
 
     const layouts = {
         vertical: 'flex flex-col gap-1.5',

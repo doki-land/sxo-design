@@ -1,4 +1,4 @@
-import { computed, defineComponent, h, getCurrentInstance } from 'vue';
+import { defineComponent, getCurrentInstance, h } from 'vue';
 import { useStyle } from '../hooks';
 
 export const Box = defineComponent({

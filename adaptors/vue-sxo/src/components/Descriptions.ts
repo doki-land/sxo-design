@@ -1,5 +1,5 @@
-import { defineComponent, h, computed } from 'vue';
 import { getDescriptionsClasses } from '@sxo/ui';
+import { computed, defineComponent, h } from 'vue';
 
 export const DescriptionsItem = defineComponent({
     name: 'SxoDescriptionsItem',

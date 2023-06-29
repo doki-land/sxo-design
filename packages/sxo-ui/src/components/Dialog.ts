@@ -27,6 +27,7 @@ export function getDialogClasses(options: DialogStylesOptions = {}) {
         description: 'text-neutral-500 text-sm font-medium',
         closeButton:
             'absolute right-6 top-6 p-2 text-primary hover:bg-accent-vivid hover:text-white transition-colors border-2 border-primary',
+        body: 'relative',
         footer: 'mt-8 flex justify-end space-x-4',
     };
 }

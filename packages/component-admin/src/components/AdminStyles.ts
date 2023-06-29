@@ -40,7 +40,7 @@ export interface KanbanOptions {
     columns?: number;
 }
 
-export function getKanbanClasses(options: KanbanOptions = {}) {
+export function getKanbanClasses(_options: KanbanOptions = {}) {
     return {
         board: 'flex gap-6 overflow-x-auto pb-4 h-full min-h-[500px]',
         column: 'flex-shrink-0 w-80 bg-neutral-50 rounded-xl flex flex-col max-h-full border border-neutral-100',
@@ -111,7 +111,7 @@ export function getLoginClasses(variant: 'split' | 'centered' = 'centered') {
 }
 
 export function getResultClasses(
-    status: 'success' | 'error' | 'info' | 'warning' | '404' | '500' = 'info',
+    _status: 'success' | 'error' | 'info' | 'warning' | '404' | '500' = 'info',
 ) {
     return {
         container: 'flex flex-col items-center justify-center p-12 text-center',

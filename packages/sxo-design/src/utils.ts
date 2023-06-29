@@ -3,20 +3,29 @@ import type { DesignTokens, TokenPath } from './tokens.ts';
 /**
  * 深度合并设计令牌
  */
-export function mergeTokens(base: DesignTokens, custom: Partial<DesignTokens>): DesignTokens {
+export function mergeTokens(base: DesignTokens, custom: any): DesignTokens {
     const merged = { ...base };
-    for (const key in custom) {
-        if (Object.prototype.hasOwnProperty.call(custom, key)) {
-            const k = key as keyof DesignTokens;
-            if (typeof custom[k] === 'object' && custom[k] !== null && !Array.isArray(custom[k])) {
-                // @ts-ignore
-                merged[k] = { ...merged[k], ...custom[k] };
-            } else {
-                // @ts-ignore
-                merged[k] = custom[k];
+
+    function deepMerge(target: any, source: any) {
+        for (const key in source) {
+            if (Object.hasOwn(source, key)) {
+                if (
+                    typeof source[key] === 'object' &&
+                    source[key] !== null &&
+                    !Array.isArray(source[key]) &&
+                    typeof target[key] === 'object' &&
+                    target[key] !== null
+                ) {
+                    target[key] = { ...target[key] };
+                    deepMerge(target[key], source[key]);
+                } else {
+                    target[key] = source[key];
+                }
             }
         }
     }
+
+    deepMerge(merged, custom);
     return merged;
 }
 
@@ -47,6 +56,7 @@ export function tokensToCssVars(tokens: any, prefix = 'sxo'): Record<string, str
  * 具有强类型提示
  */
 export function resolveToken(tokens: DesignTokens, path: TokenPath): string | undefined {
+    if (!path || typeof path !== 'string') return undefined;
     const parts = (path as string).split('.');
     let current: any = tokens;
     for (const part of parts) {

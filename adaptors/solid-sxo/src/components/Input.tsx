@@ -1,3 +1,4 @@
+/** @jsxImportSource solid-js */
 import { getInputClasses, type InputOptions } from '@sxo/ui';
 import { type JSX, splitProps } from 'solid-js';
 
@@ -14,5 +15,5 @@ export function Input(props: InputProps) {
         return `${sxoClasses} ${local.class || ''}`.trim();
     };
 
-    return <input {...others} class={classes()} />;
+    return <input {...others} class={classes() as any} />;
 }

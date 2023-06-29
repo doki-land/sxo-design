@@ -1,5 +1,5 @@
-import { defineComponent, h, PropType, computed, ref, onMounted, onUnmounted } from 'vue';
-import { getPopoverClasses, PopoverOptions } from '@sxo/ui';
+import { getPopoverClasses, type PopoverOptions } from '@sxo/ui';
+import { computed, defineComponent, h, onMounted, onUnmounted, type PropType, ref } from 'vue';
 
 export const Popover = defineComponent({
     name: 'SxoPopover',

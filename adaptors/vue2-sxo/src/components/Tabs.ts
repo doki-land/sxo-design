@@ -1,6 +1,6 @@
 import { useTabs } from '@sxo/design';
 import { getTabsClasses, type TabsOptions } from '@sxo/ui';
-import { computed, defineComponent, h, getCurrentInstance, type PropType, ref, watch } from 'vue';
+import { computed, defineComponent, getCurrentInstance, h, type PropType, ref, watch } from 'vue';
 import { useStyle } from '../hooks';
 
 const TabsSymbol = 'SxoTabs';
@@ -72,7 +72,7 @@ export const Tabs = defineComponent({
             'div',
             {
                 class: this.$attrs.class,
-                on: this.listeners,
+                on: (this as any).$listeners,
             },
             this.$slots.default,
         );
@@ -91,7 +91,9 @@ export const TabList = defineComponent({
         return h(
             'div',
             {
-                role: 'tablist',
+                attrs: {
+                    role: 'tablist',
+                },
                 class: `${ctx.styles.list} ${this.$attrs.class || ''}`.trim(),
             },
             this.$slots.default,
@@ -114,14 +116,22 @@ export const Tab = defineComponent({
         const ctx = (this as any).tabsContext;
         if (!ctx) throw new Error('Tab must be used within Tabs');
 
-        const isActive = ctx.currentValue === this.value;
-        const tabProps = ctx.getTabProps(this.value, ctx.selectTab);
+        const isActive = ctx.currentValue.value === (this as any).value;
+        const tabProps = ctx.getTabProps((this as any).value, ctx.selectTab);
 
         return h(
             'div',
             {
-                attrs: tabProps.attrs,
-                on: tabProps.on,
+                attrs: {
+                    id: tabProps.id,
+                    role: tabProps.role,
+                    'aria-selected': tabProps['aria-selected'],
+                    'aria-controls': tabProps['aria-controls'],
+                    tabIndex: tabProps.tabIndex,
+                },
+                on: {
+                    click: tabProps.onClick,
+                },
                 class: `${ctx.styles.tab(isActive)} ${this.$attrs.class || ''}`.trim(),
             },
             this.$slots.default,
@@ -144,13 +154,21 @@ export const TabPanel = defineComponent({
         const ctx = (this as any).tabsContext;
         if (!ctx) throw new Error('TabPanel must be used within Tabs');
 
-        const panelProps = ctx.getTabPanelProps(this.value);
+        // Access currentValue to ensure reactivity
+        const isActive = ctx.currentValue.value === (this as any).value;
+        const panelProps = ctx.getTabPanelProps((this as any).value);
 
         return h(
             'div',
             {
-                attrs: panelProps.attrs,
+                attrs: {
+                    id: panelProps.id,
+                    role: panelProps.role,
+                    'aria-labelledby': panelProps['aria-labelledby'],
+                    hidden: !isActive,
+                },
                 class: `${ctx.styles.panel} ${this.$attrs.class || ''}`.trim(),
+                style: { display: isActive ? 'block' : 'none' },
             },
             this.$slots.default,
         );

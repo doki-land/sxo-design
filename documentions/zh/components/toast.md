@@ -9,6 +9,7 @@
 首先需要在应用入口包裹 `ToastProvider`：
 
 <SxoCodeGroup>
+
 <SxoCodeBlock framework="vue">
 
 ```vue
@@ -23,6 +24,7 @@ import { ToastProvider } from '@sxo/vue';
 </template>
 ```
 
+
 </SxoCodeBlock>
 <SxoCodeBlock framework="react">
 
@@ -35,6 +37,7 @@ export default () => (
   </ToastProvider>
 );
 ```
+
 
 </SxoCodeBlock>
 <SxoCodeBlock framework="vue2">
@@ -54,7 +57,9 @@ export default {
 </script>
 ```
 
+
 </SxoCodeBlock>
+
 </SxoCodeGroup>
 
 ### 发送通知
@@ -62,6 +67,7 @@ export default {
 使用 `useToast` 钩子发送通知：
 
 <SxoCodeGroup>
+
 <SxoCodeBlock framework="vue">
 
 ```vue
@@ -91,6 +97,7 @@ const customToast = () => {
 </template>
 ```
 
+
 </SxoCodeBlock>
 <SxoCodeBlock framework="react">
 
@@ -112,6 +119,7 @@ export default () => {
   );
 };
 ```
+
 
 </SxoCodeBlock>
 <SxoCodeBlock framework="vue2">
@@ -136,7 +144,9 @@ export default {
 </script>
 ```
 
+
 </SxoCodeBlock>
+
 </SxoCodeGroup>
 
 ## 属性

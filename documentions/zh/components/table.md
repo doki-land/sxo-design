@@ -5,6 +5,7 @@
 ## 基础用法
 
 <SxoCodeGroup>
+
 <SxoCodeBlock framework="vue">
 
 ```vue
@@ -25,6 +26,7 @@ const columns = [
 ];
 </script>
 ```
+
 
 </SxoCodeBlock>
 
@@ -49,7 +51,9 @@ export default () => (
 );
 ```
 
+
 </SxoCodeBlock>
+
 </SxoCodeGroup>
 
 ## 排序与分页
@@ -69,7 +73,7 @@ export default () => (
 
 当数据量巨大时，开启 `virtual` 属性以获得极致性能。
 
-<SxoPlayground>
+<SxoDemo component="Table">
 <template>
   <SxoTable 
     :data="data" 
@@ -96,7 +100,7 @@ const columns = [
   { key: 'status', header: '状态' }
 ];
 </script>
-</SxoPlayground>
+</SxoDemo>
 
 ## 属性
 

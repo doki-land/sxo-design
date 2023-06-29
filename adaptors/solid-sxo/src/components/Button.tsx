@@ -1,3 +1,4 @@
+/** @jsxImportSource solid-js */
 import { type ButtonOptions, getButtonClasses } from '@sxo/ui';
 import { type JSX, splitProps } from 'solid-js';
 
@@ -16,8 +17,8 @@ export function Button(props: ButtonProps) {
     };
 
     return (
-        <button {...others} class={classes()}>
-            {props.children}
+        <button {...others} class={classes() as any}>
+            {props.children as any}
         </button>
     );
 }

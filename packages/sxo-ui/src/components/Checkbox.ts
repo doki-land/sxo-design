@@ -1,6 +1,7 @@
 export interface CheckboxOptions {
     size?: 'sm' | 'md' | 'lg';
     color?: 'primary' | 'success';
+    disabled?: boolean;
 }
 
 export function getCheckboxClasses(isChecked: boolean, options: CheckboxOptions = {}) {

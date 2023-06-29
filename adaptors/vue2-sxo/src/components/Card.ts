@@ -1,5 +1,5 @@
-import { defineComponent, h, computed, getCurrentInstance } from 'vue';
 import { type CardOptions, getCardClasses } from '@sxo/ui';
+import { computed, defineComponent, getCurrentInstance, h } from 'vue';
 import { useStyle } from '../hooks';
 
 export const Card = defineComponent({

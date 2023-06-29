@@ -1,4 +1,4 @@
-import { useTable, type Column, type TableOptions } from './index.ts';
+import { type Column, type TableOptions, useTable } from './index.ts';
 
 export interface DataTableOptions<T> extends TableOptions<T> {
     sortable?: boolean;

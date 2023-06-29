@@ -1,12 +1,12 @@
 import {
-    getSpinnerClasses,
     getProgressClasses,
     getSkeletonClasses,
-    type SpinnerOptions,
+    getSpinnerClasses,
     type ProgressOptions,
     type SkeletonOptions,
+    type SpinnerOptions,
 } from '@sxo/ui';
-import { defineComponent, h, type PropType, computed } from 'vue';
+import { computed, defineComponent, h, type PropType } from 'vue';
 import { useStyle } from '../hooks';
 
 export const Spinner = defineComponent({

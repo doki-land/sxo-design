@@ -1,5 +1,5 @@
-const fs = require('fs');
-const path = require('path');
+const fs = require('node:fs');
+const path = require('node:path');
 
 const rootDir = path.resolve(__dirname, '..');
 const packagesDir = path.join(rootDir, 'packages');
@@ -9,7 +9,7 @@ function fixThemeTokens(pkgPath) {
     if (!fs.existsSync(tokensPath)) return;
 
     let content = fs.readFileSync(tokensPath, 'utf-8');
-    
+
     // Add xl to borderRadius if missing
     if (content.includes('borderRadius: {') && !content.includes('xl:')) {
         content = content.replace(/borderRadius: \{([^}]*)\}/, (match, p1) => {
@@ -20,7 +20,7 @@ function fixThemeTokens(pkgPath) {
 
     // Add none and xl to boxShadow if missing
     if (content.includes('boxShadow: {')) {
-        content = content.replace(/boxShadow: \{([^}]*)\}/, (match, p1) => {
+        content = content.replace(/boxShadow: \{([^}]*)\}/, (_match, p1) => {
             let newContent = p1;
             if (!newContent.includes('none:')) {
                 newContent = `\n        none: 'none',${newContent}`;
@@ -36,5 +36,7 @@ function fixThemeTokens(pkgPath) {
     console.log(`Fixed tokens in ${pkgPath}`);
 }
 
-const themes = fs.readdirSync(packagesDir).filter(f => f.startsWith('theme-'));
-themes.forEach(theme => fixThemeTokens(path.join(packagesDir, theme)));
+const themes = fs.readdirSync(packagesDir).filter((f) => f.startsWith('theme-'));
+for (const theme of themes) {
+    fixThemeTokens(path.join(packagesDir, theme));
+}

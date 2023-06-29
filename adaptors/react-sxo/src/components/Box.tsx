@@ -62,13 +62,11 @@ export const Box: React.FC<BoxProps> = ({
     }
 
     const finalClasses = useStyle(classes.filter(Boolean).join(' '));
+    const Comp = Component as any;
 
-    return React.createElement(
-        Component,
-        {
-            className: finalClasses,
-            ...filteredProps,
-        },
-        children,
+    return (
+        <Comp className={finalClasses} {...filteredProps}>
+            {children}
+        </Comp>
     );
 };

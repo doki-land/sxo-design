@@ -1,5 +1,5 @@
-import { defineComponent, h, PropType, computed, ref, onMounted, onUnmounted } from 'vue';
-import { getDropdownClasses, DropdownOptions } from '@sxo/ui';
+import { type DropdownOptions, getDropdownClasses } from '@sxo/ui';
+import { computed, defineComponent, h, onMounted, onUnmounted, type PropType, ref } from 'vue';
 import { useStyle } from '../hooks';
 
 export const DropdownItem = defineComponent({
@@ -26,7 +26,7 @@ export const DropdownItem = defineComponent({
                         props.disabled && styles.value.itemDisabled,
                         attrs.class,
                     ],
-                    onClick: (e: MouseEvent) => {
+                    onClick: (_e: MouseEvent) => {
                         if (props.disabled) return;
                         // Emit or handle click
                     },

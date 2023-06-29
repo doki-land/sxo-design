@@ -3,7 +3,9 @@
 选择器用于在多个选项中选择一个。
 
 <SxoCodeGroup>
+
 <SxoCodeBlock framework="vue">
+
 ```vue
 <template>
   <div class="flex flex-col gap-4 w-64">
@@ -50,9 +52,11 @@ const options = [
 ];
 </script>
 ```
+
 </SxoCodeBlock>
 
 <SxoCodeBlock framework="react">
+
 ```tsx
 import { useState } from 'react';
 import { Select, SelectOption } from '@sxo/react';
@@ -90,9 +94,11 @@ export default function SelectDemo() {
   );
 }
 ```
+
 </SxoCodeBlock>
 
 <SxoCodeBlock framework="vue2">
+
 ```vue
 <template>
   <div class="flex flex-col gap-4 w-64">
@@ -125,7 +131,9 @@ export default {
 };
 </script>
 ```
+
 </SxoCodeBlock>
+
 </SxoCodeGroup>
 
 ## Select 属性

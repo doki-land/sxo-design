@@ -55,13 +55,14 @@ export const fateTheme: DesignTokens = {
         },
     },
     borderRadius: {
+        DEFAULT: '16px',
         none: '0px',
         xs: '4px',
         sm: '12px',
         md: '16px',
         lg: '24px',
         full: '9999px',
-            xl: '12px',
+        xl: '12px',
     },
     boxShadow: {
         none: 'none',
@@ -71,7 +72,7 @@ export const fateTheme: DesignTokens = {
         lg: '0 12px 40px rgba(74, 144, 226, 0.25)',
         hard: '0 0 15px rgba(240, 98, 146, 0.3)',
         'hard-accent': '0 0 20px rgba(240, 98, 146, 0.5)',
-            xl: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+        xl: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
     },
     transition: {
         DEFAULT: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',

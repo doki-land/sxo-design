@@ -1,9 +1,9 @@
-import { defineComponent, h, ref, computed, onMounted, onUnmounted, type PropType } from 'vue';
 import { getTreeSelectClasses, type TreeSelectOptions } from '@sxo/ui';
+import { computed, defineComponent, h, onMounted, onUnmounted, type PropType, ref } from 'vue';
 import { Tree } from './Tree';
 
 export interface TreeSelectOption {
-    key: string | number;
+    id: string | number;
     label: string;
     children?: TreeSelectOption[];
     disabled?: boolean;
@@ -43,7 +43,7 @@ export const TreeSelect = defineComponent({
 
             const findLabel = (options: TreeSelectOption[]): string | null => {
                 for (const option of options) {
-                    if (option.key === props.modelValue) return option.label;
+                    if (option.id === props.modelValue) return option.label;
                     if (option.children) {
                         const label = findLabel(option.children);
                         if (label) return label;
@@ -57,8 +57,8 @@ export const TreeSelect = defineComponent({
 
         const handleSelect = (node: any) => {
             if (node.disabled) return;
-            emit('update:modelValue', node.key);
-            emit('change', node.key);
+            emit('update:modelValue', node.id);
+            emit('change', node.id);
             isOpen.value = false;
         };
 

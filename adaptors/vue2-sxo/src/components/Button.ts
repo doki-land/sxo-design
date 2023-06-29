@@ -1,5 +1,5 @@
 import { type ButtonOptions, getButtonClasses } from '@sxo/ui';
-import { computed, defineComponent, h, getCurrentInstance } from 'vue';
+import { computed, defineComponent, getCurrentInstance, h } from 'vue';
 import { useStyle } from '../hooks';
 
 export const Button = defineComponent({

@@ -1,6 +1,7 @@
-import { Button, Input, Tag, ThemeProvider } from '@sxo/react';
 import { pornhubTheme } from '@sxo/theme-pornhub';
-import React, { useState } from 'react';
+import type React from 'react';
+import { useState } from 'react';
+import { Button, Input, Tag, ThemeProvider } from 'react-sxo';
 
 interface Todo {
     id: number;
@@ -43,7 +44,7 @@ const App = () => {
                                 TODOS
                             </span>
                         </h1>
-                        <Tag variant="hub" color="primary">
+                        <Tag variant="solid" color="primary">
                             Premium
                         </Tag>
                     </header>
@@ -52,10 +53,14 @@ const App = () => {
                         <div className="flex gap-2 bg-background-secondary p-4 rounded-md border border-neutral-800 shadow-hard">
                             <Input
                                 value={inputValue}
-                                onChange={(e) => setInputValue(e.target.value)}
+                                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                                    setInputValue(e.target.value)
+                                }
                                 placeholder="What's next?"
                                 className="flex-1 bg-neutral-900 border-neutral-700 focus:border-primary text-white"
-                                onKeyDown={(e) => e.key === 'Enter' && addTodo()}
+                                onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) =>
+                                    e.key === 'Enter' && addTodo()
+                                }
                             />
                             <Button variant="primary" onClick={addTodo}>
                                 Add
@@ -111,9 +116,9 @@ const App = () => {
                                                     strokeLinecap="round"
                                                     strokeLinejoin="round"
                                                 >
-                                                    <path d="M3 6h18"></path>
-                                                    <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
-                                                    <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
+                                                    <path d="M3 6h18" />
+                                                    <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" />
+                                                    <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" />
                                                 </svg>
                                             </button>
                                         </div>

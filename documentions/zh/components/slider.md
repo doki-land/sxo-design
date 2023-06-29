@@ -7,6 +7,7 @@
 最基础的用法。
 
 <SxoCodeGroup>
+
 <SxoCodeBlock framework="vue">
 
 ```vue
@@ -21,6 +22,7 @@ const value = ref(30);
 </script>
 ```
 
+
 </SxoCodeBlock>
 <SxoCodeBlock framework="react">
 
@@ -33,6 +35,7 @@ export default () => {
   return <Slider value={value} onChange={setValue} />;
 };
 ```
+
 
 </SxoCodeBlock>
 <SxoCodeBlock framework="vue2">
@@ -53,7 +56,9 @@ export default {
 </script>
 ```
 
+
 </SxoCodeBlock>
+
 </SxoCodeGroup>
 
 ## 离散值
@@ -61,6 +66,7 @@ export default {
 可以通过 `step` 属性设置步长。
 
 <SxoCodeGroup>
+
 <SxoCodeBlock framework="vue">
 
 ```vue
@@ -74,6 +80,7 @@ const value = ref(50);
 </script>
 ```
 
+
 </SxoCodeBlock>
 <SxoCodeBlock framework="react">
 
@@ -86,6 +93,7 @@ export default () => {
   return <Slider value={value} onChange={setValue} step={10} />;
 };
 ```
+
 
 </SxoCodeBlock>
 <SxoCodeBlock framework="vue2">
@@ -106,7 +114,9 @@ export default {
 </script>
 ```
 
+
 </SxoCodeBlock>
+
 </SxoCodeGroup>
 
 ## 禁用状态
@@ -114,6 +124,7 @@ export default {
 设置 `disabled` 属性使滑块不可用。
 
 <SxoCodeGroup>
+
 <SxoCodeBlock framework="vue">
 
 ```vue
@@ -127,6 +138,7 @@ const value = ref(40);
 </script>
 ```
 
+
 </SxoCodeBlock>
 <SxoCodeBlock framework="react">
 
@@ -139,6 +151,7 @@ export default () => {
   return <Slider value={value} onChange={setValue} disabled />;
 };
 ```
+
 
 </SxoCodeBlock>
 <SxoCodeBlock framework="vue2">
@@ -159,7 +172,9 @@ export default {
 </script>
 ```
 
+
 </SxoCodeBlock>
+
 </SxoCodeGroup>
 
 ## Slider 属性

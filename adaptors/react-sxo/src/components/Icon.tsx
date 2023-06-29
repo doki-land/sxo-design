@@ -1,5 +1,5 @@
-import React from 'react';
-import { Icons, type IconProps as BaseIconProps } from '@sxo/component-icons';
+import { type IconProps as BaseIconProps, Icons } from '@sxo/component-icons';
+import type React from 'react';
 import { useStyle } from '../hooks.ts';
 
 export interface IconProps extends Omit<BaseIconProps, 'className'> {

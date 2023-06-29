@@ -3,7 +3,9 @@
 通用的容器组件，用于展示信息。
 
 <SxoCodeGroup>
+
 <SxoCodeBlock framework="vue">
+
 ```vue
 <template>
   <div class="flex flex-col gap-4">
@@ -31,9 +33,11 @@
 import { SxoCard } from '@sxo/vue';
 </script>
 ```
+
 </SxoCodeBlock>
 
 <SxoCodeBlock framework="react">
+
 ```tsx
 import { Card } from '@sxo/react';
 
@@ -61,9 +65,11 @@ export default function CardDemo() {
   );
 }
 ```
+
 </SxoCodeBlock>
 
 <SxoCodeBlock framework="vue2">
+
 ```vue
 <template>
   <div class="flex flex-col gap-4">
@@ -84,7 +90,9 @@ export default {
 };
 </script>
 ```
+
 </SxoCodeBlock>
+
 </SxoCodeGroup>
 
 ## Card 属性

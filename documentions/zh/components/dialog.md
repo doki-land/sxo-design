@@ -7,6 +7,7 @@
 Dialog 弹出一个对话框，适合展示内容或进行简单的表单操作。
 
 <SxoCodeGroup>
+
 <SxoCodeBlock framework="vue">
 
 ```vue
@@ -36,6 +37,7 @@ import { Dialog as SxoDialog, Button as SxoButton } from '@sxo/vue';
 const isOpen = ref(false);
 </script>
 ```
+
 
 </SxoCodeBlock>
 <SxoCodeBlock framework="react">
@@ -69,6 +71,7 @@ export default () => {
 };
 ```
 
+
 </SxoCodeBlock>
 <SxoCodeBlock framework="vue2">
 
@@ -104,7 +107,9 @@ export default {
 </script>
 ```
 
+
 </SxoCodeBlock>
+
 </SxoCodeGroup>
 
 ## 可拖拽
@@ -112,6 +117,7 @@ export default {
 设置 `isDraggable` 属性，使对话框可以拖拽。
 
 <SxoCodeGroup>
+
 <SxoCodeBlock framework="vue">
 
 ```vue
@@ -135,6 +141,7 @@ import { Dialog as SxoDialog, Button as SxoButton } from '@sxo/vue';
 const isOpen = ref(false);
 </script>
 ```
+
 
 </SxoCodeBlock>
 <SxoCodeBlock framework="react">
@@ -161,6 +168,7 @@ export default () => {
   );
 };
 ```
+
 
 </SxoCodeBlock>
 <SxoCodeBlock framework="vue2">
@@ -191,7 +199,9 @@ export default {
 </script>
 ```
 
+
 </SxoCodeBlock>
+
 </SxoCodeGroup>
 
 ## 居中显示
@@ -199,6 +209,7 @@ export default {
 设置 `isCentered` 属性，使对话框在垂直方向也居中显示。
 
 <SxoCodeGroup>
+
 <SxoCodeBlock framework="vue">
 
 ```vue
@@ -216,6 +227,7 @@ export default {
   </div>
 </template>
 ```
+
 
 </SxoCodeBlock>
 <SxoCodeBlock framework="react">
@@ -243,6 +255,7 @@ export default () => {
 };
 ```
 
+
 </SxoCodeBlock>
 <SxoCodeBlock framework="vue2">
 
@@ -262,7 +275,9 @@ export default () => {
 </template>
 ```
 
+
 </SxoCodeBlock>
+
 </SxoCodeGroup>
 
 ## API

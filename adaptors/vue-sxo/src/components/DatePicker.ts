@@ -1,5 +1,5 @@
-import { defineComponent, h, ref, computed, onMounted, onUnmounted, type PropType } from 'vue';
-import { getDatePickerClasses, type DatePickerOptions } from '@sxo/ui';
+import { type DatePickerOptions, getDatePickerClasses } from '@sxo/ui';
+import { computed, defineComponent, h, onMounted, onUnmounted, type PropType, ref } from 'vue';
 
 export const DatePicker = defineComponent({
     name: 'SxoDatePicker',

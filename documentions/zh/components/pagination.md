@@ -3,7 +3,9 @@
 当有大量内容需要展现时，进行分页加载。
 
 <SxoCodeGroup>
+
 <SxoCodeBlock framework="vue">
+
 ```vue
 <template>
   <div class="flex flex-col gap-4">
@@ -36,9 +38,11 @@ const handleChange = (page) => {
 };
 </script>
 ```
+
 </SxoCodeBlock>
 
 <SxoCodeBlock framework="react">
+
 ```tsx
 import { useState } from 'react';
 import { Pagination } from '@sxo/react';
@@ -68,9 +72,11 @@ export default function PaginationDemo() {
   );
 }
 ```
+
 </SxoCodeBlock>
 
 <SxoCodeBlock framework="vue2">
+
 ```vue
 <template>
   <div class="flex flex-col gap-4">
@@ -95,7 +101,9 @@ export default {
 };
 </script>
 ```
+
 </SxoCodeBlock>
+
 </SxoCodeGroup>
 
 ## Pagination 属性

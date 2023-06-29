@@ -2,7 +2,7 @@ export interface VirtualListOptions {
     height?: number | string;
 }
 
-export function getVirtualListClasses(options: VirtualListOptions = {}) {
+export function getVirtualListClasses(_options: VirtualListOptions = {}) {
     return {
         container: 'relative overflow-auto',
         wrapper: 'relative w-full',

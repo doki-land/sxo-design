@@ -1,5 +1,5 @@
 export interface BadgeOptions {
-    variant?: 'primary' | 'secondary' | 'accent' | 'outline' | 'neon';
+    variant?: 'primary' | 'secondary' | 'accent' | 'outline' | 'neon' | 'success' | 'error';
     size?: 'sm' | 'md';
 }
 

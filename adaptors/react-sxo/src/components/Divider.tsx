@@ -1,5 +1,5 @@
 import { type DividerOptions, getDividerClasses } from '@sxo/ui';
-import React from 'react';
+import type React from 'react';
 import { useStyle } from '../hooks.ts';
 
 export interface DividerProps extends DividerOptions, React.HTMLAttributes<HTMLDivElement> {

@@ -1,6 +1,7 @@
 import { type DesignTokens, defaultTokens, tokensToCssVars } from '@sxo/design';
 import { StyleEngine } from '@sxo/engine';
-import Vue, { defineComponent, h, inject, provide, reactive, watch } from 'vue';
+import type Vue from 'vue';
+import { defineComponent, h, inject, provide, reactive, watch } from 'vue';
 
 export const SXO_KEY = 'sxo'; // In Vue 2, symbols as keys in provide/inject can sometimes be tricky depending on build setup, using string is safer but Symbol is supported in 2.7. Let's use string for compatibility.
 

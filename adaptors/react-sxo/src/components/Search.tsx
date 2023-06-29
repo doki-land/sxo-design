@@ -1,5 +1,6 @@
 import { getSearchClasses, type SearchOptions } from '@sxo/ui';
-import React, { useRef } from 'react';
+import type React from 'react';
+import { useRef } from 'react';
 import { useStyle } from '../hooks.ts';
 
 export interface SearchProps
@@ -20,7 +21,7 @@ export const Search: React.FC<SearchProps> = ({
     variant = 'outline',
     size = 'md',
     rounded = true,
-    loading = false,
+    loading: _loading = false,
     placeholder = 'Search...',
     className = '',
     ...props

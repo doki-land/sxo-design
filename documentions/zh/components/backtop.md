@@ -7,6 +7,7 @@
 通过滚动页面来查看右下角的按钮。
 
 <SxoCodeGroup>
+
 <SxoCodeBlock framework="vue">
 
 ```vue
@@ -22,6 +23,7 @@ import { BackTop as SxoBackTop } from '@sxo/vue';
 </script>
 ```
 
+
 </SxoCodeBlock>
 <SxoCodeBlock framework="react">
 
@@ -35,6 +37,7 @@ export default () => (
   </div>
 );
 ```
+
 
 </SxoCodeBlock>
 <SxoCodeBlock framework="vue2">
@@ -55,7 +58,9 @@ export default {
 </script>
 ```
 
+
 </SxoCodeBlock>
+
 </SxoCodeGroup>
 
 ## 自定义内容
@@ -63,6 +68,7 @@ export default {
 可以自定义按钮显示的内容。
 
 <SxoCodeGroup>
+
 <SxoCodeBlock framework="vue">
 
 ```vue
@@ -76,6 +82,7 @@ export default {
   </div>
 </template>
 ```
+
 
 </SxoCodeBlock>
 <SxoCodeBlock framework="react">
@@ -94,6 +101,7 @@ export default () => (
 );
 ```
 
+
 </SxoCodeBlock>
 <SxoCodeBlock framework="vue2">
 
@@ -109,7 +117,9 @@ export default () => (
 </template>
 ```
 
+
 </SxoCodeBlock>
+
 </SxoCodeGroup>
 
 ## API

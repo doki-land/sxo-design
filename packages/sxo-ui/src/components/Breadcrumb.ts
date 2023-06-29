@@ -2,7 +2,7 @@ export interface BreadcrumbOptions {
     separator?: string;
 }
 
-export function getBreadcrumbClasses(options: BreadcrumbOptions = {}) {
+export function getBreadcrumbClasses(_options: BreadcrumbOptions = {}) {
     return {
         container: 'flex items-center flex-wrap gap-2 text-sm',
         item: 'flex items-center gap-2',

@@ -1,5 +1,13 @@
+# IDE
+.idea/
+
+
+# Node
 node_modules/
 dist/
+coverage/
+cache/
+tsconfig.tsbuildinfo
 
 # Vite temporary files
 vite.config.js
@@ -7,6 +15,3 @@ vite.config.js.*
 vite.config.ts.*
 *.mjs.map
 
-
-# IDE
-.idea/

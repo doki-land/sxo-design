@@ -1,6 +1,6 @@
 import { useVirtualList } from '@sxo/design';
 import { getVirtualListClasses } from '@sxo/ui';
-import { defineComponent, h, ref, computed, type PropType } from 'vue';
+import { computed, defineComponent, h, type PropType, ref } from 'vue';
 
 export const VirtualList = defineComponent({
     name: 'SxoVirtualList',
@@ -73,7 +73,9 @@ export const VirtualList = defineComponent({
                                     key: actualIndex,
                                     class: classes.value.item,
                                 },
-                                slots.default?.({ item, index: actualIndex }),
+                                slots.default
+                                    ? slots.default({ item: item || {}, index: actualIndex })
+                                    : undefined,
                             );
                         }),
                     ),

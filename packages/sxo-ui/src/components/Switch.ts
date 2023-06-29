@@ -1,6 +1,7 @@
 export interface SwitchOptions {
     size?: 'sm' | 'md' | 'lg';
     color?: 'primary' | 'success';
+    disabled?: boolean;
 }
 
 export function getSwitchClasses(isOn: boolean, options: SwitchOptions = {}) {

@@ -1,5 +1,5 @@
-import { defineComponent, h, computed, ref } from 'vue';
 import { getCalendarClasses } from '@sxo/ui';
+import { computed, defineComponent, h, ref } from 'vue';
 
 export const Calendar = defineComponent({
     name: 'SxoCalendar',

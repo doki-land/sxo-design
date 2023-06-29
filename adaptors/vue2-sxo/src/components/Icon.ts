@@ -1,5 +1,5 @@
+import { Icons } from '@sxo/component-icons';
 import { defineComponent, h } from 'vue';
-import { Icons, type IconProps as BaseIconProps } from '@sxo/component-icons';
 import { useStyle } from '../hooks';
 
 export const Icon = defineComponent({

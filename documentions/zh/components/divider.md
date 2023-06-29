@@ -3,7 +3,9 @@
 区隔内容的直线。
 
 <SxoCodeGroup>
+
 <SxoCodeBlock framework="vue">
+
 ```vue
 <template>
   <div class="flex flex-col gap-4">
@@ -36,9 +38,11 @@
 import { SxoDivider } from '@sxo/vue';
 </script>
 ```
+
 </SxoCodeBlock>
 
 <SxoCodeBlock framework="react">
+
 ```tsx
 import { Divider } from '@sxo/react';
 
@@ -71,9 +75,11 @@ export default function DividerDemo() {
   );
 }
 ```
+
 </SxoCodeBlock>
 
 <SxoCodeBlock framework="vue2">
+
 ```vue
 <template>
   <div class="flex flex-col gap-4">
@@ -97,7 +103,9 @@ export default {
 };
 </script>
 ```
+
 </SxoCodeBlock>
+
 </SxoCodeGroup>
 
 ## Divider 属性

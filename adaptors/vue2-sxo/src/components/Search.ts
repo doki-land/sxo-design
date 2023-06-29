@@ -1,5 +1,5 @@
 import { getSearchClasses, type SearchOptions } from '@sxo/ui';
-import { defineComponent, h, computed, ref, getCurrentInstance } from 'vue';
+import { computed, defineComponent, getCurrentInstance, h, ref } from 'vue';
 import { useStyle } from '../hooks';
 
 export const Search = defineComponent({
@@ -68,9 +68,7 @@ export const Search = defineComponent({
         return () =>
             h('div', { class: [styles.value.container, attrs.class] }, [
                 // Search Icon
-                h(
-                    'span',
-                    { class: styles.value.icon },
+                h('span', { class: styles.value.icon }, [
                     h(
                         'svg',
                         {
@@ -91,7 +89,7 @@ export const Search = defineComponent({
                             }),
                         ],
                     ),
-                ),
+                ]),
 
                 // Input Field
                 h('input', {
@@ -122,24 +120,26 @@ export const Search = defineComponent({
                                 click: handleClear,
                             },
                         },
-                        h(
-                            'svg',
-                            {
-                                attrs: {
-                                    viewBox: '0 0 24 24',
-                                    fill: 'none',
-                                    stroke: 'currentColor',
-                                    'stroke-width': '2',
-                                    'stroke-linecap': 'round',
-                                    'stroke-linejoin': 'round',
+                        [
+                            h(
+                                'svg',
+                                {
+                                    attrs: {
+                                        viewBox: '0 0 24 24',
+                                        fill: 'none',
+                                        stroke: 'currentColor',
+                                        'stroke-width': '2',
+                                        'stroke-linecap': 'round',
+                                        'stroke-linejoin': 'round',
+                                    },
+                                    class: 'w-full h-full',
                                 },
-                                class: 'w-full h-full',
-                            },
-                            [
-                                h('line', { attrs: { x1: '18', y1: '6', x2: '6', y2: '18' } }),
-                                h('line', { attrs: { x1: '6', y1: '6', x2: '18', y2: '18' } }),
-                            ],
-                        ),
+                                [
+                                    h('line', { attrs: { x1: '18', y1: '6', x2: '6', y2: '18' } }),
+                                    h('line', { attrs: { x1: '6', y1: '6', x2: '18', y2: '18' } }),
+                                ],
+                            ),
+                        ],
                     ),
             ]);
     },

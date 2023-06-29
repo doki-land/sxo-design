@@ -59,13 +59,14 @@ export const pornhubTheme: DesignTokens = {
         },
     },
     borderRadius: {
+        DEFAULT: '4px',
         none: '0px',
         xs: '2px',
         sm: '4px', // Standard Hub Radius
         md: '8px',
         lg: '12px',
         full: '9999px',
-            xl: '12px',
+        xl: '12px',
     },
     boxShadow: {
         ...defaultTokens.boxShadow,
@@ -76,7 +77,7 @@ export const pornhubTheme: DesignTokens = {
         lg: 'none',
         hard: '0 0 0 1px #1A1A1A',
         'hard-accent': '0 0 0 1px #FF9900',
-            xl: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+        xl: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
     },
     typography: {
         ...defaultTokens.typography,

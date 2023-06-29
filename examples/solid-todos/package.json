@@ -4,19 +4,20 @@
     "version": "0.0.0",
     "type": "module",
     "scripts": {
-        "dev": "vite",
-        "build": "tsc && vite build",
-        "preview": "vite preview"
+        "dev": "vite --port 5001",
+        "build": "vite build",
+        "preview": "vite preview",
+        "type-check": "tsc --noEmit"
     },
     "dependencies": {
-        "solid-js": "^1.7.6",
-        "solid-sxo": "workspace:*",
-        "@sxo/theme-pornhub": "workspace:*"
+        "@sxo/theme-pornhub": "workspace:*",
+        "solid-js": "^1.9.10",
+        "solid-sxo": "workspace:*"
     },
     "devDependencies": {
-        "vite": "^4.4.0",
-        "vite-plugin-solid": "^2.7.0",
-        "typescript": "^5.0.0",
+        "typescript": "^5.9.3",
+        "vite": "^7.3.1",
+        "vite-plugin-solid": "^2.11.10",
         "vite-plugin-sxo": "workspace:*"
     },
     "publishConfig": {

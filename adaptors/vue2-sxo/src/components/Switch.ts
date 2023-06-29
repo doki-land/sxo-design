@@ -1,5 +1,5 @@
-import { defineComponent, h, computed, getCurrentInstance, ref, watch } from 'vue';
-import { type SwitchOptions, getSwitchClasses } from '@sxo/ui';
+import { getSwitchClasses, type SwitchOptions } from '@sxo/ui';
+import { computed, defineComponent, getCurrentInstance, h, ref, watch } from 'vue';
 import { useStyle } from '../hooks';
 
 export const Switch = defineComponent({

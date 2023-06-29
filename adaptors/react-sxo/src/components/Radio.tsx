@@ -29,7 +29,7 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
     value: controlledValue,
     defaultValue = '',
     onChange,
-    name,
+    name: propName,
     size = 'md',
     color = 'primary',
     children,
@@ -39,9 +39,9 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
     const isControlled = controlledValue !== undefined;
     const currentValue = isControlled ? controlledValue : internalValue;
 
-    const { value, setValue } = useRadioGroup({
+    const { name } = useRadioGroup({
         defaultValue: currentValue,
-        name,
+        name: propName,
     });
 
     const handleChange = (val: string) => {

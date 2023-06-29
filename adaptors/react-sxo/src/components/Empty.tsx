@@ -1,5 +1,5 @@
 import { type EmptyOptions, getEmptyClasses } from '@sxo/ui';
-import React from 'react';
+import type React from 'react';
 import { useStyle } from '../hooks.ts';
 
 export interface EmptyProps extends EmptyOptions, React.HTMLAttributes<HTMLDivElement> {

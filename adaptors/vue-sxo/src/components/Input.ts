@@ -1,5 +1,5 @@
-import { defineComponent, h, computed, PropType } from 'vue';
-import { getInputClasses, InputOptions } from '@sxo/ui';
+import { getInputClasses, type InputOptions } from '@sxo/ui';
+import { computed, defineComponent, h, type PropType } from 'vue';
 import { useStyle } from '../hooks';
 
 export const Input = defineComponent({

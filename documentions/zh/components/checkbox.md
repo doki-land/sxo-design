@@ -3,7 +3,9 @@
 复选框用于在多个选项中选择一个或多个。
 
 <SxoCodeGroup>
+
 <SxoCodeBlock framework="vue">
+
 ```vue
 <template>
   <div class="flex flex-col gap-4">
@@ -47,9 +49,11 @@ const checked = ref(false);
 const groupValue = ref(['apple']);
 </script>
 ```
+
 </SxoCodeBlock>
 
 <SxoCodeBlock framework="react">
+
 ```tsx
 import { useState } from 'react';
 import { Checkbox, CheckboxGroup } from '@sxo/react';
@@ -93,9 +97,11 @@ export default function CheckboxDemo() {
   );
 }
 ```
+
 </SxoCodeBlock>
 
 <SxoCodeBlock framework="vue2">
+
 ```vue
 <template>
   <div class="flex flex-col gap-4">
@@ -132,7 +138,9 @@ export default {
 };
 </script>
 ```
+
 </SxoCodeBlock>
+
 </SxoCodeGroup>
 
 ## Checkbox 属性

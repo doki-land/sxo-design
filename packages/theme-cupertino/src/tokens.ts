@@ -40,13 +40,14 @@ export const cupertinoTheme: DesignTokens = {
     },
     borderRadius: {
         ...defaultTokens.borderRadius,
+        DEFAULT: '12px',
         none: '0',
         xs: '4px',
         sm: '8px',
         md: '12px',
         lg: '16px',
         full: '9999px',
-            xl: '12px',
+        xl: '12px',
     },
     boxShadow: {
         ...defaultTokens.boxShadow,
@@ -57,7 +58,7 @@ export const cupertinoTheme: DesignTokens = {
         lg: '0 12px 32px rgba(0,0,0,0.15)',
         hard: 'none',
         'hard-accent': 'none',
-            xl: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+        xl: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
     },
     typography: {
         ...defaultTokens.typography,

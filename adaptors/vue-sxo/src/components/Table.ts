@@ -1,9 +1,8 @@
-import { useTable, useSelection } from '@sxo/design';
+import { useSelection, useTable } from '@sxo/design';
 import { getTableClasses, type TableOptions } from '@sxo/ui';
-import { defineComponent, h, type PropType, ref, computed, watch, onMounted } from 'vue';
-import { Pagination as SxoPagination } from './Pagination';
+import { computed, defineComponent, h, type PropType, ref } from 'vue';
 import { Checkbox as SxoCheckbox } from './Checkbox';
-import { Skeleton as SxoSkeleton } from './Skeleton';
+import { Pagination as SxoPagination } from './Pagination';
 import { VirtualList as SxoVirtualList } from './VirtualList';
 
 export interface Column<T> {

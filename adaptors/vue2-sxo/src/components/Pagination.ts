@@ -1,5 +1,5 @@
-import { defineComponent, h, computed, getCurrentInstance, type PropType } from 'vue';
 import { getPaginationClasses, type PaginationOptions } from '@sxo/ui';
+import { computed, defineComponent, getCurrentInstance, h, type PropType } from 'vue';
 import { useStyle } from '../hooks';
 
 export const Pagination = defineComponent({
@@ -133,8 +133,9 @@ export const Pagination = defineComponent({
                                         if (e.key === 'Enter') {
                                             const val = parseInt(
                                                 (e.target as HTMLInputElement).value,
+                                                10,
                                             );
-                                            if (!isNaN(val)) changePage(val);
+                                            if (!Number.isNaN(val)) changePage(val);
                                         }
                                     },
                                 },

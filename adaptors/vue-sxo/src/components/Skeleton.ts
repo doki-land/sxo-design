@@ -1,5 +1,5 @@
-import { defineComponent, h, computed, type PropType } from 'vue';
-import { getSkeletonClasses, type SkeletonOptions } from '@sxo/ui';
+import { getSkeletonClasses } from '@sxo/ui';
+import { computed, defineComponent, h } from 'vue';
 
 export const Skeleton = defineComponent({
     name: 'SxoSkeleton',

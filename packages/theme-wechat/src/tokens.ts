@@ -50,13 +50,14 @@ export const wechatTheme: DesignTokens = {
         },
     },
     borderRadius: {
+        DEFAULT: '8px',
         none: '0px',
         xs: '2px',
         sm: '4px',
         md: '8px', // WeUI standard
         lg: '12px',
         full: '9999px',
-            xl: '12px',
+        xl: '12px',
     },
     boxShadow: {
         none: 'none',
@@ -66,7 +67,7 @@ export const wechatTheme: DesignTokens = {
         lg: '0 12px 32px rgba(0,0,0,0.12)',
         hard: '0 0 0 1px rgba(0,0,0,0.1)',
         'hard-accent': '0 0 0 1px #07C160',
-            xl: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+        xl: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
     },
     typography: {
         ...defaultTokens.typography,

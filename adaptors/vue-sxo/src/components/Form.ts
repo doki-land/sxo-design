@@ -1,6 +1,6 @@
 import { useForm, type ValidationRule } from '@sxo/design';
-import { getFormClasses, getFormItemClasses, type FormOptions } from '@sxo/ui';
-import { defineComponent, h, inject, provide, reactive, computed, type PropType } from 'vue';
+import { type FormOptions, getFormClasses, getFormItemClasses } from '@sxo/ui';
+import { computed, defineComponent, h, inject, type PropType, provide, reactive } from 'vue';
 
 const FormSymbol = Symbol('Form');
 

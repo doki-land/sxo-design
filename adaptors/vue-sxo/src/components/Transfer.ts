@@ -1,5 +1,5 @@
-import { defineComponent, h, ref, computed, type PropType } from 'vue';
 import { getTransferClasses, type TransferOptions } from '@sxo/ui';
+import { computed, defineComponent, h, type PropType, ref } from 'vue';
 import { Checkbox } from './Checkbox';
 
 export interface TransferItem {
@@ -67,7 +67,7 @@ export const Transfer = defineComponent({
         };
 
         const renderList = (
-            type: 'left' | 'right',
+            _type: 'left' | 'right',
             title: string,
             data: TransferItem[],
             selection: (string | number)[],

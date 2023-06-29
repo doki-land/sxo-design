@@ -1,4 +1,4 @@
-import React from 'react';
+import type React from 'react';
 import { useStyle } from '../hooks.js';
 
 export type Responsive<T> =

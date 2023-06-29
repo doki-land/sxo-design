@@ -1,5 +1,5 @@
-import { getAlertClasses, type AlertOptions } from '@sxo/ui';
-import React from 'react';
+import { type AlertOptions, getAlertClasses } from '@sxo/ui';
+import type React from 'react';
 import { useStyle } from '../hooks.ts';
 
 export interface AlertProps extends AlertOptions, React.HTMLAttributes<HTMLDivElement> {

@@ -1,22 +1,28 @@
 {
-    "name": "sxo-docs",
+    "name": "sxo-documentions",
     "version": "0.0.0",
     "private": true,
+    "type": "module",
     "scripts": {
-        "docs:dev": "vitepress dev .",
-        "docs:build": "vitepress build .",
-        "docs:preview": "vitepress preview ."
+        "dev": "vitepress dev . --port 3000",
+        "build": "vitepress build .",
+        "cloudflare": "pnpm --filter sxo-documentions^... build && vitepress build .",
+        "preview": "vitepress preview ."
     },
     "devDependencies": {
-        "vitepress": "^1.0.0",
-        "vue": "^3.4.0",
-        "vite-plugin-sxo": "workspace:*",
-        "vue-sxo": "workspace:*",
         "@sxo/design": "workspace:*",
         "@sxo/engine": "workspace:*",
-        "@sxo/ui": "workspace:*",
+        "@sxo/theme-antd": "workspace:*",
+        "@sxo/theme-carbon": "workspace:*",
+        "@sxo/theme-cupertino": "workspace:*",
+        "@sxo/theme-fate": "workspace:*",
+        "@sxo/theme-fluent": "workspace:*",
         "@sxo/theme-github": "workspace:*",
         "@sxo/theme-material": "workspace:*",
-        "@sxo/theme-fate": "workspace:*"
+        "@sxo/ui": "workspace:*",
+        "vite-plugin-sxo": "workspace:*",
+        "vitepress": "^1.6.4",
+        "vue": "^3.5.26",
+        "vue-sxo": "workspace:*"
     }
 }

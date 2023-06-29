@@ -1,5 +1,6 @@
 import { getDropdownClasses, type DropdownOptions as UIProps } from '@sxo/ui';
-import React, { useState, useRef, useEffect } from 'react';
+import type React from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { useStyle } from '../hooks.ts';
 
 export interface DropdownItemProps {
@@ -79,9 +80,9 @@ export const Dropdown: React.FC<DropdownProps> = ({
             .join(' '),
     );
 
-    const toggle = () => setIsOpen((prev) => !prev);
-    const open = () => setIsOpen(true);
-    const close = () => setIsOpen(false);
+    const toggle = useCallback(() => setIsOpen((prev) => !prev), []);
+    const open = useCallback(() => setIsOpen(true), []);
+    const close = useCallback(() => setIsOpen(false), []);
 
     useEffect(() => {
         if (trigger === 'click') {
@@ -93,7 +94,7 @@ export const Dropdown: React.FC<DropdownProps> = ({
             window.addEventListener('click', handleClickOutside);
             return () => window.removeEventListener('click', handleClickOutside);
         }
-    }, [trigger]);
+    }, [trigger, close]);
 
     const triggerProps: React.HTMLAttributes<HTMLDivElement> = {};
     if (trigger === 'hover') {

@@ -35,7 +35,7 @@ export const Tabs: React.FC<TabsProps> = ({
     const isControlled = value !== undefined;
     const currentValue = isControlled ? value : internalValue;
 
-    const { getTabListProps, getTabProps, getTabPanelProps } = useTabs({
+    const { getTabProps, getTabPanelProps } = useTabs({
         value: currentValue,
         onChange: (v) => {
             if (!isControlled) setInternalValue(v);

@@ -3,7 +3,9 @@
 用于反馈任务的处理结果。
 
 <SxoCodeGroup>
+
 <SxoCodeBlock framework="vue">
+
 ```vue
 <template>
   <div class="flex flex-col gap-8">
@@ -45,9 +47,11 @@
 import { SxoResult, SxoButton } from '@sxo/vue';
 </script>
 ```
+
 </SxoCodeBlock>
 
 <SxoCodeBlock framework="react">
+
 ```tsx
 import { Result, Button } from '@sxo/react';
 
@@ -76,9 +80,11 @@ export default function ResultDemo() {
   );
 }
 ```
+
 </SxoCodeBlock>
 
 <SxoCodeBlock framework="vue2">
+
 ```vue
 <template>
   <div class="flex flex-col gap-8">
@@ -101,7 +107,9 @@ export default {
 };
 </script>
 ```
+
 </SxoCodeBlock>
+
 </SxoCodeGroup>
 
 ## Result 属性

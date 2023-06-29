@@ -119,6 +119,8 @@ export const TabPanel = defineComponent({
         const ctx = inject<any>(TabsSymbol);
 
         return () => {
+            // Access currentValue to ensure reactivity
+            const _ = ctx.currentValue.value;
             const panelProps = ctx.getTabPanelProps(props.value);
 
             return h(

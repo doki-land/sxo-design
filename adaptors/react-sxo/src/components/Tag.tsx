@@ -2,7 +2,7 @@ import { getTagClasses, type TagOptions } from '@sxo/ui';
 import type React from 'react';
 import { useStyle } from '../hooks.ts';
 
-export interface TagProps extends TagOptions, React.HTMLAttributes<HTMLSpanElement> {
+export interface TagProps extends TagOptions, Omit<React.HTMLAttributes<HTMLSpanElement>, 'color'> {
     children?: React.ReactNode;
     onClose?: () => void;
 }

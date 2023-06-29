@@ -1,2 +1,2 @@
-export * from './components/index.ts';
-export * from './theme.ts';
+export * from './components/index';
+export * from './theme';

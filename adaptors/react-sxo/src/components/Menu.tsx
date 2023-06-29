@@ -44,10 +44,10 @@ export const Menu: React.FC<MenuProps> = ({
             {isOpen && (
                 <div {...getMenuProps()} className={styles.items}>
                     <div className={styles.section}>
-                        {items.map((item) => (
+                        {items.map((item, index) => (
                             <button
                                 key={item.id}
-                                {...getItemProps(item.id)}
+                                {...getItemProps(index)}
                                 className={styles.item}
                                 onClick={() => {
                                     item.onClick?.();

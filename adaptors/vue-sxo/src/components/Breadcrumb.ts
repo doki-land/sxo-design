@@ -1,5 +1,5 @@
-import { defineComponent, h, PropType, computed } from 'vue';
-import { getBreadcrumbClasses, BreadcrumbOptions } from '@sxo/ui';
+import { getBreadcrumbClasses } from '@sxo/ui';
+import { computed, defineComponent, h } from 'vue';
 import { useStyle } from '../hooks';
 
 export const BreadcrumbItem = defineComponent({

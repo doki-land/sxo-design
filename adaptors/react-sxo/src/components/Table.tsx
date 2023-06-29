@@ -1,5 +1,4 @@
 import { type TableOptions, useTable } from '@sxo/component-table';
-import React from 'react';
 import { useStyle } from '../hooks.ts';
 
 export interface TableProps<T> extends TableOptions<T> {

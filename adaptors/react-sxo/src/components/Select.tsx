@@ -27,7 +27,7 @@ export const Select: React.FC<SelectProps> = ({
     const isControlled = controlledValue !== undefined;
     const currentValue = isControlled ? controlledValue : internalValue;
 
-    const { isOpen, value, setValue, getTriggerProps, getListboxProps } = useSelect({
+    const { isOpen, setValue, getTriggerProps, getListboxProps } = useSelect({
         defaultValue: currentValue,
         disabled,
     });

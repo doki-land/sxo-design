@@ -1,5 +1,6 @@
 import { useForm, type ValidationRule } from '@sxo/design';
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import type React from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 
 const FormContext = createContext<any>(null);
 
@@ -34,7 +35,9 @@ export const Form: React.FC<FormProps> = ({
                 errors: { ...form.errors } as any,
             });
         });
-        return () => unsubscribe();
+        return () => {
+            unsubscribe();
+        };
     }, [form]);
 
     return (

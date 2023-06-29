@@ -9,6 +9,7 @@ export function useStyle(classNames: string) {
     const { engine } = useSxo();
 
     const css = useMemo(() => {
+        if (!classNames || typeof classNames !== 'string') return '';
         const classes = classNames.split(/\s+/).filter(Boolean);
         return engine.generateSheet(classes);
     }, [classNames, engine]);
@@ -50,11 +51,11 @@ export function useBreakpoint() {
     const updateBreakpoint = useCallback(() => {
         const width = window.innerWidth;
         const sorted = Object.entries(tokens.breakpoints).sort(
-            (a, b) => parseInt(b[1]) - parseInt(a[1]),
+            (a, b) => parseInt(b[1], 10) - parseInt(a[1], 10),
         );
 
         for (const [name, minWidth] of sorted) {
-            if (width >= parseInt(minWidth)) {
+            if (width >= parseInt(minWidth, 10)) {
                 setBreakpoint(name);
                 return;
             }

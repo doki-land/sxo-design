@@ -1,6 +1,6 @@
 import { useMenu } from '@sxo/design';
 import { getMenuClasses, type MenuOptions } from '@sxo/ui';
-import { computed, defineComponent, h, type PropType, ref } from 'vue';
+import { defineComponent, h, type PropType, ref } from 'vue';
 import { useStyle } from '../hooks';
 
 export interface MenuItem {
@@ -54,7 +54,7 @@ export const Menu = defineComponent({
                         class: styles.button,
                         onClick: handleToggle,
                     },
-                    slots.label ? slots.label() : props.label,
+                    slots.label ? (slots.label() as any) : props.label,
                 ),
 
                 isOpen.value
@@ -62,11 +62,11 @@ export const Menu = defineComponent({
                           h(
                               'div',
                               { class: styles.section },
-                              props.items.map((item) =>
+                              props.items.map((item, index) =>
                                   h(
                                       'button',
                                       {
-                                          ...getItemProps(item.id),
+                                          ...getItemProps(index),
                                           key: item.id,
                                           class: styles.item,
                                           onClick: () => handleSelect(item),

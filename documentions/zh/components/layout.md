@@ -7,6 +7,7 @@ Layout 组件库提供了一系列用于页面布局的基础组件，包括 `Bo
 `Box` 是最基础的布局组件，它本质上是一个可以自定义标签并支持原子化 CSS 属性的容器。
 
 <SxoCodeGroup>
+
 <SxoCodeBlock framework="vue">
 
 ```vue
@@ -29,6 +30,7 @@ import { Box as SxoBox } from '@sxo/vue';
 </script>
 ```
 
+
 </SxoCodeBlock>
 <SxoCodeBlock framework="react">
 
@@ -49,6 +51,7 @@ const App = () => (
   </Box>
 );
 ```
+
 
 </SxoCodeBlock>
 <SxoCodeBlock framework="vue2">
@@ -77,7 +80,9 @@ export default {
 </script>
 ```
 
+
 </SxoCodeBlock>
+
 </SxoCodeGroup>
 
 ## Stack
@@ -85,6 +90,7 @@ export default {
 `Stack` 用于水平或垂直排列子元素，底层基于 Flexbox。
 
 <SxoCodeGroup>
+
 <SxoCodeBlock framework="vue">
 
 ```vue
@@ -101,6 +107,7 @@ import { Stack as SxoStack, Box as SxoBox } from '@sxo/vue';
 </script>
 ```
 
+
 </SxoCodeBlock>
 <SxoCodeBlock framework="react">
 
@@ -115,6 +122,7 @@ const App = () => (
   </Stack>
 );
 ```
+
 
 </SxoCodeBlock>
 <SxoCodeBlock framework="vue2">
@@ -137,7 +145,9 @@ export default {
 </script>
 ```
 
+
 </SxoCodeBlock>
+
 </SxoCodeGroup>
 
 ## Grid
@@ -145,6 +155,7 @@ export default {
 `Grid` 用于创建网格布局，底层基于 CSS Grid。
 
 <SxoCodeGroup>
+
 <SxoCodeBlock framework="vue">
 
 ```vue
@@ -161,6 +172,7 @@ import { Grid as SxoGrid, Box as SxoBox } from '@sxo/vue';
 </script>
 ```
 
+
 </SxoCodeBlock>
 <SxoCodeBlock framework="react">
 
@@ -175,6 +187,7 @@ const App = () => (
   </Grid>
 );
 ```
+
 
 </SxoCodeBlock>
 <SxoCodeBlock framework="vue2">
@@ -197,7 +210,9 @@ export default {
 </script>
 ```
 
+
 </SxoCodeBlock>
+
 </SxoCodeGroup>
 
 ## Container
@@ -205,6 +220,7 @@ export default {
 `Container` 用于限制内容的最大宽度，并使其在页面中居中。
 
 <SxoCodeGroup>
+
 <SxoCodeBlock framework="vue">
 
 ```vue
@@ -221,6 +237,7 @@ import { Container as SxoContainer, Box as SxoBox } from '@sxo/vue';
 </script>
 ```
 
+
 </SxoCodeBlock>
 <SxoCodeBlock framework="react">
 
@@ -235,6 +252,7 @@ const App = () => (
   </Container>
 );
 ```
+
 
 </SxoCodeBlock>
 <SxoCodeBlock framework="vue2">
@@ -257,7 +275,9 @@ export default {
 </script>
 ```
 
+
 </SxoCodeBlock>
+
 </SxoCodeGroup>
 
 ## 响应式支持

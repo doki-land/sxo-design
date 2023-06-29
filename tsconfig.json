@@ -2,19 +2,25 @@
     "compilerOptions": {
         "target": "ESNext",
         "module": "ESNext",
-        "moduleResolution": "node",
+        "moduleResolution": "bundler",
         "strict": true,
         "declaration": true,
         "skipLibCheck": true,
         "esModuleInterop": true,
         "isolatedModules": true,
         "resolveJsonModule": true,
-        "noEmit": true,
+        "jsx": "preserve",
+        "incremental": true,
+        "declarationDir": "dist",
         "allowImportingTsExtensions": true,
         "baseUrl": ".",
         "paths": {
-            "@sxo/*": ["packages/*/src"]
+            "@sxo/*": ["packages/sxo-*/src", "packages/*/src"],
+            "react-sxo": ["adaptors/react-sxo/src"],
+            "*-sxo": ["adaptors/*-sxo/src"],
+            "vite-plugin-sxo": ["adaptors/vite-plugin-sxo/src"]
         }
     },
-    "exclude": ["node_modules", "dist"]
+    "include": ["packages", "adaptors", "examples"],
+    "exclude": ["node_modules", "**/dist"]
 }

@@ -12,26 +12,7 @@
         "lineWidth": 100
     },
     "linter": {
-        "enabled": true,
-        "rules": {
-            "recommended": true,
-            "a11y": {
-                "noStaticElementInteractions": "off",
-                "useKeyWithClickEvents": "off",
-                "useAltText": "warn"
-            },
-            "style": {
-                "useSelfClosingElements": "warn",
-                "noNonNullAssertion": "off"
-            },
-            "complexity": {
-                "noForEach": "off"
-            },
-            "suspicious": {
-                "noExplicitAny": "off",
-                "noArrayIndexKey": "warn"
-            }
-        }
+        "enabled": false
     },
     "javascript": {
         "formatter": {

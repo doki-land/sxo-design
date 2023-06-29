@@ -1,6 +1,7 @@
-import { useToastManager, type Toast } from '@sxo/design';
+import { type Toast, useToastManager } from '@sxo/design';
 import { getToastClasses } from '@sxo/ui';
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import type React from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 
 const ToastContext = createContext<ReturnType<typeof useToastManager> | null>(null);
@@ -13,7 +14,9 @@ export const ToastProvider: React.FC<{ children: React.ReactNode }> = ({ childre
         const unsubscribe = manager.subscribe((newToasts) => {
             setToasts(newToasts);
         });
-        return () => unsubscribe();
+        return () => {
+            unsubscribe();
+        };
     }, [manager]);
 
     return (

@@ -3,7 +3,9 @@
 带有搜索图标的输入框，支持清除、回车搜索等功能。
 
 <SxoCodeGroup>
+
 <SxoCodeBlock framework="vue">
+
 ```vue
 <template>
   <div class="flex flex-col gap-4">
@@ -43,9 +45,11 @@ const onSearch = (val) => {
 };
 </script>
 ```
+
 </SxoCodeBlock>
 
 <SxoCodeBlock framework="react">
+
 ```tsx
 import { useState } from 'react';
 import { Search } from '@sxo/react';
@@ -83,9 +87,11 @@ export default function SearchDemo() {
   );
 }
 ```
+
 </SxoCodeBlock>
 
 <SxoCodeBlock framework="vue2">
+
 ```vue
 <template>
   <div class="flex flex-col gap-4">
@@ -115,7 +121,9 @@ export default {
 };
 </script>
 ```
+
 </SxoCodeBlock>
+
 </SxoCodeGroup>
 
 ## Search 属性

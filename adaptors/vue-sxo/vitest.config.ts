@@ -1,9 +1,14 @@
-import { defineConfig } from 'vitest/config';
+import path from 'node:path';
 import vue from '@vitejs/plugin-vue';
-import path from 'path';
+import { defineConfig } from 'vitest/config';
 
 export default defineConfig({
+    // @ts-expect-error
+    builder: 'rolldown',
     plugins: [vue()],
+    css: {
+        transformer: 'lightningcss',
+    },
     test: {
         environment: 'happy-dom',
         globals: true,

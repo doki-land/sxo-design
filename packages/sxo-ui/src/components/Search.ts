@@ -28,13 +28,13 @@ export function getSearchClasses(options: SearchOptions = {}) {
     ].join(' ');
 
     const icon = 'absolute left-3.5 text-neutral-400 pointer-events-none w-4 h-4';
-    const clearButton =
+    const clear =
         'absolute right-3 text-neutral-400 hover:text-black transition-colors cursor-pointer w-4 h-4';
 
     return {
         container,
         input,
         icon,
-        clearButton,
+        clear,
     };
 }

@@ -1,10 +1,10 @@
-import { mount } from '@vue/test-utils';
-import { describe, it, expect } from 'vitest';
-import { Table } from '../src/components/Table';
-import { nextTick, markRaw } from 'vue';
-import { SXO_KEY } from '../src/plugin';
-import { StyleEngine } from '@sxo/engine';
 import { defaultTokens } from '@sxo/design';
+import { StyleEngine } from '@sxo/engine';
+import { mount } from '@vue/test-utils';
+import { describe, expect, it } from 'vitest';
+import { markRaw, nextTick } from 'vue';
+import { Table } from '../src/components/Table';
+import { SXO_KEY } from '../src/plugin';
 
 const mockSxo = {
     tokens: defaultTokens,

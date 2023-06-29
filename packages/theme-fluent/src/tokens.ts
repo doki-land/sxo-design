@@ -40,13 +40,14 @@ export const fluentTheme: DesignTokens = {
     },
     borderRadius: {
         ...defaultTokens.borderRadius,
+        DEFAULT: '4px',
         none: '0',
         xs: '2px',
         sm: '4px',
         md: '6px',
         lg: '8px',
         full: '9999px',
-            xl: '12px',
+        xl: '12px',
     },
     boxShadow: {
         ...defaultTokens.boxShadow,
@@ -57,7 +58,7 @@ export const fluentTheme: DesignTokens = {
         lg: '0 25.6px 57.6px 0 rgba(0,0,0,0.22), 0 4.8px 14.4px 0 rgba(0,0,0,0.18)',
         hard: 'none',
         'hard-accent': 'none',
-            xl: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+        xl: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
     },
     typography: {
         ...defaultTokens.typography,

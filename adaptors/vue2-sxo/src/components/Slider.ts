@@ -1,5 +1,5 @@
-import { defineComponent, h, computed, ref, onUnmounted, getCurrentInstance } from 'vue';
 import { getSliderClasses } from '@sxo/ui';
+import { computed, defineComponent, getCurrentInstance, h, onUnmounted, ref } from 'vue';
 
 export const Slider = defineComponent({
     name: 'SxoSlider',

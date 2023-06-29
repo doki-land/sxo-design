@@ -1,8 +1,8 @@
-import { type TimelineOptions, getTimelineClasses } from '@sxo/ui';
-import React from 'react';
+import { getTimelineClasses, type TimelineOptions } from '@sxo/ui';
+import type React from 'react';
 import { useStyle } from '../hooks.ts';
 
-export interface TimelineItemProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface TimelineItemProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'title'> {
     label?: React.ReactNode;
     title?: React.ReactNode;
     description?: React.ReactNode;

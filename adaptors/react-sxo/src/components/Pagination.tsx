@@ -1,5 +1,5 @@
-import React from 'react';
 import { getPaginationClasses, type PaginationOptions } from '@sxo/ui';
+import type React from 'react';
 import { useStyle } from '../hooks.ts';
 
 export interface PaginationProps extends PaginationOptions {
@@ -123,8 +123,8 @@ export const Pagination: React.FC<PaginationProps> = ({
                         type="number"
                         onKeyUp={(e) => {
                             if (e.key === 'Enter') {
-                                const val = parseInt((e.target as HTMLInputElement).value);
-                                if (!isNaN(val)) changePage(val);
+                                const val = parseInt((e.target as HTMLInputElement).value, 10);
+                                if (!Number.isNaN(val)) changePage(val);
                             }
                         }}
                     />

@@ -1,25 +1,41 @@
 import { type DesignTokens, tokensToCssVars } from '@sxo/design';
-import { defaultRules, type Rule, type RuleContext } from './rules.ts';
+import { allRules } from './core/rules';
+import type { Rule, RuleContext } from './core/types';
+import { SxoParser } from './parser';
+
+export interface EngineOptions {
+    debug?: boolean;
+}
 
 export class StyleEngine {
-    private rules: Rule[] = [...defaultRules];
+    private rules: Rule[] = [...allRules];
     private cache: Map<string, string> = new Map();
     private generatedClasses: Set<string> = new Set();
+    private parser = new SxoParser();
+    private options: EngineOptions;
+    private missedClasses: Set<string> = new Set();
+
     private variants: Record<string, { suffix?: string; parent?: string }> = {
         hover: { suffix: ':hover' },
         focus: { suffix: ':focus' },
         active: { suffix: ':active' },
         disabled: { suffix: ':disabled' },
+        'focus-within': { suffix: ':focus-within' },
         'focus-visible': { suffix: ':focus-visible' },
         placeholder: { suffix: '::placeholder' },
+        selection: { suffix: '::selection' },
         'group-hover': { parent: '.group:hover' },
+        'group-focus': { parent: '.group:focus' },
+        'group-active': { parent: '.group:active' },
         dark: { parent: '[data-sxo-mode="dark"]' },
+        light: { parent: '[data-sxo-mode="light"]' },
     };
 
     private tokens: DesignTokens;
 
-    constructor(tokens: DesignTokens) {
+    constructor(tokens: DesignTokens, options: EngineOptions = {}) {
         this.tokens = tokens;
+        this.options = options;
     }
 
     /**
@@ -37,58 +53,122 @@ export class StyleEngine {
             return this.cache.get(className)!;
         }
 
-        let rawClassName = className;
-        let variantSuffix = '';
-        let variantParent = '';
-        let mediaQuery = '';
+        // 1. Transform: Parse class name into structured AST
+        const parsed = this.parser.parse(className);
 
-        // 1. 处理响应式变体 (e.g. md:text-lg)
-        const breakpoints = this.tokens.breakpoints;
-        for (const [bp, minWidth] of Object.entries(breakpoints)) {
-            if (rawClassName.startsWith(`${bp}:`)) {
-                mediaQuery = `@media (min-width: ${minWidth})`;
-                rawClassName = rawClassName.slice(bp.length + 1);
-                break;
+        // 2. Resolve: Match rules to get raw CSS properties
+        const styles = this.resolveStyles(parsed);
+        if (!styles) {
+            if (this.options.debug) {
+                this.missedClasses.add(className);
             }
+            return '';
         }
 
-        // 2. 处理状态变体 (e.g. hover:bg-primary, group-hover:bg-primary, dark:bg-primary)
-        for (const [vName, config] of Object.entries(this.variants)) {
-            if (rawClassName.startsWith(`${vName}:`)) {
-                if (config.suffix) variantSuffix = config.suffix;
-                if (config.parent) variantParent = config.parent;
-                rawClassName = rawClassName.slice(vName.length + 1);
-                break;
-            }
-        }
-
-        const context: RuleContext = { tokens: this.tokens };
-
-        for (const [match, handler] of this.rules) {
-            const isMatch =
-                typeof match === 'string' ? match === rawClassName : rawClassName.match(match);
-
-            if (isMatch) {
-                const m =
-                    typeof match === 'string'
-                        ? [rawClassName]
-                        : (rawClassName.match(match) as string[]);
-                const result = handler(m, context);
-                if (result) {
-                    const css = this.formatCss(
-                        className,
-                        result,
-                        variantSuffix,
-                        variantParent,
-                        mediaQuery,
-                    );
-                    this.cache.set(className, css);
-                    return css;
+        // 2.5 Handle negative values
+        if (parsed.negative && typeof styles === 'object') {
+            for (const key in styles) {
+                const val = styles[key];
+                if (typeof val === 'string') {
+                    if (/^-?\d/.test(val)) {
+                        styles[key] = val.startsWith('-') ? val.substring(1) : `-${val}`;
+                    } else if (val.startsWith('var(')) {
+                        styles[key] = `calc(${val} * -1)`;
+                    }
                 }
             }
         }
 
-        return '';
+        // 3. Variant: Process variants (responsive, states)
+        const variantInfo = this.resolveVariants(parsed);
+
+        // 4. CodeGen: Format final CSS string
+        const css = this.formatCss(
+            className,
+            styles,
+            variantInfo.suffix,
+            variantInfo.parent,
+            variantInfo.mediaQuery,
+        );
+
+        this.cache.set(className, css);
+        this.generatedClasses.add(className);
+        return css;
+    }
+
+    private resolveStyles(parsed: any): string | Record<string, any> | undefined {
+        const context: RuleContext = { tokens: this.tokens, parsed };
+        const rawUtility = parsed.utility;
+
+        for (const [match, handler] of this.rules) {
+            let isMatch = false;
+            let matchResult: string[] = [];
+
+            if (typeof match === 'string') {
+                isMatch = match === rawUtility;
+                matchResult = [rawUtility];
+            } else if (match instanceof RegExp) {
+                const m = rawUtility.match(match);
+                if (m) {
+                    isMatch = true;
+                    matchResult = Array.from(m);
+                }
+            } else if (typeof match === 'function') {
+                isMatch = match(parsed);
+                matchResult = [rawUtility];
+            }
+
+            if (isMatch) {
+                const result = handler(matchResult, context);
+                if (result) return result;
+            }
+        }
+        return undefined;
+    }
+
+    private resolveVariants(parsed: any) {
+        let suffix = '';
+        let parent = '';
+        const mediaQueries: string[] = [];
+
+        for (const variant of parsed.variants) {
+            const breakpoint = this.tokens.breakpoints?.[variant];
+            if (breakpoint) {
+                const bpStr = String(breakpoint);
+                if (bpStr.startsWith('@media')) {
+                    mediaQueries.push(bpStr.replace(/^@media\s+/, ''));
+                } else {
+                    mediaQueries.push(`(min-width: ${bpStr})`);
+                }
+                continue;
+            }
+
+            const config = this.variants[variant];
+            if (config) {
+                if (config.suffix) suffix += config.suffix;
+                if (config.parent) {
+                    parent = parent ? `${config.parent} ${parent}` : config.parent;
+                }
+                continue;
+            }
+
+            if (this.options.debug) {
+                console.warn(`[SXO] Unknown variant: ${variant} in class ${parsed.raw}`);
+            }
+        }
+
+        return {
+            suffix,
+            parent,
+            mediaQuery: mediaQueries.join(' and '),
+        };
+    }
+
+    /**
+     * 获取未生成的类名列表 (Debug 模式)
+     */
+    getMissedClasses(): string[] {
+        return Array.from(this.missedClasses);
     }
 
     /**
@@ -133,7 +213,7 @@ export class StyleEngine {
         for (const className of sortedClasses) {
             const result = this.generate(className);
             if (result) {
-                css += result + '\n';
+                css += `${result}\n`;
             }
         }
         return css;
@@ -220,7 +300,8 @@ export class StyleEngine {
         let css = processResult(selector, result);
 
         if (mediaQuery) {
-            css = `${mediaQuery} {\n${css
+            const mq = mediaQuery.startsWith('@media') ? mediaQuery : `@media ${mediaQuery}`;
+            css = `${mq} {\n${css
                 .split('\n')
                 .map((line) => `  ${line}`)
                 .join('\n')}\n}`;

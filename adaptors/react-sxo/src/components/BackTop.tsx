@@ -1,5 +1,6 @@
 import { getBackTopClasses } from '@sxo/ui';
-import React, { useEffect, useState } from 'react';
+import type React from 'react';
+import { useEffect, useState } from 'react';
 import { useStyle } from '../hooks.ts';
 
 export interface BackTopProps {

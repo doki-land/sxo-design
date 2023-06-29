@@ -1,35 +1,18 @@
 import { defaultTokens } from '@sxo/design';
-import { githubTheme } from '@sxo/theme-github';
-import { materialTheme } from '@sxo/theme-material';
-import { pornhubTheme } from '@sxo/theme-pornhub';
 import { antdTheme } from '@sxo/theme-antd';
 import { carbonTheme } from '@sxo/theme-carbon';
 import { cupertinoTheme } from '@sxo/theme-cupertino';
 import { fateTheme } from '@sxo/theme-fate';
 import { fluentTheme } from '@sxo/theme-fluent';
+import { githubTheme } from '@sxo/theme-github';
+import { materialTheme } from '@sxo/theme-material';
+import { pornhubTheme } from '@sxo/theme-pornhub';
 import { wechatTheme } from '@sxo/theme-wechat';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import ReactDOM from 'react-dom/client';
 import 'virtual:sxo.css';
 import './reset.css'; // Import Global Reset
-import {
-    Badge,
-    Button,
-    Card,
-    Dialog,
-    Icon,
-    Input,
-    Menu,
-    Switch,
-    Tab,
-    TabList,
-    Table,
-    TabPanel,
-    Tabs,
-    Tag,
-    ThemeProvider,
-    Tooltip,
-} from 'react-sxo';
+import { Badge, Button, Card, Dialog, Icon, Input, Menu, Table, ThemeProvider } from 'react-sxo';
 
 const extendedTokens = {
     ...defaultTokens,
@@ -39,11 +22,11 @@ const extendedTokens = {
     },
 };
 
-const App = () => {
+export const App = () => {
     const [theme, setTheme] = useState(extendedTokens);
     const [mode, setMode] = useState<'light' | 'dark'>('light');
     const [isDialogOpen, setIsDialogOpen] = useState(false);
-    const [isSwitchOn, setIsSwitchOn] = useState(false);
+    const [_isSwitchOn, _setIsSwitchOn] = useState(false);
 
     const handleThemeChange = (t: any) => {
         setTheme(t);
@@ -60,7 +43,7 @@ const App = () => {
             key: 'status',
             header: 'Status',
             render: (row: any) => (
-                <Badge variant={row.status === 'Active' ? 'success' : 'secondary'}>
+                <Badge variant={row.status === 'Active' ? 'accent' : 'secondary'}>
                     {row.status}
                 </Badge>
             ),
@@ -307,8 +290,9 @@ const App = () => {
                                             <Button
                                                 variant="accent"
                                                 className="shadow-lg shadow-accent/20"
+                                                onClick={() => setIsDialogOpen(true)}
                                             >
-                                                Accent
+                                                Open Dialog
                                             </Button>
                                         </div>
                                     </div>
@@ -377,7 +361,7 @@ const App = () => {
                                             </span>
                                         </div>
                                         <Badge
-                                            variant="success"
+                                            variant="accent"
                                             className="bg-success/10 text-success border-0"
                                         >
                                             24ms
@@ -499,5 +483,8 @@ const App = () => {
     );
 };
 
-const root = ReactDOM.createRoot(document.getElementById('root')!);
-root.render(<App />);
+const rootElement = document.getElementById('root');
+if (rootElement) {
+    const root = ReactDOM.createRoot(rootElement);
+    root.render(<App />);
+}

@@ -1,5 +1,5 @@
-import { defineComponent, h, PropType, computed } from 'vue';
-import { getStepsClasses, StepsOptions } from '@sxo/ui';
+import { getStepsClasses, type StepsOptions } from '@sxo/ui';
+import { computed, defineComponent, h, type PropType } from 'vue';
 
 export const Step = defineComponent({
     name: 'SxoStep',

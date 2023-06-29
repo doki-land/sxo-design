@@ -9,7 +9,7 @@
 
 ## 代码演示
 
-<SxoPlayground component="treeselect" />
+<SxoDemo component="TreeSelect" />
 
 ## API
 

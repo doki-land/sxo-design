@@ -1,8 +1,10 @@
-import { type ResultOptions, getResultClasses } from '@sxo/ui';
-import React from 'react';
+import { getResultClasses, type ResultOptions } from '@sxo/ui';
+import type React from 'react';
 import { useStyle } from '../hooks.ts';
 
-export interface ResultProps extends ResultOptions, React.HTMLAttributes<HTMLDivElement> {
+export interface ResultProps
+    extends ResultOptions,
+        Omit<React.HTMLAttributes<HTMLDivElement>, 'title'> {
     title?: React.ReactNode;
     subTitle?: React.ReactNode;
     extra?: React.ReactNode;

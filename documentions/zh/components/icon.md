@@ -7,6 +7,7 @@
 通过 `name` 属性指定图标名称。
 
 <SxoCodeGroup>
+
 <SxoCodeBlock framework="vue">
 
 ```vue
@@ -24,6 +25,7 @@ import { Icon as SxoIcon } from '@sxo/vue';
 </script>
 ```
 
+
 </SxoCodeBlock>
 <SxoCodeBlock framework="react">
 
@@ -39,6 +41,7 @@ export default () => (
   </div>
 );
 ```
+
 
 </SxoCodeBlock>
 <SxoCodeBlock framework="vue2">
@@ -61,7 +64,9 @@ export default {
 </script>
 ```
 
+
 </SxoCodeBlock>
+
 </SxoCodeGroup>
 
 ## 自定义样式
@@ -69,6 +74,7 @@ export default {
 可以通过 `size` 和 `color` 属性自定义图标的大小和颜色。
 
 <SxoCodeGroup>
+
 <SxoCodeBlock framework="vue">
 
 ```vue
@@ -80,6 +86,7 @@ export default {
   </div>
 </template>
 ```
+
 
 </SxoCodeBlock>
 <SxoCodeBlock framework="react">
@@ -96,6 +103,7 @@ export default () => (
 );
 ```
 
+
 </SxoCodeBlock>
 <SxoCodeBlock framework="vue2">
 
@@ -109,7 +117,9 @@ export default () => (
 </template>
 ```
 
+
 </SxoCodeBlock>
+
 </SxoCodeGroup>
 
 ## API

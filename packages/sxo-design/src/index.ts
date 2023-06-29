@@ -1,3 +1,3 @@
-export * from './headless.ts';
-export * from './tokens.ts';
-export * from './utils.ts';
+export * from './headless/index';
+export * from './tokens';
+export * from './utils';

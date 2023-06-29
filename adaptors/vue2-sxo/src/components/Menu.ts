@@ -24,7 +24,7 @@ export const Menu = defineComponent({
             default: 'default',
         },
     },
-    setup(props, { emit, refs, slots }) {
+    setup(props, { emit, slots }) {
         const isOpen = ref(false);
         const { getMenuProps, getItemProps, getButtonProps } = useMenu({
             isOpen: isOpen.value,
@@ -55,7 +55,10 @@ export const Menu = defineComponent({
                     h(
                         'button',
                         {
-                            attrs: getButtonProps(),
+                            attrs: {
+                                ...getButtonProps(),
+                                role: (getButtonProps() as any).role,
+                            },
                             class: styles.button,
                             on: {
                                 click: handleToggle,
@@ -75,11 +78,14 @@ export const Menu = defineComponent({
                                   h(
                                       'div',
                                       { class: styles.section },
-                                      props.items.map((item) =>
+                                      props.items.map((item, index) =>
                                           h(
                                               'button',
                                               {
-                                                  attrs: getItemProps(item.id),
+                                                  attrs: {
+                                                      ...getItemProps(index),
+                                                      id: (getItemProps(index) as any).id,
+                                                  },
                                                   key: item.id,
                                                   class: styles.item,
                                                   on: {

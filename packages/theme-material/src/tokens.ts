@@ -57,13 +57,14 @@ export const materialTheme: DesignTokens = {
         },
     },
     borderRadius: {
+        DEFAULT: '12px',
         none: '0px',
         xs: '4px',
         sm: '8px',
         md: '12px',
         lg: '16px',
         full: '9999px',
-            xl: '12px',
+        xl: '12px',
     },
     boxShadow: {
         none: 'none',
@@ -74,7 +75,7 @@ export const materialTheme: DesignTokens = {
         hard: '0px 8px 12px 6px rgba(0, 0, 0, 0.15), 0px 4px 4px rgba(0, 0, 0, 0.3)',
         'hard-accent':
             '0px 8px 12px 6px rgba(103, 80, 164, 0.15), 0px 4px 4px rgba(103, 80, 164, 0.3)',
-            xl: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+        xl: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
     },
     typography: {
         ...defaultTokens.typography,

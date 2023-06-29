@@ -61,13 +61,13 @@ export const Select = defineComponent({
             },
         );
 
-        const { isOpen, value, setValue, getTriggerProps, getListboxProps } = useSelect({
+        const select = useSelect({
             defaultValue: internalValue.value,
             disabled: props.disabled,
         });
 
         const classes = computed(() =>
-            getSelectClasses(isOpen.value, {
+            getSelectClasses(select.isOpen, {
                 size: props.size,
                 disabled: props.disabled,
             }),
@@ -78,7 +78,7 @@ export const Select = defineComponent({
         const handleSelect = (val: string) => {
             if (props.disabled) return;
             internalValue.value = val;
-            setValue(val);
+            select.setValue(val);
             emit('update:modelValue', val);
             emit('change', val);
         };
@@ -103,7 +103,7 @@ export const Select = defineComponent({
                     class: `relative inline-block w-full ${attrs.class || ''}`.trim(),
                 },
                 [
-                    h('div', { ...getTriggerProps(), class: classes.value.trigger }, [
+                    h('div', { ...select.getTriggerProps(), class: classes.value.trigger }, [
                         h(
                             'span',
                             {
@@ -114,7 +114,7 @@ export const Select = defineComponent({
                         h(
                             'svg',
                             {
-                                class: `transition-transform duration-200 ${isOpen.value ? 'rotate-180' : ''}`,
+                                class: `transition-transform duration-200 ${select.isOpen ? 'rotate-180' : ''}`,
                                 width: '16',
                                 height: '16',
                                 viewBox: '0 0 24 24',
@@ -127,7 +127,7 @@ export const Select = defineComponent({
                     ]),
                     h(
                         'div',
-                        { ...getListboxProps(), class: classes.value.listbox },
+                        { ...select.getListboxProps(), class: classes.value.listbox },
                         props.virtual && props.options.length > 0
                             ? h(
                                   SxoVirtualList,
@@ -187,7 +187,7 @@ export const SelectOption = defineComponent({
                     class: `${classes.option} ${isSelected.value ? 'bg-primary/10 text-primary font-medium' : ''} ${attrs.class || ''}`.trim(),
                     onClick: () => select.handleSelect(props.value),
                 },
-                slots.default?.(),
+                slots.default?.() as any,
             );
     },
 });

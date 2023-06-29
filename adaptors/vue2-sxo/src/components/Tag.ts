@@ -1,5 +1,5 @@
-import { defineComponent, h, computed, getCurrentInstance } from 'vue';
-import { type TagOptions, getTagClasses } from '@sxo/ui';
+import { getTagClasses, type TagOptions } from '@sxo/ui';
+import { computed, defineComponent, getCurrentInstance, h } from 'vue';
 import { useStyle } from '../hooks';
 
 export const Tag = defineComponent({

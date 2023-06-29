@@ -1,6 +1,6 @@
 import { useDialog, useDraggable } from '@sxo/design';
 import { type DialogStylesOptions, getDialogClasses } from '@sxo/ui';
-import { defineComponent, h, reactive, ref, type PropType } from 'vue';
+import { defineComponent, h, type PropType, reactive } from 'vue';
 import { useStyle } from '../hooks';
 
 export const Dialog = defineComponent({

@@ -1,5 +1,5 @@
-import { defineComponent, h, PropType, ref, computed } from 'vue';
 import { getTreeClasses } from '@sxo/ui';
+import { computed, defineComponent, h, type PropType, ref, type VNode } from 'vue';
 
 export interface TreeData {
     id: string | number;
@@ -28,7 +28,7 @@ const TreeNode = defineComponent({
             emit('select', props.node);
         };
 
-        return () =>
+        return (): VNode =>
             h('div', { class: styles.value.node }, [
                 h(
                     'div',

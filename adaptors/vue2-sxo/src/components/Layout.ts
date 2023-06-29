@@ -1,4 +1,4 @@
-import { defineComponent, h, PropType, computed, getCurrentInstance } from 'vue';
+import { computed, defineComponent, h, type PropType } from 'vue';
 import { useStyle } from '../hooks';
 
 export type Responsive<T> =

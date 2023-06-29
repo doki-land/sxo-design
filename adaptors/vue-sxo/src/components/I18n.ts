@@ -1,5 +1,5 @@
 import { createI18n, type I18nMessages } from '@sxo/design';
-import { defineComponent, inject, provide, reactive, readonly, type PropType } from 'vue';
+import { defineComponent, inject, type PropType, provide, reactive, readonly } from 'vue';
 
 const I18nSymbol = Symbol('I18n');
 

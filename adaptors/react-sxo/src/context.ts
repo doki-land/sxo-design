@@ -1,6 +1,6 @@
-import { type DesignTokens, defaultTokens } from '@sxo/design';
+import type { DesignTokens } from '@sxo/design';
 import type { StyleEngine } from '@sxo/engine';
-import React, { createContext, useContext } from 'react';
+import { createContext, useContext } from 'react';
 
 export interface SxoContextValue {
     tokens: DesignTokens;

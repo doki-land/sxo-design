@@ -40,13 +40,14 @@ export const carbonTheme: DesignTokens = {
         },
     },
     borderRadius: {
+        DEFAULT: '0',
         none: '0',
         xs: '0',
         sm: '0',
         md: '0',
         lg: '0',
         full: '9999px', // 仅用于圆形
-            xl: '12px',
+        xl: '12px',
     },
     boxShadow: {
         none: 'none',
@@ -56,7 +57,7 @@ export const carbonTheme: DesignTokens = {
         lg: '0 8px 16px 0 rgba(0,0,0,0.1)',
         hard: 'none',
         'hard-accent': 'none',
-            xl: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+        xl: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
     },
     typography: {
         ...defaultTokens.typography,

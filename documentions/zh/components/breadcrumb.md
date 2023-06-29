@@ -3,7 +3,9 @@
 显示当前页面在系统层级结构中的位置，并允许用户返回之前的层级。
 
 <SxoCodeGroup>
+
 <SxoCodeBlock framework="vue">
+
 ```vue
 <template>
   <div class="flex flex-col gap-4">
@@ -26,9 +28,11 @@
 import { SxoBreadcrumb, SxoBreadcrumbItem } from '@sxo/vue';
 </script>
 ```
+
 </SxoCodeBlock>
 
 <SxoCodeBlock framework="react">
+
 ```tsx
 import { Breadcrumb, BreadcrumbItem } from '@sxo/react';
 
@@ -51,9 +55,11 @@ export default function BreadcrumbDemo() {
   );
 }
 ```
+
 </SxoCodeBlock>
 
 <SxoCodeBlock framework="vue2">
+
 ```vue
 <template>
   <div class="flex flex-col gap-4">
@@ -73,7 +79,9 @@ export default {
 };
 </script>
 ```
+
 </SxoCodeBlock>
+
 </SxoCodeGroup>
 
 ## Breadcrumb 属性

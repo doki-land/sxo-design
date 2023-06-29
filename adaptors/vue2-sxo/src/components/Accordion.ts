@@ -1,6 +1,6 @@
 import { useAccordion } from '@sxo/design';
-import { type AccordionOptions, getAccordionClasses } from '@sxo/ui';
-import { computed, defineComponent, h, ref, watch } from 'vue';
+import { getAccordionClasses } from '@sxo/ui';
+import { computed, defineComponent, getCurrentInstance, h, inject, ref, watch } from 'vue';
 import { useStyle } from '../hooks';
 
 export const Accordion = defineComponent({
@@ -24,6 +24,7 @@ export const Accordion = defineComponent({
         event: 'input',
     },
     setup(props, { emit, slots, attrs }) {
+        const instance = getCurrentInstance();
         const expandedItems = ref<string[]>(props.value as string[]);
 
         watch(
@@ -68,6 +69,8 @@ export const Accordion = defineComponent({
                 .join(' ');
         });
 
+        const listeners = (instance?.proxy as any)?.$listeners || {};
+
         // Vue 2 provide
         return {
             expandedItems,
@@ -79,7 +82,7 @@ export const Accordion = defineComponent({
                     'div',
                     {
                         class: [styles.value.root, attrs.class],
-                        on: attrs.on,
+                        on: listeners,
                     },
                     slots.default?.(),
                 );
@@ -109,6 +112,12 @@ export const AccordionItem = defineComponent({
             required: true,
         },
     },
+    setup(props, { slots, attrs }) {
+        return {
+            props,
+            attrs,
+        };
+    },
     render() {
         const ctx = (this as any).sxoAccordion;
         const isExpanded = ctx.expandedItems.includes(this.value);
@@ -123,14 +132,19 @@ export const AccordionItem = defineComponent({
                 h(
                     'button',
                     {
-                        attrs: triggerProps,
+                        attrs: {
+                            id: triggerProps.id,
+                            role: triggerProps.role,
+                            'aria-expanded': triggerProps['aria-expanded'],
+                            'aria-controls': triggerProps['aria-controls'],
+                        },
                         class: ctx.styles.trigger,
                         on: {
                             click: triggerProps.onClick,
                         },
                     },
                     [
-                        h('span', { class: ctx.styles.triggerText }, this.title),
+                        h('span', { class: ctx.styles.triggerText }, (this as any).title),
                         h(
                             'svg',
                             {
@@ -146,18 +160,24 @@ export const AccordionItem = defineComponent({
                                     'stroke-linejoin': 'round',
                                 },
                             },
-                            [h('path', { attrs: { d: 'm6 9 6 6 6-6' } })],
+                            [h('path', { attrs: { d: 'M6 9l6 6 6-6' } })],
                         ),
                     ],
                 ),
-                h(
-                    'div',
-                    {
-                        attrs: panelProps,
-                        class: ctx.styles.panel,
-                    },
-                    this.$slots.default,
-                ),
+                isExpanded
+                    ? h(
+                          'div',
+                          {
+                              attrs: {
+                                  id: panelProps.id,
+                                  role: panelProps.role,
+                                  'aria-labelledby': panelProps['aria-labelledby'],
+                              },
+                              class: ctx.styles.panel,
+                          },
+                          this.$slots.default,
+                      )
+                    : null,
             ],
         );
     },

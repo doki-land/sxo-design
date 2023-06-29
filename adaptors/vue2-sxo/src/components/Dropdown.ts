@@ -1,5 +1,5 @@
-import { getDropdownClasses, type DropdownOptions } from '@sxo/ui';
-import { computed, defineComponent, h, ref, onMounted, onUnmounted, getCurrentInstance } from 'vue';
+import { type DropdownOptions, getDropdownClasses } from '@sxo/ui';
+import { computed, defineComponent, getCurrentInstance, h, onMounted, onUnmounted, ref } from 'vue';
 import { useStyle } from '../hooks';
 
 export const DropdownItem = defineComponent({
@@ -100,18 +100,17 @@ export const Dropdown = defineComponent({
         });
 
         const triggerEvents = computed(() => {
+            const events: Record<string, any> = {};
             if (props.trigger === 'hover') {
-                return {
-                    mouseenter: open,
-                    mouseleave: close,
-                };
-            }
-            return {
-                click: (e: MouseEvent) => {
+                events.mouseenter = open;
+                events.mouseleave = close;
+            } else {
+                events.click = (e: MouseEvent) => {
                     e.stopPropagation();
                     toggle();
-                },
-            };
+                };
+            }
+            return events;
         });
 
         return () =>

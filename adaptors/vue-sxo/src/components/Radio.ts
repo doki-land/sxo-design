@@ -1,4 +1,3 @@
-import { useRadioGroup } from '@sxo/design';
 import { getRadioClasses, type RadioOptions } from '@sxo/ui';
 import { computed, defineComponent, h, inject, type PropType, provide, ref, watch } from 'vue';
 import { useStyle } from '../hooks';

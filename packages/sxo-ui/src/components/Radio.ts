@@ -1,10 +1,11 @@
 export interface RadioOptions {
     size?: 'sm' | 'md' | 'lg';
     color?: 'primary' | 'success';
+    disabled?: boolean;
 }
 
 export function getRadioClasses(isSelected: boolean, options: RadioOptions = {}) {
-    const { size = 'md', color = 'primary' } = options;
+    const { size = 'md', color = 'primary', disabled = false } = options;
 
     const sizes = {
         sm: { root: 'w-4 h-4', inner: 'w-2 h-2' },
@@ -12,13 +13,18 @@ export function getRadioClasses(isSelected: boolean, options: RadioOptions = {})
         lg: { root: 'w-6 h-6', inner: 'w-3 h-3' },
     };
 
-    const base =
-        'inline-flex items-center justify-center rounded-full border transition-all duration-200 cursor-pointer focus:outline-none';
+    const base = [
+        'inline-flex items-center justify-center rounded-full border transition-all duration-200 focus:outline-none',
+        disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer',
+    ].join(' ');
+
     const colorClass = isSelected
         ? color === 'primary'
             ? 'border-primary'
             : 'border-success'
-        : 'border-neutral-300 hover:border-neutral-400';
+        : disabled
+          ? 'border-neutral-200'
+          : 'border-neutral-300 hover:border-neutral-400';
 
     const innerBase = 'rounded-full transition-transform duration-200';
     const innerScale = isSelected ? 'scale-100' : 'scale-0';

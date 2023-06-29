@@ -3,7 +3,9 @@
 简单的文字提示气泡框。
 
 <SxoCodeGroup>
+
 <SxoCodeBlock framework="vue">
+
 ```vue
 <template>
   <div class="flex items-center gap-8">
@@ -42,9 +44,11 @@
 import { SxoTooltip, SxoButton, SxoIcon } from '@sxo/vue';
 </script>
 ```
+
 </SxoCodeBlock>
 
 <SxoCodeBlock framework="react">
+
 ```tsx
 import { Tooltip, Button, Icon } from '@sxo/react';
 
@@ -84,9 +88,11 @@ export default function TooltipDemo() {
   );
 }
 ```
+
 </SxoCodeBlock>
 
 <SxoCodeBlock framework="vue2">
+
 ```vue
 <template>
   <div class="flex items-center gap-8">
@@ -107,7 +113,9 @@ export default {
 };
 </script>
 ```
+
 </SxoCodeBlock>
+
 </SxoCodeGroup>
 
 ## Tooltip 属性

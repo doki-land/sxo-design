@@ -1,5 +1,5 @@
-import { defineComponent, h, PropType, computed, ref } from 'vue';
-import { getPopconfirmClasses, PopconfirmOptions } from '@sxo/ui';
+import { getPopconfirmClasses, type PopconfirmOptions } from '@sxo/ui';
+import { computed, defineComponent, h, type PropType, ref } from 'vue';
 import { Button as SxoButton } from './Button';
 
 export const Popconfirm = defineComponent({
@@ -27,7 +27,11 @@ export const Popconfirm = defineComponent({
 
         return () =>
             h('div', { class: 'relative inline-block' }, [
-                h('div', { onClick: () => (visible.value = !visible.value) }, slots.default?.()),
+                h(
+                    'div',
+                    { onClick: () => (visible.value = !visible.value) },
+                    slots.default?.() as any,
+                ),
                 visible.value &&
                     h(
                         'div',
@@ -71,15 +75,17 @@ export const Popconfirm = defineComponent({
                             ]),
                             h('div', { class: styles.value.footer }, [
                                 h(
-                                    SxoButton,
+                                    SxoButton as any,
                                     { size: 'xs', variant: 'ghost', onClick: handleCancel },
                                     () => props.cancelText,
                                 ),
                                 h(
-                                    SxoButton,
+                                    SxoButton as any,
                                     {
                                         size: 'xs',
-                                        variant: props.type === 'error' ? 'error' : 'primary',
+                                        variant: (props.type === 'error'
+                                            ? 'accent'
+                                            : 'primary') as any,
                                         onClick: handleConfirm,
                                     },
                                     () => props.confirmText,

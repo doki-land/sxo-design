@@ -1,9 +1,6 @@
 import { cac } from 'cac';
-import { red, green, blue, bold } from 'kolorist';
+import { blue, bold, green, red } from 'kolorist';
 import prompts from 'prompts';
-import fs from 'fs-extra';
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
 
 const cli = cac('sxo');
 

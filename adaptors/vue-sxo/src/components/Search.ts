@@ -1,5 +1,5 @@
-import { defineComponent, h, computed, PropType, ref } from 'vue';
 import { getSearchClasses, type SearchOptions } from '@sxo/ui';
+import { computed, defineComponent, h, type PropType, ref } from 'vue';
 import { useStyle } from '../hooks';
 
 export const Search = defineComponent({
@@ -44,7 +44,7 @@ export const Search = defineComponent({
 
         useStyle(() => {
             const s = styles.value;
-            return `${s.container} ${s.input} ${s.icon} ${s.clear} ${attrs.class || ''}`;
+            return `${s.container} ${(s as any).input} ${s.icon} ${(s as any).clearButton || s.clear} ${attrs.class || ''}`;
         });
 
         const handleInput = (e: Event) => {
@@ -105,25 +105,27 @@ export const Search = defineComponent({
                     h(
                         'span',
                         {
-                            class: styles.value.clearButton,
+                            class: (styles.value as any).clearButton || styles.value.clear,
                             onClick: handleClear,
                         },
-                        h(
-                            'svg',
-                            {
-                                viewBox: '0 0 24 24',
-                                fill: 'none',
-                                stroke: 'currentColor',
-                                'stroke-width': '2',
-                                'stroke-linecap': 'round',
-                                'stroke-linejoin': 'round',
-                                class: 'w-full h-full',
-                            },
-                            [
-                                h('line', { x1: '18', y1: '6', x2: '6', y2: '18' }),
-                                h('line', { x1: '6', y1: '6', x2: '18', y2: '18' }),
-                            ],
-                        ),
+                        [
+                            h(
+                                'svg',
+                                {
+                                    viewBox: '0 0 24 24',
+                                    fill: 'none',
+                                    stroke: 'currentColor',
+                                    'stroke-width': '2',
+                                    'stroke-linecap': 'round',
+                                    'stroke-linejoin': 'round',
+                                    class: 'w-full h-full',
+                                },
+                                [
+                                    h('line', { x1: '18', y1: '6', x2: '6', y2: '18' }),
+                                    h('line', { x1: '6', y1: '6', x2: '18', y2: '18' }),
+                                ],
+                            ),
+                        ],
                     ),
             ]);
     },

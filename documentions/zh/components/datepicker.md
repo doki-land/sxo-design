@@ -9,7 +9,7 @@
 
 ## 代码演示
 
-<SxoPlayground component="datepicker" />
+<SxoDemo component="DatePicker" />
 
 ## API
 

@@ -1,0 +1,30 @@
+{
+    "name": "sxo-lab",
+    "version": "0.0.0",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "dev": "vite --port 3100",
+        "cloudflare": "pnpm --filter sxo-lab^... build && vite build",
+        "preview": "vite preview"
+    },
+    "dependencies": {
+        "@sxo/design": "workspace:*",
+        "@sxo/engine": "workspace:*",
+        "@sxo/theme-antd": "workspace:*",
+        "@sxo/theme-carbon": "workspace:*",
+        "@sxo/theme-cupertino": "workspace:*",
+        "@sxo/theme-fate": "workspace:*",
+        "@sxo/theme-fluent": "workspace:*",
+        "@sxo/theme-github": "workspace:*",
+        "@sxo/theme-material": "workspace:*",
+        "vue": "^3.5.26",
+        "vue-sxo": "workspace:*"
+    },
+    "devDependencies": {
+        "@vitejs/plugin-vue": "^5.2.1",
+        "typescript": "^5.7.2",
+        "vite": "^6.0.7",
+        "vite-plugin-sxo": "workspace:*"
+    }
+}

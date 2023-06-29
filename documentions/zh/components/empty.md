@@ -3,7 +3,9 @@
 用于在没有内容、没有数据或没有搜索结果时展示。
 
 <SxoCodeGroup>
+
 <SxoCodeBlock framework="vue">
+
 ```vue
 <template>
   <div class="flex flex-col gap-8">
@@ -36,9 +38,11 @@
 import { SxoEmpty, SxoButton } from '@sxo/vue';
 </script>
 ```
+
 </SxoCodeBlock>
 
 <SxoCodeBlock framework="react">
+
 ```tsx
 import { Empty, Button } from '@sxo/react';
 
@@ -68,9 +72,11 @@ export default function EmptyDemo() {
   );
 }
 ```
+
 </SxoCodeBlock>
 
 <SxoCodeBlock framework="vue2">
+
 ```vue
 <template>
   <div class="flex flex-col gap-8">
@@ -92,7 +98,9 @@ export default {
 };
 </script>
 ```
+
 </SxoCodeBlock>
+
 </SxoCodeGroup>
 
 ## Empty 属性

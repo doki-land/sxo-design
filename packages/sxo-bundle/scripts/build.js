@@ -1,12 +1,12 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { StyleEngine } from '../../sxo-engine/src/index.ts';
 import { tokensToCssVars } from '../../sxo-design/src/index.ts';
-import { pornhubTheme } from '../../theme-pornhub/src/index.ts';
-import { githubTheme } from '../../theme-github/src/index.ts';
-import { antdTheme } from '../../theme-antd/src/index.ts';
+import { StyleEngine } from '../../sxo-engine/src/index.ts';
 import * as components from '../../sxo-ui/src/components/index.ts';
+import { antdTheme } from '../../theme-antd/src/index.ts';
+import { githubTheme } from '../../theme-github/src/index.ts';
+import { pornhubTheme } from '../../theme-pornhub/src/index.ts';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const distDir = path.resolve(__dirname, '../dist');

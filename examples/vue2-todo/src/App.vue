@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { Button, Input, Box, Feedback } from 'vue2-sxo';
+import { Feedback } from 'vue2-sxo';
 
 const { Spinner } = Feedback;
 
@@ -12,9 +12,9 @@ interface Todo {
 
 const todos = ref<Todo[]>([]);
 const inputValue = ref('');
-const loading = ref(false);
+const _loading = ref(false);
 
-const addTodo = () => {
+const _addTodo = () => {
     if (inputValue.value.trim()) {
         todos.value.push({
             id: Date.now(),
@@ -25,12 +25,12 @@ const addTodo = () => {
     }
 };
 
-const toggleTodo = (id: number) => {
+const _toggleTodo = (id: number) => {
     const todo = todos.value.find((t) => t.id === id);
     if (todo) todo.completed = !todo.completed;
 };
 
-const deleteTodo = (id: number) => {
+const _deleteTodo = (id: number) => {
     todos.value = todos.value.filter((t) => t.id !== id);
 };
 </script>

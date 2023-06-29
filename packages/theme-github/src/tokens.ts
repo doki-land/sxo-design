@@ -85,13 +85,14 @@ export const githubTheme: DesignTokens = {
         },
     },
     borderRadius: {
+        DEFAULT: '6px',
         none: '0px',
         xs: '2px',
         sm: '6px', // GitHub standard
         md: '8px',
         lg: '12px',
         full: '9999px',
-            xl: '12px',
+        xl: '12px',
     },
     boxShadow: {
         none: 'none',
@@ -101,7 +102,7 @@ export const githubTheme: DesignTokens = {
         lg: '0 12px 28px rgba(140,149,159,0.3)',
         hard: '0 0 0 1px rgba(27,31,36,0.15)',
         'hard-accent': '0 0 0 1px #0969da',
-            xl: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+        xl: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
     },
     typography: {
         ...defaultTokens.typography,

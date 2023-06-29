@@ -10,6 +10,7 @@ export function useStyle(classNames: string | (() => string)) {
 
     const classes = computed(() => {
         const raw = typeof classNames === 'function' ? classNames() : classNames;
+        if (!raw || typeof raw !== 'string') return [];
         return raw.split(/\s+/).filter(Boolean);
     });
 
@@ -56,11 +57,11 @@ export function useBreakpoint() {
     const updateBreakpoint = () => {
         const width = window.innerWidth;
         const sorted = Object.entries(tokens.breakpoints).sort(
-            (a, b) => Number.parseInt(b[1]) - Number.parseInt(a[1]),
+            (a, b) => Number.parseInt(b[1], 10) - Number.parseInt(a[1], 10),
         );
 
         for (const [name, minWidth] of sorted) {
-            if (width >= Number.parseInt(minWidth)) {
+            if (width >= Number.parseInt(minWidth, 10)) {
                 breakpoint.value = name;
                 return;
             }

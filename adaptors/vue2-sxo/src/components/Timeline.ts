@@ -1,5 +1,5 @@
-import { type TimelineOptions, getTimelineClasses } from '@sxo/ui';
-import { computed, defineComponent, h, getCurrentInstance } from 'vue';
+import { getTimelineClasses, type TimelineOptions } from '@sxo/ui';
+import { computed, defineComponent, getCurrentInstance, h } from 'vue';
 import { useStyle } from '../hooks';
 
 export const TimelineItem = defineComponent({

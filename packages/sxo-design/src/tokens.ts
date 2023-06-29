@@ -46,7 +46,9 @@ export interface DesignTokens {
         };
     };
     spacing: Record<string, string>;
+    maxWidth?: Record<string, string>;
     borderRadius: {
+        DEFAULT: string;
         none: string;
         xs: string;
         sm: string;
@@ -54,6 +56,7 @@ export interface DesignTokens {
         lg: string;
         xl: string;
         full: string;
+        [key: string]: string;
     };
     boxShadow: {
         none: string;
@@ -64,6 +67,7 @@ export interface DesignTokens {
         xl: string;
         hard: string;
         'hard-accent': string;
+        [key: string]: string;
     };
     typography: {
         fontSize: Record<string, string>;
@@ -164,13 +168,33 @@ export const defaultTokens: DesignTokens = {
         '56': '224px',
         '64': '256px',
     },
+    maxWidth: {
+        none: 'none',
+        xs: '20rem',
+        sm: '24rem',
+        md: '28rem',
+        lg: '32rem',
+        xl: '36rem',
+        '2xl': '42rem',
+        '3xl': '48rem',
+        '4xl': '56rem',
+        '5xl': '64rem',
+        '6xl': '72rem',
+        '7xl': '80rem',
+        full: '100%',
+        min: 'min-content',
+        max: 'max-content',
+        fit: 'fit-content',
+        prose: '65ch',
+    },
     borderRadius: {
-        none: '0px',
-        xs: '2px',
-        sm: '4px',
-        md: '6px',
-        lg: '8px',
-        xl: '12px',
+        DEFAULT: '0.25rem',
+        none: '0',
+        xs: '0.125rem',
+        sm: '0.25rem',
+        md: '0.375rem',
+        lg: '0.5rem',
+        xl: '0.75rem',
         full: '9999px',
     },
     boxShadow: {
@@ -180,6 +204,8 @@ export const defaultTokens: DesignTokens = {
         md: '0 8px 30px rgba(0,0,0,0.12)',
         lg: '0 30px 60px rgba(0,0,0,0.12)',
         xl: '0 30px 60px rgba(0,0,0,0.12)',
+        '2xl': '0 60px 120px rgba(0,0,0,0.15)',
+        inner: 'inset 0 2px 4px 0 rgba(0,0,0,0.06)',
         hard: '0 0 0 1px rgba(0,0,0,0.1)',
         'hard-accent': '0 0 0 2px var(--sxo-accent-primary)',
     },
@@ -244,6 +270,7 @@ export const defaultTokens: DesignTokens = {
         shake: 'shake 0.5s cubic-bezier(.36,.07,.19,.97) both',
         'zoom-in': 'zoom-in 0.2s ease-out',
         'zoom-out': 'zoom-out 0.2s ease-out',
+        gradient: 'gradient 8s linear infinite',
     },
     modes: {
         dark: {

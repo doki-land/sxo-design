@@ -1,5 +1,6 @@
-import { useCommandManager, type Command } from '@sxo/design';
-import React, { useState, useEffect, useMemo } from 'react';
+import { type Command, useCommandManager } from '@sxo/design';
+import type React from 'react';
+import { useEffect, useState } from 'react';
 import { Dialog } from './Dialog';
 import { Input } from './Input';
 
@@ -14,7 +15,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
     onClose,
     commands: initialCommands = [],
 }) => {
-    const manager = useMemo(() => useCommandManager(), []);
+    const manager = useCommandManager();
     const [query, setQuery] = useState('');
     const [filteredCommands, setFilteredCommands] = useState<Command[]>([]);
 
@@ -30,10 +31,12 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
         updateCommands();
 
         return () => {
-            unregisters.forEach((unreg) => unreg());
+            unregisters.forEach((unreg) => {
+                unreg();
+            });
             unsubscribe();
         };
-    }, [initialCommands, manager]);
+    }, [initialCommands, manager, query]);
 
     // 响应查询变化
     useEffect(() => {

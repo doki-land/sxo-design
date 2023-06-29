@@ -1,4 +1,4 @@
-import { computed, defineComponent, h } from 'vue';
+import { defineComponent, h } from 'vue';
 import { useStyle } from '../hooks';
 
 export const Box = defineComponent({
@@ -48,10 +48,10 @@ export const Box = defineComponent({
             h(
                 props.as,
                 {
-                    ...attrs,
+                    ...(attrs as any),
                     class: finalClasses.value,
                 },
-                slots.default?.(),
+                slots.default?.() as any,
             );
     },
 });

@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { Button, Input, Tag } from 'vue-sxo';
 
 interface Todo {
     id: number;
@@ -11,7 +10,7 @@ interface Todo {
 const todos = ref<Todo[]>([]);
 const inputValue = ref('');
 
-const addTodo = () => {
+const _addTodo = () => {
     if (inputValue.value.trim()) {
         todos.value.push({
             id: Date.now(),
@@ -22,12 +21,12 @@ const addTodo = () => {
     }
 };
 
-const toggleTodo = (id: number) => {
+const _toggleTodo = (id: number) => {
     const todo = todos.value.find((t) => t.id === id);
     if (todo) todo.completed = !todo.completed;
 };
 
-const deleteTodo = (id: number) => {
+const _deleteTodo = (id: number) => {
     todos.value = todos.value.filter((t) => t.id !== id);
 };
 </script>
@@ -40,7 +39,7 @@ const deleteTodo = (id: number) => {
           SXO<span class="bg-primary text-background-primary px-2 py-1 rounded-sm ml-1">HUB</span>
           <span class="ml-2 text-2xl not-italic font-normal text-neutral-400">VUE</span>
         </h1>
-        <Tag variant="hub" color="primary">Premium</Tag>
+        <Tag variant="solid" color="primary">Premium</Tag>
       </header>
 
       <main class="space-y-6">

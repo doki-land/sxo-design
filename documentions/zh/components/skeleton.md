@@ -9,7 +9,7 @@
 
 ## 代码演示
 
-<SxoPlayground component="skeleton" />
+<SxoDemo component="Skeleton" />
 
 ## API
 

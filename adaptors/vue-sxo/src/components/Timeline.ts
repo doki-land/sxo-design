@@ -1,5 +1,5 @@
-import { defineComponent, h, PropType, computed } from 'vue';
-import { getTimelineClasses, TimelineOptions } from '@sxo/ui';
+import { getTimelineClasses, type TimelineOptions } from '@sxo/ui';
+import { computed, defineComponent, h, type PropType } from 'vue';
 
 export const TimelineItem = defineComponent({
     name: 'SxoTimelineItem',

@@ -7,6 +7,7 @@
 通过 `isOpen` 控制显示，并提供 `commands` 列表。
 
 <SxoCodeGroup>
+
 <SxoCodeBlock framework="vue">
 
 ```vue
@@ -33,6 +34,7 @@ const commands = [
 ];
 </script>
 ```
+
 
 </SxoCodeBlock>
 
@@ -68,7 +70,9 @@ export default () => {
 };
 ```
 
+
 </SxoCodeBlock>
+
 </SxoCodeGroup>
 
 ## 快捷键

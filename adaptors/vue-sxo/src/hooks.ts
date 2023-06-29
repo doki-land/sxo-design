@@ -1,15 +1,16 @@
 import { resolveToken, type TokenPath } from '@sxo/design';
-import { computed, onMounted, onUnmounted, ref, watchEffect } from 'vue';
+import { type ComputedRef, computed, onMounted, onUnmounted, ref, watchEffect } from 'vue';
 import { useSxo } from './plugin';
 
 /**
  * Vue Composition API for SXO styles
  */
-export function useStyle(classNames: string | (() => string)) {
+export function useStyle(classNames: string | (() => string)): ComputedRef<string> {
     const { engine } = useSxo();
 
     const classes = computed(() => {
         const raw = typeof classNames === 'function' ? classNames() : classNames;
+        if (!raw || typeof raw !== 'string') return [];
         return raw.split(/\s+/).filter(Boolean);
     });
 
@@ -31,7 +32,9 @@ export function useStyle(classNames: string | (() => string)) {
         }
     });
 
-    return typeof classNames === 'function' ? computed(classNames) : classNames;
+    return typeof classNames === 'function'
+        ? computed(classNames)
+        : computed(() => classNames as string);
 }
 
 /**
@@ -52,11 +55,11 @@ export function useBreakpoint() {
     const updateBreakpoint = () => {
         const width = window.innerWidth;
         const sorted = Object.entries(tokens.breakpoints).sort(
-            (a, b) => parseInt(b[1]) - parseInt(a[1]),
+            (a, b) => parseInt(b[1], 10) - parseInt(a[1], 10),
         );
 
         for (const [name, minWidth] of sorted) {
-            if (width >= parseInt(minWidth)) {
+            if (width >= parseInt(minWidth, 10)) {
                 breakpoint.value = name;
                 return;
             }

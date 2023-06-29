@@ -1,20 +1,18 @@
-import { defineComponent, h, type PropType, ref, onUnmounted } from 'vue';
 import {
-    getStatCardClasses,
-    getKanbanClasses,
     getDescriptionClasses,
-    getShellClasses,
+    getKanbanClasses,
     getLoginClasses,
-    getResultClasses,
     getPageHeaderClasses,
     getQueryFilterClasses,
+    getShellClasses,
+    getStatCardClasses,
     getStepFormClasses,
-    useShell,
-    useSteps,
-    type StatCardOptions,
-    type KanbanItem,
     type KanbanColumn,
+    type KanbanItem,
+    type StatCardOptions,
+    useShell,
 } from '@sxo/component-admin';
+import { defineComponent, h, onUnmounted, type PropType, ref } from 'vue';
 
 export const StatCard = defineComponent({
     name: 'SxoStatCard',
@@ -80,7 +78,7 @@ export const AdminShell = defineComponent({
         const isCollapsed = ref(shell.isCollapsed);
         const styles = getShellClasses();
 
-        const unsubscribe = shell.subscribe((collapsed) => {
+        const unsubscribe = shell.subscribe((collapsed: boolean) => {
             isCollapsed.value = collapsed;
         });
 
@@ -164,48 +162,14 @@ export const LoginScreen = defineComponent({
         return () => {
             if (props.variant === 'split') {
                 return h('div', { class: styles.container }, [
-                    h('div', { class: styles.left }, [slots.visual?.() || h('h2', 'SXO Design')]),
-                    h('div', { class: styles.right }, [renderCard()]),
+                    h('div', { class: (styles as any).left }, [
+                        (slots.visual ? slots.visual() : h('h2', 'SXO Admin')) as any,
+                    ]),
+                    h('div', { class: (styles as any).right }, [renderCard()]),
                 ]);
             }
             return h('div', { class: styles.container }, [renderCard()]);
         };
-    },
-});
-
-export const Result = defineComponent({
-    name: 'SxoResult',
-    props: {
-        status: {
-            type: String as PropType<'success' | 'error' | 'info' | 'warning' | '404' | '500'>,
-            default: 'info',
-        },
-        title: String,
-        subtitle: String,
-    },
-    setup(props, { slots }) {
-        const styles = getResultClasses(props.status);
-        const icons = {
-            success: '✓',
-            error: '✕',
-            info: 'ℹ',
-            warning: '⚠',
-            '404': '404',
-            '500': '500',
-        };
-
-        return () =>
-            h('div', { class: styles.container }, [
-                h(
-                    'div',
-                    { class: [styles.icon.base, styles.icon[props.status]] },
-                    slots.icon?.() || icons[props.status],
-                ),
-                h('h2', { class: styles.title }, props.title || slots.title?.()),
-                h('p', { class: styles.subtitle }, props.subtitle || slots.subtitle?.()),
-                slots.default ? h('div', { class: styles.content }, slots.default()) : null,
-                h('div', { class: styles.extra }, slots.extra?.()),
-            ]);
     },
 });
 
@@ -236,17 +200,17 @@ export const PageHeader = defineComponent({
                     : null,
                 h('div', { class: styles.heading }, [
                     h('div', { class: styles.left }, [
-                        h('h1', { class: styles.title }, props.title || slots.title?.()),
+                        h('h1', { class: styles.title }, (props.title || slots.title?.()) as any),
                         (props.subtitle || slots.subtitle) &&
                             h(
                                 'span',
                                 { class: styles.subtitle },
-                                props.subtitle || slots.subtitle?.(),
+                                (props.subtitle || slots.subtitle?.()) as any,
                             ),
                     ]),
-                    h('div', { class: styles.extra }, slots.extra?.()),
+                    h('div', { class: styles.extra }, slots.extra?.() as any),
                 ]),
-                slots.footer ? h('div', { class: styles.footer }, slots.footer()) : null,
+                slots.footer ? h('div', { class: styles.footer }, slots.footer() as any) : null,
             ]);
     },
 });
@@ -254,7 +218,7 @@ export const PageHeader = defineComponent({
 export const QueryFilter = defineComponent({
     name: 'SxoQueryFilter',
     emits: ['search', 'reset'],
-    setup(props, { slots, emit }) {
+    setup(_props, { slots, emit }) {
         const styles = getQueryFilterClasses();
 
         return () =>
@@ -384,7 +348,7 @@ export const Kanban = defineComponent({
                             slots.columnAction?.({ column: col }),
                         ]),
                         h('div', { class: styles.itemList }, [
-                            col.items.map((item) =>
+                            col.items.map((item: KanbanItem) =>
                                 h('div', { class: styles.item, key: item.id }, [
                                     h('div', { class: styles.itemTitle }, item.title),
                                     item.description &&
@@ -400,7 +364,7 @@ export const Kanban = defineComponent({
                                             h(
                                                 'div',
                                                 { class: 'flex gap-1' },
-                                                item.tags.map((t) =>
+                                                item.tags.map((t: string) =>
                                                     h(
                                                         'span',
                                                         {

@@ -1,5 +1,5 @@
-import { useCommandManager, useDisclosure, type Command } from '@sxo/design';
-import { defineComponent, h, ref, watch, onMounted, onUnmounted, type PropType } from 'vue';
+import { type Command, useCommandManager } from '@sxo/design';
+import { defineComponent, h, onMounted, onUnmounted, type PropType, ref, watch } from 'vue';
 import { Dialog as SxoDialog } from './Dialog';
 import { Input as SxoInput } from './Input';
 

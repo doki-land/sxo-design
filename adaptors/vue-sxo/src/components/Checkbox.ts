@@ -1,6 +1,6 @@
 import { useCheckbox } from '@sxo/design';
 import { type CheckboxOptions, getCheckboxClasses } from '@sxo/ui';
-import { computed, defineComponent, h, type PropType, ref, watch, provide, inject } from 'vue';
+import { computed, defineComponent, h, inject, type PropType, provide, ref, watch } from 'vue';
 import { useStyle } from '../hooks';
 
 const CheckboxGroupSymbol = Symbol('CheckboxGroup');

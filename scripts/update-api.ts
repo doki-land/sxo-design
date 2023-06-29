@@ -1,10 +1,10 @@
-const fs = require('fs');
-const path = require('path');
+const fs = require('node:fs');
+const path = require('node:path');
 
 const COMPONENTS_DIR = path.join(__dirname, '../adaptors/vue-sxo/src/components');
 const DOCS_DIR = path.join(__dirname, '../documentions/zh/components');
 
-function extractProps(content) {
+function extractProps(content: string) {
     const propsMatch = content.match(/props:\s*{([\s\S]*?)\s*},\s*(emits|setup)/);
     if (!propsMatch) return [];
 
@@ -13,10 +13,10 @@ function extractProps(content) {
 
     // Very basic parsing for props
     // Matches: propName: { ... } or propName: Type
-    const propRegex = /(\/\*\*([\s\S]*?)\*\/)?\s*(\w+):\s*({[\s\S]*?}|[\w\[\], ]+)/g;
-    let match;
+    const propRegex = /(\/\*\*([\s\S]*?)\*\/)?\s*(\w+):\s*({[\s\S]*?}|[\w[\], ]+)/g;
+    let match = propRegex.exec(propsStr);
 
-    while ((match = propRegex.exec(propsStr)) !== null) {
+    while (match !== null) {
         const description = match[2] ? match[2].trim().replace(/\* /g, '') : '-';
         const name = match[3];
         const definition = match[4];
@@ -49,27 +49,28 @@ function extractProps(content) {
         }
 
         props.push({ name, description, type, default: defaultValue });
+        match = propRegex.exec(propsStr);
     }
 
     return props;
 }
 
-function generateMarkdownTable(props) {
+function generateMarkdownTable(props: any[]) {
     if (props.length === 0) return '';
 
     let md = '### API\n\n';
     md += '| 参数 | 说明 | 类型 | 默认值 |\n';
     md += '| --- | --- | --- | --- |\n';
 
-    props.forEach((prop) => {
+    for (const prop of props) {
         md += `| ${prop.name} | ${prop.description} | \`${prop.type}\` | \`${prop.default}\` |\n`;
-    });
+    }
 
     return md;
 }
 
 async function run() {
-    const files = fs.readdirSync(COMPONENTS_DIR).filter((f) => f.endsWith('.ts'));
+    const files = fs.readdirSync(COMPONENTS_DIR).filter((f: string) => f.endsWith('.ts'));
 
     for (const file of files) {
         const filePath = path.join(COMPONENTS_DIR, file);
@@ -88,7 +89,7 @@ async function run() {
                 if (docContent.includes('### API')) {
                     docContent = docContent.replace(/### API[\s\S]*/, apiSection);
                 } else {
-                    docContent += '\n\n' + apiSection;
+                    docContent += `\n\n${apiSection}`;
                 }
 
                 fs.writeFileSync(docPath, docContent);

@@ -1,4 +1,4 @@
-import { useToastManager, type Toast } from '@sxo/design';
+import { type Toast, useToastManager } from '@sxo/design';
 import { getToastClasses } from '@sxo/ui';
 import { defineComponent, h, inject, onUnmounted, provide, ref } from 'vue';
 

@@ -1,3 +1,4 @@
+/** @jsxImportSource solid-js */
 import { pornhubTheme } from '@sxo/theme-pornhub';
 import { createSignal, For, Show } from 'solid-js';
 import { Button, Input, Tag, ThemeProvider } from 'solid-sxo';
@@ -101,23 +102,9 @@ const App = () => {
                                                 </Show>
                                                 <button
                                                     onClick={() => deleteTodo(todo.id)}
-                                                    class="text-neutral-600 hover:text-error transition-colors p-1"
+                                                    class="p-2 text-neutral-500 hover:text-error transition-colors"
                                                 >
-                                                    <svg
-                                                        xmlns="http://www.w3.org/2000/svg"
-                                                        width="18"
-                                                        height="18"
-                                                        viewBox="0 0 24 24"
-                                                        fill="none"
-                                                        stroke="currentColor"
-                                                        stroke-width="2"
-                                                        stroke-linecap="round"
-                                                        stroke-linejoin="round"
-                                                    >
-                                                        <path d="M3 6h18"></path>
-                                                        <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
-                                                        <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
-                                                    </svg>
+                                                    Delete
                                                 </button>
                                             </div>
                                         </div>
@@ -126,14 +113,10 @@ const App = () => {
                             </Show>
                         </div>
                     </main>
-
-                    <footer class="mt-12 pt-6 border-t border-neutral-900 text-center text-xs text-neutral-600">
-                        &copy; 2026 SXO HUB. Powered by Solid. Professional Todo Management.
-                    </footer>
                 </div>
             </div>
         </ThemeProvider>
-    );
+    ) as any;
 };
 
 export default App;

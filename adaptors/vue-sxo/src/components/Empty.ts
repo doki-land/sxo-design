@@ -1,5 +1,5 @@
-import { defineComponent, h, PropType, computed } from 'vue';
-import { getEmptyClasses, EmptyOptions } from '@sxo/ui';
+import { type EmptyOptions, getEmptyClasses } from '@sxo/ui';
+import { computed, defineComponent, h, type PropType } from 'vue';
 import { useStyle } from '../hooks';
 
 export const Empty = defineComponent({

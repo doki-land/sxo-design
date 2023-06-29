@@ -5,6 +5,7 @@
 ## 基础用法
 
 <SxoCodeGroup>
+
 <SxoCodeBlock framework="vue">
 
 ```vue
@@ -24,6 +25,7 @@ import { Accordion as SxoAccordion, AccordionItem as SxoAccordionItem } from '@s
 </script>
 ```
 
+
 </SxoCodeBlock>
 <SxoCodeBlock framework="react">
 
@@ -41,6 +43,7 @@ export default () => (
   </Accordion>
 );
 ```
+
 
 </SxoCodeBlock>
 <SxoCodeBlock framework="vue2">
@@ -65,7 +68,9 @@ export default {
 </script>
 ```
 
+
 </SxoCodeBlock>
+
 </SxoCodeGroup>
 
 ## 变体
@@ -73,6 +78,7 @@ export default {
 支持 `ghost`, `bordered`, `splitted` 三种变体。
 
 <SxoCodeGroup>
+
 <SxoCodeBlock framework="vue">
 
 ```vue
@@ -92,6 +98,7 @@ export default {
   </div>
 </template>
 ```
+
 
 </SxoCodeBlock>
 <SxoCodeBlock framework="react">
@@ -116,6 +123,7 @@ export default () => (
 );
 ```
 
+
 </SxoCodeBlock>
 <SxoCodeBlock framework="vue2">
 
@@ -137,7 +145,9 @@ export default () => (
 </template>
 ```
 
+
 </SxoCodeBlock>
+
 </SxoCodeGroup>
 
 ## API

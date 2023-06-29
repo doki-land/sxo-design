@@ -1,47 +1,21 @@
-import { defineConfig } from 'vite';
-import { resolve } from 'path';
-import dts from 'vite-plugin-dts';
 import react from '@vitejs/plugin-react';
+import { defineConfig } from 'vite';
+import dts from 'vite-plugin-dts';
+import { sharedBuildOptions } from '../../vite.workspace';
 
 export default defineConfig({
+    // @ts-expect-error
+    builder: 'rolldown',
     plugins: [
         react(),
-        dts({ include: ['src'], insertTypesEntry: true })
+        dts({
+            include: ['src'],
+            insertTypesEntry: true,
+            outDir: 'dist',
+        }),
     ],
     css: {
         transformer: 'lightningcss',
     },
-    build: {
-        lib: {
-            entry: resolve(__dirname, 'src/index.ts'),
-            name: 'ReactSxo',
-            fileName: 'index',
-            formats: ['es', 'cjs'],
-        },
-        rollupOptions: {
-                    external: [
-                        '@sxo/design',
-                        '@sxo/engine',
-                        '@sxo/ui',
-                        '@sxo/component-admin',
-                        '@sxo/component-icons',
-                        '@sxo/component-table',
-                        '@sxo/theme-antd',
-                        '@sxo/theme-material',
-                        'vue',
-                        'vue-demi',
-                        'react',
-                        'react-dom',
-                        'react/jsx-runtime',
-                        'solid-js',
-                        'solid-js/web',
-                        'solid-js/store',
-                        'svelte',
-                        'alpinejs'
-                    ],
-                },
-        outDir: 'dist',
-        emptyOutDir: true,
-        cssMinify: 'lightningcss',
-    },
+    build: sharedBuildOptions(__dirname, 'ReactSxo'),
 });

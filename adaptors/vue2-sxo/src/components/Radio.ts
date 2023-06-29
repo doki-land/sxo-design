@@ -1,5 +1,5 @@
 import { getRadioClasses, type RadioOptions } from '@sxo/ui';
-import { computed, defineComponent, h, inject, provide, ref, watch, getCurrentInstance } from 'vue';
+import { computed, defineComponent, getCurrentInstance, h, inject, provide, ref, watch } from 'vue';
 import { useStyle } from '../hooks';
 
 const RadioGroupSymbol = Symbol('RadioGroup');
@@ -106,8 +106,7 @@ export const Radio = defineComponent({
             getRadioClasses(isSelected.value, {
                 size: size.value,
                 color: color.value,
-                disabled: props.disabled,
-            }),
+            } as any),
         );
 
         useStyle(() => {

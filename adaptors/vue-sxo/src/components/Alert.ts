@@ -1,5 +1,5 @@
-import { defineComponent, h, PropType, computed } from 'vue';
-import { getAlertClasses, AlertOptions } from '@sxo/ui';
+import { type AlertOptions, getAlertClasses } from '@sxo/ui';
+import { computed, defineComponent, h, type PropType } from 'vue';
 import { useStyle } from '../hooks';
 
 export const Alert = defineComponent({

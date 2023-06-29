@@ -38,15 +38,15 @@
 
 <script setup>
 import { computed, useSlots } from 'vue';
-import { frameworks, currentFramework } from '../theme/framework-state';
+import { currentFramework, frameworks } from '../theme/framework-state';
 
 const slots = useSlots();
 
-const activeFrameworkName = computed(
+const _activeFrameworkName = computed(
     () => frameworks.find((f) => f.id === currentFramework.value)?.name || currentFramework.value,
 );
 
-const hasActiveContent = computed(() => {
+const _hasActiveContent = computed(() => {
     const content = slots.default?.();
     if (!content) return false;
     return content.some((vnode) => vnode.props?.framework === currentFramework.value);

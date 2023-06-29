@@ -4,7 +4,7 @@
 
 ## 基础用法
 
-<SxoPlayground>
+<SxoDemo component="VirtualList">
 <template>
   <div class="space-y-4">
     <div class="p-4 bg-white border rounded-xl">
@@ -34,7 +34,7 @@ const list = Array.from({ length: 10000 }).map((_, i) => ({
   email: `user${i + 1}@example.com`
 }))
 </script>
-</SxoPlayground>
+</SxoDemo>
 
 ## API
 

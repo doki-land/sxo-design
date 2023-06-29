@@ -1,6 +1,5 @@
-import { describe, it, expect } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import { getButtonClasses } from '../src/components/Button';
-import { defaultTokens } from '@sxo/design';
 
 describe('sxo-ui style generators', () => {
     describe('getButtonClasses', () => {

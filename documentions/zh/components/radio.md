@@ -5,6 +5,7 @@
 ## 基础用法
 
 <SxoCodeGroup>
+
 <SxoCodeBlock framework="vue">
 
 ```vue
@@ -22,6 +23,7 @@ import { RadioGroup as SxoRadioGroup, Radio as SxoRadio } from '@sxo/vue';
 const value = ref('apple');
 </script>
 ```
+
 
 </SxoCodeBlock>
 <SxoCodeBlock framework="react">
@@ -41,6 +43,7 @@ export default () => {
   );
 };
 ```
+
 
 </SxoCodeBlock>
 <SxoCodeBlock framework="vue2">
@@ -65,7 +68,9 @@ export default {
 </script>
 ```
 
+
 </SxoCodeBlock>
+
 </SxoCodeGroup>
 
 ## 尺寸与颜色
@@ -73,6 +78,7 @@ export default {
 支持 `sm`, `md`, `lg` 尺寸，以及 `primary`, `success` 颜色。
 
 <SxoCodeGroup>
+
 <SxoCodeBlock framework="vue">
 
 ```vue
@@ -94,6 +100,7 @@ const v2 = ref('2');
 </script>
 ```
 
+
 </SxoCodeBlock>
 <SxoCodeBlock framework="react">
 
@@ -111,6 +118,7 @@ export default () => (
   </div>
 );
 ```
+
 
 </SxoCodeBlock>
 <SxoCodeBlock framework="vue2">
@@ -136,7 +144,9 @@ export default {
 </script>
 ```
 
+
 </SxoCodeBlock>
+
 </SxoCodeGroup>
 
 ## API

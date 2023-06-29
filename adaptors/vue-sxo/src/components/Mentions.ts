@@ -1,5 +1,5 @@
-import { defineComponent, h, ref, computed, onMounted, onUnmounted, type PropType } from 'vue';
 import { getMentionsClasses, type MentionsOptions } from '@sxo/ui';
+import { computed, defineComponent, h, type PropType, ref } from 'vue';
 
 export interface MentionOption {
     value: string;
@@ -57,7 +57,7 @@ export const Mentions = defineComponent({
             emit('update:modelValue', val);
 
             const textBeforeCursor = val.substring(0, pos);
-            const lastChar = textBeforeCursor[textBeforeCursor.length - 1];
+            const _lastChar = textBeforeCursor[textBeforeCursor.length - 1];
 
             const matchPrefix = prefixes.value.find((p) => textBeforeCursor.endsWith(p));
 
@@ -84,8 +84,7 @@ export const Mentions = defineComponent({
                 ...prefixes.value.map((p) => textBeforeCursor.lastIndexOf(p)),
             );
 
-            const newVal =
-                val.substring(0, lastPrefixIndex + 1) + option.value + ' ' + val.substring(pos);
+            const newVal = `${val.substring(0, lastPrefixIndex + 1) + option.value} ${val.substring(pos)}`;
 
             emit('update:modelValue', newVal);
             emit('select', option);

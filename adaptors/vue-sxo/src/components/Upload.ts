@@ -1,5 +1,5 @@
-import { defineComponent, h, computed, ref, PropType } from 'vue';
-import { getUploadClasses, UploadOptions } from '@sxo/ui';
+import { getUploadClasses } from '@sxo/ui';
+import { computed, defineComponent, h, type PropType, ref } from 'vue';
 
 export interface SxoFile {
     name: string;

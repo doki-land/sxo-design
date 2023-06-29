@@ -7,6 +7,7 @@
 点击或移入触发元素，弹出下拉菜单。
 
 <SxoCodeGroup>
+
 <SxoCodeBlock framework="vue">
 
 ```vue
@@ -26,6 +27,7 @@
 import { Dropdown as SxoDropdown, DropdownItem as SxoDropdownItem, Button as SxoButton } from '@sxo/vue';
 </script>
 ```
+
 
 </SxoCodeBlock>
 <SxoCodeBlock framework="react">
@@ -48,6 +50,7 @@ export default () => (
   </Dropdown>
 );
 ```
+
 
 </SxoCodeBlock>
 <SxoCodeBlock framework="vue2">
@@ -77,7 +80,9 @@ export default {
 </script>
 ```
 
+
 </SxoCodeBlock>
+
 </SxoCodeGroup>
 
 ## 触发方式
@@ -85,6 +90,7 @@ export default {
 支持 `click` (默认) 和 `hover` 两种触发方式。
 
 <SxoCodeGroup>
+
 <SxoCodeBlock framework="vue">
 
 ```vue
@@ -100,6 +106,7 @@ export default {
   </div>
 </template>
 ```
+
 
 </SxoCodeBlock>
 <SxoCodeBlock framework="react">
@@ -124,6 +131,7 @@ export default () => (
 );
 ```
 
+
 </SxoCodeBlock>
 <SxoCodeBlock framework="vue2">
 
@@ -141,7 +149,9 @@ export default () => (
 </template>
 ```
 
+
 </SxoCodeBlock>
+
 </SxoCodeGroup>
 
 ## 弹出位置
@@ -149,6 +159,7 @@ export default () => (
 支持 `bottom-left` (默认)、`bottom-right`、`top-left`、`top-right` 四个位置。
 
 <SxoCodeGroup>
+
 <SxoCodeBlock framework="vue">
 
 ```vue
@@ -165,6 +176,7 @@ export default () => (
   </SxoDropdown>
 </template>
 ```
+
 
 </SxoCodeBlock>
 <SxoCodeBlock framework="react">
@@ -190,6 +202,7 @@ export default () => (
 );
 ```
 
+
 </SxoCodeBlock>
 <SxoCodeBlock framework="vue2">
 
@@ -208,7 +221,9 @@ export default () => (
 </template>
 ```
 
+
 </SxoCodeBlock>
+
 </SxoCodeGroup>
 
 ## API

@@ -1,5 +1,5 @@
-import { defineComponent, h, ref, computed, onMounted, onUnmounted, type PropType } from 'vue';
-import { getCascaderClasses, type CascaderOptions } from '@sxo/ui';
+import { type CascaderOptions, getCascaderClasses } from '@sxo/ui';
+import { computed, defineComponent, h, onMounted, onUnmounted, type PropType, ref } from 'vue';
 
 export interface CascaderOption {
     value: string | number;
@@ -58,7 +58,7 @@ export const Cascader = defineComponent({
 
             for (const val of activePath.value) {
                 const option = currentOptions.find((o) => o.value === val);
-                if (option && option.children && option.children.length > 0) {
+                if (option?.children && option.children.length > 0) {
                     result.push(option.children);
                     currentOptions = option.children;
                 } else {

@@ -8,6 +8,7 @@ import {
     inject,
     markRaw,
     type PropType,
+    provide,
     reactive,
     watchEffect,
 } from 'vue';
@@ -75,7 +76,7 @@ export const ThemeProvider = defineComponent({
         },
     },
     setup(props, { slots }) {
-        const parentSxo = inject<SxoState>(SXO_KEY);
+        const parentSxo = inject<SxoState>(SXO_KEY, null as any);
 
         const state = reactive<SxoState>({
             tokens: {
@@ -88,13 +89,14 @@ export const ThemeProvider = defineComponent({
                     ...props.tokens,
                 } as DesignTokens),
             ),
+            mode: parentSxo?.mode || 'light',
         });
 
         provide(SXO_KEY, state);
 
         watchEffect(() => {
             if (props.injectVars && typeof document !== 'undefined') {
-                const vars = tokensToCssVars(state.tokens);
+                const _vars = tokensToCssVars(state.tokens);
                 // Note: For nested providers, we might want to scope these vars,
                 // but for now we'll stick to :root or a scoped class if needed.
                 // For simplicity, we update :root or the nearest scoped element.
@@ -107,7 +109,7 @@ export const ThemeProvider = defineComponent({
 });
 
 export function useSxo() {
-    const context = inject<SxoState>(SXO_KEY);
+    const context = inject<SxoState>(SXO_KEY, null as any);
     if (!context) {
         // Return default state if not provided
         return {
