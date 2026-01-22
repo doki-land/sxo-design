@@ -4,17 +4,34 @@ import { useStyle } from '../hooks.ts';
 
 export interface InputProps
     extends InputOptions,
-        Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {}
+        Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
+    prefix?: React.ReactNode;
+    suffix?: React.ReactNode;
+}
 
 export const Input: React.FC<InputProps> = ({
     variant = 'outline',
     size = 'md',
     invalid = false,
+    disabled = false,
+    prefix,
+    suffix,
     className = '',
     ...props
 }) => {
-    const sxoClasses = getInputClasses({ variant, size, invalid });
-    const combinedClasses = useStyle(`${sxoClasses} ${className}`.trim());
+    const { container, input, prefix: prefixClass, suffix: suffixClass } = getInputClasses({
+        variant,
+        size,
+        invalid,
+        disabled,
+    });
+    const finalContainerClasses = useStyle(`${container} ${className}`.trim());
 
-    return <input className={combinedClasses} {...props} />;
+    return (
+        <div className={finalContainerClasses}>
+            {prefix && <div className={prefixClass}>{prefix}</div>}
+            <input className={input} disabled={disabled} {...props} />
+            {suffix && <div className={suffixClass}>{suffix}</div>}
+        </div>
+    );
 };

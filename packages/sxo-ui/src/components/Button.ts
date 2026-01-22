@@ -2,14 +2,21 @@ export interface ButtonOptions {
     variant?: 'primary' | 'secondary' | 'accent' | 'outline' | 'ghost';
     size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
     disabled?: boolean;
+    loading?: boolean;
     rounded?: 'none' | 'sm' | 'md' | 'lg' | 'full';
 }
 
 export function getButtonClasses(options: ButtonOptions = {}) {
-    const { variant = 'primary', size = 'md', disabled = false, rounded = 'md' } = options;
+    const {
+        variant = 'primary',
+        size = 'md',
+        disabled = false,
+        loading = false,
+        rounded = 'md',
+    } = options;
 
     const base =
-        'inline-flex items-center justify-center font-bold tracking-tight transition-all duration-300 select-none active:scale-95';
+        'inline-flex items-center justify-center font-bold tracking-tight transition-all duration-300 select-none active:scale-95 gap-2';
 
     const variants = {
         primary: 'bg-primary text-white shadow-sm hover:opacity-90 active:scale-95',
@@ -37,7 +44,13 @@ export function getButtonClasses(options: ButtonOptions = {}) {
         full: 'rounded-full',
     };
 
-    const disabledClass = disabled ? 'opacity-30 cursor-not-allowed grayscale' : 'cursor-pointer';
+    const isDisabled = disabled || loading;
+    const disabledClass = isDisabled ? 'opacity-30 cursor-not-allowed grayscale' : 'cursor-pointer';
 
-    return [base, variants[variant], sizes[size], roundedClasses[rounded], disabledClass].join(' ');
+    return {
+        container: [base, variants[variant], sizes[size], roundedClasses[rounded], disabledClass].join(
+            ' ',
+        ),
+        spinner: 'animate-spin h-4 w-4',
+    };
 }

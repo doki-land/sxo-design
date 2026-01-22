@@ -17,33 +17,43 @@ export const Input = defineComponent({
             type: Boolean,
             default: false,
         },
+        disabled: {
+            type: Boolean,
+            default: false,
+        },
         modelValue: {
             type: [String, Number] as PropType<string | number>,
             default: '',
         },
     },
     emits: ['update:modelValue'],
-    setup(props, { emit, attrs }) {
-        const sxoClasses = computed(() =>
+    setup(props, { emit, attrs, slots }) {
+        const styles = computed(() =>
             getInputClasses({
                 variant: props.variant,
                 size: props.size,
                 invalid: props.invalid,
+                disabled: props.disabled,
             }),
         );
 
-        useStyle(() => `${sxoClasses.value} ${attrs.class || ''}`.trim());
+        useStyle(() => `${styles.value.container} ${attrs.class || ''}`.trim());
 
         const onInput = (event: Event) => {
             emit('update:modelValue', (event.target as HTMLInputElement).value);
         };
 
         return () =>
-            h('input', {
-                ...attrs,
-                class: [sxoClasses.value, attrs.class],
-                value: props.modelValue,
-                onInput,
-            });
+            h('div', { class: [styles.value.container, attrs.class] }, [
+                slots.prefix ? h('div', { class: styles.value.prefix }, slots.prefix()) : null,
+                h('input', {
+                    ...attrs,
+                    class: styles.value.input,
+                    value: props.modelValue,
+                    disabled: props.disabled,
+                    onInput,
+                }),
+                slots.suffix ? h('div', { class: styles.value.suffix }, slots.suffix()) : null,
+            ]);
     },
 });
