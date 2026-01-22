@@ -18,12 +18,12 @@ export function resolveColor(
     const colorNodes = parsed.nodes.slice(skipNodes);
     if (colorNodes.length === 0) return undefined;
 
-    let current: any = tokens.color;
+    let current: any = tokens.color || {};
     let varParts = ['color'];
 
     // 如果指定了 subGroup (如 'bg', 'text', 'border')，尝试先进入该子组
-    if (subGroup && subGroup in (tokens.color as any)) {
-        current = (tokens.color as any)[subGroup];
+    if (subGroup && subGroup in current) {
+        current = current[subGroup];
         varParts.push(subGroup);
     }
 
@@ -65,7 +65,7 @@ export function resolveColor(
                 current = current.foreground;
                 varParts.push('foreground');
                 continue;
-            } else if (tokens.color.text?.primary) {
+            } else if (tokens.color?.text?.primary) {
                 // 如果在当前层级没找到 foreground，且是全局查找，优先映射到 text.primary
                 // 这符合 bg-foreground = 黑色的直觉 (在浅色模式下)
                 return {
@@ -73,7 +73,7 @@ export function resolveColor(
                     varPath: 'color-text-primary',
                     opacity: opacity,
                 };
-            } else if (tokens.color.primary.foreground) {
+            } else if (tokens.color?.primary?.foreground) {
                 // 回退到全局 primary.foreground
                 return {
                     color: tokens.color.primary.foreground,
@@ -89,7 +89,7 @@ export function resolveColor(
                 current = current.background;
                 varParts.push('background');
                 continue;
-            } else if (tokens.color.background?.primary) {
+            } else if (tokens.color?.background?.primary) {
                 // 回退到全局 background.primary
                 return {
                     color: tokens.color.background.primary,

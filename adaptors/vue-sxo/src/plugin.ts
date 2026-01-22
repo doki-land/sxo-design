@@ -115,6 +115,7 @@ export function useSxo() {
         return {
             tokens: defaultTokens,
             engine: new StyleEngine(defaultTokens),
+            mode: 'light',
         };
     }
     return context;
