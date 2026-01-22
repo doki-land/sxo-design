@@ -75,6 +75,10 @@ export const Radio = defineComponent({
             type: String as PropType<RadioOptions['color']>,
             default: undefined,
         },
+        disabled: {
+            type: Boolean,
+            default: false,
+        },
     },
     setup(props, { slots, attrs }) {
         const group = inject<any>(RadioGroupSymbol);
@@ -88,26 +92,27 @@ export const Radio = defineComponent({
             getRadioClasses(isSelected.value, {
                 size: size.value,
                 color: color.value,
+                disabled: props.disabled,
             }),
         );
 
         useStyle(() => {
             const s = classes.value;
-            return [s.root, s.inner, attrs.class].filter(Boolean).join(' ');
+            return [s.root, s.inner, s.label, s.text, attrs.class].filter(Boolean).join(' ');
         });
 
         return () =>
             h(
                 'label',
                 {
-                    class: ['inline-flex items-center gap-2 cursor-pointer', attrs.class],
+                    class: [classes.value.label, attrs.class],
                 },
                 [
                     h(
                         'div',
                         {
                             class: classes.value.root,
-                            onClick: () => group.updateValue(props.value),
+                            onClick: () => !props.disabled && group.updateValue(props.value),
                         },
                         [
                             h('input', {
@@ -115,13 +120,14 @@ export const Radio = defineComponent({
                                 name: group.name,
                                 value: props.value,
                                 checked: isSelected.value,
+                                disabled: props.disabled,
                                 class: 'sr-only',
                                 readOnly: true,
                             }),
                             h('div', { class: classes.value.inner }),
                         ],
                     ),
-                    slots.default?.(),
+                    slots.default && h('span', { class: classes.value.text }, slots.default()),
                 ],
             );
     },

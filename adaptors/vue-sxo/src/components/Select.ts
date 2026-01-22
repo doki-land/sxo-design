@@ -86,6 +86,7 @@ export const Select = defineComponent({
         provide(SelectSymbol, {
             currentValue: internalValue,
             handleSelect,
+            classes,
         });
 
         const getSelectedLabel = () => {
@@ -170,22 +171,28 @@ export const SelectOption = defineComponent({
             type: String,
             required: true,
         },
+        disabled: {
+            type: Boolean,
+            default: false,
+        },
     },
     setup(props, { slots, attrs }) {
         const select = inject<any>(SelectSymbol);
         if (!select) throw new Error('SelectOption must be used within Select');
 
         const isSelected = computed(() => select.currentValue.value === props.value);
-        const classes = getSelectClasses(false); // Base option classes
 
-        useStyle(() => `${classes.option} ${attrs.class || ''}`);
+        useStyle(() => {
+            const s = select.classes.value;
+            return `${s.option(isSelected.value, props.disabled)} ${attrs.class || ''}`;
+        });
 
         return () =>
             h(
                 'div',
                 {
-                    class: `${classes.option} ${isSelected.value ? 'bg-primary/10 text-primary font-medium' : ''} ${attrs.class || ''}`.trim(),
-                    onClick: () => select.handleSelect(props.value),
+                    class: `${select.classes.value.option(isSelected.value, props.disabled)} ${attrs.class || ''}`.trim(),
+                    onClick: () => !props.disabled && select.handleSelect(props.value),
                 },
                 slots.default?.() as any,
             );

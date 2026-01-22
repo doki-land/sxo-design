@@ -48,9 +48,7 @@ export const Select: React.FC<SelectProps> = ({
         <div className={`relative inline-block w-full ${className}`.trim()}>
             <div
                 {...getTriggerProps()}
-                className={`${classes.trigger} ${
-                    disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'
-                }`}
+                className={classes.trigger}
             >
                 <span className={currentValue ? 'text-foreground' : 'text-neutral-400'}>
                     {currentValue || placeholder}
@@ -74,6 +72,7 @@ export const Select: React.FC<SelectProps> = ({
                         return React.cloneElement(child as React.ReactElement<any>, {
                             onSelect: handleSelect,
                             isSelected: currentValue === child.props.value,
+                            styleFunction: classes.option,
                         });
                     }
                     return child;
@@ -86,22 +85,30 @@ export const Select: React.FC<SelectProps> = ({
 export interface SelectOptionProps {
     value: string;
     children: React.ReactNode;
+    disabled?: boolean;
     onSelect?: (value: string) => void;
     isSelected?: boolean;
+    // Pass styles from parent
+    styleFunction?: ReturnType<typeof getSelectClasses>['option'];
 }
 
 export const SelectOption: React.FC<SelectOptionProps> = ({
     value,
     children,
+    disabled = false,
     onSelect,
-    isSelected,
+    isSelected = false,
+    styleFunction,
 }) => {
-    const classes = getSelectClasses(false); // Only need option base class
+    // Fallback if used standalone (though typically used within Select)
+    const optionClass = styleFunction
+        ? styleFunction(isSelected, disabled)
+        : getSelectClasses(false).option(isSelected, disabled);
 
     return (
         <div
-            className={`${classes.option} ${isSelected ? 'bg-primary/10 text-primary font-medium' : ''}`}
-            onClick={() => onSelect?.(value)}
+            className={optionClass}
+            onClick={() => !disabled && onSelect?.(value)}
         >
             {children}
         </div>

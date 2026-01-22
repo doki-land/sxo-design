@@ -3,10 +3,11 @@ export interface TableOptions {
     hover?: boolean;
     striped?: boolean;
     border?: boolean;
+    loading?: boolean;
 }
 
 export function getTableClasses(options: TableOptions = {}) {
-    const { size = 'md', hover = true, striped = false, border = true } = options;
+    const { size = 'md', hover = true, striped = false, border = true, loading = false } = options;
 
     const sizes = {
         sm: 'px-3 py-2 text-xs',
@@ -15,8 +16,8 @@ export function getTableClasses(options: TableOptions = {}) {
     };
 
     return {
-        container: `w-full overflow-x-auto ${border ? 'border border-neutral-200 rounded-xl' : ''}`,
-        table: 'w-full text-left border-collapse',
+        container: `w-full overflow-x-auto relative ${border ? 'border border-neutral-200 rounded-xl' : ''}`,
+        table: `w-full text-left border-collapse ${loading ? 'opacity-50 pointer-events-none' : ''}`,
         thead: 'bg-neutral-50/80 backdrop-blur-sm border-b border-neutral-200 sticky top-0 z-10',
         th: `font-bold text-neutral-500 uppercase tracking-wider ${sizes[size]}`,
         tr: `border-b border-neutral-100 transition-colors ${hover ? 'hover:bg-neutral-50/50' : ''}`,
@@ -27,6 +28,7 @@ export function getTableClasses(options: TableOptions = {}) {
             'flex items-center justify-between px-4 py-3 border-t border-neutral-100 bg-white',
         empty: 'flex flex-col items-center justify-center py-20 text-neutral-300 gap-2',
         loading:
-            'absolute inset-0 bg-white/60 backdrop-blur-[1px] flex items-center justify-center z-20',
+            'absolute inset-0 bg-white/60 backdrop-blur-[1px] flex items-center justify-center z-20 transition-all duration-300',
+        spinner: 'animate-spin h-8 w-8 text-primary',
     };
 }

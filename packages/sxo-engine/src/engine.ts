@@ -89,6 +89,7 @@ export class StyleEngine {
             variantInfo.suffix,
             variantInfo.parent,
             variantInfo.mediaQuery,
+            parsed.important,
         );
 
         this.cache.set(className, css);
@@ -274,12 +275,16 @@ export class StyleEngine {
         variantSuffix = '',
         parentPrefix = '',
         mediaQuery = '',
+        important = false,
     ): string {
         const baseSelector = `.${this.escapeClassName(className)}${variantSuffix}`;
         const selector = parentPrefix ? `${parentPrefix} ${baseSelector}` : baseSelector;
 
         const processResult = (sel: string, res: string | Record<string, any>): string => {
-            if (typeof res === 'string') return `${sel} { ${res} }`;
+            if (typeof res === 'string') {
+                const value = important ? `${res.replace(/;$/, '')} !important;` : res;
+                return `${sel} { ${value} }`;
+            }
 
             let css = '';
             const rules: string[] = [];
@@ -290,7 +295,8 @@ export class StyleEngine {
                     const nestedSelector = p.replace(/&/g, sel);
                     nested.push(processResult(nestedSelector, v));
                 } else {
-                    rules.push(`${p}: ${v};`);
+                    const value = important ? `${v} !important` : v;
+                    rules.push(`${p}: ${value};`);
                 }
             }
 

@@ -124,7 +124,7 @@ export const Checkbox = defineComponent({
 
         useStyle(() => {
             const s = classes.value;
-            return `${s.root} ${s.icon} ${attrs.class || ''}`.trim();
+            return `${s.root} ${s.icon} ${s.label} ${s.text} ${attrs.class || ''}`.trim();
         });
 
         const handleToggle = () => {
@@ -142,11 +142,7 @@ export const Checkbox = defineComponent({
                 'label',
                 {
                     ...getLabelProps(),
-                    class: [
-                        'inline-flex items-center gap-2 cursor-pointer',
-                        props.disabled ? 'opacity-50 cursor-not-allowed' : '',
-                        attrs.class,
-                    ],
+                    class: [classes.value.label, attrs.class],
                 },
                 [
                     h(
@@ -179,7 +175,7 @@ export const Checkbox = defineComponent({
                             ),
                         ],
                     ),
-                    slots.default && h('span', { class: 'text-sm select-none' }, slots.default()),
+                    slots.default && h('span', { class: classes.value.text }, slots.default()),
                 ],
             );
     },

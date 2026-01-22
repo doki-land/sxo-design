@@ -87,6 +87,10 @@ export const Tab = defineComponent({
             type: String,
             required: true,
         },
+        disabled: {
+            type: Boolean,
+            default: false,
+        },
     },
     setup(props, { slots, attrs }) {
         const ctx = inject<any>(TabsSymbol);
@@ -99,7 +103,14 @@ export const Tab = defineComponent({
                 'div',
                 {
                     ...tabProps,
-                    class: `${ctx.styles.value.tab(isActive)} ${attrs.class || ''}`.trim(),
+                    class: [
+                        ctx.styles.value.tab(isActive, props.disabled),
+                        attrs.class,
+                    ],
+                    onClick: (e: MouseEvent) => {
+                        if (props.disabled) return;
+                        tabProps.onClick?.(e);
+                    },
                 },
                 slots.default?.(),
             );

@@ -15,13 +15,16 @@ export function getRadioClasses(isSelected: boolean, options: RadioOptions = {})
 
     const base = [
         'inline-flex items-center justify-center rounded-full border transition-all duration-200 focus:outline-none',
-        disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer',
     ].join(' ');
 
+    const disabledClasses = disabled ? 'cursor-not-allowed opacity-50 bg-neutral-100 border-neutral-200' : 'cursor-pointer';
+
     const colorClass = isSelected
-        ? color === 'primary'
-            ? 'border-primary'
-            : 'border-success'
+        ? disabled
+            ? 'border-neutral-300'
+            : color === 'primary'
+              ? 'border-primary'
+              : 'border-success'
         : disabled
           ? 'border-neutral-200'
           : 'border-neutral-300 hover:border-neutral-400';
@@ -29,15 +32,19 @@ export function getRadioClasses(isSelected: boolean, options: RadioOptions = {})
     const innerBase = 'rounded-full transition-transform duration-200';
     const innerScale = isSelected ? 'scale-100' : 'scale-0';
     const innerColor = isSelected
-        ? color === 'primary'
-            ? 'bg-primary'
-            : 'bg-success'
+        ? disabled
+            ? 'bg-neutral-300'
+            : color === 'primary'
+              ? 'bg-primary'
+              : 'bg-success'
         : 'bg-transparent';
 
     const currentSize = sizes[size];
 
     return {
-        root: `${base} ${colorClass} ${currentSize.root}`,
+        root: `${base} ${colorClass} ${currentSize.root} ${disabledClasses}`,
         inner: `${innerBase} ${innerColor} ${currentSize.inner} ${innerScale}`,
+        label: `inline-flex items-center gap-2 ${disabled ? 'cursor-not-allowed' : 'cursor-pointer'}`,
+        text: `text-sm select-none ${disabled ? 'text-neutral-400' : 'text-neutral-700'}`,
     };
 }

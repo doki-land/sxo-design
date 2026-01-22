@@ -9,9 +9,18 @@ export const Badge = defineComponent({
             type: String as PropType<BadgeOptions['variant']>,
             default: 'primary',
         },
+        size: {
+            type: String as PropType<BadgeOptions['size']>,
+            default: 'md',
+        },
     },
     setup(props, { slots, attrs }) {
-        const sxoClasses = computed(() => getBadgeClasses({ variant: props.variant }));
+        const sxoClasses = computed(() =>
+            getBadgeClasses({
+                variant: props.variant,
+                size: props.size,
+            }),
+        );
 
         useStyle(() => `${sxoClasses.value} ${attrs.class || ''}`.trim());
 

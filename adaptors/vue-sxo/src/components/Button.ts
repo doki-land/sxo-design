@@ -4,6 +4,7 @@ import { useStyle } from '../hooks';
 
 export const Button = defineComponent({
     name: 'SxoButton',
+    inheritAttrs: false,
     props: {
         variant: {
             type: String as PropType<ButtonOptions['variant']>,
@@ -39,13 +40,26 @@ export const Button = defineComponent({
 
         useStyle(() => `${styles.value.container} ${attrs.class || ''}`.trim());
 
+        const onClick = (e: MouseEvent) => {
+            if (props.disabled || props.loading) {
+                e.preventDefault();
+                e.stopPropagation();
+                return;
+            }
+            if (typeof attrs.onClick === 'function') {
+                (attrs.onClick as Function)(e);
+            }
+        };
+
         return () =>
             h(
                 'button',
                 {
+                    type: 'button',
                     ...attrs,
                     class: [styles.value.container, attrs.class],
                     disabled: props.disabled || props.loading,
+                    onClick,
                 },
                 [
                     props.loading

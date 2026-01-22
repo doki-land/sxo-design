@@ -20,6 +20,9 @@ export function getTabsClasses(options: TabsOptions = {}) {
 
     const tabBase =
         'cursor-pointer transition-all duration-200 focus:outline-none whitespace-nowrap';
+
+    const disabledTab = 'opacity-50 cursor-not-allowed pointer-events-none';
+
     const tabVariants = {
         line: {
             active: 'border-b-2 border-primary text-primary font-medium -mb-px',
@@ -33,8 +36,10 @@ export function getTabsClasses(options: TabsOptions = {}) {
 
     return {
         list: `${listBase} ${listVariants[variant]}`,
-        tab: (isActive: boolean) =>
-            `${tabBase} ${sizes[size]} ${isActive ? tabVariants[variant].active : tabVariants[variant].inactive}`,
+        tab: (isActive: boolean, disabled: boolean = false) =>
+            `${tabBase} ${sizes[size]} ${
+                isActive ? tabVariants[variant].active : tabVariants[variant].inactive
+            } ${disabled ? disabledTab : ''}`,
         panel: 'mt-4 animate-in fade-in duration-300',
     };
 }

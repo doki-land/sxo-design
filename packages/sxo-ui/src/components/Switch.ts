@@ -5,7 +5,7 @@ export interface SwitchOptions {
 }
 
 export function getSwitchClasses(isOn: boolean, options: SwitchOptions = {}) {
-    const { size = 'md', color = 'primary' } = options;
+    const { size = 'md', color = 'primary', disabled = false } = options;
 
     const sizes = {
         sm: { track: 'w-8 h-4', thumb: 'w-3 h-3', active: 'translate-x-4' },
@@ -14,7 +14,7 @@ export function getSwitchClasses(isOn: boolean, options: SwitchOptions = {}) {
     };
 
     const trackBase =
-        'relative inline-flex items-center rounded-full transition-colors duration-200 ease-in-out cursor-pointer focus:outline-none';
+        'relative inline-flex items-center rounded-full transition-colors duration-200 ease-in-out focus:outline-none';
     const thumbBase =
         'inline-block transform rounded-full bg-white transition duration-200 ease-in-out shadow-sm translate-x-1';
 
@@ -24,10 +24,12 @@ export function getSwitchClasses(isOn: boolean, options: SwitchOptions = {}) {
             : 'bg-success'
         : 'bg-neutral-200';
 
+    const disabledClass = disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer';
+
     const currentSize = sizes[size];
 
     return {
-        track: `${trackBase} ${trackColor} ${currentSize.track}`,
-        thumb: `${thumbBase} ${currentSize.thumb} ${isOn ? currentSize.active : ''}`,
+        track: [trackBase, trackColor, currentSize.track, disabledClass].join(' '),
+        thumb: [thumbBase, currentSize.thumb, isOn ? currentSize.active : ''].join(' '),
     };
 }

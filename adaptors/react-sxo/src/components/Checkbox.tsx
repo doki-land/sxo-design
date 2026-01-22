@@ -105,7 +105,7 @@ export const Checkbox: React.FC<CheckboxProps> = ({
         disabled,
     });
 
-    useStyle([classes.root, classes.icon, className].filter(Boolean).join(' '));
+    useStyle([classes.root, classes.icon, classes.label, classes.text, className].filter(Boolean).join(' '));
 
     const handleToggle = () => {
         if (disabled) return;
@@ -119,12 +119,7 @@ export const Checkbox: React.FC<CheckboxProps> = ({
     };
 
     return (
-        <label
-            {...getLabelProps()}
-            className={`inline-flex items-center gap-2 cursor-pointer ${
-                disabled ? 'opacity-50 cursor-not-allowed' : ''
-            } ${className}`.trim()}
-        >
+        <label {...getLabelProps()} className={`${classes.label} ${className}`.trim()}>
             <div className={classes.root} onClick={handleToggle}>
                 <input {...getInputProps()} className="sr-only" readOnly />
                 <svg
@@ -141,7 +136,7 @@ export const Checkbox: React.FC<CheckboxProps> = ({
                     <polyline points="2 6 5 9 10 3" />
                 </svg>
             </div>
-            {children && <span className="text-sm select-none">{children}</span>}
+            {children && <span className={classes.text}>{children}</span>}
         </label>
     );
 };

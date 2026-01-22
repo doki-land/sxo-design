@@ -6,11 +6,12 @@ export interface BadgeProps extends BadgeOptions, React.HTMLAttributes<HTMLSpanE
 
 export const Badge: React.FC<BadgeProps> = ({
     variant = 'primary',
+    size = 'md',
     className = '',
     children,
     ...props
 }) => {
-    const sxoClasses = getBadgeClasses({ variant });
+    const sxoClasses = getBadgeClasses({ variant, size });
     const combinedClasses = useStyle(`${sxoClasses} ${className}`.trim());
 
     return (

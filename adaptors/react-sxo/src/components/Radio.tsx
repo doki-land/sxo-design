@@ -64,12 +64,14 @@ export interface RadioProps extends RadioOptions {
     value: string;
     children?: React.ReactNode;
     className?: string;
+    disabled?: boolean;
 }
 
 export const Radio: React.FC<RadioProps> = ({
     value: itemValue,
     children,
     className = '',
+    disabled = false,
     ...props
 }) => {
     const context = useContext(RadioGroupContext);
@@ -79,23 +81,24 @@ export const Radio: React.FC<RadioProps> = ({
     const size = props.size || context.size || 'md';
     const color = props.color || context.color || 'primary';
 
-    const classes = getRadioClasses(isSelected, { size, color });
-    useStyle([classes.root, classes.inner, className].filter(Boolean).join(' '));
+    const classes = getRadioClasses(isSelected, { size, color, disabled });
+    useStyle([classes.root, classes.inner, classes.label, classes.text, className].filter(Boolean).join(' '));
 
     return (
-        <label className={`inline-flex items-center gap-2 cursor-pointer ${className}`.trim()}>
-            <div className={classes.root} onClick={() => context.onChange(itemValue)}>
+        <label className={`${classes.label} ${className}`.trim()}>
+            <div className={classes.root} onClick={() => !disabled && context.onChange(itemValue)}>
                 <input
                     type="radio"
                     name={context.name}
                     value={itemValue}
                     checked={isSelected}
+                    disabled={disabled}
                     className="sr-only"
                     readOnly
                 />
                 <div className={classes.inner} />
             </div>
-            {children && <span className="text-sm select-none">{children}</span>}
+            {children && <span className={classes.text}>{children}</span>}
         </label>
     );
 };

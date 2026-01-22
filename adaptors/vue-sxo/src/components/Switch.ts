@@ -58,11 +58,7 @@ export const Switch = defineComponent({
                 'div',
                 {
                     ...getToggleProps(),
-                    class: [
-                        classes.value.track,
-                        props.disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer',
-                        attrs.class,
-                    ],
+                    class: [classes.value.track, attrs.class],
                     onClick: handleToggle,
                 },
                 [h('span', { class: classes.value.thumb })],

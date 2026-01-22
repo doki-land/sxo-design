@@ -84,7 +84,8 @@ export const Tab: React.FC<{
     value: string;
     children: React.ReactNode;
     className?: string;
-}> = ({ value, children, className = '' }) => {
+    disabled?: boolean;
+}> = ({ value, children, className = '', disabled = false }) => {
     const ctx = useContext(TabsContext);
     if (!ctx) throw new Error('Tab must be used within Tabs');
 
@@ -92,7 +93,14 @@ export const Tab: React.FC<{
     const tabProps = ctx.getTabProps(value, ctx.selectTab);
 
     return (
-        <div {...tabProps} className={`${ctx.styles.tab(isActive)} ${className}`.trim()}>
+        <div
+            {...tabProps}
+            className={`${ctx.styles.tab(isActive, disabled)} ${className}`.trim()}
+            onClick={(e) => {
+                if (disabled) return;
+                tabProps.onClick?.(e);
+            }}
+        >
             {children}
         </div>
     );

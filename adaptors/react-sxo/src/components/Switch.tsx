@@ -47,9 +47,7 @@ export const Switch: React.FC<SwitchProps> = ({
     return (
         <div
             {...getToggleProps()}
-            className={`${classes.track} ${
-                disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'
-            } ${className}`.trim()}
+            className={`${classes.track} ${className}`.trim()}
             onClick={handleToggle}
         >
             <span className={classes.thumb} />

@@ -47,10 +47,10 @@ export function vitePluginSxo(options: VitePluginSxoOptions = {}): Plugin {
      */
     const scan = (code: string, id: string) => {
         // Broad match for potential class names:
-        // Matches sequences of alphanumeric chars, dashes, colons, slashes, brackets, dots, percents, underscores, hashes
+        // Matches sequences of alphanumeric chars, dashes, colons, slashes, brackets, dots, percents, underscores, hashes, and ! for important
         // Supports arbitrary values with spaces inside brackets [ ... ]
         // Refined regex: Ensure it doesn't end with a colon (which is usually an object key or label)
-        const regex = /(?<![a-zA-Z0-9-])([a-zA-Z0-9-:[\]/%._#]+(?:\[[^\]]+\])?)(?<!:)(?!:)/g;
+        const regex = /(?<![a-zA-Z0-9-])([!a-zA-Z0-9-:[\]/%._#]+(?:\[[^\]]+\])?)(?<!:)(?!:)/g;
         let match;
         let foundNew = false;
 

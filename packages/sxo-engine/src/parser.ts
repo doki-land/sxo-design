@@ -153,6 +153,7 @@ export interface ParsedClass {
     raw: string;
     opacity?: string;
     negative?: boolean;
+    important?: boolean;
     // For backward compatibility and easy matching
     parts: string[];
 }
@@ -194,6 +195,12 @@ export class SxoParser {
         }
 
         let utility = className.substring(lastSplitPos);
+        let important = false;
+        if (utility.startsWith('!')) {
+            important = true;
+            utility = utility.substring(1);
+        }
+
         let negative = false;
         if (utility.startsWith('-')) {
             negative = true;
@@ -299,9 +306,10 @@ export class SxoParser {
             nodes,
             utility,
             raw: className,
-            parts,
             opacity,
             negative,
+            important,
+            parts,
         };
     }
 }
