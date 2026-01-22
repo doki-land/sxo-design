@@ -52,4 +52,66 @@ export const spacingRules: Rule[] = [
             return { [`${type}${suffix}`]: value };
         },
     ],
+
+    // 2. Space Between
+    [
+        (parsed) => {
+            const n0 = parsed.nodes[0];
+            const n1 = parsed.nodes[1];
+            return (
+                n0?.type === 'literal' &&
+                n0.value === 'space' &&
+                n1?.type === 'literal' &&
+                (n1.value === 'x' || n1.value === 'y') &&
+                parsed.nodes.length >= 3
+            );
+        },
+        (_, { tokens, parsed }) => {
+            const axis = (parsed.nodes[1] as any).value;
+            const node = parsed.nodes[2];
+
+            let value: string | undefined = ValueResolver.resolveSpacing(node, tokens);
+            if (!value && node.type === 'literal') {
+                value = node.value;
+            } else if (node.type === 'numeric' && !node.unit) {
+                value = `${node.value * 4}px`;
+            } else if (node.type === 'arbitrary') {
+                value = node.value.replace(/_/g, ' ');
+            }
+
+            if (!value) return;
+
+            const tokenKey =
+                node.type === 'literal' ? node.value : node.type === 'numeric' ? node.raw : '';
+            if (tokenKey && tokens.spacing[tokenKey]) {
+                value = getVar(`spacing-${tokenKey}`, value!);
+            }
+
+            const reverseVar = `--sxo-space-${axis}-reverse`;
+            const prop = axis === 'x' ? 'margin-left' : 'margin-top';
+            const oppositeProp = axis === 'x' ? 'margin-right' : 'margin-bottom';
+
+            return {
+                [`& > :not([hidden]) ~ :not([hidden])`]: {
+                    [reverseVar]: '0',
+                    [prop]: `calc(${value} * calc(1 - var(${reverseVar})))`,
+                    [oppositeProp]: `calc(${value} * var(${reverseVar}))`,
+                },
+            };
+        },
+    ],
+    [
+        (parsed) =>
+            parsed.nodes[0]?.value === 'space' &&
+            (parsed.nodes[1]?.value === 'x' || parsed.nodes[1]?.value === 'y') &&
+            parsed.nodes[2]?.value === 'reverse',
+        (_, { parsed }) => {
+            const axis = (parsed.nodes[1] as any).value;
+            return {
+                [`& > :not([hidden]) ~ :not([hidden])`]: {
+                    [`--sxo-space-${axis}-reverse`]: '1',
+                },
+            };
+        },
+    ],
 ];

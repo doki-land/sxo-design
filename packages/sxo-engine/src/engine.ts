@@ -187,8 +187,16 @@ export class StyleEngine {
         const bpNames = Object.keys(breakpoints);
 
         const sortedClasses = Array.from(classNames).sort((a, b) => {
-            const aBp = bpNames.find((bp) => a.startsWith(`${bp}:`));
-            const bBp = bpNames.find((bp) => b.startsWith(`${bp}:`));
+            const getBreakpoint = (cls: string) => {
+                const parts = cls.split(':');
+                for (const part of parts) {
+                    if (bpNames.includes(part)) return part;
+                }
+                return undefined;
+            };
+
+            const aBp = getBreakpoint(a);
+            const bBp = getBreakpoint(b);
 
             // 1. Both are responsive
             if (aBp && bBp) {

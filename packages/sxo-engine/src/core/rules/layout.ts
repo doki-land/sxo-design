@@ -63,22 +63,37 @@ export const layoutRules: Rule[] = [
     [
         (parsed) => {
             const first = parsed.nodes[0];
+            const second = parsed.nodes[1];
+            // Match: flex-*, grow-*, shrink-* OR flex-grow-*, flex-shrink-*
             return (
                 first?.type === 'literal' &&
-                ['flex', 'grow', 'shrink'].includes(first.value) &&
+                (['flex', 'grow', 'shrink'].includes(first.value) ||
+                    (first.value === 'flex' &&
+                        second?.type === 'literal' &&
+                        ['grow', 'shrink'].includes(second.value))) &&
                 parsed.nodes.length >= 2
             );
         },
         (_, { parsed }) => {
-            const first = (parsed.nodes[0] as any).value;
-            const node = parsed.nodes[1];
+            let first = (parsed.nodes[0] as any).value;
+            let node = parsed.nodes[1];
             let value = '';
-            if (node.type === 'literal') value = node.value;
-            else if (node.type === 'numeric') value = node.raw;
-            else if (node.type === 'arbitrary') value = node.value;
 
-            if (first === 'grow') return { 'flex-grow': value === 'grow' ? '1' : value };
-            if (first === 'shrink') return { 'flex-shrink': value === 'shrink' ? '1' : value };
+            // Handle flex-grow-* and flex-shrink-*
+            if (first === 'flex' && node.type === 'literal' && (node.value === 'grow' || node.value === 'shrink')) {
+                first = node.value;
+                node = parsed.nodes[2];
+                if (!node) value = '1'; // flex-grow -> flex-grow: 1
+            }
+
+            if (node) {
+                if (node.type === 'literal') value = node.value;
+                else if (node.type === 'numeric') value = node.raw;
+                else if (node.type === 'arbitrary') value = node.value;
+            }
+
+            if (first === 'grow') return { 'flex-grow': value || '1' };
+            if (first === 'shrink') return { 'flex-shrink': value || '1' };
             if (first === 'flex') {
                 if (value === '1') return { flex: '1 1 0%' };
                 if (value === 'auto') return { flex: '1 1 auto' };

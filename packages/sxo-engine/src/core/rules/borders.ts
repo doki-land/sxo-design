@@ -32,15 +32,51 @@ export const borderRules: Rule[] = [
             }
 
             // 2. 匹配颜色
+            let side = '';
+            const node1Value = (node1 as any).value;
+            if (['t', 'r', 'b', 'l', 'x', 'y'].includes(node1Value)) {
+                side = node1Value;
+            }
+
             const res =
-                resolveColor(parsed, tokens, { subGroup: 'border' }) ||
-                resolveColor(parsed, tokens);
+                resolveColor(parsed, tokens, {
+                    subGroup: 'border',
+                    skipNodes: side ? 2 : 1,
+                }) ||
+                resolveColor(parsed, tokens, {
+                    skipNodes: side ? 2 : 1,
+                });
+
             if (res) {
                 const color = getVar(res.varPath, res.color, res.opacity);
+                const opacityVar = `--sxo-border-opacity`;
+                const colorVar = `--sxo-border-color`;
+                const mix = `color-mix(in srgb, var(${colorVar}), transparent calc(100% - var(${opacityVar})))`;
+
+                const sideMap: Record<string, string[]> = {
+                    t: ['top'],
+                    r: ['right'],
+                    b: ['bottom'],
+                    l: ['left'],
+                    x: ['left', 'right'],
+                    y: ['top', 'bottom'],
+                };
+
+                if (side) {
+                    const styles: Record<string, string> = {
+                        [opacityVar]: '100%',
+                        [colorVar]: color,
+                    };
+                    for (const s of sideMap[side]) {
+                        styles[`border-${s}-color`] = mix;
+                    }
+                    return styles;
+                }
+
                 return {
-                    '--sxo-border-opacity': '100%',
-                    '--sxo-border-color': color,
-                    'border-color': `color-mix(in srgb, var(--sxo-border-color), transparent calc(100% - var(--sxo-border-opacity)))`,
+                    [opacityVar]: '100%',
+                    [colorVar]: color,
+                    'border-color': mix,
                 };
             }
         },
