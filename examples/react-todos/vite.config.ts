@@ -1,7 +1,7 @@
 import { pornhubTheme } from '@sxo/theme-pornhub';
 import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
-import { vitePluginSxo } from 'vite-plugin-sxo';
+import { vitePluginSxo } from '@sxo/vite-plugin-sxo';
 
 export default defineConfig({
     // @ts-expect-error

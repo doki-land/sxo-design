@@ -22,6 +22,10 @@ export const Mentions = defineComponent({
         size: { type: String as PropType<MentionsOptions['size']>, default: 'md' },
         /** 状态 */
         status: { type: String as PropType<MentionsOptions['status']> },
+        /** 是否禁用 */
+        disabled: { type: Boolean, default: false },
+        /** 是否只读 */
+        readonly: { type: Boolean, default: false },
     },
     emits: ['update:modelValue', 'select', 'search'],
     setup(props, { emit }) {
@@ -35,6 +39,8 @@ export const Mentions = defineComponent({
             getMentionsClasses({
                 size: props.size,
                 status: props.status,
+                disabled: props.disabled,
+                readonly: props.readonly,
             }),
         );
 
@@ -50,6 +56,7 @@ export const Mentions = defineComponent({
         });
 
         const handleInput = (e: Event) => {
+            if (props.disabled || props.readonly) return;
             const target = e.target as HTMLTextAreaElement;
             const val = target.value;
             const pos = target.selectionStart;
@@ -76,6 +83,7 @@ export const Mentions = defineComponent({
         };
 
         const selectOption = (option: MentionOption) => {
+            if (props.disabled || props.readonly) return;
             const val = props.modelValue;
             const pos = cursorPosition.value;
             const textBeforeCursor = val.substring(0, pos);
@@ -96,6 +104,7 @@ export const Mentions = defineComponent({
         };
 
         const handleKeyDown = (e: KeyboardEvent) => {
+            if (props.disabled || props.readonly) return;
             if (!showSuggestions.value) return;
 
             if (e.key === 'ArrowDown') {
@@ -123,6 +132,8 @@ export const Mentions = defineComponent({
                     class: classes.value.textarea,
                     value: props.modelValue,
                     placeholder: props.placeholder,
+                    disabled: props.disabled,
+                    readonly: props.readonly,
                     onInput: handleInput,
                     onKeydown: handleKeyDown,
                     onBlur: () => setTimeout(() => (showSuggestions.value = false), 200),

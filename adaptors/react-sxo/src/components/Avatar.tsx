@@ -15,9 +15,10 @@ export const Avatar: React.FC<AvatarProps> = ({
     fallback,
     size = 'md',
     shape = 'circle',
+    bordered = false,
     className = '',
 }) => {
-    const styles = getAvatarClasses({ size, shape });
+    const styles = getAvatarClasses({ size, shape, bordered });
     useStyle([styles.root, styles.image, styles.fallback, className].filter(Boolean).join(' '));
 
     return (

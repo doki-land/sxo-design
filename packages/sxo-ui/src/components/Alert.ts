@@ -1,12 +1,14 @@
 export interface AlertOptions {
     type?: 'info' | 'success' | 'warning' | 'error';
     variant?: 'subtle' | 'solid' | 'outline';
+    disabled?: boolean;
 }
 
 export function getAlertClasses(options: AlertOptions = {}) {
-    const { type = 'info', variant = 'subtle' } = options;
+    const { type = 'info', variant = 'subtle', disabled = false } = options;
 
     const base = 'flex items-start gap-3 p-4 rounded-lg text-sm transition-all duration-200';
+    const disabledClasses = disabled ? 'opacity-50 grayscale-[0.2] cursor-not-allowed select-none' : '';
 
     const variants = {
         subtle: {
@@ -37,7 +39,7 @@ export function getAlertClasses(options: AlertOptions = {}) {
         'flex-shrink-0 cursor-pointer opacity-60 hover:opacity-100 transition-opacity p-1 -m-1';
 
     return {
-        container: [base, variants[variant][type]].join(' '),
+        container: [base, variants[variant][type], disabledClasses].join(' '),
         icon,
         content,
         title,

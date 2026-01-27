@@ -13,12 +13,13 @@ export const Tag: React.FC<TagProps> = ({
     rounded = 'sm',
     size = 'md',
     closable = false,
+    disabled = false,
     className = '',
     children,
     onClose,
     ...props
 }) => {
-    const sxoClasses = getTagClasses({ variant, color, rounded, size, closable });
+    const sxoClasses = getTagClasses({ variant, color, rounded, size, closable, disabled });
     const finalClasses = useStyle(`${sxoClasses.base} ${className}`.trim());
 
     return (
@@ -28,6 +29,7 @@ export const Tag: React.FC<TagProps> = ({
                 <span
                     className={sxoClasses.closeIcon}
                     onClick={(e) => {
+                        if (disabled) return;
                         e.stopPropagation();
                         onClose?.();
                     }}

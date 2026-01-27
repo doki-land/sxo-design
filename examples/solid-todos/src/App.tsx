@@ -1,7 +1,7 @@
 /** @jsxImportSource solid-js */
 import { pornhubTheme } from '@sxo/theme-pornhub';
 import { createSignal, For, Show } from 'solid-js';
-import { Button, Input, Tag, ThemeProvider } from 'solid-sxo';
+import { Button, Input, Tag, ThemeProvider } from '@sxo/solid-sxo';
 
 interface Todo {
     id: number;

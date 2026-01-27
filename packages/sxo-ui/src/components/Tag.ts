@@ -4,6 +4,7 @@ export interface TagOptions {
     rounded?: 'none' | 'sm' | 'md' | 'full';
     size?: 'sm' | 'md' | 'lg';
     closable?: boolean;
+    disabled?: boolean;
 }
 
 export function getTagClasses(options: TagOptions = {}) {
@@ -13,6 +14,7 @@ export function getTagClasses(options: TagOptions = {}) {
         rounded = 'sm',
         size = 'md',
         closable = false,
+        disabled = false,
     } = options;
 
     const base = 'inline-flex items-center transition-all duration-300 gap-1.5';
@@ -57,10 +59,11 @@ export function getTagClasses(options: TagOptions = {}) {
         },
     };
 
-    const closeIcon = 'cursor-pointer hover:opacity-70 transition-opacity ml-0.5';
+    const disabledClasses = disabled ? 'opacity-50 cursor-not-allowed grayscale-[0.5] pointer-events-none' : '';
+    const closeIcon = `cursor-pointer hover:opacity-70 transition-opacity ml-0.5 ${disabled ? 'pointer-events-none' : ''}`;
 
     return {
-        base: `${base} ${roundedClasses[rounded]} ${sizeClasses[size]} ${variants[variant][color]}`,
+        base: `${base} ${roundedClasses[rounded]} ${sizeClasses[size]} ${variants[variant][color]} ${disabledClasses}`,
         closeIcon,
     };
 }

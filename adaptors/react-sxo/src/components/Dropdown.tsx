@@ -52,6 +52,7 @@ export interface DropdownProps extends UIProps {
     overlay: React.ReactNode;
     children: React.ReactElement;
     className?: string;
+    disabled?: boolean;
 }
 
 export const Dropdown: React.FC<DropdownProps> = ({
@@ -60,10 +61,11 @@ export const Dropdown: React.FC<DropdownProps> = ({
     overlay,
     children,
     className = '',
+    disabled = false,
 }) => {
     const [isOpen, setIsOpen] = useState(false);
     const dropdownRef = useRef<HTMLDivElement>(null);
-    const styles = getDropdownClasses({ placement });
+    const styles = getDropdownClasses({ placement, disabled });
 
     useStyle(
         [

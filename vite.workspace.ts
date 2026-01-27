@@ -8,6 +8,8 @@ export const sharedExternals = [
     '@sxo/component-admin',
     '@sxo/component-icons',
     '@sxo/component-table',
+    '@sxo/component-monaco',
+    '@sxo/component-wysiwyg',
     '@sxo/theme-antd',
     '@sxo/theme-material',
     'vue',

@@ -1,10 +1,11 @@
 import { useDialog, useDraggable } from '@sxo/design';
 import { type DialogStylesOptions, getDialogClasses } from '@sxo/ui';
-import { defineComponent, h, type PropType, reactive } from 'vue';
+import { defineComponent, h, type PropType, reactive, mergeProps } from 'vue';
 import { useStyle } from '../hooks';
 
 export const Dialog = defineComponent({
     name: 'SxoDialog',
+    inheritAttrs: false,
     props: {
         isOpen: {
             type: Boolean,
@@ -26,7 +27,7 @@ export const Dialog = defineComponent({
         },
     },
     emits: ['close'],
-    setup(props, { slots, emit }) {
+    setup(props, { slots, emit, attrs }) {
         const offset = reactive({ x: 0, y: 0 });
 
         // 1. 获取 Headless 逻辑
@@ -54,7 +55,7 @@ export const Dialog = defineComponent({
         return () => {
             if (!props.isOpen) return null;
 
-            return h('div', { class: styles.container }, [
+            return h('div', mergeProps(attrs, { class: styles.container }), [
                 // 遮罩层
                 h('div', {
                     ...getOverlayProps(),

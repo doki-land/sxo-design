@@ -12,13 +12,13 @@
     "dependencies": {
         "@sxo/theme-pornhub": "workspace:*",
         "solid-js": "^1.9.10",
-        "solid-sxo": "workspace:*"
+        "@sxo/solid-sxo": "workspace:*"
     },
     "devDependencies": {
         "typescript": "^5.9.3",
         "vite": "^7.3.1",
         "vite-plugin-solid": "^2.11.10",
-        "vite-plugin-sxo": "workspace:*"
+        "@sxo/vite-plugin-sxo": "workspace:*"
     },
     "publishConfig": {
         "access": "restricted"

@@ -1,7 +1,7 @@
 import { pornhubTheme } from '@sxo/theme-pornhub';
 import { defineConfig } from 'vite';
 import solidPlugin from 'vite-plugin-solid';
-import { vitePluginSxo } from 'vite-plugin-sxo';
+import { vitePluginSxo } from '@sxo/vite-plugin-sxo';
 
 export default defineConfig({
     // @ts-expect-error

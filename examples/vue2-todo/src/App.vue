@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { Feedback } from 'vue2-sxo';
+import { Feedback } from '@sxo/vue2-sxo';
 
 const { Spinner } = Feedback;
 

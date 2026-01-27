@@ -1,10 +1,11 @@
 import { useToggle } from '@sxo/design';
 import { getSwitchClasses, type SwitchOptions } from '@sxo/ui';
-import { computed, defineComponent, h, type PropType, ref, watch } from 'vue';
+import { computed, defineComponent, h, type PropType, ref, watch, mergeProps } from 'vue';
 import { useStyle } from '../hooks';
 
 export const Switch = defineComponent({
     name: 'SxoSwitch',
+    inheritAttrs: false,
     props: {
         modelValue: {
             type: Boolean,
@@ -46,8 +47,12 @@ export const Switch = defineComponent({
 
         useStyle(() => `${classes.value.track} ${classes.value.thumb} ${attrs.class || ''}`);
 
-        const handleToggle = () => {
-            if (props.disabled) return;
+        const handleToggle = (e: MouseEvent) => {
+            if (props.disabled) {
+                e.preventDefault();
+                e.stopImmediatePropagation();
+                return;
+            }
             internalValue.value = !internalValue.value;
             emit('update:modelValue', internalValue.value);
             emit('change', internalValue.value);
@@ -56,11 +61,10 @@ export const Switch = defineComponent({
         return () =>
             h(
                 'div',
-                {
-                    ...getToggleProps(),
-                    class: [classes.value.track, attrs.class],
+                mergeProps(getToggleProps(), attrs, {
+                    class: classes.value.track,
                     onClick: handleToggle,
-                },
+                }),
                 [h('span', { class: classes.value.thumb })],
             );
     },

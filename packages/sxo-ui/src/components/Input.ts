@@ -3,10 +3,17 @@ export interface InputOptions {
     size?: 'sm' | 'md' | 'lg';
     invalid?: boolean;
     disabled?: boolean;
+    readonly?: boolean;
 }
 
 export function getInputClasses(options: InputOptions = {}) {
-    const { size = 'md', variant = 'outline', invalid = false, disabled = false } = options;
+    const { 
+        size = 'md', 
+        variant = 'outline', 
+        invalid = false, 
+        disabled = false,
+        readonly = false 
+    } = options;
 
     const containerBase =
         'flex items-center w-full transition-all duration-200 outline-none font-normal relative';
@@ -33,14 +40,15 @@ export function getInputClasses(options: InputOptions = {}) {
         : 'text-text-primary';
 
     const disabledClass = disabled ? 'opacity-50 cursor-not-allowed bg-neutral-50' : '';
+    const readonlyClass = readonly ? 'bg-neutral-50/50' : '';
 
     const currentSize = sizes[size];
 
     return {
-        container: [containerBase, variants[variant], currentSize.container, stateClass, disabledClass].join(
+        container: [containerBase, variants[variant], currentSize.container, stateClass, disabledClass, readonlyClass].join(
             ' ',
         ),
-        input: [inputBase, currentSize.input, disabled ? 'cursor-not-allowed' : ''].join(' '),
+        input: [inputBase, currentSize.input, (disabled || readonly) ? 'cursor-default' : ''].join(' '),
         prefix: `flex items-center mr-2 text-text-muted ${currentSize.addon}`,
         suffix: `flex items-center ml-2 text-text-muted ${currentSize.addon}`,
     };

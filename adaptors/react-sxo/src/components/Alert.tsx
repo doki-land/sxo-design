@@ -9,6 +9,7 @@ export interface AlertProps extends AlertOptions, React.HTMLAttributes<HTMLDivEl
     showIcon?: boolean;
     onClose?: (e: React.MouseEvent) => void;
     icon?: React.ReactNode;
+    disabled?: boolean;
 }
 
 export const Alert: React.FC<AlertProps> = ({
@@ -21,10 +22,11 @@ export const Alert: React.FC<AlertProps> = ({
     onClose,
     icon,
     className = '',
+    disabled = false,
     children,
     ...props
 }) => {
-    const styles = getAlertClasses({ type, variant });
+    const styles = getAlertClasses({ type, variant, disabled });
     const combinedClasses = useStyle(
         [
             styles.container,
@@ -86,7 +88,10 @@ export const Alert: React.FC<AlertProps> = ({
                 )}
             </div>
             {closable && (
-                <div className={styles.closeButton} onClick={onClose}>
+                <div
+                    className={styles.closeButton}
+                    onClick={(e) => !disabled && onClose?.(e)}
+                >
                     <svg
                         viewBox="0 0 24 24"
                         fill="none"

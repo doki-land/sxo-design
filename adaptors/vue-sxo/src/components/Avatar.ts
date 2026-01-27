@@ -16,12 +16,17 @@ export const Avatar = defineComponent({
             type: String as PropType<AvatarOptions['shape']>,
             default: 'circle',
         },
+        bordered: {
+            type: Boolean,
+            default: false,
+        },
     },
     setup(props, { attrs }) {
         const styles = computed(() =>
             getAvatarClasses({
                 size: props.size,
                 shape: props.shape,
+                bordered: props.bordered,
             }),
         );
 

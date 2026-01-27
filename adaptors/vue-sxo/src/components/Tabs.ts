@@ -1,12 +1,13 @@
 import { useTabs } from '@sxo/design';
 import { getTabsClasses, type TabsOptions } from '@sxo/ui';
-import { computed, defineComponent, h, inject, type PropType, provide, ref, watch } from 'vue';
+import { computed, defineComponent, h, inject, type PropType, provide, ref, watch, mergeProps } from 'vue';
 import { useStyle } from '../hooks';
 
 const TabsSymbol = Symbol('SxoTabs');
 
 export const Tabs = defineComponent({
     name: 'SxoTabs',
+    inheritAttrs: false,
     props: {
         modelValue: String,
         defaultValue: String,
@@ -39,6 +40,16 @@ export const Tabs = defineComponent({
             },
         });
 
+        // Keep useTabs internal state in sync with modelValue
+        watch(internalValue, (val) => {
+            const props = getTabProps(val);
+            if (props.onClick) {
+                // This is a bit hacky but useTabs is currently not reactive
+                // We just need to trigger the side effect in useTabs
+                props.onClick();
+            }
+        });
+
         const styles = computed(() =>
             getTabsClasses({
                 variant: props.variant,
@@ -60,21 +71,22 @@ export const Tabs = defineComponent({
             getTabPanelProps,
         });
 
-        return () => h('div', { class: attrs.class }, slots.default?.());
+        return () => h('div', mergeProps(attrs, {}), slots.default?.());
     },
 });
 
 export const TabList = defineComponent({
     name: 'SxoTabList',
+    inheritAttrs: false,
     setup(_, { slots, attrs }) {
         const ctx = inject<any>(TabsSymbol);
         return () =>
             h(
                 'div',
-                {
+                mergeProps(attrs, {
                     role: 'tablist',
-                    class: `${ctx.styles.value.list} ${attrs.class || ''}`.trim(),
-                },
+                    class: `${ctx.styles.value.list}`,
+                }),
                 slots.default?.(),
             );
     },
@@ -82,6 +94,7 @@ export const TabList = defineComponent({
 
 export const Tab = defineComponent({
     name: 'SxoTab',
+    inheritAttrs: false,
     props: {
         value: {
             type: String,
@@ -97,21 +110,21 @@ export const Tab = defineComponent({
 
         return () => {
             const isActive = ctx.currentValue.value === props.value;
-            const tabProps = ctx.getTabProps(props.value, ctx.selectTab);
+            const { onClick: _onClick, ...tabProps } = ctx.getTabProps(props.value, ctx.selectTab);
 
             return h(
                 'div',
-                {
-                    ...tabProps,
-                    class: [
-                        ctx.styles.value.tab(isActive, props.disabled),
-                        attrs.class,
-                    ],
+                mergeProps(tabProps, attrs, {
+                    class: [ctx.styles.value.tab(isActive, props.disabled)],
                     onClick: (e: MouseEvent) => {
-                        if (props.disabled) return;
-                        tabProps.onClick?.(e);
+                        if (props.disabled) {
+                            e.preventDefault();
+                            e.stopImmediatePropagation();
+                            return;
+                        }
+                        ctx.selectTab(props.value);
                     },
-                },
+                }),
                 slots.default?.(),
             );
         };
@@ -120,6 +133,7 @@ export const Tab = defineComponent({
 
 export const TabPanel = defineComponent({
     name: 'SxoTabPanel',
+    inheritAttrs: false,
     props: {
         value: {
             type: String,
@@ -136,10 +150,9 @@ export const TabPanel = defineComponent({
 
             return h(
                 'div',
-                {
-                    ...panelProps,
-                    class: `${ctx.styles.value.panel} ${attrs.class || ''}`.trim(),
-                },
+                mergeProps(panelProps, attrs, {
+                    class: `${ctx.styles.value.panel}`,
+                }),
                 slots.default?.(),
             );
         };

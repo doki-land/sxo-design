@@ -1,9 +1,10 @@
 export interface DropdownOptions {
     placement?: 'bottom-left' | 'bottom-right' | 'top-left' | 'top-right';
+    disabled?: boolean;
 }
 
 export function getDropdownClasses(options: DropdownOptions = {}) {
-    const { placement = 'bottom-left' } = options;
+    const { placement = 'bottom-left', disabled = false } = options;
 
     const container = 'relative inline-block';
     const menu =
@@ -16,8 +17,10 @@ export function getDropdownClasses(options: DropdownOptions = {}) {
         'top-right': 'bottom-full right-0 mb-2',
     };
 
+    const disabledClass = disabled ? 'opacity-50 pointer-events-none' : '';
+
     return {
-        container,
+        container: [container, disabledClass].join(' '),
         menu: [menu, placements[placement]].join(' '),
         item: 'flex items-center w-full px-4 py-2 text-sm text-neutral-700 hover:bg-neutral-50 hover:text-neutral-900 transition-colors cursor-pointer',
         itemActive: 'bg-neutral-50 text-neutral-900 font-medium',

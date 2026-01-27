@@ -1,12 +1,13 @@
 import { useCheckbox } from '@sxo/design';
 import { type CheckboxOptions, getCheckboxClasses } from '@sxo/ui';
-import { computed, defineComponent, h, inject, type PropType, provide, ref, watch } from 'vue';
+import { computed, defineComponent, h, inject, type PropType, provide, ref, watch, mergeProps } from 'vue';
 import { useStyle } from '../hooks';
 
 const CheckboxGroupSymbol = Symbol('CheckboxGroup');
 
 export const CheckboxGroup = defineComponent({
     name: 'SxoCheckboxGroup',
+    inheritAttrs: false,
     props: {
         modelValue: {
             type: Array as PropType<any[]>,
@@ -28,6 +29,11 @@ export const CheckboxGroup = defineComponent({
             type: String as PropType<CheckboxOptions['color']>,
             default: 'primary',
         },
+        /** 是否禁用整个组 */
+        disabled: {
+            type: Boolean,
+            default: false,
+        },
     },
     emits: ['update:modelValue', 'change'],
     setup(props, { emit, slots, attrs }) {
@@ -41,6 +47,7 @@ export const CheckboxGroup = defineComponent({
         );
 
         const toggleValue = (val: any) => {
+            if (props.disabled) return;
             const index = internalValue.value.indexOf(val);
             if (index > -1) {
                 internalValue.value.splice(index, 1);
@@ -55,6 +62,7 @@ export const CheckboxGroup = defineComponent({
             value: internalValue,
             size: props.size,
             color: props.color,
+            disabled: computed(() => props.disabled),
             toggleValue,
         });
 
@@ -63,9 +71,9 @@ export const CheckboxGroup = defineComponent({
         return () =>
             h(
                 'div',
-                {
-                    class: `flex flex-${props.direction} gap-${props.gap} ${attrs.class || ''}`.trim(),
-                },
+                mergeProps(attrs, {
+                    class: `flex flex-${props.direction} gap-${props.gap}`,
+                }),
                 slots.default?.(),
             );
     },
@@ -73,6 +81,7 @@ export const CheckboxGroup = defineComponent({
 
 export const Checkbox = defineComponent({
     name: 'SxoCheckbox',
+    inheritAttrs: false,
     props: {
         modelValue: {
             type: Boolean,
@@ -108,17 +117,18 @@ export const Checkbox = defineComponent({
 
         const size = computed(() => props.size || group?.size || 'md');
         const color = computed(() => props.color || group?.color || 'primary');
+        const disabled = computed(() => props.disabled || group?.disabled?.value || false);
 
         const { getInputProps, getLabelProps } = useCheckbox({
             defaultChecked: isChecked.value,
-            disabled: props.disabled,
+            disabled: disabled.value,
         });
 
         const classes = computed(() =>
             getCheckboxClasses(isChecked.value, {
                 size: size.value,
                 color: color.value,
-                disabled: props.disabled,
+                disabled: disabled.value,
             }),
         );
 
@@ -128,7 +138,7 @@ export const Checkbox = defineComponent({
         });
 
         const handleToggle = () => {
-            if (props.disabled) return;
+            if (disabled.value) return;
             if (group && props.value !== undefined) {
                 group.toggleValue(props.value);
             } else {
@@ -140,10 +150,9 @@ export const Checkbox = defineComponent({
         return () =>
             h(
                 'label',
-                {
-                    ...getLabelProps(),
-                    class: [classes.value.label, attrs.class],
-                },
+                mergeProps(getLabelProps(), attrs, {
+                    class: classes.value.label,
+                }),
                 [
                     h(
                         'div',

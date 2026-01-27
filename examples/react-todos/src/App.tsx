@@ -1,7 +1,7 @@
 import { pornhubTheme } from '@sxo/theme-pornhub';
 import type React from 'react';
 import { useState } from 'react';
-import { Button, Input, Tag, ThemeProvider } from 'react-sxo';
+import { Button, Input, Tag, ThemeProvider } from '@sxo/react-sxo';
 
 interface Todo {
     id: number;

@@ -1,6 +1,8 @@
 import { getBreadcrumbClasses } from '@sxo/ui';
-import { computed, defineComponent, h } from 'vue';
+import { computed, defineComponent, h, inject, provide, type PropType } from 'vue';
 import { useStyle } from '../hooks';
+
+const BreadcrumbSymbol = Symbol('Breadcrumb');
 
 export const BreadcrumbItem = defineComponent({
     name: 'SxoBreadcrumbItem',
@@ -9,7 +11,8 @@ export const BreadcrumbItem = defineComponent({
         current: { type: Boolean, default: false },
     },
     setup(props, { slots, attrs }) {
-        const styles = computed(() => getBreadcrumbClasses());
+        const ctx = inject<any>(BreadcrumbSymbol, { disabled: false });
+        const styles = computed(() => getBreadcrumbClasses({ disabled: ctx.disabled.value }));
 
         useStyle(() => {
             const s = styles.value;
@@ -21,7 +24,15 @@ export const BreadcrumbItem = defineComponent({
                 props.href && !props.current
                     ? h(
                           'a',
-                          { href: props.href, class: [styles.value.link, attrs.class] },
+                          { 
+                              href: ctx.disabled.value ? undefined : props.href, 
+                              class: [styles.value.link, attrs.class],
+                              onClick: (e: MouseEvent) => {
+                                  if (ctx.disabled.value) {
+                                      e.preventDefault();
+                                  }
+                              }
+                          },
                           slots.default?.(),
                       )
                     : h(
@@ -42,9 +53,17 @@ export const Breadcrumb = defineComponent({
     name: 'SxoBreadcrumb',
     props: {
         separator: { type: String, default: '/' },
+        disabled: { type: Boolean, default: false },
     },
     setup(props, { slots, attrs }) {
-        const styles = computed(() => getBreadcrumbClasses({ separator: props.separator }));
+        provide(BreadcrumbSymbol, {
+            disabled: computed(() => props.disabled),
+        });
+
+        const styles = computed(() => getBreadcrumbClasses({ 
+            separator: props.separator,
+            disabled: props.disabled 
+        }));
 
         useStyle(() => {
             const s = styles.value;

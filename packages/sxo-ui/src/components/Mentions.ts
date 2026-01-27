@@ -1,10 +1,12 @@
 export interface MentionsOptions {
     size?: 'sm' | 'md' | 'lg';
     status?: 'error' | 'warning' | 'success';
+    disabled?: boolean;
+    readonly?: boolean;
 }
 
 export function getMentionsClasses(options: MentionsOptions = {}) {
-    const { size = 'md', status } = options;
+    const { size = 'md', status, disabled = false, readonly = false } = options;
 
     const sizes = {
         sm: 'min-h-[32px] text-xs px-2 py-1',
@@ -18,8 +20,13 @@ export function getMentionsClasses(options: MentionsOptions = {}) {
         success: 'border-success-500 focus-within:ring-success-500/20',
     };
 
+    const stateClasses =
+        disabled || readonly
+            ? 'bg-neutral-50 border-neutral-200 cursor-not-allowed pointer-events-none opacity-60'
+            : 'bg-white border-neutral-200 hover:border-primary-500 focus-within:border-primary-500 focus-within:ring-2 focus-within:ring-primary-500/20';
+
     return {
-        container: `relative inline-flex flex-wrap w-full border border-neutral-200 bg-white rounded-lg transition-all duration-200 hover:border-primary-500 focus-within:border-primary-500 focus-within:ring-2 focus-within:ring-primary-500/20 ${sizes[size]} ${status ? statuses[status] : ''}`,
+        container: `relative inline-flex flex-wrap w-full border rounded-lg transition-all duration-200 ${sizes[size]} ${status ? statuses[status] : ''} ${stateClasses}`,
         textarea:
             'w-full bg-transparent border-none outline-none text-neutral-900 placeholder:text-neutral-400 resize-none min-h-full',
         dropdown:

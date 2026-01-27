@@ -38,7 +38,7 @@ import {
     Tree as SxoTree,
     TreeSelect as SxoTreeSelect,
     Upload as SxoUpload,
-} from 'vue-sxo';
+} from '@sxo/vue-sxo';
 
 export const availableComponents = [
     {

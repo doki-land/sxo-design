@@ -9,6 +9,7 @@ interface CheckboxGroupContextValue {
     toggleValue: (value: any) => void;
     size?: 'sm' | 'md' | 'lg';
     color?: 'primary' | 'success';
+    disabled?: boolean;
 }
 
 const CheckboxGroupContext = createContext<CheckboxGroupContextValue | null>(null);
@@ -21,6 +22,7 @@ export interface CheckboxGroupProps {
     gap?: string | number;
     size?: 'sm' | 'md' | 'lg';
     color?: 'primary' | 'success';
+    disabled?: boolean;
     children: React.ReactNode;
     className?: string;
 }
@@ -33,6 +35,7 @@ export const CheckboxGroup: React.FC<CheckboxGroupProps> = ({
     gap = 2,
     size = 'md',
     color = 'primary',
+    disabled = false,
     children,
     className = '',
 }) => {
@@ -41,6 +44,7 @@ export const CheckboxGroup: React.FC<CheckboxGroupProps> = ({
     const currentValue = isControlled ? controlledValue : internalValue;
 
     const toggleValue = (val: any) => {
+        if (disabled) return;
         const nextValue = currentValue.includes(val)
             ? currentValue.filter((v) => v !== val)
             : [...currentValue, val];
@@ -52,7 +56,7 @@ export const CheckboxGroup: React.FC<CheckboxGroupProps> = ({
     };
 
     return (
-        <CheckboxGroupContext.Provider value={{ value: currentValue, toggleValue, size, color }}>
+        <CheckboxGroupContext.Provider value={{ value: currentValue, toggleValue, size, color, disabled }}>
             <div className={`flex flex-${direction} gap-${gap} ${className}`.trim()}>
                 {children}
             </div>
@@ -74,7 +78,7 @@ export const Checkbox: React.FC<CheckboxProps> = ({
     checked: controlledChecked,
     defaultChecked = false,
     value: itemValue,
-    disabled = false,
+    disabled: propDisabled = false,
     onChange,
     size: propsSize,
     color: propsColor,
@@ -94,6 +98,7 @@ export const Checkbox: React.FC<CheckboxProps> = ({
 
     const size = propsSize || context?.size || 'md';
     const color = propsColor || context?.color || 'primary';
+    const disabled = propDisabled || context?.disabled || false;
 
     const { getInputProps, getLabelProps } = useCheckbox({
         defaultChecked: currentChecked,

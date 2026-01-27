@@ -20,6 +20,7 @@ export interface TabsProps extends UIProps {
     onChange?: (value: string) => void;
     children: React.ReactNode;
     className?: string;
+    disabled?: boolean;
 }
 
 export const Tabs: React.FC<TabsProps> = ({
@@ -30,6 +31,7 @@ export const Tabs: React.FC<TabsProps> = ({
     variant = 'line',
     size = 'md',
     className = '',
+    disabled = false,
 }) => {
     const [internalValue, setInternalValue] = useState(defaultValue || '');
     const isControlled = value !== undefined;
@@ -38,6 +40,7 @@ export const Tabs: React.FC<TabsProps> = ({
     const { getTabProps, getTabPanelProps } = useTabs({
         value: currentValue,
         onChange: (v) => {
+            if (disabled) return;
             if (!isControlled) setInternalValue(v);
             onChange?.(v);
         },
@@ -53,6 +56,7 @@ export const Tabs: React.FC<TabsProps> = ({
             value={{
                 currentValue,
                 selectTab: (v) => {
+                    if (disabled) return;
                     if (!isControlled) setInternalValue(v);
                     onChange?.(v);
                 },

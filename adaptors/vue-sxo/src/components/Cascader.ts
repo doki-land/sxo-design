@@ -21,6 +21,8 @@ export const Cascader = defineComponent({
         size: { type: String as PropType<CascaderOptions['size']>, default: 'md' },
         /** 是否圆角 */
         rounded: { type: Boolean, default: true },
+        /** 是否禁用 */
+        disabled: { type: Boolean, default: false },
     },
     emits: ['update:modelValue', 'change'],
     setup(props, { emit }) {
@@ -33,6 +35,7 @@ export const Cascader = defineComponent({
             getCascaderClasses({
                 size: props.size,
                 rounded: props.rounded,
+                disabled: props.disabled,
             }),
         );
 
@@ -69,7 +72,7 @@ export const Cascader = defineComponent({
         });
 
         const handleOptionClick = (option: CascaderOption, level: number) => {
-            if (option.disabled) return;
+            if (props.disabled || option.disabled) return;
 
             const newPath = activePath.value.slice(0, level);
             newPath.push(option.value);
@@ -89,6 +92,12 @@ export const Cascader = defineComponent({
             }
         };
 
+        const toggleOpen = () => {
+            if (props.disabled) return;
+            isOpen.value = !isOpen.value;
+            if (isOpen.value) activePath.value = [...selectedPath.value];
+        };
+
         onMounted(() => document.addEventListener('click', handleClickOutside));
         onUnmounted(() => document.removeEventListener('click', handleClickOutside));
 
@@ -98,10 +107,7 @@ export const Cascader = defineComponent({
                     'div',
                     {
                         class: classes.value.container,
-                        onClick: () => {
-                            isOpen.value = !isOpen.value;
-                            if (isOpen.value) activePath.value = [...selectedPath.value];
-                        },
+                        onClick: toggleOpen,
                     },
                     [
                         h(

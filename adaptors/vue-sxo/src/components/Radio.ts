@@ -1,11 +1,12 @@
 import { getRadioClasses, type RadioOptions } from '@sxo/ui';
-import { computed, defineComponent, h, inject, type PropType, provide, ref, watch } from 'vue';
+import { computed, defineComponent, h, inject, type PropType, provide, ref, watch, mergeProps } from 'vue';
 import { useStyle } from '../hooks';
 
 const RadioGroupSymbol = Symbol('RadioGroup');
 
 export const RadioGroup = defineComponent({
     name: 'SxoRadioGroup',
+    inheritAttrs: false,
     props: {
         modelValue: {
             type: String,
@@ -23,6 +24,11 @@ export const RadioGroup = defineComponent({
             type: String as PropType<RadioOptions['color']>,
             default: 'primary',
         },
+        /** 是否禁用整个组 */
+        disabled: {
+            type: Boolean,
+            default: false,
+        },
     },
     emits: ['update:modelValue', 'change'],
     setup(props, { emit, slots, attrs }) {
@@ -36,6 +42,7 @@ export const RadioGroup = defineComponent({
         );
 
         const updateValue = (val: string) => {
+            if (props.disabled) return;
             internalValue.value = val;
             emit('update:modelValue', val);
             emit('change', val);
@@ -46,15 +53,16 @@ export const RadioGroup = defineComponent({
             name: props.name,
             size: props.size,
             color: props.color,
+            disabled: computed(() => props.disabled),
             updateValue,
         });
 
         return () =>
             h(
                 'div',
-                {
-                    class: `flex flex-col gap-2 ${attrs.class || ''}`.trim(),
-                },
+                mergeProps(attrs, {
+                    class: 'flex flex-col gap-2',
+                }),
                 slots.default?.(),
             );
     },
@@ -62,6 +70,7 @@ export const RadioGroup = defineComponent({
 
 export const Radio = defineComponent({
     name: 'SxoRadio',
+    inheritAttrs: false,
     props: {
         value: {
             type: String,
@@ -87,12 +96,13 @@ export const Radio = defineComponent({
         const isSelected = computed(() => group.value.value === props.value);
         const size = computed(() => props.size || group.size);
         const color = computed(() => props.color || group.color);
+        const disabled = computed(() => props.disabled || group.disabled?.value || false);
 
         const classes = computed(() =>
             getRadioClasses(isSelected.value, {
                 size: size.value,
                 color: color.value,
-                disabled: props.disabled,
+                disabled: disabled.value,
             }),
         );
 
@@ -104,15 +114,18 @@ export const Radio = defineComponent({
         return () =>
             h(
                 'label',
-                {
-                    class: [classes.value.label, attrs.class],
-                },
+                mergeProps(attrs, {
+                    class: classes.value.label,
+                }),
                 [
                     h(
                         'div',
                         {
                             class: classes.value.root,
-                            onClick: () => !props.disabled && group.updateValue(props.value),
+                            onClick: () => {
+                                if (disabled.value) return;
+                                group.updateValue(props.value);
+                            },
                         },
                         [
                             h('input', {

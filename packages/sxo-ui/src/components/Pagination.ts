@@ -2,10 +2,11 @@ export interface PaginationOptions {
     size?: 'sm' | 'md' | 'lg';
     variant?: 'outline' | 'ghost' | 'solid';
     rounded?: boolean;
+    disabled?: boolean;
 }
 
 export function getPaginationClasses(options: PaginationOptions = {}) {
-    const { size = 'md', variant = 'outline', rounded = true } = options;
+    const { size = 'md', variant = 'outline', rounded = true, disabled = false } = options;
 
     const sizes = {
         sm: 'h-8 px-2 text-xs min-w-[32px]',
@@ -25,7 +26,7 @@ export function getPaginationClasses(options: PaginationOptions = {}) {
         'opacity-50 cursor-not-allowed pointer-events-none bg-neutral-50 text-neutral-400 border-neutral-200';
 
     return {
-        container: 'flex items-center gap-1 list-none p-0 m-0 select-none',
+        container: `flex items-center gap-1 list-none p-0 m-0 select-none ${disabled ? 'opacity-50 cursor-not-allowed pointer-events-none' : ''}`,
         item: `inline-flex items-center justify-center transition-all duration-200 cursor-pointer ${sizes[size]} ${variants[variant]} ${rounded ? 'rounded-lg' : ''}`,
         active: activeClasses,
         disabled: disabledClasses,

@@ -1,8 +1,9 @@
 import { type DrawerOptions, getDrawerClasses } from '@sxo/ui';
-import { computed, defineComponent, h, type PropType, ref, Teleport, Transition, watch } from 'vue';
+import { computed, defineComponent, h, type PropType, ref, Teleport, Transition, watch, mergeProps } from 'vue';
 
 export const Drawer = defineComponent({
     name: 'SxoDrawer',
+    inheritAttrs: false,
     props: {
         modelValue: {
             type: Boolean,
@@ -77,9 +78,6 @@ export const Drawer = defineComponent({
             return map[props.placement || 'right'];
         });
 
-        // CSS for transitions is assumed to be in the global styles or handled by Tailwind
-        // For simplicity in this adaptor, we focus on the structure
-
         return () =>
             h(Teleport, { to: 'body' }, [
                 h(
@@ -102,12 +100,12 @@ export const Drawer = defineComponent({
                         props.modelValue
                             ? h(
                                   'div',
-                                  {
-                                      class: [styles.value.container, attrs.class],
+                                  mergeProps(attrs, {
+                                      class: styles.value.container,
                                       style: {
                                           transform: props.modelValue ? 'none' : undefined,
                                       },
-                                  },
+                                  }),
                                   [
                                       // Header
                                       h('div', { class: styles.value.header }, [

@@ -25,6 +25,10 @@ export const Tag = defineComponent({
             type: Boolean,
             default: false,
         },
+        disabled: {
+            type: Boolean,
+            default: false,
+        },
     },
     emits: ['close'],
     setup(props, { slots, emit, attrs }) {
@@ -35,6 +39,7 @@ export const Tag = defineComponent({
                 rounded: props.rounded,
                 size: props.size,
                 closable: props.closable,
+                disabled: props.disabled,
             }),
         );
 
@@ -55,6 +60,7 @@ export const Tag = defineComponent({
                             {
                                 class: classes.value.closeIcon,
                                 onClick: (e: MouseEvent) => {
+                                    if (props.disabled) return;
                                     e.stopPropagation();
                                     emit('close');
                                 },

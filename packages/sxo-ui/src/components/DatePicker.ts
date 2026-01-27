@@ -2,10 +2,11 @@ export interface DatePickerOptions {
     size?: 'sm' | 'md' | 'lg';
     variant?: 'outline' | 'ghost' | 'bottom-line';
     rounded?: boolean;
+    disabled?: boolean;
 }
 
 export function getDatePickerClasses(options: DatePickerOptions = {}) {
-    const { size = 'md', variant = 'outline', rounded = true } = options;
+    const { size = 'md', variant = 'outline', rounded = true, disabled = false } = options;
 
     const sizes = {
         sm: 'h-8 px-2 text-xs',
@@ -21,9 +22,13 @@ export function getDatePickerClasses(options: DatePickerOptions = {}) {
             'border-b border-neutral-200 rounded-none focus-within:border-primary-500 px-0 bg-transparent',
     };
 
+    const disabledClasses = disabled
+        ? 'opacity-50 cursor-not-allowed bg-neutral-50 border-neutral-200 pointer-events-none'
+        : '';
+
     return {
-        container: `relative inline-flex items-center w-full transition-all duration-200 ${sizes[size]} ${variants[variant]} ${rounded ? 'rounded-lg' : ''}`,
-        input: 'w-full bg-transparent border-none outline-none text-neutral-900 placeholder:text-neutral-400 cursor-pointer',
+        container: `relative inline-flex items-center w-full transition-all duration-200 ${sizes[size]} ${variants[variant]} ${rounded ? 'rounded-lg' : ''} ${disabledClasses}`,
+        input: `w-full bg-transparent border-none outline-none text-neutral-900 placeholder:text-neutral-400 ${disabled ? 'cursor-not-allowed' : 'cursor-pointer'}`,
         icon: 'text-neutral-400 ml-2',
         panel: 'absolute top-full left-0 mt-2 p-4 bg-white border border-neutral-200 rounded-xl shadow-xl z-[100] min-w-[280px] animate-in fade-in zoom-in-95 duration-200',
         header: 'flex items-center justify-between mb-4',

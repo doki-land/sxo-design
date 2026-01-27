@@ -16,6 +16,8 @@ export const DatePicker = defineComponent({
         rounded: { type: Boolean, default: true },
         /** 格式化字符串 */
         format: { type: String, default: 'YYYY-MM-DD' },
+        /** 是否禁用 */
+        disabled: { type: Boolean, default: false },
     },
     emits: ['update:modelValue', 'change'],
     setup(props, { emit }) {
@@ -28,6 +30,7 @@ export const DatePicker = defineComponent({
                 size: props.size,
                 variant: props.variant,
                 rounded: props.rounded,
+                disabled: props.disabled,
             }),
         );
 
@@ -78,6 +81,7 @@ export const DatePicker = defineComponent({
         });
 
         const selectDate = (date: Date) => {
+            if (props.disabled) return;
             emit('update:modelValue', date);
             emit('change', date);
             isOpen.value = false;
@@ -108,6 +112,11 @@ export const DatePicker = defineComponent({
             }
         };
 
+        const toggleOpen = () => {
+            if (props.disabled) return;
+            isOpen.value = !isOpen.value;
+        };
+
         onMounted(() => document.addEventListener('click', handleClickOutside));
         onUnmounted(() => document.removeEventListener('click', handleClickOutside));
 
@@ -117,7 +126,7 @@ export const DatePicker = defineComponent({
                     'div',
                     {
                         class: classes.value.container,
-                        onClick: () => (isOpen.value = !isOpen.value),
+                        onClick: toggleOpen,
                     },
                     [
                         h('input', {

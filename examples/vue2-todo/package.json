@@ -12,7 +12,7 @@
     "dependencies": {
         "@sxo/theme-pornhub": "workspace:*",
         "vue": "^2.7.16",
-        "vue2-sxo": "workspace:*"
+        "@sxo/vue2-sxo": "workspace:*"
     },
     "devDependencies": {
         "@vitejs/plugin-vue2": "^2.3.4",

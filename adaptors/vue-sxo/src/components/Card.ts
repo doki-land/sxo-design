@@ -7,11 +7,15 @@ export const Card = defineComponent({
     props: {
         variant: {
             type: String as PropType<CardOptions['variant']>,
-            default: 'default',
+            default: 'outline',
         },
         padding: {
             type: String as PropType<CardOptions['padding']>,
             default: 'md',
+        },
+        rounded: {
+            type: String as PropType<CardOptions['rounded']>,
+            default: 'lg',
         },
         interactive: {
             type: Boolean,
@@ -23,6 +27,7 @@ export const Card = defineComponent({
             const sxoClasses = getCardClasses({
                 variant: props.variant,
                 padding: props.padding,
+                rounded: props.rounded,
                 interactive: props.interactive,
             });
             return `${sxoClasses} ${attrs.class || ''}`.trim();

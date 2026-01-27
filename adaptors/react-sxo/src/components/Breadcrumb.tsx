@@ -1,6 +1,8 @@
 import { type BreadcrumbOptions, getBreadcrumbClasses } from '@sxo/ui';
-import React from 'react';
+import React, { createContext, useContext } from 'react';
 import { useStyle } from '../hooks.ts';
+
+const BreadcrumbContext = createContext<{ disabled: boolean }>({ disabled: false });
 
 export interface BreadcrumbItemProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
     href?: string;
@@ -12,9 +14,11 @@ export const BreadcrumbItem: React.FC<BreadcrumbItemProps> = ({
     current = false,
     className = '',
     children,
+    onClick,
     ...props
 }) => {
-    const styles = getBreadcrumbClasses();
+    const { disabled } = useContext(BreadcrumbContext);
+    const styles = getBreadcrumbClasses({ disabled });
     const itemClasses = useStyle(
         [styles.item, current ? styles.current : styles.link, className].filter(Boolean).join(' '),
     );
@@ -22,7 +26,18 @@ export const BreadcrumbItem: React.FC<BreadcrumbItemProps> = ({
     return (
         <div className={itemClasses}>
             {href && !current ? (
-                <a href={href} className={current ? styles.current : styles.link} {...props}>
+                <a 
+                    href={disabled ? undefined : href} 
+                    className={current ? styles.current : styles.link} 
+                    onClick={(e) => {
+                        if (disabled) {
+                            e.preventDefault();
+                            return;
+                        }
+                        onClick?.(e);
+                    }}
+                    {...props}
+                >
                     {children}
                 </a>
             ) : (
@@ -40,11 +55,12 @@ export interface BreadcrumbProps extends BreadcrumbOptions, React.HTMLAttributes
 
 export const Breadcrumb: React.FC<BreadcrumbProps> = ({
     separator = '/',
+    disabled = false,
     className = '',
     children,
     ...props
 }) => {
-    const styles = getBreadcrumbClasses({ separator });
+    const styles = getBreadcrumbClasses({ separator, disabled });
     const containerClasses = useStyle(
         [styles.container, styles.separator, className].filter(Boolean).join(' '),
     );
@@ -63,8 +79,10 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
     }, []);
 
     return (
-        <nav className={containerClasses} aria-label="Breadcrumb" {...props}>
-            {items}
-        </nav>
+        <BreadcrumbContext.Provider value={{ disabled }}>
+            <nav className={containerClasses} aria-label="Breadcrumb" {...props}>
+                {items}
+            </nav>
+        </BreadcrumbContext.Provider>
     );
 };

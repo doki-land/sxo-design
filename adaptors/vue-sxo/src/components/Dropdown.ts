@@ -45,11 +45,14 @@ export const Dropdown = defineComponent({
             default: 'bottom-left',
         },
         trigger: { type: String as PropType<'click' | 'hover'>, default: 'click' },
+        disabled: { type: Boolean, default: false },
     },
     setup(props, { slots, attrs }) {
         const isOpen = ref(false);
         const dropdownRef = ref<HTMLElement | null>(null);
-        const styles = computed(() => getDropdownClasses({ placement: props.placement }));
+        const styles = computed(() =>
+            getDropdownClasses({ placement: props.placement, disabled: props.disabled }),
+        );
 
         useStyle(() => {
             const s = styles.value;

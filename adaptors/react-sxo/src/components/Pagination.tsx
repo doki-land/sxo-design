@@ -10,6 +10,7 @@ export interface PaginationProps extends PaginationOptions {
     className?: string;
     showTotal?: boolean;
     showJumper?: boolean;
+    disabled?: boolean;
 }
 
 export const Pagination: React.FC<PaginationProps> = ({
@@ -23,6 +24,7 @@ export const Pagination: React.FC<PaginationProps> = ({
     rounded = true,
     showTotal = false,
     showJumper = false,
+    disabled = false,
 }) => {
     const totalPages = Math.ceil(total / pageSize);
 
@@ -30,6 +32,7 @@ export const Pagination: React.FC<PaginationProps> = ({
         size,
         variant,
         rounded,
+        disabled,
     });
 
     useStyle(
@@ -37,7 +40,7 @@ export const Pagination: React.FC<PaginationProps> = ({
     );
 
     const changePage = (page: number) => {
-        if (page < 1 || page > totalPages || page === current) return;
+        if (disabled || page < 1 || page > totalPages || page === current) return;
         onChange?.(page);
     };
 

@@ -10,6 +10,7 @@ interface RadioGroupContextValue {
     name: string;
     size?: 'sm' | 'md' | 'lg';
     color?: 'primary' | 'success';
+    disabled?: boolean;
 }
 
 const RadioGroupContext = createContext<RadioGroupContextValue | null>(null);
@@ -21,6 +22,7 @@ export interface RadioGroupProps {
     name?: string;
     size?: 'sm' | 'md' | 'lg';
     color?: 'primary' | 'success';
+    disabled?: boolean;
     children: React.ReactNode;
     className?: string;
 }
@@ -32,6 +34,7 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
     name: propName,
     size = 'md',
     color = 'primary',
+    disabled = false,
     children,
     className = '',
 }) => {
@@ -45,6 +48,7 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
     });
 
     const handleChange = (val: string) => {
+        if (disabled) return;
         if (!isControlled) {
             setInternalValue(val);
         }
@@ -53,7 +57,7 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
 
     return (
         <RadioGroupContext.Provider
-            value={{ value: currentValue, onChange: handleChange, name, size, color }}
+            value={{ value: currentValue, onChange: handleChange, name, size, color, disabled }}
         >
             <div className={`flex flex-col gap-2 ${className}`.trim()}>{children}</div>
         </RadioGroupContext.Provider>
@@ -71,7 +75,7 @@ export const Radio: React.FC<RadioProps> = ({
     value: itemValue,
     children,
     className = '',
-    disabled = false,
+    disabled: propDisabled = false,
     ...props
 }) => {
     const context = useContext(RadioGroupContext);
@@ -80,6 +84,7 @@ export const Radio: React.FC<RadioProps> = ({
     const isSelected = context.value === itemValue;
     const size = props.size || context.size || 'md';
     const color = props.color || context.color || 'primary';
+    const disabled = propDisabled || context.disabled || false;
 
     const classes = getRadioClasses(isSelected, { size, color, disabled });
     useStyle([classes.root, classes.inner, classes.label, classes.text, className].filter(Boolean).join(' '));

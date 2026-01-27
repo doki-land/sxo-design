@@ -1,10 +1,11 @@
 export interface CascaderOptions {
     size?: 'sm' | 'md' | 'lg';
     rounded?: boolean;
+    disabled?: boolean;
 }
 
 export function getCascaderClasses(options: CascaderOptions = {}) {
-    const { size = 'md', rounded = true } = options;
+    const { size = 'md', rounded = true, disabled = false } = options;
 
     const sizes = {
         sm: 'h-8 px-2 text-xs',
@@ -12,9 +13,11 @@ export function getCascaderClasses(options: CascaderOptions = {}) {
         lg: 'h-12 px-4 text-base',
     };
 
+    const disabledClasses = disabled ? 'opacity-50 cursor-not-allowed bg-neutral-50 pointer-events-none' : 'bg-white cursor-pointer hover:border-primary-500';
+
     return {
-        container: `relative inline-flex items-center w-full transition-all duration-200 border border-neutral-200 bg-white cursor-pointer hover:border-primary-500 ${sizes[size]} ${rounded ? 'rounded-lg' : ''}`,
-        input: 'w-full bg-transparent border-none outline-none text-neutral-900 placeholder:text-neutral-400 cursor-pointer overflow-hidden text-ellipsis whitespace-nowrap',
+        container: `relative inline-flex items-center w-full transition-all duration-200 border border-neutral-200 ${sizes[size]} ${rounded ? 'rounded-lg' : ''} ${disabledClasses}`,
+        input: `w-full bg-transparent border-none outline-none text-neutral-900 placeholder:text-neutral-400 overflow-hidden text-ellipsis whitespace-nowrap ${disabled ? 'cursor-not-allowed' : 'cursor-pointer'}`,
         icon: 'text-neutral-400 ml-2 transition-transform duration-200',
         iconOpen: 'rotate-180',
         dropdown:

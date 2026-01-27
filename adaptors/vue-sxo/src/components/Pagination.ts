@@ -14,17 +14,20 @@ export const Pagination = defineComponent({
         rounded: { type: Boolean, default: true },
         showTotal: { type: Boolean, default: false },
         showJumper: { type: Boolean, default: false },
+        disabled: { type: Boolean, default: false },
     },
     emits: ['update:modelValue', 'update:current', 'change'],
     setup(props, { emit, attrs }) {
         const activePage = computed(() => props.current ?? props.modelValue);
         const totalPages = computed(() => Math.ceil(props.total / props.pageSize));
+        const isDisabled = computed(() => props.disabled);
 
         const classes = computed(() =>
             getPaginationClasses({
                 size: props.size,
                 variant: props.variant,
                 rounded: props.rounded,
+                disabled: props.disabled,
             }),
         );
 
@@ -36,7 +39,8 @@ export const Pagination = defineComponent({
         });
 
         const changePage = (page: number) => {
-            if (page < 1 || page > totalPages.value || page === activePage.value) return;
+            if (props.disabled || page < 1 || page > totalPages.value || page === activePage.value)
+                return;
             emit('update:modelValue', page);
             emit('update:current', page);
             emit('change', page);

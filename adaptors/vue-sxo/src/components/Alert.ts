@@ -29,6 +29,10 @@ export const Alert = defineComponent({
             type: Boolean,
             default: true,
         },
+        disabled: {
+            type: Boolean,
+            default: false,
+        },
     },
     emits: ['close'],
     setup(props, { emit, slots, attrs }) {
@@ -36,6 +40,7 @@ export const Alert = defineComponent({
             getAlertClasses({
                 type: props.type,
                 variant: props.variant,
+                disabled: props.disabled,
             }),
         );
 
@@ -123,6 +128,7 @@ export const Alert = defineComponent({
         };
 
         const handleClose = (e: MouseEvent) => {
+            if (props.disabled) return;
             emit('close', e);
         };
 

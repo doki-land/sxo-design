@@ -1,5 +1,5 @@
 {
-    "name": "vue2-sxo",
+    "name": "@sxo/vue2-sxo",
     "version": "0.0.0",
     "description": "Vue 2 adaptor for SXO Design System.",
     "keywords": [

@@ -1,6 +1,6 @@
 import { pornhubTheme } from '@sxo/theme-pornhub';
 import { createApp } from 'vue';
-import { createSxo } from 'vue-sxo';
+import { createSxo } from '@sxo/vue-sxo';
 import App from './App.vue';
 import 'virtual:sxo.css';
 

@@ -1,6 +1,6 @@
 import { useSelect } from '@sxo/design';
 import { getSelectClasses, type SelectOptions } from '@sxo/ui';
-import { computed, defineComponent, h, inject, type PropType, provide, ref, watch } from 'vue';
+import { computed, defineComponent, h, inject, type PropType, provide, ref, watch, mergeProps } from 'vue';
 import { useStyle } from '../hooks';
 import { VirtualList as SxoVirtualList } from './VirtualList';
 
@@ -8,6 +8,7 @@ const SelectSymbol = Symbol('Select');
 
 export const Select = defineComponent({
     name: 'SxoSelect',
+    inheritAttrs: false,
     props: {
         /** 选中的值 */
         modelValue: {
@@ -97,35 +98,42 @@ export const Select = defineComponent({
             return internalValue.value || props.placeholder;
         };
 
-        return () =>
-            h(
+        return () => {
+            const { class: className, ...otherAttrs } = attrs;
+            return h(
                 'div',
                 {
-                    class: `relative inline-block w-full ${attrs.class || ''}`.trim(),
+                    class: `relative inline-block w-full ${className || ''}`.trim(),
                 },
                 [
-                    h('div', { ...select.getTriggerProps(), class: classes.value.trigger }, [
-                        h(
-                            'span',
-                            {
-                                class: internalValue.value ? 'text-foreground' : 'text-neutral-400',
-                            },
-                            getSelectedLabel(),
-                        ),
-                        h(
-                            'svg',
-                            {
-                                class: `transition-transform duration-200 ${select.isOpen ? 'rotate-180' : ''}`,
-                                width: '16',
-                                height: '16',
-                                viewBox: '0 0 24 24',
-                                fill: 'none',
-                                stroke: 'currentColor',
-                                'stroke-width': '2',
-                            },
-                            [h('polyline', { points: '6 9 12 15 18 9' })],
-                        ),
-                    ]),
+                    h(
+                        'div',
+                        mergeProps(select.getTriggerProps(), otherAttrs, {
+                            class: classes.value.trigger,
+                        }),
+                        [
+                            h(
+                                'span',
+                                {
+                                    class: internalValue.value ? 'text-foreground' : 'text-neutral-400',
+                                },
+                                getSelectedLabel(),
+                            ),
+                            h(
+                                'svg',
+                                {
+                                    class: `transition-transform duration-200 ${select.isOpen ? 'rotate-180' : ''}`,
+                                    width: '16',
+                                    height: '16',
+                                    viewBox: '0 0 24 24',
+                                    fill: 'none',
+                                    stroke: 'currentColor',
+                                    'stroke-width': '2',
+                                },
+                                [h('polyline', { points: '6 9 12 15 18 9' })],
+                            ),
+                        ],
+                    ),
                     h(
                         'div',
                         { ...select.getListboxProps(), class: classes.value.listbox },
@@ -161,11 +169,13 @@ export const Select = defineComponent({
                     ),
                 ],
             );
+        };
     },
 });
 
 export const SelectOption = defineComponent({
     name: 'SxoSelectOption',
+    inheritAttrs: false,
     props: {
         value: {
             type: String,
@@ -190,10 +200,10 @@ export const SelectOption = defineComponent({
         return () =>
             h(
                 'div',
-                {
-                    class: `${select.classes.value.option(isSelected.value, props.disabled)} ${attrs.class || ''}`.trim(),
+                mergeProps(attrs, {
+                    class: `${select.classes.value.option(isSelected.value, props.disabled)}`,
                     onClick: () => !props.disabled && select.handleSelect(props.value),
-                },
+                }),
                 slots.default?.() as any,
             );
     },
