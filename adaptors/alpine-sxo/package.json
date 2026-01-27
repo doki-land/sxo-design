@@ -1,5 +1,5 @@
 {
-    "name": "@sxo/alpine-sxo",
+    "name": "@sxo/alpine",
     "version": "0.0.0",
     "description": "Alpine.js adaptor for SXO Design System.",
     "keywords": [

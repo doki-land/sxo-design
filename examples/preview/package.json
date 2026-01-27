@@ -22,7 +22,7 @@
         "@sxo/theme-wechat": "workspace:*",
         "react": "^18.3.1",
         "react-dom": "^18.3.1",
-        "@sxo/react-sxo": "workspace:*"
+        "@sxo/react": "workspace:*",
     },
     "devDependencies": {
         "@types/react": "^18.3.27",
@@ -31,7 +31,7 @@
         "lightningcss": "^1.30.2",
         "typescript": "^5.9.3",
         "vite": "^7.3.1",
-        "@sxo/vite-plugin-sxo": "workspace:*"
+        "@sxo/vite-plugin": "workspace:*"
     },
     "publishConfig": {
         "access": "restricted"

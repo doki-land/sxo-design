@@ -1,5 +1,5 @@
 {
-    "name": "@sxo/vite-plugin-sxo",
+    "name": "@sxo/vite-plugin",
     "version": "0.0.0",
     "description": "Vite plugin for SXO Design System with auto-import and HMR support.",
     "keywords": [
