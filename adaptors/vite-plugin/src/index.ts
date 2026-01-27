@@ -27,7 +27,7 @@ export interface VitePluginSxoOptions {
 }
 
 export function vitePluginSxo(options: VitePluginSxoOptions = {}): Plugin {
-    const engine = new StyleEngine(defaultTokens);
+    const engine = new StyleEngine(options.tokens || defaultTokens);
     const classes = new Set<string>();
     const ignoredClasses = new Set<string>();
     const missedClasses = new Map<string, Set<string>>(); // cls -> Set of file IDs
@@ -50,7 +50,7 @@ export function vitePluginSxo(options: VitePluginSxoOptions = {}): Plugin {
         // Matches sequences of alphanumeric chars, dashes, colons, slashes, brackets, dots, percents, underscores, hashes, and ! for important
         // Supports arbitrary values with spaces inside brackets [ ... ]
         // Refined regex: Ensure it doesn't end with a colon (which is usually an object key or label)
-        const regex = /(?<![a-zA-Z0-9-])([!a-zA-Z0-9-:[\]/%._#]+(?:\[[^\]]+\])?)(?<!:)(?!:)/g;
+        const regex = /(?<![a-zA-Z0-9-])([!&a-zA-Z0-9-:[\]/%._#]+(?:\[[^\]]+\])?)(?<!:)(?!:)/g;
         let match;
         let foundNew = false;
 

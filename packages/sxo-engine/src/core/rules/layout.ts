@@ -12,6 +12,7 @@ export const layoutRules: Rule[] = [
     ['inline-block', () => ({ display: 'inline-block' })],
     ['inline', () => ({ display: 'inline' })],
     ['hidden', () => ({ display: 'none' })],
+    ['appearance-none', () => ({ appearance: 'none' })],
 
     // Position
     ['static', () => ({ position: 'static' })],
@@ -117,10 +118,20 @@ export const layoutRules: Rule[] = [
             };
             const prop = propMap[propPrefix];
 
-            let value =
-                ValueResolver.resolveSize(valueNode, tokens, prop) ||
-                (valueNode as any).value ||
-                (valueNode as any).raw;
+            let value = '';
+            if (valueNode.type === 'numeric' && !valueNode.unit) {
+                value = `${valueNode.value * 4}px`;
+            } else if (valueNode.type === 'fraction') {
+                value = `${(valueNode.numerator / valueNode.denominator) * 100}%`;
+            } else if (valueNode.type === 'literal' && valueNode.value === 'full') {
+                value = '100%';
+            } else if (valueNode.type === 'literal' && valueNode.value === 'screen') {
+                value = prop === 'width' ? '100vw' : '100vh';
+            } else {
+                value = ValueResolver.resolveSize(valueNode, tokens, prop) ||
+                        (valueNode as any).value ||
+                        (valueNode as any).raw;
+            }
 
             const tokenKey =
                 valueNode.type === 'literal'
@@ -320,7 +331,7 @@ export const layoutRules: Rule[] = [
             return false;
         },
         (_, { parsed }) => {
-            const n0 = parsed.nodes[0];
+            const n0 = parsed.nodes[0] as { type: 'literal'; value: string };
             const valueNode = n0.value === 'grid-cols' ? parsed.nodes[1] : parsed.nodes[2];
 
             if (valueNode.type === 'numeric')
@@ -346,15 +357,28 @@ export const layoutRules: Rule[] = [
 
     // Overflow
     [
-        (parsed) => parsed.nodes[0]?.type === 'literal' && parsed.nodes[0].value === 'overflow',
+        (parsed) => {
+            const n0 = parsed.nodes[0];
+            return n0?.type === 'literal' && n0.value === 'overflow';
+        },
         (_, { parsed }) => {
-            const val = parsed.utility;
-            const match = val.match(/^overflow-(?:([xy])-)?(hidden|auto|scroll|visible)$/);
-            if (match) {
-                const axis = match[1];
-                const type = match[2];
-                return axis ? { [`overflow-${axis}`]: type } : { overflow: type };
+            const n0 = parsed.nodes[0] as { type: 'literal'; value: string };
+            const n1 = parsed.nodes[1];
+            const n2 = parsed.nodes[2];
+
+            let axis: string | undefined;
+            let type: string | undefined;
+
+            if (n1?.type === 'literal' && ['x', 'y'].includes(n1.value)) {
+                axis = n1.value;
+                type = n2?.type === 'literal' ? n2.value : undefined;
+            } else {
+                type = n1?.type === 'literal' ? n1.value : undefined;
             }
+
+            if (!type || !['hidden', 'auto', 'scroll', 'visible'].includes(type)) return;
+
+            return axis ? { [`overflow-${axis}`]: type } : { overflow: type };
         },
     ],
 

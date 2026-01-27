@@ -19,14 +19,14 @@ export function getInputClasses(options: InputOptions = {}) {
         'flex items-center w-full transition-all duration-200 outline-none font-normal relative';
 
     const inputBase =
-        'w-full bg-transparent outline-none placeholder:text-text-muted transition-colors';
+        'w-full bg-transparent border-none outline-none focus:outline-none focus:ring-0 placeholder:text-text-muted transition-colors appearance-none shadow-none';
 
     const variants = {
         outline:
-            'bg-background-primary border border-neutral-200 rounded-md focus-within:border-primary focus-within:shadow-hard-accent',
+            'bg-background-primary border border-border rounded-md focus-within:border-primary',
         'bottom-line':
-            'bg-transparent border-t-0 border-x-0 border-b border-neutral-200 rounded-none focus-within:border-primary',
-        ghost: 'bg-secondary border border-transparent rounded-md focus-within:bg-background-primary focus-within:border-neutral-200',
+            'bg-transparent border-t-0 border-x-0 border-b border-border rounded-none focus-within:border-primary',
+        ghost: 'bg-secondary border border-transparent rounded-md focus-within:bg-background-primary focus-within:border-border',
     };
 
     const sizes = {

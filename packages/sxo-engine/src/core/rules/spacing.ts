@@ -21,6 +21,16 @@ export const spacingRules: Rule[] = [
             const side = first[1];
             const node = parsed.nodes[1];
 
+            const map: Record<string, string> = {
+                t: 'top',
+                r: 'right',
+                b: 'bottom',
+                l: 'left',
+                x: 'inline',
+                y: 'block',
+            };
+            const suffix = side ? `-${map[side]}` : '';
+
             let value: string | undefined = ValueResolver.resolveSpacing(node, tokens);
 
             // 特殊处理：如果没有在 spacing tokens 中找到且是 literal，尝试直接返回值或变量
@@ -41,15 +51,6 @@ export const spacingRules: Rule[] = [
                 value = getVar(`spacing-${tokenKey}`, value!);
             }
 
-            const map: Record<string, string> = {
-                t: 'top',
-                r: 'right',
-                b: 'bottom',
-                l: 'left',
-                x: 'inline',
-                y: 'block',
-            };
-            const suffix = side ? `-${map[side]}` : '';
             return { [`${type}${suffix}`]: value };
         },
     ],
@@ -102,10 +103,19 @@ export const spacingRules: Rule[] = [
         },
     ],
     [
-        (parsed) =>
-            parsed.nodes[0]?.value === 'space' &&
-            (parsed.nodes[1]?.value === 'x' || parsed.nodes[1]?.value === 'y') &&
-            parsed.nodes[2]?.value === 'reverse',
+        (parsed) => {
+            const n0 = parsed.nodes[0];
+            const n1 = parsed.nodes[1];
+            const n2 = parsed.nodes[2];
+            return (
+                n0?.type === 'literal' &&
+                n0.value === 'space' &&
+                n1?.type === 'literal' &&
+                (n1.value === 'x' || n1.value === 'y') &&
+                n2?.type === 'literal' &&
+                n2.value === 'reverse'
+            );
+        },
         (_, { parsed }) => {
             const axis = (parsed.nodes[1] as any).value;
             return {

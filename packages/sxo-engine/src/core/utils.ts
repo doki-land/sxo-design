@@ -105,19 +105,30 @@ export function resolveColor(
         }
 
         // 如果是 literal 但在 tokens 中没找到，尝试 fallback 到 DEFAULT
-        if (current && typeof current === 'object' && 'DEFAULT' in current && i === colorNodes.length - 1) {
-             // 只有最后一个节点才尝试匹配 DEFAULT
-             // 例如 bg-primary -> tokens.color.bg.primary.DEFAULT
-             const potential = (current as any)[part];
-             if (potential && typeof potential === 'object' && 'DEFAULT' in potential) {
-                 current = potential.DEFAULT;
-                 varParts.push(part);
-                 varParts.push('DEFAULT');
-                 continue;
-             }
+        if (
+            current &&
+            typeof current === 'object' &&
+            'DEFAULT' in current &&
+            i === colorNodes.length - 1
+        ) {
+            // 只有最后一个节点才尝试匹配 DEFAULT
+            // 例如 bg-primary -> tokens.color.bg.primary.DEFAULT
+            const potential = (current as any)[part];
+            if (potential && typeof potential === 'object' && 'DEFAULT' in potential) {
+                current = potential.DEFAULT;
+                varParts.push(part);
+                varParts.push('DEFAULT');
+                continue;
+            }
         }
 
         return undefined;
+    }
+
+    // 如果循环结束 current 仍是对象，尝试取其 DEFAULT
+    if (current && typeof current === 'object' && 'DEFAULT' in current) {
+        current = (current as any).DEFAULT;
+        varParts.push('DEFAULT');
     }
 
     if (typeof current !== 'string') return undefined;

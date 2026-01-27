@@ -137,8 +137,11 @@ export const Checkbox = defineComponent({
             return `${s.root} ${s.icon} ${s.label} ${s.text} ${attrs.class || ''}`.trim();
         });
 
-        const handleToggle = () => {
+        const handleToggle = (e: MouseEvent) => {
             if (disabled.value) return;
+            // 如果点击的是 input 或者是 label 触发的默认点击，我们已经在 handleToggle 中处理了状态
+            // 为了防止两次触发，我们可以阻止默认行为或者只在一个地方监听
+            e.preventDefault();
             if (group && props.value !== undefined) {
                 group.toggleValue(props.value);
             } else {
@@ -152,13 +155,13 @@ export const Checkbox = defineComponent({
                 'label',
                 mergeProps(getLabelProps(), attrs, {
                     class: classes.value.label,
+                    onClick: handleToggle,
                 }),
                 [
                     h(
                         'div',
                         {
                             class: classes.value.root,
-                            onClick: handleToggle,
                         },
                         [
                             h('input', {

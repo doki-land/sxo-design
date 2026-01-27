@@ -7,8 +7,8 @@ settings:
 overrides:
   esbuild: '>=0.25.0'
   vite: ^7.3.1
-  vue-sxo>vue: ^3.5.26
-  vue2-sxo>vue: 2.7.16
+  '@sxo/vue>vue': ^3.5.26
+  '@sxo/vue2>vue': 2.7.16
 
 importers:
 
@@ -96,7 +96,7 @@ importers:
         specifier: ^3.5.26
         version: 3.5.26(typescript@5.9.3)
 
-  adaptors/alpine-sxo:
+  adaptors/alpine:
     dependencies:
       '@sxo/ui':
         specifier: workspace:*
@@ -121,7 +121,7 @@ importers:
         specifier: ^3.0.2
         version: 3.2.4(@types/debug@4.1.12)(@types/node@20.19.28)(happy-dom@16.8.1)(jiti@2.6.1)(jsdom@27.4.0)(lightningcss@1.30.2)(sass-embedded@1.97.2)(sass@1.97.2)(terser@5.44.1)(yaml@2.8.2)
 
-  adaptors/react-sxo:
+  adaptors/react:
     dependencies:
       '@sxo/component-icons':
         specifier: workspace:*
@@ -167,7 +167,7 @@ importers:
         specifier: ^3.2.4
         version: 3.2.4(@types/debug@4.1.12)(@types/node@20.19.28)(happy-dom@20.1.0)(jiti@2.6.1)(jsdom@27.4.0)(lightningcss@1.30.2)(sass-embedded@1.97.2)(sass@1.97.2)(terser@5.44.1)(yaml@2.8.2)
 
-  adaptors/solid-sxo:
+  adaptors/solid:
     dependencies:
       '@sxo/ui':
         specifier: workspace:*
@@ -198,7 +198,7 @@ importers:
         specifier: ^3.2.4
         version: 3.2.4(@types/debug@4.1.12)(@types/node@20.19.28)(happy-dom@17.6.3)(jiti@2.6.1)(jsdom@27.4.0)(lightningcss@1.30.2)(sass-embedded@1.97.2)(sass@1.97.2)(terser@5.44.1)(yaml@2.8.2)
 
-  adaptors/svelte-sxo:
+  adaptors/svelte:
     dependencies:
       '@sxo/ui':
         specifier: workspace:*
@@ -229,7 +229,7 @@ importers:
         specifier: ^3.0.2
         version: 3.2.4(@types/debug@4.1.12)(@types/node@20.19.28)(happy-dom@16.8.1)(jiti@2.6.1)(jsdom@27.4.0)(lightningcss@1.30.2)(sass-embedded@1.97.2)(sass@1.97.2)(terser@5.44.1)(yaml@2.8.2)
 
-  adaptors/vite-plugin-sxo:
+  adaptors/vite-plugin:
     dependencies:
       '@sxo/design':
         specifier: workspace:*
@@ -251,7 +251,7 @@ importers:
         specifier: ^3.0.2
         version: 3.2.4(@types/debug@4.1.12)(@types/node@20.19.28)(happy-dom@20.1.0)(jiti@2.6.1)(jsdom@27.4.0)(lightningcss@1.30.2)(sass-embedded@1.97.2)(sass@1.97.2)(terser@5.44.1)(yaml@2.8.2)
 
-  adaptors/vue-sxo:
+  adaptors/vue:
     dependencies:
       '@sxo/component-admin':
         specifier: workspace:*
@@ -297,7 +297,7 @@ importers:
         specifier: ^3.2.4
         version: 3.2.4(@types/debug@4.1.12)(@types/node@20.19.28)(happy-dom@20.1.0)(jiti@2.6.1)(jsdom@27.4.0)(lightningcss@1.30.2)(sass-embedded@1.97.2)(sass@1.97.2)(terser@5.44.1)(yaml@2.8.2)
 
-  adaptors/vue2-sxo:
+  adaptors/vue2:
     dependencies:
       '@sxo/design':
         specifier: workspace:*
@@ -369,12 +369,12 @@ importers:
       '@sxo/ui':
         specifier: workspace:*
         version: link:../packages/sxo-ui
-      '@sxo/vite-plugin-sxo':
+      '@sxo/vite-plugin':
         specifier: workspace:*
-        version: link:../adaptors/vite-plugin-sxo
-      '@sxo/vue-sxo':
+        version: link:../adaptors/vite-plugin
+      '@sxo/vue':
         specifier: workspace:*
-        version: link:../adaptors/vue-sxo
+        version: link:../adaptors/vue
       vitepress:
         specifier: ^1.6.4
         version: 1.6.4(@algolia/client-search@5.46.2)(@types/node@20.19.28)(@types/react@18.3.27)(jiti@2.6.1)(lightningcss@1.30.2)(postcss@8.5.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass-embedded@1.97.2)(sass@1.97.2)(search-insights@2.17.3)(terser@5.44.1)(typescript@5.9.3)(yaml@2.8.2)
@@ -411,16 +411,16 @@ importers:
       '@sxo/theme-material':
         specifier: workspace:*
         version: link:../../packages/theme-material
-      '@sxo/vue-sxo':
+      '@sxo/vue':
         specifier: workspace:*
-        version: link:../../adaptors/vue-sxo
+        version: link:../../adaptors/vue
       vue:
         specifier: ^3.5.26
         version: 3.5.26(typescript@5.9.3)
     devDependencies:
-      '@sxo/vite-plugin-sxo':
+      '@sxo/vite-plugin':
         specifier: workspace:*
-        version: link:../../adaptors/vite-plugin-sxo
+        version: link:../../adaptors/vite-plugin
       '@vitejs/plugin-vue':
         specifier: ^5.2.1
         version: 5.2.4(vite@7.3.1(@types/node@20.19.28)(jiti@2.6.1)(lightningcss@1.30.2)(sass-embedded@1.97.2)(sass@1.97.2)(terser@5.44.1)(yaml@2.8.2))(vue@3.5.26(typescript@5.9.3))
@@ -436,9 +436,9 @@ importers:
       '@sxo/design':
         specifier: workspace:*
         version: link:../../packages/sxo-design
-      '@sxo/react-sxo':
+      '@sxo/react':
         specifier: workspace:*
-        version: link:../../adaptors/react-sxo
+        version: link:../../adaptors/react
       '@sxo/theme-antd':
         specifier: workspace:*
         version: link:../../packages/theme-antd
@@ -473,9 +473,9 @@ importers:
         specifier: ^18.3.1
         version: 18.3.1(react@18.3.1)
     devDependencies:
-      '@sxo/vite-plugin-sxo':
+      '@sxo/vite-plugin':
         specifier: workspace:*
-        version: link:../../adaptors/vite-plugin-sxo
+        version: link:../../adaptors/vite-plugin
       '@types/react':
         specifier: ^18.3.27
         version: 18.3.27
@@ -497,9 +497,9 @@ importers:
 
   examples/react-todos:
     dependencies:
-      '@sxo/react-sxo':
+      '@sxo/react':
         specifier: workspace:*
-        version: link:../../adaptors/react-sxo
+        version: link:../../adaptors/react
       '@sxo/theme-pornhub':
         specifier: workspace:*
         version: link:../../packages/theme-pornhub
@@ -510,9 +510,9 @@ importers:
         specifier: ^18.3.1
         version: 18.3.1(react@18.3.1)
     devDependencies:
-      '@sxo/vite-plugin-sxo':
+      '@sxo/vite-plugin':
         specifier: workspace:*
-        version: link:../../adaptors/vite-plugin-sxo
+        version: link:../../adaptors/vite-plugin
       '@types/react':
         specifier: ^18.3.27
         version: 18.3.27
@@ -531,9 +531,9 @@ importers:
 
   examples/solid-todos:
     dependencies:
-      '@sxo/solid-sxo':
+      '@sxo/solid':
         specifier: workspace:*
-        version: link:../../adaptors/solid-sxo
+        version: link:../../adaptors/solid
       '@sxo/theme-pornhub':
         specifier: workspace:*
         version: link:../../packages/theme-pornhub
@@ -541,9 +541,9 @@ importers:
         specifier: ^1.9.10
         version: 1.9.10
     devDependencies:
-      '@sxo/vite-plugin-sxo':
+      '@sxo/vite-plugin':
         specifier: workspace:*
-        version: link:../../adaptors/vite-plugin-sxo
+        version: link:../../adaptors/vite-plugin
       typescript:
         specifier: ^5.9.3
         version: 5.9.3
@@ -559,16 +559,16 @@ importers:
       '@sxo/theme-pornhub':
         specifier: workspace:*
         version: link:../../packages/theme-pornhub
-      '@sxo/vue-sxo':
+      '@sxo/vue':
         specifier: workspace:*
-        version: link:../../adaptors/vue-sxo
+        version: link:../../adaptors/vue
       vue:
         specifier: ^3.5.26
         version: 3.5.26(typescript@5.9.3)
     devDependencies:
-      '@sxo/vite-plugin-sxo':
+      '@sxo/vite-plugin':
         specifier: workspace:*
-        version: link:../../adaptors/vite-plugin-sxo
+        version: link:../../adaptors/vite-plugin
       '@vitejs/plugin-vue':
         specifier: ^5.2.4
         version: 5.2.4(vite@7.3.1(@types/node@20.19.28)(jiti@2.6.1)(lightningcss@1.30.2)(sass-embedded@1.97.2)(sass@1.97.2)(terser@5.44.1)(yaml@2.8.2))(vue@3.5.26(typescript@5.9.3))
@@ -587,9 +587,9 @@ importers:
       '@sxo/theme-pornhub':
         specifier: workspace:*
         version: link:../../packages/theme-pornhub
-      '@sxo/vue2-sxo':
+      '@sxo/vue2':
         specifier: workspace:*
-        version: link:../../adaptors/vue2-sxo
+        version: link:../../adaptors/vue2
       vue:
         specifier: ^2.7.16
         version: 2.7.16

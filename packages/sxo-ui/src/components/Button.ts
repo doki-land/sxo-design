@@ -16,16 +16,16 @@ export function getButtonClasses(options: ButtonOptions = {}) {
     } = options;
 
     const base =
-        'inline-flex items-center justify-center font-bold tracking-tight transition-all duration-300 select-none active:scale-95 gap-2';
+        'inline-flex items-center justify-center font-bold tracking-tight transition-all duration-300 select-none active:scale-95 gap-2 outline-none focus:outline-none';
 
     const variants = {
         primary: 'bg-primary text-white shadow-sm hover:opacity-90 active:scale-95',
         secondary:
-            'bg-background-primary text-text-primary border border-neutral-200 shadow-sm hover:bg-background-secondary active:scale-95',
+            'bg-background-primary text-primary border border-neutral-200 shadow-sm hover:bg-background-secondary active:scale-95',
         accent: 'bg-accent-vivid text-white shadow-sm hover:opacity-90 active:scale-95',
         outline:
-            'border border-neutral-200 bg-transparent text-text-primary hover:bg-background-secondary active:scale-95',
-        ghost: 'bg-transparent hover:bg-background-secondary text-text-muted hover:text-text-primary active:scale-95',
+            'border border-neutral-200 bg-transparent text-primary hover:bg-background-secondary active:scale-95',
+        ghost: 'bg-transparent hover:bg-background-secondary text-muted hover:text-primary active:scale-95',
     };
 
     const sizes = {

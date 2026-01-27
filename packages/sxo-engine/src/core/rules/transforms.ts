@@ -11,7 +11,7 @@ export const transformRules: Rule[] = [
             const axis = (parsed.nodes[1] as any).value;
             const node = parsed.nodes[2];
             let value = '';
-            if (node.type === 'numeric') value = node.raw === '0' ? '0' : `${node.raw * 4}px`;
+            if (node.type === 'numeric') value = node.value === 0 ? '0' : `${node.value * 4}px`;
             else if (node.type === 'arbitrary') value = node.value;
             
             if (axis === 'x') return { transform: `translateX(${value})` };

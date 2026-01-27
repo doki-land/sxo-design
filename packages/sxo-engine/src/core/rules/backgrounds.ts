@@ -42,6 +42,11 @@ export const backgroundRules: Rule[] = [
                     return { 'background-color': color };
                 }
 
+                // 特殊处理透明背景
+                if (res.color === 'transparent') {
+                    return { 'background-color': 'transparent' };
+                }
+
                 return {
                     '--sxo-bg-opacity': '100%',
                     '--sxo-bg-color': color,

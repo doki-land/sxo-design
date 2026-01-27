@@ -86,6 +86,7 @@ export const borderRules: Rule[] = [
     ['border-b', () => ({ 'border-bottom-width': '1px', 'border-style': 'solid' })],
     ['border-l', () => ({ 'border-left-width': '1px', 'border-style': 'solid' })],
     ['border-r', () => ({ 'border-right-width': '1px', 'border-style': 'solid' })],
+    ['border-none', () => ({ 'border-style': 'none', 'border-width': '0' })],
 
     // Border side with width
     [

@@ -45,10 +45,10 @@ export const typographyRules: Rule[] = [
         },
     ],
     // Text Decoration
-    ['underline', () => ({ 'text-decoration-line': 'underline' })],
-    ['no-underline', () => ({ 'text-decoration-line': 'none' })],
-    ['line-through', () => ({ 'text-decoration-line': 'line-through' })],
-    ['overline', () => ({ 'text-decoration-line': 'overline' })],
+    ['underline', () => ({ 'text-decoration': 'underline' })],
+    ['no-underline', () => ({ 'text-decoration': 'none' })],
+    ['line-through', () => ({ 'text-decoration': 'line-through' })],
+    ['overline', () => ({ 'text-decoration': 'overline' })],
 
     // Text Transform
     ['uppercase', () => ({ 'text-transform': 'uppercase' })],
@@ -93,6 +93,21 @@ export const typographyRules: Rule[] = [
             '-moz-osx-font-smoothing': 'grayscale',
         }),
     ],
+    // White Space
+    ['outline-none', () => ({ outline: '2px solid transparent', 'outline-offset': '2px' })],
+    [
+        (parsed) =>
+            parsed.nodes[0]?.type === 'literal' &&
+            parsed.nodes[0].value === 'whitespace' &&
+            parsed.nodes.length === 2,
+        (_, { parsed }) => {
+            const val = (parsed.nodes[1] as any).value;
+            if (['normal', 'nowrap', 'pre', 'pre-line', 'pre-wrap', 'break-spaces'].includes(val))
+                return { 'white-space': val };
+        },
+    ],
+    // Fill
+    ['fill-current', () => ({ fill: 'currentColor' })],
     // Font Weight & Family
     [
         (parsed) =>

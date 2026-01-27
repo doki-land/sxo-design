@@ -1,4 +1,4 @@
-import { type DesignTokens, tokensToCssVars } from '@sxo/design';
+import { type DesignTokens, defaultTokens, tokensToCssVars } from '@sxo/design';
 import { allRules } from './core/rules';
 import type { Rule, RuleContext } from './core/types';
 import { SxoParser } from './parser';
@@ -33,8 +33,8 @@ export class StyleEngine {
 
     private tokens: DesignTokens;
 
-    constructor(tokens: DesignTokens, options: EngineOptions = {}) {
-        this.tokens = tokens;
+    constructor(tokens: DesignTokens = defaultTokens, options: EngineOptions = {}) {
+        this.tokens = tokens || defaultTokens;
         this.options = options;
     }
 
@@ -153,6 +153,15 @@ export class StyleEngine {
                 continue;
             }
 
+            // Handle arbitrary variants: [&_...]:...
+            if (variant.startsWith('[') && variant.endsWith(']')) {
+                const inner = variant.substring(1, variant.length - 1).replace(/_/g, ' ');
+                if (inner.includes('&')) {
+                    parent = parent ? `${inner} ${parent}` : inner;
+                    continue;
+                }
+            }
+
             if (this.options.debug) {
                 console.warn(`[SXO] Unknown variant: ${variant} in class ${parsed.raw}`);
             }
@@ -232,7 +241,7 @@ export class StyleEngine {
      * 生成所有设计令牌对应的 CSS 变量
      */
     generateTokenCssVars(): string {
-        const { modes, ...baseTokens } = this.tokens;
+        const { modes, ...baseTokens } = (this.tokens || {}) as any;
         const vars = tokensToCssVars(baseTokens);
         const body = Object.entries(vars)
             .map(([name, value]) => `  ${name}: ${value};`)
@@ -245,6 +254,152 @@ export class StyleEngine {
                 .map(([name, value]) => `  ${name}: ${value};`)
                 .join('\n');
         }
+
+        const reset = `
+*, ::before, ::after {
+    box-sizing: border-box;
+    border-width: 0;
+    border-style: solid;
+    border-color: currentColor;
+}
+html {
+    line-height: 1.5;
+    -webkit-text-size-adjust: 100%;
+    -moz-tab-size: 4;
+    tab-size: 4;
+    font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+body {
+    margin: 0;
+    line-height: inherit;
+}
+hr {
+    height: 0;
+    color: inherit;
+    border-top-width: 1px;
+}
+abbr:where([title]) {
+    text-decoration: underline dotted;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-size: inherit;
+    font-weight: inherit;
+}
+a {
+    color: inherit;
+    text-decoration: inherit;
+}
+b, strong {
+    font-weight: bolder;
+}
+code, kbd, samp, pre {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-size: 1em;
+}
+small {
+    font-size: 80%;
+}
+sub, sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+}
+sub {
+    bottom: -0.25em;
+}
+sup {
+    top: -0.5em;
+}
+table {
+    text-indent: 0;
+    border-color: inherit;
+    border-collapse: collapse;
+}
+button, input, optgroup, select, textarea {
+    font-family: inherit;
+    font-size: 100%;
+    font-weight: inherit;
+    line-height: inherit;
+    color: inherit;
+    margin: 0;
+    padding: 0;
+}
+button, select {
+    text-transform: none;
+}
+button, [type='button'], [type='reset'], [type='submit'] {
+    -webkit-appearance: button;
+    background-color: transparent;
+    background-image: none;
+    border: none;
+}
+:-moz-focusring {
+    outline: auto;
+}
+:-moz-ui-invalid {
+    box-shadow: none;
+}
+progress {
+    vertical-align: baseline;
+}
+::-webkit-inner-spin-button, ::-webkit-outer-spin-button {
+    height: auto;
+}
+[type='search'] {
+    -webkit-appearance: textfield;
+    outline-offset: -2px;
+}
+::-webkit-search-decoration {
+    -webkit-appearance: none;
+}
+::-webkit-file-upload-button {
+    -webkit-appearance: button;
+    font: inherit;
+}
+summary {
+    display: list-item;
+}
+blockquote, dl, dd, h1, h2, h3, h4, h5, h6, hr, figure, p, pre {
+    margin: 0;
+}
+fieldset {
+    margin: 0;
+    padding: 0;
+}
+legend {
+    padding: 0;
+}
+ol, ul, menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+textarea {
+    resize: vertical;
+}
+input::placeholder, textarea::placeholder {
+    opacity: 1;
+    color: #9ca3af;
+}
+button, [role="button"] {
+    cursor: pointer;
+}
+:disabled {
+    cursor: default;
+}
+img, svg, video, canvas, audio, iframe, embed, object {
+    display: block;
+    vertical-align: middle;
+}
+img, video {
+    max-width: 100%;
+    height: auto;
+}
+[hidden] {
+    display: none;
+}
+`;
 
         const animations = `
 @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
@@ -261,7 +416,7 @@ export class StyleEngine {
     `;
 
         const modeStyles = darkVars ? `\n\n[data-sxo-mode="dark"] {\n${darkVars}\n}` : '';
-        return `:root {\n${body}\n}${modeStyles}\n${animations}`;
+        return `${reset}\n:root {\n${body}\n}${modeStyles}\n${animations}`;
     }
 
     reset() {
@@ -278,7 +433,16 @@ export class StyleEngine {
         important = false,
     ): string {
         const baseSelector = `.${this.escapeClassName(className)}${variantSuffix}`;
-        const selector = parentPrefix ? `${parentPrefix} ${baseSelector}` : baseSelector;
+        let selector = '';
+        if (parentPrefix) {
+            if (parentPrefix.includes('&')) {
+                selector = parentPrefix.replace(/&/g, baseSelector);
+            } else {
+                selector = `${parentPrefix} ${baseSelector}`;
+            }
+        } else {
+            selector = baseSelector;
+        }
 
         const processResult = (sel: string, res: string | Record<string, any>): string => {
             if (typeof res === 'string') {

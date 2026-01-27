@@ -2,6 +2,8 @@ import { resolveToken, type TokenPath } from '@sxo/design';
 import { type ComputedRef, computed, onMounted, onUnmounted, ref, watchEffect } from 'vue';
 import { useSxo } from './plugin';
 
+const injectedStyles = new Set<string>();
+
 /**
  * Vue Composition API for SXO styles
  */
@@ -20,13 +22,25 @@ export function useStyle(classNames: string | (() => string)): ComputedRef<strin
         if (css.value && typeof document !== 'undefined') {
             const styleTag = document.getElementById('sxo-engine');
             if (styleTag) {
-                if (!styleTag.innerHTML.includes(css.value)) {
-                    styleTag.innerHTML += css.value;
+                // 按行分割，检查哪些行没被注入过
+                const lines = css.value.split('\n').filter(l => l.trim());
+                let needsUpdate = false;
+                for (const line of lines) {
+                    if (!injectedStyles.has(line)) {
+                        injectedStyles.add(line);
+                        needsUpdate = true;
+                    }
+                }
+                
+                if (needsUpdate) {
+                    styleTag.innerHTML = Array.from(injectedStyles).join('\n');
                 }
             } else {
                 const tag = document.createElement('style');
                 tag.id = 'sxo-engine';
-                tag.innerHTML = css.value;
+                const lines = css.value.split('\n').filter(l => l.trim());
+                lines.forEach(l => injectedStyles.add(l));
+                tag.innerHTML = Array.from(injectedStyles).join('\n');
                 document.head.appendChild(tag);
             }
         }

@@ -1,4 +1,4 @@
-import { type DesignTokens, defaultTokens, tokensToCssVars } from '@sxo/design';
+import { type DesignTokens, defaultTokens, mergeTokens, tokensToCssVars } from '@sxo/design';
 import { StyleEngine } from '@sxo/engine';
 import {
     type App,
@@ -24,8 +24,9 @@ export interface SxoState {
 /**
  * Vue Plugin for SXO
  */
-export function createSxo(options: { tokens?: DesignTokens; mode?: 'light' | 'dark' } = {}) {
-    const tokens = options.tokens || defaultTokens;
+export function createSxo(options: { tokens?: Partial<DesignTokens>; mode?: 'light' | 'dark' } = {}) {
+    // Deep merge user tokens with default tokens
+    const tokens = options.tokens ? mergeTokens(defaultTokens, options.tokens) : defaultTokens;
     const mode = options.mode || 'light';
     const engine = new StyleEngine(tokens);
 
@@ -38,6 +39,61 @@ export function createSxo(options: { tokens?: DesignTokens; mode?: 'light' | 'da
             });
 
             app.provide(SXO_KEY, state);
+
+            // 全局样式扫描 (Runtime Scanner)
+            if (typeof document !== 'undefined') {
+                const scan = () => {
+                    const elements = document.querySelectorAll('[class*=" "], [class]');
+                    const classes = new Set<string>();
+                    elements.forEach(el => {
+                        const className = el.getAttribute('class') || '';
+                        className.split(/\s+/).forEach(c => {
+                            if (c && !c.startsWith('v-') && !c.startsWith('router-')) {
+                                classes.add(c);
+                            }
+                        });
+                    });
+                    if (classes.size > 0) {
+                        const css = state.engine.generateBatch(classes);
+                        const styleId = 'sxo-engine-global';
+                        let styleEl = document.getElementById(styleId) as HTMLStyleElement;
+                        if (!styleEl) {
+                            styleEl = document.createElement('style');
+                            styleEl.id = styleId;
+                            document.head.appendChild(styleEl);
+                        }
+                        if (styleEl.textContent !== css) {
+                            styleEl.textContent = css;
+                        }
+                    }
+                };
+
+                // 初始扫描
+                setTimeout(scan, 0);
+
+                // 监听 DOM 变化
+                const observer = new MutationObserver((mutations) => {
+                    let shouldScan = false;
+                    for (const mutation of mutations) {
+                        if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+                            shouldScan = true;
+                            break;
+                        }
+                        if (mutation.addedNodes.length > 0) {
+                            shouldScan = true;
+                            break;
+                        }
+                    }
+                    if (shouldScan) scan();
+                });
+
+                observer.observe(document.body, {
+                    attributes: true,
+                    childList: true,
+                    subtree: true,
+                    attributeFilter: ['class']
+                });
+            }
 
             // Global CSS Variables Injection
             watchEffect(() => {

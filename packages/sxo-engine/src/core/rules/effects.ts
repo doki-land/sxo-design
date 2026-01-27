@@ -41,6 +41,7 @@ export const effectRules: Rule[] = [
             }
         },
     ],
+    ['shadow-none', () => ({ 'box-shadow': '0 0 #0000' })],
 
     // Opacity
     [

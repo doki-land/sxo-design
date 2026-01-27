@@ -17,13 +17,13 @@ export function getSearchClasses(options: SearchOptions = {}) {
         size === 'sm' ? 'h-8 text-xs' : size === 'lg' ? 'h-12 text-base' : 'h-10 text-sm',
         rounded ? 'rounded-full' : 'rounded-md',
         variant === 'outline'
-            ? 'border border-neutral-200 focus:border-black focus:ring-1 focus:ring-black/5 shadow-sm'
+            ? 'border border-neutral-200 focus:border-primary shadow-sm'
             : '',
         variant === 'ghost'
             ? 'border-transparent bg-neutral-100 focus:bg-white focus:border-neutral-200'
             : '',
         variant === 'bottom-line'
-            ? 'border-b border-neutral-200 rounded-none px-10 focus:border-black'
+            ? 'border-b border-neutral-200 rounded-none px-10 focus:border-primary'
             : '',
     ].join(' ');
 
