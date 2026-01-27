@@ -133,7 +133,7 @@ export class StyleEngine {
         const mediaQueries: string[] = [];
 
         for (const variant of parsed.variants) {
-            const breakpoint = this.tokens.breakpoints?.[variant];
+            const breakpoint = this.tokens?.breakpoints?.[variant];
             if (breakpoint) {
                 const bpStr = String(breakpoint);
                 if (bpStr.startsWith('@media')) {
@@ -184,7 +184,7 @@ export class StyleEngine {
      */
     generateSheet(classNames: string[] | Set<string>): string {
         let css = '';
-        const breakpoints = this.tokens.breakpoints;
+        const breakpoints = this.tokens?.breakpoints || {};
         const bpNames = Object.keys(breakpoints);
 
         const sortedClasses = Array.from(classNames).sort((a, b) => {

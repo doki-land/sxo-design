@@ -1,6 +1,23 @@
 import type { Rule } from '../types';
 
 export const transformRules: Rule[] = [
+    // Translate
+    [
+        (parsed) =>
+            parsed.nodes[0]?.type === 'literal' &&
+            parsed.nodes[0].value === 'translate' &&
+            parsed.nodes.length >= 3,
+        (_, { parsed }) => {
+            const axis = (parsed.nodes[1] as any).value;
+            const node = parsed.nodes[2];
+            let value = '';
+            if (node.type === 'numeric') value = node.raw === '0' ? '0' : `${node.raw * 4}px`;
+            else if (node.type === 'arbitrary') value = node.value;
+            
+            if (axis === 'x') return { transform: `translateX(${value})` };
+            if (axis === 'y') return { transform: `translateY(${value})` };
+        },
+    ],
     // Scale
     [
         (parsed) =>

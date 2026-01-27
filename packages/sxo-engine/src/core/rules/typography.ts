@@ -44,6 +44,18 @@ export const typographyRules: Rule[] = [
             }
         },
     ],
+    // Text Decoration
+    ['underline', () => ({ 'text-decoration-line': 'underline' })],
+    ['no-underline', () => ({ 'text-decoration-line': 'none' })],
+    ['line-through', () => ({ 'text-decoration-line': 'line-through' })],
+    ['overline', () => ({ 'text-decoration-line': 'overline' })],
+
+    // Text Transform
+    ['uppercase', () => ({ 'text-transform': 'uppercase' })],
+    ['lowercase', () => ({ 'text-transform': 'lowercase' })],
+    ['capitalize', () => ({ 'text-transform': 'capitalize' })],
+    ['normal-case', () => ({ 'text-transform': 'none' })],
+
     // Text Opacity
     [
         (parsed) =>

@@ -25,6 +25,12 @@ export function resolveColor(
     if (subGroup && subGroup in current) {
         current = current[subGroup];
         varParts.push(subGroup);
+    } else if (subGroup === 'background' && 'bg' in current) {
+        current = current['bg'];
+        varParts.push('bg');
+    } else if (subGroup === 'bg' && 'background' in current) {
+        current = current['background'];
+        varParts.push('background');
     }
 
     let startIdx = 0;
@@ -83,60 +89,40 @@ export function resolveColor(
             }
         }
 
-        // 特殊逻辑：处理 background 语义
-        if (part === 'background') {
-            if (current && typeof current === 'object' && 'background' in current) {
-                current = current.background;
-                varParts.push('background');
+        // 处理 DEFAULT
+        if (part === 'DEFAULT') {
+            if (current && typeof current === 'object' && 'DEFAULT' in current) {
+                current = current.DEFAULT;
+                varParts.push('DEFAULT');
                 continue;
-            } else if (tokens.color?.background?.primary) {
-                // 回退到全局 background.primary
-                return {
-                    color: tokens.color.background.primary,
-                    varPath: 'color-background-primary',
-                    opacity: opacity,
-                };
             }
         }
 
         if (current && typeof current === 'object' && part in current) {
             current = (current as any)[part];
             varParts.push(part);
-        } else if (
-            current &&
-            typeof current === 'object' &&
-            'DEFAULT' in current &&
-            i === colorNodes.length - 1
-        ) {
-            current = current.DEFAULT;
-            varParts.push('DEFAULT');
-        } else {
-            // 最后的挣扎：如果是在全局范围找没找到，尝试在常用子组找
-            // 例如 'primary' 没在 'tokens.color.bg' 找到，但在 'tokens.color' 能找到
-            if (varParts.length > 1 && part in tokens.color) {
-                current = (tokens.color as any)[part];
-                varParts = ['color', part];
-            } else {
-                return undefined;
-            }
+            continue;
         }
+
+        // 如果是 literal 但在 tokens 中没找到，尝试 fallback 到 DEFAULT
+        if (current && typeof current === 'object' && 'DEFAULT' in current && i === colorNodes.length - 1) {
+             // 只有最后一个节点才尝试匹配 DEFAULT
+             // 例如 bg-primary -> tokens.color.bg.primary.DEFAULT
+             const potential = (current as any)[part];
+             if (potential && typeof potential === 'object' && 'DEFAULT' in potential) {
+                 current = potential.DEFAULT;
+                 varParts.push(part);
+                 varParts.push('DEFAULT');
+                 continue;
+             }
+        }
+
+        return undefined;
     }
 
-    // 如果最后 current 是个对象，尝试寻找默认值
-    if (typeof current === 'object' && current !== null) {
-        if ('DEFAULT' in current) {
-            varParts.push('DEFAULT');
-            return { color: current.DEFAULT, varPath: varParts.join('-'), opacity: opacity };
-        }
-        if ('primary' in current) {
-            varParts.push('primary');
-            return { color: current.primary, varPath: varParts.join('-'), opacity: opacity };
-        }
-    }
+    if (typeof current !== 'string') return undefined;
 
-    if (typeof current === 'string') {
-        return { color: current, varPath: varParts.join('-'), opacity: opacity };
-    }
+    return { color: current, varPath: varParts.join('-'), opacity: opacity };
 
     return undefined;
 }

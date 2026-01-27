@@ -26,6 +26,7 @@ export const spacingRules: Rule[] = [
             // 特殊处理：如果没有在 spacing tokens 中找到且是 literal，尝试直接返回值或变量
             if (!value && node.type === 'literal') {
                 value = node.value;
+                if (value === 'auto') return { [`${type}${suffix}`]: 'auto' };
             } else if (node.type === 'numeric' && !node.unit) {
                 // Tailwind 默认数值转 4px 比例
                 value = `${node.value * 4}px`;
