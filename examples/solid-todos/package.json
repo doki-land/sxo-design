@@ -12,7 +12,7 @@
     "dependencies": {
         "@sxo/theme-pornhub": "workspace:*",
         "solid-js": "^1.9.10",
-        "@sxo/solid-sxo": "workspace:*"
+        "@sxo/solid": "workspace:*"
     },
     "devDependencies": {
         "typescript": "^5.9.3",
