@@ -19,7 +19,7 @@
         "@sxo/theme-github": "workspace:*",
         "@sxo/theme-material": "workspace:*",
         "vue": "^3.5.26",
-        "@sxo/vue-sxo": "workspace:*"
+        "@sxo/vue": "workspace:*"
     },
     "devDependencies": {
         "@vitejs/plugin-vue": "^5.2.1",

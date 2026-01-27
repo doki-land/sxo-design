@@ -58,7 +58,7 @@ import { fluentTheme } from '@sxo/theme-fluent';
 import { githubTheme } from '@sxo/theme-github';
 import { materialTheme } from '@sxo/theme-material';
 import { computed, reactive, ref, watch } from 'vue';
-import { useToast as useSxoToast } from '@sxo/vue-sxo';
+import { useToast as useSxoToast } from '@sxo/vue';
 import { availableComponents } from './state/components-metadata';
 // Shared State/Metadata
 import { currentFramework, frameworks } from './state/framework-state';
