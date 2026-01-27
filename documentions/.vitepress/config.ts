@@ -1,4 +1,4 @@
-import { vitePluginSxo } from 'vite-plugin-sxo';
+import { vitePluginSxo } from '@sxo/vite-plugin-sxo';
 import { defineConfig } from 'vitepress';
 import { getSidebar } from './sidebar';
 
