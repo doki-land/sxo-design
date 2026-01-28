@@ -1,14 +1,51 @@
-# @sxo/component-admin
+<div align="center">
+  <h1>@sxo/component-admin</h1>
+  <p><b>A set of high-level layout and navigation components for building modern admin interfaces.</b></p>
 
-SXO 设计系统的后台管理系统组件。
+  <p>
+    <a href="https://www.npmjs.com/package/@sxo/component-admin"><img src="https://img.shields.io/npm/v/@sxo/component-admin.svg?style=flat-square" alt="npm version"></a>
+    <img src="https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square" alt="license">
+    <img src="https://img.shields.io/npm/dm/@sxo/component-admin.svg?style=flat-square" alt="downloads">
+  </p>
+</div>
 
-## 功能
+---
 
-- **开箱即用**: 提供侧边栏、顶部栏、多页签等常用组件。
-- **灵活布局**: 支持多种后台布局模式。
+`@sxo/component-admin` provides the structural building blocks for professional administration panels. It follows the SXO design philosophy, offering flexible, headless-inspired layouts that adapt to any visual style.
 
-## 安装
+## ✨ Key Features
+
+- 🏗️ **Modular Layouts**: Pre-configured yet flexible sidebar, top bar, and multi-tab navigation.
+- 🧩 **Headless Navigation**: Logical state management for active routes and tab history.
+- 🎨 **Themeable**: Seamlessly inherits styles from any SXO theme (AntD, GitHub, etc.).
+- 🛡️ **Type Safe**: Full TypeScript support for layout configurations.
+
+## 🚀 Quick Start
+
+### Installation
 
 ```bash
-pnpm add @sxo/component-admin @sxo/ui @sxo/design
+pnpm add @sxo/component-admin
 ```
+
+### Usage
+
+```typescript
+import { createAdminLayout } from '@sxo/component-admin';
+
+const layout = createAdminLayout({
+  sidebar: { collapsed: false },
+  tabs: { enabled: true }
+});
+
+// Access layout state in your components
+console.log(layout.sidebarClasses);
+```
+
+## 📖 Documentation
+
+For full documentation and layout examples, visit the [Admin Component Documentation](https://sxo-engine.pages.dev/zh/components/admin.html).
+
+## 📄 License
+
+MIT License.

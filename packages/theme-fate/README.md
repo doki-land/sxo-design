@@ -1,17 +1,37 @@
-# @sxo/theme-fate
+<div align="center">
+  <h1>@sxo/theme-fate</h1>
+  <p><b>Intertwined Fate style theme for the SXO design system. A dreamy, celestial, and high-impact aesthetic.</b></p>
 
-SXO 设计系统的纠缠之缘 (Fate) 风格主题。
+  <p>
+    <a href="https://www.npmjs.com/package/@sxo/theme-fate"><img src="https://img.shields.io/npm/v/@sxo/theme-fate.svg?style=flat-square" alt="npm version"></a>
+    <img src="https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square" alt="license">
+    <img src="https://img.shields.io/npm/dm/@sxo/theme-fate.svg?style=flat-square" alt="downloads">
+  </p>
+</div>
 
-## 安装
+---
+
+`@sxo/theme-fate` is a high-impact, artistic theme inspired by the celestial aesthetics of "Intertwined Fate". It brings a unique, dreamy atmosphere to your applications.
+
+## ✨ Features
+
+- 🌌 **Celestial Aesthetic**: Dreamy gradients and cosmic-inspired visual elements.
+- 🎨 **Dreamy Palette**: Soft pinks, deep purples, and ethereal golds.
+- 🪄 **Unique Animations**: Pre-configured transition effects that match the celestial theme.
+- 🧩 **Universal**: Fully compatible with all SXO framework adaptors.
+
+## 🚀 Quick Start
+
+### Installation
 
 ```bash
-pnpm add @sxo/theme-fate @sxo/engine @sxo/design
+pnpm add @sxo/theme-fate
 ```
 
-## 用法
+### Usage (Vue 3 Example)
 
 ```typescript
-import { createSxo } from 'vue-sxo';
+import { createSxo } from '@sxo/vue';
 import fateTheme from '@sxo/theme-fate';
 
 app.use(createSxo({
@@ -19,6 +39,6 @@ app.use(createSxo({
 }));
 ```
 
-## 主题特色
-- **梦幻配色**: 提取自《原神》纠缠之缘的粉紫色调。
-- **独特动效**: 预设了契合主题的过渡效果。
+## 📄 License
+
+MIT License.

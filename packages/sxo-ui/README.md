@@ -1,35 +1,70 @@
-# @sxo/ui
+<div align="center">
+  <h1>@sxo/ui</h1>
+  <p><b>The style contract and layout layer for the SXO design system.</b></p>
 
-SXO 设计系统的 UI 组件定义层。
+  <p>
+    <a href="https://www.npmjs.com/package/@sxo/ui"><img src="https://img.shields.io/npm/v/@sxo/ui.svg?style=flat-square" alt="npm version"></a>
+    <img src="https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square" alt="license">
+    <img src="https://img.shields.io/bundlephobia/minzip/@sxo/ui?style=flat-square" alt="bundle size">
+    <img src="https://img.shields.io/npm/dm/@sxo/ui.svg?style=flat-square" alt="downloads">
+  </p>
+</div>
 
-## 安装
+---
+
+`@sxo/ui` bridges the gap between **Headless Logic** and **Visual Design**. It provides the "Style Contract" that defines how components should look by translating design tokens and states into atomic CSS classes.
+
+## 🌉 Bridging the Gap
+
+While `@sxo/design` handles behavior, `@sxo/ui` handles the visual identity:
+
+1.  **Contract Definition**: Defines standard Props and interfaces for all framework adaptors.
+2.  **Style Generation**: Provides pure functions that map component states (e.g., `variant`, `size`, `isOpen`) to atomic CSS classes.
+3.  **Unopinionated Layout**: It doesn't render HTML directly, allowing adaptors to maintain their own rendering optimizations.
+
+## ✨ Key Features
+
+- 🎨 **Atomic Generators**: High-performance functions to generate utility-first classes.
+- 📐 **Strict Typing**: Full TypeScript interfaces for every component prop and state.
+- 🧩 **Framework Independent**: Use the same style logic in React, Vue, Solid, or even vanilla JS.
+- 🚀 **AOT Ready**: Designed for both runtime generation and ahead-of-time compilation.
+
+## 🚀 Quick Start
+
+### Installation
 
 ```bash
-pnpm add @sxo/ui @sxo/engine @sxo/design
+pnpm add @sxo/ui @sxo/engine
 ```
 
-## 核心功能
+### Using Class Generators
 
-### 样式生成器 (Class Generators)
-提供跨框架通用的样式生成函数。
+Generate atomic styles based on component state. This is how we keep the UI consistent while remaining headless at the logic level.
 
 ```typescript
 import { getButtonClasses } from '@sxo/ui';
 
-// 生成按钮所需的原子类
+// Map component state to atomic classes
 const classes = getButtonClasses({
     variant: 'primary',
-    size: 'md'
+    size: 'md',
+    loading: true
 });
-// 返回: "inline-flex items-center justify-center bg-primary-DEFAULT ..."
+// Result: "inline-flex bg-primary-DEFAULT px-4 py-2 opacity-50 cursor-wait ..."
 ```
 
-### 类型定义
-定义所有组件的 Props 和接口规范。
+### Component Contracts
+
+Ensures that every framework implementation (React, Vue, etc.) adheres to the same API.
 
 ```typescript
 import type { ButtonProps } from '@sxo/ui';
 ```
 
-## 为什么需要 @sxo/ui？
-`@sxo/ui` 是逻辑适配器（如 `vue-sxo`）和核心逻辑（如 `@sxo/design`）之间的桥梁。它确保了不同框架下的组件在样式表现和属性接口上的一致性。
+## 📖 Documentation
+
+For full documentation and examples, visit the [Components Index](https://sxo-engine.pages.dev/zh/components/button.html).
+
+## 📄 License
+
+MIT License.

@@ -1,16 +1,36 @@
-# @sxo/engine
+<div align="center">
+  <h1>@sxo/engine</h1>
+  <p><b>High-performance dynamic style generation engine for the SXO design system.</b></p>
 
-SXO 设计系统的样式引擎。
+  <p>
+    <a href="https://www.npmjs.com/package/@sxo/engine"><img src="https://img.shields.io/npm/v/@sxo/engine.svg?style=flat-square" alt="npm version"></a>
+    <img src="https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square" alt="license">
+    <img src="https://img.shields.io/bundlephobia/minzip/@sxo/engine?style=flat-square" alt="bundle size">
+    <img src="https://img.shields.io/npm/dm/@sxo/engine.svg?style=flat-square" alt="downloads">
+  </p>
+</div>
 
-## 安装
+---
+
+`@sxo/engine` is a powerful, runtime-first CSS-in-JS engine that generates atomic utility classes on demand. It bridges the gap between static design tokens and dynamic application needs.
+
+## ✨ Key Features
+
+- ⚡ **On-Demand Generation**: Generate CSS only when needed, keeping your styles lean.
+- 📱 **Responsive by Default**: Built-in support for customizable breakpoints.
+- 🎭 **State Variants**: Easy handling of `hover`, `focus`, `active`, and other pseudo-classes.
+- 🚀 **Performance Optimized**: Advanced caching prevents redundant style injections.
+- 🧩 **Design Token First**: Native integration with `@sxo/design` tokens.
+
+## 🚀 Quick Start
+
+### Installation
 
 ```bash
 pnpm add @sxo/engine @sxo/design
 ```
 
-## 用法
-
-### 基础用法
+### Basic Usage
 
 ```typescript
 import { StyleEngine } from '@sxo/engine';
@@ -18,26 +38,27 @@ import { defaultTokens } from '@sxo/design';
 
 const engine = new StyleEngine(defaultTokens);
 
-// 生成原子类样式
+// Generate atomic class styles
 const className = engine.generate('text-primary-DEFAULT bg-background-secondary');
-// 自动在 head 中注入对应的 CSS
+// Automatically injects corresponding CSS into the head
 ```
 
-### 响应式与变体
+### Responsive & States
 
-支持类似于 Tailwind 的响应式前缀和状态变体：
+Supports prefixes similar to Tailwind CSS for maximum familiarity.
 
 ```typescript
-// 响应式
+// Responsive breakpoints
 engine.generate('md:text-lg lg:grid-cols-2');
 
-// 状态变体
+// Interactive state variants
 engine.generate('hover:bg-primary-DEFAULT focus:ring-2');
 ```
 
-## 功能
+## 📖 Documentation
 
-- **动态样式生成**: 运行时按需生成 CSS，无需预编译。
-- **响应式支持**: 自动处理断点。
-- **状态支持**: hover, focus, active 等伪类支持。
-- **高性能**: 内置缓存机制，避免重复生成样式。
+For full documentation and examples, visit the [Atomic CSS Documentation](https://sxo-engine.pages.dev/zh/guide/atomic-css.html).
+
+## 📄 License
+
+MIT License.

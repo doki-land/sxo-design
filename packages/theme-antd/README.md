@@ -1,17 +1,37 @@
-# @sxo/theme-antd
+<div align="center">
+  <h1>@sxo/theme-antd</h1>
+  <p><b>Ant Design style theme for the SXO design system.</b></p>
 
-SXO 设计系统的 Ant Design 风格主题。
+  <p>
+    <a href="https://www.npmjs.com/package/@sxo/theme-antd"><img src="https://img.shields.io/npm/v/@sxo/theme-antd.svg?style=flat-square" alt="npm version"></a>
+    <img src="https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square" alt="license">
+    <img src="https://img.shields.io/npm/dm/@sxo/theme-antd.svg?style=flat-square" alt="downloads">
+  </p>
+</div>
 
-## 安装
+---
+
+`@sxo/theme-antd` provides a set of design tokens that replicate the clean, professional, and technical look of Ant Design 5.0 for your SXO-powered application.
+
+## ✨ Features
+
+- 💼 **Professional UI**: Based on Ant Design 5.0 specifications.
+- 🎨 **Balanced Palette**: Uses the classic "Technical Blue" as the primary color.
+- 📐 **Precise Spacing**: Follows the 8px grid system for layout and typography.
+- 🧩 **Drop-in Integration**: Works seamlessly with all SXO framework adaptors.
+
+## 🚀 Quick Start
+
+### Installation
 
 ```bash
-pnpm add @sxo/theme-antd @sxo/engine @sxo/design
+pnpm add @sxo/theme-antd
 ```
 
-## 用法
+### Usage (Vue 3 Example)
 
 ```typescript
-import { createSxo } from 'vue-sxo';
+import { createSxo } from '@sxo/vue';
 import antdTheme from '@sxo/theme-antd';
 
 app.use(createSxo({
@@ -19,6 +39,6 @@ app.use(createSxo({
 }));
 ```
 
-## 主题特色
-- **专业感**: 基于 Ant Design 5.0 设计规范。
-- **平衡配色**: 经典的技术蓝作为主色。
+## 📄 License
+
+MIT License.

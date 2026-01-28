@@ -1,36 +1,44 @@
-# @sxo/theme-pornhub
+<div align="center">
+  <h1>@sxo/theme-pornhub</h1>
+  <p><b>Pornhub style theme for the SXO design system. A high-contrast, dark-mode-first aesthetic.</b></p>
 
-SXO 设计系统的 Pornhub 风格主题。
+  <p>
+    <a href="https://www.npmjs.com/package/@sxo/theme-pornhub"><img src="https://img.shields.io/npm/v/@sxo/theme-pornhub.svg?style=flat-square" alt="npm version"></a>
+    <img src="https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square" alt="license">
+    <img src="https://img.shields.io/npm/dm/@sxo/theme-pornhub.svg?style=flat-square" alt="downloads">
+  </p>
+</div>
 
-## 安装
+---
+
+`@sxo/theme-pornhub` provides a striking, high-contrast dark theme based on the iconic color palette of Pornhub.
+
+## ✨ Features
+
+- 🌑 **Dark Mode First**: Optimized for low-light environments and high-contrast accessibility.
+- 🟠 **Classic Palette**: Deep black backgrounds with the signature "Warning Orange" (#FF9900).
+- 👁️ **High Readability**: Bold typography and clear state indicators.
+- 🧩 **Universal**: Compatible with all SXO adaptors and the core engine.
+
+## 🚀 Quick Start
+
+### Installation
 
 ```bash
-pnpm add @sxo/theme-pornhub @sxo/engine @sxo/design
+pnpm add @sxo/theme-pornhub
 ```
 
-## 用法
-
-配合 `vue-sxo` 或 `@sxo/engine` 使用：
+### Usage (Vue 3 Example)
 
 ```typescript
-import { createSxo } from 'vue-sxo';
+import { createSxo } from '@sxo/vue';
 import pornhubTheme from '@sxo/theme-pornhub';
 
-// 在 Vue 插件中使用
 app.use(createSxo({
     tokens: pornhubTheme
 }));
 ```
 
-或者直接在引擎中使用：
+## 📄 License
 
-```typescript
-import { StyleEngine } from '@sxo/engine';
-import pornhubTheme from '@sxo/theme-pornhub';
-
-const engine = new StyleEngine(pornhubTheme);
-```
-
-## 主题特色
-- **经典配色**: 黑色背景搭配醒目的橙色 (#FF9900)。
-- **高对比度**: 优化的文本可读性。
+MIT License.

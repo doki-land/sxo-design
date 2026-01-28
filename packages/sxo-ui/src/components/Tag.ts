@@ -62,8 +62,11 @@ export function getTagClasses(options: TagOptions = {}) {
     const disabledClasses = disabled ? 'opacity-50 cursor-not-allowed grayscale-[0.5] pointer-events-none' : '';
     const closeIcon = `cursor-pointer hover:opacity-70 transition-opacity ml-0.5 ${disabled ? 'pointer-events-none' : ''}`;
 
+    const variantData = variants[variant as keyof typeof variants] || variants.solid;
+    const colorClass = variantData[color as keyof typeof variantData] || variantData.primary;
+
     return {
-        base: `${base} ${roundedClasses[rounded]} ${sizeClasses[size]} ${variants[variant][color]} ${disabledClasses}`,
+        base: `${base} ${roundedClasses[rounded]} ${sizeClasses[size]} ${colorClass} ${disabledClasses}`,
         closeIcon,
     };
 }

@@ -12,7 +12,7 @@ import {
     type StatCardOptions,
     useShell,
 } from '@sxo/component-admin';
-import { defineComponent, h, onUnmounted, type PropType, ref } from 'vue';
+import { defineComponent, h, onUnmounted, type PropType, ref, resolveComponent } from 'vue';
 
 export const StatCard = defineComponent({
     name: 'SxoStatCard',
@@ -66,9 +66,13 @@ export const AdminShell = defineComponent({
     name: 'SxoAdminShell',
     props: {
         logo: { type: String, default: 'SXO Admin' },
+        theme: {
+            type: String as PropType<'dark' | 'light' | 'modern'>,
+            default: 'dark',
+        },
         menuItems: {
             type: Array as PropType<
-                { id: string; label: string; icon?: string; active?: boolean }[]
+                { id: string; label: string; icon?: string; active?: boolean; to?: string | object }[]
             >,
             default: () => [],
         },
@@ -76,7 +80,8 @@ export const AdminShell = defineComponent({
     setup(props, { slots }) {
         const shell = useShell();
         const isCollapsed = ref(shell.isCollapsed);
-        const styles = getShellClasses();
+        const styles = computed(() => getShellClasses({ theme: props.theme }));
+        const RouterLink = resolveComponent('router-link');
 
         const unsubscribe = shell.subscribe((collapsed: boolean) => {
             isCollapsed.value = collapsed;
@@ -85,42 +90,44 @@ export const AdminShell = defineComponent({
         onUnmounted(unsubscribe);
 
         return () =>
-            h('div', { class: styles.layout }, [
+            h('div', { class: styles.value.layout }, [
                 // Sidebar
                 h(
                     'aside',
                     {
-                        class: [styles.sidebar, isCollapsed.value ? styles.sidebarCollapsed : ''],
+                        class: [styles.value.sidebar, isCollapsed.value ? styles.value.sidebarCollapsed : ''],
                     },
                     [
-                        h('div', { class: styles.sidebarHeader }, [
-                            h('span', { class: 'text-lg font-bold' }, props.logo),
+                        h('div', { class: styles.value.sidebarHeader }, [
+                            slots.logo ? slots.logo() : h('span', { class: 'text-lg font-bold' }, props.logo),
                         ]),
-                        h('nav', { class: styles.sidebarContent }, [
-                            props.menuItems.map((item) =>
-                                h(
-                                    'a',
+                        h('nav', { class: styles.value.sidebarContent }, [
+                            props.menuItems.map((item) => {
+                                const tag = item.to ? RouterLink : 'a';
+                                return h(
+                                    tag as any,
                                     {
                                         key: item.id,
+                                        to: item.to,
                                         class: [
-                                            styles.navItem,
-                                            item.active ? styles.navItemActive : '',
+                                            styles.value.navItem,
+                                            item.active ? styles.value.navItemActive : '',
                                         ],
                                     },
                                     [
                                         item.icon ? h('span', { class: 'w-5' }, item.icon) : null,
                                         h('span', item.label),
                                     ],
-                                ),
-                            ),
+                                )
+                            }),
                         ]),
-                        h('div', { class: styles.sidebarFooter }, slots.sidebarFooter?.()),
+                        h('div', { class: styles.value.sidebarFooter }, slots.sidebarFooter?.()),
                     ],
                 ),
 
                 // Main Area
-                h('div', { class: styles.main }, [
-                    h('header', { class: styles.header }, [
+                h('div', { class: styles.value.main }, [
+                    h('header', { class: styles.value.header }, [
                         h(
                             'button',
                             {
@@ -129,9 +136,10 @@ export const AdminShell = defineComponent({
                             },
                             '☰',
                         ),
+                        h('div', { class: 'flex-1' }, slots.headerContent?.()),
                         h('div', { class: 'flex items-center gap-4' }, slots.headerActions?.()),
                     ]),
-                    h('main', { class: styles.content }, slots.default?.()),
+                    h('main', { class: styles.value.content }, slots.default?.()),
                 ]),
             ]);
     },

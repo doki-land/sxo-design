@@ -27,7 +27,7 @@ export function getPaginationClasses(options: PaginationOptions = {}) {
 
     return {
         container: `flex items-center gap-1 list-none p-0 m-0 select-none ${disabled ? 'opacity-50 cursor-not-allowed pointer-events-none' : ''}`,
-        item: `inline-flex items-center justify-center transition-all duration-200 cursor-pointer ${sizes[size]} ${variants[variant]} ${rounded ? 'rounded-lg' : ''}`,
+        item: `inline-flex items-center justify-center transition-all duration-200 cursor-pointer ${sizes[size]} ${variants[variant]} ${rounded ? 'rounded-full' : ''}`,
         active: activeClasses,
         disabled: disabledClasses,
         jumper: 'flex items-center gap-2 text-sm text-neutral-500 ml-4',

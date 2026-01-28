@@ -1,39 +1,69 @@
-# @sxo/design
+<div align="center">
+  <h1>@sxo/design</h1>
+  <p><b>The core logic engine and design token foundation for the SXO design system.</b></p>
 
-SXO 设计系统的核心设计规范和令牌 (Tokens)。
+  <p>
+    <a href="https://www.npmjs.com/package/@sxo/design"><img src="https://img.shields.io/npm/v/@sxo/design.svg?style=flat-square" alt="npm version"></a>
+    <img src="https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square" alt="license">
+    <img src="https://img.shields.io/bundlephobia/minzip/@sxo/design?style=flat-square" alt="bundle size">
+    <img src="https://img.shields.io/npm/dm/@sxo/design.svg?style=flat-square" alt="downloads">
+  </p>
+</div>
 
-## 安装
+---
+
+`@sxo/design` is the heart of the SXO ecosystem. It provides the complex state management, accessibility (A11y), and behavioral logic of UI components without being tied to any specific markup or styling implementation.
+
+## 🧩 The Headless Philosophy
+
+- **Zero Style Coupling**: Logic is completely separated from CSS. Use our atomic engine or your own CSS-in-JS/Sass solutions.
+- **Framework Agnostic**: Core logic is written in vanilla TypeScript, making it portable across any framework adaptor.
+- **Full Creative Control**: You have 100% control over the rendered HTML structure while we handle the "heavy lifting".
+- **Maximum Reusability**: Share complex component behaviors across different projects with entirely different visual identities.
+
+## ✨ Features
+
+- ♿ **A11y First**: Built-in ARIA support and keyboard interaction logic.
+- 🛡️ **Type Safe**: First-class TypeScript support for all tokens and logic.
+- 📦 **Modular**: Only import the logic you need. Tree-shakable by design.
+- 🎨 **Token Driven**: Centralized design tokens for colors, spacing, typography, and more.
+
+## 🚀 Quick Start
+
+### Installation
 
 ```bash
 pnpm add @sxo/design
 ```
 
-## 核心概念
+### 1. Using Headless Logic Hooks
 
-### Design Tokens (设计令牌)
-Design Tokens 是设计系统的最小单元，包含颜色、间距、字体等基础变量。
-
-```typescript
-import { defaultTokens, type DesignTokens } from '@sxo/design';
-
-// 使用默认令牌
-console.log(defaultTokens.color.primary.DEFAULT); // #000000
-```
-
-### Headless Logic (无状态逻辑)
-提供组件的行为逻辑抽象，不绑定具体的 UI 实现。
+Stateful logic for complex components like Menus, Dialogs, and Comboboxes.
 
 ```typescript
 import { useAccordion } from '@sxo/design';
 
-// 在框架适配器中使用
-const { expandedItems, toggleItem } = useAccordion({
+// The hook returns state and event handlers, but NO UI components.
+const { expandedItems, toggleItem, getHeaderProps, getPanelProps } = useAccordion({
     allowMultiple: true
 });
 ```
 
-## 功能
+### 2. Using Design Tokens
 
-- **Design Tokens**: 预设了一套完整的原子化设计变量。
-- **类型安全**: 提供完整的 `TokenPath` 和 `DesignTokens` 类型定义。
-- **工具函数**: 包含 `tokensToCssVars` 等实用工具。
+The atomic design language of the system.
+
+```typescript
+import { defaultTokens } from '@sxo/design';
+
+// Use as a single source of truth for colors, spacing, etc.
+const primaryColor = defaultTokens.color.primary.DEFAULT;
+```
+
+## 📖 Documentation
+
+For full documentation and examples, visit the [Design Tokens Documentation](https://sxo-engine.pages.dev/zh/guide/tokens.html).
+
+## 📄 License
+
+MIT License.

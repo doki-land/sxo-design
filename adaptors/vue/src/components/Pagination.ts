@@ -1,6 +1,7 @@
 import { getPaginationClasses, type PaginationOptions } from '@sxo/ui';
 import { computed, defineComponent, h, type PropType } from 'vue';
 import { useStyle } from '../hooks';
+import { Icon as SxoIcon } from './Icon';
 
 export const Pagination = defineComponent({
     name: 'SxoPagination',
@@ -59,7 +60,7 @@ export const Pagination = defineComponent({
                         class: [classes.value.item, current === 1 && classes.value.disabled],
                         onClick: () => changePage(current - 1),
                     },
-                    '<',
+                    [h(SxoIcon, { name: 'ChevronLeft', size: 16 })],
                 ),
             );
 
@@ -92,7 +93,7 @@ export const Pagination = defineComponent({
                         class: [classes.value.item, current === total && classes.value.disabled],
                         onClick: () => changePage(current + 1),
                     },
-                    '>',
+                    [h(SxoIcon, { name: 'ChevronRight', size: 16 })],
                 ),
             );
 

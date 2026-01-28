@@ -1,4 +1,4 @@
-import { Icons } from '@sxo/component-icons';
+import { Icons, type IconDefinition } from '@sxo/component-icons';
 import { defineComponent, h, type PropType } from 'vue';
 import { useStyle } from '../hooks';
 
@@ -21,12 +21,23 @@ export const Icon = defineComponent({
             type: Number,
             default: 2,
         },
+        variant: {
+            type: String as PropType<'linear' | 'solid'>,
+            default: 'linear',
+        },
     },
     setup(props, { attrs }) {
         useStyle(() => (attrs.class as string) || '');
 
         return () => {
-            const path = Icons[props.name];
+            const iconDef = Icons[props.name] as IconDefinition;
+            if (!iconDef) {
+                console.warn(`[SxoIcon] Icon "${props.name}" not found.`);
+                return h('span', { ...attrs, style: { display: 'inline-block', width: props.size, height: props.size } });
+            }
+            const path = (props.variant === 'solid' && iconDef.solid) ? iconDef.solid : iconDef.linear;
+            const isSolid = props.variant === 'solid' && !!iconDef.solid;
+
             return h(
                 'svg',
                 {
@@ -35,9 +46,9 @@ export const Icon = defineComponent({
                     width: props.size,
                     height: props.size,
                     viewBox: '0 0 24 24',
-                    fill: 'none',
-                    stroke: props.color,
-                    'stroke-width': props.strokeWidth,
+                    fill: isSolid ? props.color : 'none',
+                    stroke: isSolid ? 'none' : props.color,
+                    'stroke-width': isSolid ? 0 : props.strokeWidth,
                     'stroke-linecap': 'round',
                     'stroke-linejoin': 'round',
                     style: {

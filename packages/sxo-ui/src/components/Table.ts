@@ -16,19 +16,19 @@ export function getTableClasses(options: TableOptions = {}) {
     };
 
     return {
-        container: `w-full overflow-x-auto relative ${border ? 'border border-neutral-200 rounded-xl' : ''}`,
+        container: `w-full overflow-x-auto relative ${border ? 'border border-neutral-200/60 rounded-2xl shadow-sm bg-white' : ''}`,
         table: `w-full text-left border-collapse ${loading ? 'opacity-50 pointer-events-none' : ''}`,
-        thead: 'bg-neutral-50/80 backdrop-blur-sm border-b border-neutral-200 sticky top-0 z-10',
-        th: `font-bold text-neutral-500 uppercase tracking-wider ${sizes[size]}`,
-        tr: `border-b border-neutral-100 transition-colors ${hover ? 'hover:bg-neutral-50/50' : ''}`,
-        trSelected: 'bg-primary-50/30',
-        trStriped: striped ? 'even:bg-neutral-50/30' : '',
-        td: `${sizes[size]} text-neutral-700`,
+        thead: 'bg-neutral-50/50 backdrop-blur-md border-b border-neutral-100 sticky top-0 z-10',
+        th: `font-bold text-neutral-400 text-[11px] uppercase tracking-widest ${sizes[size]}`,
+        tr: `border-b border-neutral-50 transition-colors ${hover ? 'hover:bg-neutral-50/30' : ''}`,
+        trSelected: 'bg-primary/5',
+        trStriped: striped ? 'even:bg-neutral-50/20' : '',
+        td: `${sizes[size]} text-neutral-600 font-medium`,
         pagination:
-            'flex items-center justify-between px-4 py-3 border-t border-neutral-100 bg-white',
-        empty: 'flex flex-col items-center justify-center py-20 text-neutral-300 gap-2',
+            'flex items-center justify-between px-6 py-4 border-t border-neutral-50 bg-white/50',
+        empty: 'flex flex-col items-center justify-center py-24 text-neutral-300 gap-3',
         loading:
-            'absolute inset-0 bg-white/60 backdrop-blur-[1px] flex items-center justify-center z-20 transition-all duration-300',
+            'absolute inset-0 bg-white/40 backdrop-blur-sm flex items-center justify-center z-20 transition-all duration-300',
         spinner: 'animate-spin h-8 w-8 text-primary',
     };
 }

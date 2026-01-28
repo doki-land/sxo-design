@@ -1,87 +1,90 @@
-# SXO
+<div align="center">
+  <img src="https://raw.githubusercontent.com/sxo-ui/sxo/main/logo.png" width="120" height="120" alt="SXO Logo">
+  <h1>SXO</h1>
+  <p><b>A modern, modular, cross-framework design system engine.</b></p>
 
-SXO 是一个模块化的、跨框架的设计系统引擎。它旨在提供一套统一的设计语言和组件逻辑，同时支持多种主流前端框架。
+  <p>
+    <a href="https://www.npmjs.com/package/@sxo/engine"><img src="https://img.shields.io/npm/v/@sxo/engine.svg?style=flat-square" alt="npm version"></a>
+    <a href="https://github.com/sxo-ui/sxo/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square" alt="license"></a>
+    <a href="https://github.com/sxo-ui/sxo/pulls"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square" alt="PRs Welcome"></a>
+    <img src="https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square" alt="All Contributors">
+    <img src="https://img.shields.io/github/workflow/status/sxo-ui/sxo/CI?style=flat-square" alt="Build Status">
+  </p>
 
-## 特性
+  <p>
+    <a href="https://sxo-engine.pages.dev">Documentation</a> •
+    <a href="https://sxo-lab.pages.dev">Interactive Lab</a> •
+    <a href="https://sxo-preview.pages.dev">Component Preview</a>
+  </p>
+</div>
 
-- **跨框架支持**: 原生支持 Vue 3, Vue 2, React, Solid, Svelte 和 Alpine.js。
-- **模块化设计**: 按需引入，保持包体积最小化。
-- **设计令牌 (Design Tokens)**: 基于 Token 的样式管理，易于自定义和扩展。
-- **Headless 逻辑**: 核心逻辑与渲染分离，方便定制 UI。
+---
 
-## 在线演示
+SXO is not just another component library. It is a powerful **Design System Engine** designed to provide a unified design language and component logic while seamlessly supporting all major frontend frameworks.
 
-- **官方文档**: [sxo-engine.pages.dev](https://sxo-engine.pages.dev)
-- **交互实验室**: [sxo-lab.pages.dev](https://sxo-lab.pages.dev)
-- **组件预览**: [sxo-preview.pages.dev](https://sxo-preview.pages.dev)
+## ✨ Highlights
 
-## 项目结构
+- 🎨 **Universal Tokens**: Single source of truth for your design language across all platforms.
+- 🧩 **Pure Headless**: Complex component logic decoupled from rendering and styling.
+- ⚡ **Framework Agnostic**: Native support for **Vue 3, Vue 2, React, Solid, Svelte, and Alpine.js**.
+- 🛠️ **Modular & Tiny**: Tree-shakable by design. Only pay for what you use.
+- ♿ **Accessibility First**: Built-in ARIA support and keyboard interaction logic.
+- 🚀 **AOT Compilation**: Optimized bundle generation for maximum performance.
 
-```text
-.
-├── adaptors/         # 各框架适配器 (Vue, React, Solid, etc.)
-├── documentions/     # 项目文档 (VitePress)
-├── examples/         # 各框架使用示例
-├── packages/         # 核心包与无头组件
-└── pnpm-workspace.yaml
-```
+## 📦 Ecosystem
 
-## 快速开始
+| Package | Description |
+| :--- | :--- |
+| [`@sxo/design`](./packages/sxo-design) | Core logic engine and Design Tokens foundation. |
+| [`@sxo/engine`](./packages/sxo-engine) | High-performance dynamic style generation engine. |
+| [`@sxo/ui`](./packages/sxo-ui) | Framework-independent UI layout and style generators. |
+| [`@sxo/cli`](./packages/sxo-cli) | Command-line tools for theme generation and development. |
+| **Adaptors** | [Vue](./adaptors/vue) • [React](./adaptors/react) • [Solid](./adaptors/solid) • [Svelte](./adaptors/svelte) • [Alpine](./adaptors/alpine) |
 
-### 安装
+## 🚀 Quick Start
 
-使用 pnpm 安装核心包和对应的适配器：
+### Installation
 
 ```bash
-pnpm add @sxo/engine @sxo/design vue-sxo
+# Using pnpm (recommended)
+pnpm add @sxo/engine @sxo/design @sxo/vue
 ```
 
-### 使用
-
-#### Vue 3
+### Usage (Vue 3 Example)
 
 ```typescript
 import { createApp } from 'vue'
-import { createSxo } from 'vue-sxo'
+import { createSxo } from '@sxo/vue'
+import antdTheme from '@sxo/theme-antd'
 import App from './App.vue'
 
 const app = createApp(App)
-app.use(createSxo())
+app.use(createSxo({ tokens: antdTheme }))
 app.mount('#app')
 ```
 
-#### React
-
-```tsx
-import { SxoProvider } from 'react-sxo'
-
-function App() {
-  return (
-    <SxoProvider>
-      <YourApp />
-    </SxoProvider>
-  )
-}
-```
-
-## 开发
-
-本项目使用 pnpm 作为包管理工具。
+## 🛠️ Development
 
 ```bash
-# 安装依赖
+# Install dependencies
 pnpm install
 
-# 启动文档开发服务器
-pnpm --filter documentions dev
-
-# 构建所有包
+# Build all packages
 pnpm build
 
-# 运行测试
+# Run documentation locally
+pnpm --filter documentions dev
+
+# Run all tests
 pnpm test
 ```
 
-## 许可证
+## 📄 License
 
-本项目基于 [MIT License](LICENSE.md) 开源。
+SXO is open-source software licensed under the [MIT License](LICENSE.md).
+
+---
+
+<div align="center">
+  <sub>Built with ❤️ by the SXO Community.</sub>
+</div>

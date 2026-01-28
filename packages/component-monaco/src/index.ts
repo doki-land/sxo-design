@@ -13,7 +13,7 @@ export function createMonacoEditor(container: HTMLElement, options: MonacoEditor
     const {
         value = '',
         language = 'markdown',
-        theme = 'vs-dark',
+        theme = 'vs',
         readOnly = false,
         onChange,
         onMount,
@@ -28,6 +28,10 @@ export function createMonacoEditor(container: HTMLElement, options: MonacoEditor
         minimap: { enabled: false },
         scrollBeyondLastLine: false,
         wordWrap: 'on',
+        lineNumbers: 'on',
+        folding: true,
+        fontSize: 14,
+        fontFamily: 'Fira Code, monospace',
     });
 
     if (onChange) {

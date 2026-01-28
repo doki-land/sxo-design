@@ -1,4 +1,4 @@
-import { defineComponent, h, type PropType } from 'vue';
+import { defineComponent, h, type PropType, computed } from 'vue';
 import { useStyle } from '../hooks';
 
 export type Responsive<T> =
@@ -57,7 +57,7 @@ export const Stack = defineComponent({
         },
     },
     setup(props, { slots, attrs }) {
-        const classes = [
+        const internalClasses = computed(() => [
             'flex',
             ...resolveResponsive(props.direction, 'flex'),
             ...resolveResponsive(props.gap, 'gap'),
@@ -70,14 +70,13 @@ export const Stack = defineComponent({
                           ? v.replace('-true', '-wrap')
                           : v.replace('-false', '-nowrap'),
                   )),
-            attrs.class,
         ]
             .filter(Boolean)
-            .join(' ');
+            .join(' '));
 
-        useStyle(() => classes);
+        useStyle(internalClasses);
 
-        return () => h('div', { ...attrs, class: classes }, slots.default?.());
+        return () => h('div', { ...attrs, class: internalClasses.value }, slots.default?.());
     },
 });
 
@@ -98,19 +97,18 @@ export const Grid = defineComponent({
         },
     },
     setup(props, { slots, attrs }) {
-        const classes = [
+        const internalClasses = computed(() => [
             'grid',
             ...resolveResponsive(props.cols, 'grid-cols'),
             ...resolveResponsive(props.rows, 'grid-rows'),
             ...resolveResponsive(props.gap, 'gap'),
-            attrs.class,
         ]
             .filter(Boolean)
-            .join(' ');
+            .join(' '));
 
-        useStyle(() => classes);
+        useStyle(internalClasses);
 
-        return () => h('div', { ...attrs, class: classes }, slots.default?.());
+        return () => h('div', { ...attrs, class: internalClasses.value }, slots.default?.());
     },
 });
 
@@ -123,12 +121,12 @@ export const Container = defineComponent({
         },
     },
     setup(props, { slots, attrs }) {
-        const classes = ['container', props.center ? 'mx-auto' : '', attrs.class]
+        const internalClasses = computed(() => ['container', props.center ? 'mx-auto' : '']
             .filter(Boolean)
-            .join(' ');
+            .join(' '));
 
-        useStyle(() => classes);
+        useStyle(internalClasses);
 
-        return () => h('div', { ...attrs, class: classes }, slots.default?.());
+        return () => h('div', { ...attrs, class: internalClasses.value }, slots.default?.());
     },
 });

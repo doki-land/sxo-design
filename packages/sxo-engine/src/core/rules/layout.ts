@@ -12,6 +12,17 @@ export const layoutRules: Rule[] = [
     ['inline-block', () => ({ display: 'inline-block' })],
     ['inline', () => ({ display: 'inline' })],
     ['hidden', () => ({ display: 'none' })],
+    ['sr-only', () => ({
+        position: 'absolute',
+        width: '1px',
+        height: '1px',
+        padding: '0',
+        margin: '-1px',
+        overflow: 'hidden',
+        clip: 'rect(0, 0, 0, 0)',
+        'white-space': 'nowrap',
+        'border-width': '0',
+    })],
     ['appearance-none', () => ({ appearance: 'none' })],
 
     // Position
@@ -316,14 +327,15 @@ export const layoutRules: Rule[] = [
             const n1 = parsed.nodes[1];
             if (n0?.type !== 'literal') return false;
 
-            // Match grid-cols-2
-            if (n0.value === 'grid-cols' && parsed.nodes.length === 2) return true;
+            // Match grid-cols-2 or grid-rows-2
+            if ((n0.value === 'grid-cols' || n0.value === 'grid-rows') && parsed.nodes.length === 2)
+                return true;
 
-            // Match grid cols 2
+            // Match grid cols 2 or grid rows 2
             if (
                 n0.value === 'grid' &&
                 n1?.type === 'literal' &&
-                n1.value === 'cols' &&
+                (n1.value === 'cols' || n1.value === 'rows') &&
                 parsed.nodes.length === 3
             )
                 return true;
@@ -332,12 +344,15 @@ export const layoutRules: Rule[] = [
         },
         (_, { parsed }) => {
             const n0 = parsed.nodes[0] as { type: 'literal'; value: string };
-            const valueNode = n0.value === 'grid-cols' ? parsed.nodes[1] : parsed.nodes[2];
+            const isCols = n0.value === 'grid-cols' || (n0.value === 'grid' && (parsed.nodes[1] as any).value === 'cols');
+            const valueNode = (n0.value === 'grid-cols' || n0.value === 'grid-rows') ? parsed.nodes[1] : parsed.nodes[2];
+
+            const prop = isCols ? 'grid-template-columns' : 'grid-template-rows';
 
             if (valueNode.type === 'numeric')
-                return { 'grid-template-columns': `repeat(${valueNode.value}, minmax(0, 1fr))` };
+                return { [prop]: `repeat(${valueNode.value}, minmax(0, 1fr))` };
             if (valueNode.type === 'arbitrary')
-                return { 'grid-template-columns': valueNode.value.replace(/_/g, ' ') };
+                return { [prop]: valueNode.value.replace(/_/g, ' ') };
         },
     ],
 

@@ -2,6 +2,23 @@ import type { Rule } from '../types';
 import { getVar, resolveColor } from '../utils';
 
 export const typographyRules: Rule[] = [
+    // Text Alignment, Balance, Antialiasing
+    [
+        (parsed) =>
+            parsed.nodes[0]?.type === 'literal' &&
+            parsed.nodes[0].value === 'text' &&
+            parsed.nodes.length === 2 &&
+            ['left', 'center', 'right', 'justify', 'start', 'end', 'balance', 'nowrap'].includes(
+                (parsed.nodes[1] as any).value
+            ),
+        (_, { parsed }) => {
+            const val = (parsed.nodes[1] as any).value;
+            if (['left', 'center', 'right', 'justify', 'start', 'end'].includes(val))
+                return { 'text-align': val };
+            if (val === 'balance') return { 'text-wrap': 'balance' };
+            if (val === 'nowrap') return { 'white-space': 'nowrap' };
+        },
+    ],
     [
         (parsed) =>
             parsed.nodes[0]?.type === 'literal' &&
@@ -9,13 +26,19 @@ export const typographyRules: Rule[] = [
             parsed.nodes.length >= 2,
         (_, { tokens, parsed }) => {
             const node1 = parsed.nodes[1];
-            // 1. 尝试匹配字体大小 (tokens.typography.fontSize)
-            if (node1.type === 'literal') {
-                const size = tokens.typography.fontSize[node1.value];
-                if (size)
-                    return { 'font-size': getVar(`typography-fontSize-${node1.value}`, size) };
-            } else if (node1.type === 'numeric') {
-                return { 'font-size': node1.raw.match(/^\d+$/) ? `${node1.raw}px` : node1.raw };
+            // 1. 尝试从 tokens.typography.fontSize 中寻找 (优先支持 2xl, 4xl 等)
+            const key = (node1 as any).raw || (node1 as any).value;
+            const tokenValue = node1.type === 'literal' || node1.type === 'numeric' 
+                ? tokens.typography.fontSize[key] 
+                : undefined;
+            
+            if (tokenValue) {
+                return { 'font-size': getVar(`typography-fontSize-${key}`, tokenValue) };
+            }
+
+            // 2. 如果没找到 token，且是 numeric，则作为原始值
+            if (node1.type === 'numeric') {
+                return { 'font-size': (node1 as any).raw.match(/^\d+$/) ? `${(node1 as any).raw}px` : (node1 as any).raw };
             } else if (
                 node1.type === 'arbitrary' &&
                 (node1.value.endsWith('px') ||
@@ -72,20 +95,6 @@ export const typographyRules: Rule[] = [
             if (val) return { '--sxo-text-opacity': val };
         },
     ],
-    // Text Alignment, Balance, Antialiasing
-    [
-        (parsed) =>
-            parsed.nodes[0]?.type === 'literal' &&
-            parsed.nodes[0].value === 'text' &&
-            parsed.nodes.length === 2,
-        (_, { parsed }) => {
-            const val = (parsed.nodes[1] as any).value;
-            if (['left', 'center', 'right', 'justify', 'start', 'end'].includes(val))
-                return { 'text-align': val };
-            if (val === 'balance') return { 'text-wrap': 'balance' };
-            if (val === 'nowrap') return { 'white-space': 'nowrap' };
-        },
-    ],
     [
         (parsed) => parsed.nodes[0]?.type === 'literal' && parsed.nodes[0].value === 'antialiased',
         () => ({
@@ -99,9 +108,10 @@ export const typographyRules: Rule[] = [
         (parsed) =>
             parsed.nodes[0]?.type === 'literal' &&
             parsed.nodes[0].value === 'whitespace' &&
-            parsed.nodes.length === 2,
+            parsed.nodes.length >= 2,
         (_, { parsed }) => {
-            const val = (parsed.nodes[1] as any).value;
+            // 将 whitespace- 之后的所有部分连起来，处理 pre-wrap 等带有横杠的值
+            const val = parsed.nodes.slice(1).map(n => (n as any).value || (n as any).raw).join('-');
             if (['normal', 'nowrap', 'pre', 'pre-line', 'pre-wrap', 'break-spaces'].includes(val))
                 return { 'white-space': val };
         },

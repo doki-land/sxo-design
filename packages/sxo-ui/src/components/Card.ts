@@ -9,13 +9,13 @@ export function getCardClasses(options: CardOptions = {}) {
     const { variant = 'outline', padding = 'md', rounded = 'lg', interactive = false } = options;
 
     const base =
-        'bg-background-primary text-text-primary transition-all duration-300 overflow-hidden border border-neutral-200 hover:shadow-md';
+        'bg-background-primary text-text-primary transition-all duration-300 overflow-hidden border border-neutral-200/60';
 
     const variants = {
-        outline: 'border-neutral-200 bg-background-primary/80 backdrop-blur-md',
-        elevated: 'border-neutral-200 shadow-md bg-background-primary',
-        accent: 'border-primary/10 shadow-lg bg-gradient-to-br from-background-primary to-neutral-50',
-        ghost: 'border-none bg-neutral-50/50 backdrop-blur-sm',
+        outline: 'bg-white/80 backdrop-blur-md',
+        elevated: 'shadow-sm hover:shadow-md bg-white border-neutral-100',
+        accent: 'border-primary/20 shadow-lg shadow-primary/5 bg-gradient-to-br from-white to-primary/5',
+        ghost: 'border-none bg-neutral-100/50 backdrop-blur-sm',
     };
 
     const paddings = {

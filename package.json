@@ -17,6 +17,8 @@
         "type-check": "pnpm -r --parallel exec tsc --noEmit",
         "test:coverage": "vitest run --coverage",
         "clean": "npx tsx scripts/clean-dts.ts",
+        "fix:syntax": "npx tsx scripts/fix-syntax.ts",
+        "find-large-files": "npx tsx scripts/find-large-files.ts",
         "docs:generate": "npx tsx scripts/clean-dts.ts",
         "changeset": "changeset",
         "version-packages": "changeset version",

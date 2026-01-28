@@ -14,7 +14,7 @@ export function getCheckboxClasses(isChecked: boolean, options: CheckboxOptions 
     };
 
     const base =
-        'inline-flex items-center justify-center rounded border transition-all duration-200 focus:outline-none';
+        'inline-flex items-center justify-center rounded-xs border transition-all duration-200 focus:outline-none';
 
     const disabledClasses = disabled ? 'opacity-50 cursor-not-allowed bg-neutral-100 border-neutral-200' : 'cursor-pointer';
 

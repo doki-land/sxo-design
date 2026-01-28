@@ -1,5 +1,5 @@
 import { resolveToken, type TokenPath } from '@sxo/design';
-import { type ComputedRef, computed, onMounted, onUnmounted, ref, watchEffect } from 'vue';
+import { type ComputedRef, computed, onMounted, onUnmounted, ref, watchEffect, isRef } from 'vue';
 import { useSxo } from './plugin';
 
 const injectedStyles = new Set<string>();
@@ -7,11 +7,17 @@ const injectedStyles = new Set<string>();
 /**
  * Vue Composition API for SXO styles
  */
-export function useStyle(classNames: string | (() => string)): ComputedRef<string> {
+export function useStyle(classNames: string | (() => string) | ComputedRef<string>): ComputedRef<string> {
     const { engine } = useSxo();
 
     const classes = computed(() => {
-        const raw = typeof classNames === 'function' ? classNames() : classNames;
+        let raw: any = classNames;
+        if (typeof classNames === 'function') {
+            raw = classNames();
+        } else if (isRef(classNames)) {
+            raw = classNames.value;
+        }
+        
         if (!raw || typeof raw !== 'string') return [];
         return raw.split(/\s+/).filter(Boolean);
     });
@@ -46,9 +52,11 @@ export function useStyle(classNames: string | (() => string)): ComputedRef<strin
         }
     });
 
-    return typeof classNames === 'function'
-        ? computed(classNames)
-        : computed(() => classNames as string);
+    return isRef(classNames) 
+        ? (classNames as ComputedRef<string>)
+        : (typeof classNames === 'function'
+            ? computed(classNames as any)
+            : computed(() => classNames as string));
 }
 
 /**

@@ -25,6 +25,11 @@ export const Select = defineComponent({
             type: String as PropType<SelectOptions['size']>,
             default: 'md',
         },
+        /** 变体 */
+        variant: {
+            type: String as PropType<SelectOptions['variant']>,
+            default: 'outline',
+        },
         /** 选项列表（数据驱动模式） */
         options: {
             type: Array as PropType<{ label: string; value: string; disabled?: boolean }[]>,
@@ -62,14 +67,16 @@ export const Select = defineComponent({
             },
         );
 
+        const isOpen = ref(false);
         const select = useSelect({
             defaultValue: internalValue.value,
             disabled: props.disabled,
         });
 
         const classes = computed(() =>
-            getSelectClasses(select.isOpen, {
+            getSelectClasses(isOpen.value, {
                 size: props.size,
+                variant: props.variant,
                 disabled: props.disabled,
             }),
         );
@@ -80,6 +87,7 @@ export const Select = defineComponent({
             if (props.disabled) return;
             internalValue.value = val;
             select.setValue(val);
+            isOpen.value = false;
             emit('update:modelValue', val);
             emit('change', val);
         };
@@ -110,6 +118,9 @@ export const Select = defineComponent({
                         'div',
                         mergeProps(select.getTriggerProps(), otherAttrs, {
                             class: classes.value.trigger,
+                            onClick: () => {
+                                if (!props.disabled) isOpen.value = !isOpen.value;
+                            },
                         }),
                         [
                             h(
@@ -122,7 +133,7 @@ export const Select = defineComponent({
                             h(
                                 'svg',
                                 {
-                                    class: `transition-transform duration-200 ${select.isOpen ? 'rotate-180' : ''}`,
+                                    class: `transition-transform duration-200 ${isOpen.value ? 'rotate-180' : ''}`,
                                     width: '16',
                                     height: '16',
                                     viewBox: '0 0 24 24',
@@ -136,7 +147,10 @@ export const Select = defineComponent({
                     ),
                     h(
                         'div',
-                        { ...select.getListboxProps(), class: classes.value.listbox },
+                        mergeProps(select.getListboxProps(), {
+                            class: classes.value.listbox,
+                            style: { display: isOpen.value ? 'block' : 'none' },
+                        }),
                         props.virtual && props.options.length > 0
                             ? h(
                                   SxoVirtualList,
