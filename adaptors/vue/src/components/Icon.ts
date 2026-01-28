@@ -33,9 +33,13 @@ export const Icon = defineComponent({
             const iconDef = Icons[props.name] as IconDefinition;
             if (!iconDef) {
                 console.warn(`[SxoIcon] Icon "${props.name}" not found.`);
-                return h('span', { ...attrs, style: { display: 'inline-block', width: props.size, height: props.size } });
+                return h('span', {
+                    ...attrs,
+                    style: { display: 'inline-block', width: props.size, height: props.size },
+                });
             }
-            const path = (props.variant === 'solid' && iconDef.solid) ? iconDef.solid : iconDef.linear;
+            const path =
+                props.variant === 'solid' && iconDef.solid ? iconDef.solid : iconDef.linear;
             const isSolid = props.variant === 'solid' && !!iconDef.solid;
 
             return h(

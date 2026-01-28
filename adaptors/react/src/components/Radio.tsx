@@ -87,7 +87,11 @@ export const Radio: React.FC<RadioProps> = ({
     const disabled = propDisabled || context.disabled || false;
 
     const classes = getRadioClasses(isSelected, { size, color, disabled });
-    useStyle([classes.root, classes.inner, classes.label, classes.text, className].filter(Boolean).join(' '));
+    useStyle(
+        [classes.root, classes.inner, classes.label, classes.text, className]
+            .filter(Boolean)
+            .join(' '),
+    );
 
     return (
         <label className={`${classes.label} ${className}`.trim()}>

@@ -1,5 +1,15 @@
 import { type DrawerOptions, getDrawerClasses } from '@sxo/ui';
-import { computed, defineComponent, h, type PropType, ref, Teleport, Transition, watch, mergeProps } from 'vue';
+import {
+    computed,
+    defineComponent,
+    h,
+    type PropType,
+    ref,
+    Teleport,
+    Transition,
+    watch,
+    mergeProps,
+} from 'vue';
 
 export const Drawer = defineComponent({
     name: 'SxoDrawer',

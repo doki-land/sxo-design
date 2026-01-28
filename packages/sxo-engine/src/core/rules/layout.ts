@@ -12,17 +12,20 @@ export const layoutRules: Rule[] = [
     ['inline-block', () => ({ display: 'inline-block' })],
     ['inline', () => ({ display: 'inline' })],
     ['hidden', () => ({ display: 'none' })],
-    ['sr-only', () => ({
-        position: 'absolute',
-        width: '1px',
-        height: '1px',
-        padding: '0',
-        margin: '-1px',
-        overflow: 'hidden',
-        clip: 'rect(0, 0, 0, 0)',
-        'white-space': 'nowrap',
-        'border-width': '0',
-    })],
+    [
+        'sr-only',
+        () => ({
+            position: 'absolute',
+            width: '1px',
+            height: '1px',
+            padding: '0',
+            margin: '-1px',
+            overflow: 'hidden',
+            clip: 'rect(0, 0, 0, 0)',
+            'white-space': 'nowrap',
+            'border-width': '0',
+        }),
+    ],
     ['appearance-none', () => ({ appearance: 'none' })],
 
     // Position
@@ -139,9 +142,10 @@ export const layoutRules: Rule[] = [
             } else if (valueNode.type === 'literal' && valueNode.value === 'screen') {
                 value = prop === 'width' ? '100vw' : '100vh';
             } else {
-                value = ValueResolver.resolveSize(valueNode, tokens, prop) ||
-                        (valueNode as any).value ||
-                        (valueNode as any).raw;
+                value =
+                    ValueResolver.resolveSize(valueNode, tokens, prop) ||
+                    (valueNode as any).value ||
+                    (valueNode as any).raw;
             }
 
             const tokenKey =
@@ -229,7 +233,11 @@ export const layoutRules: Rule[] = [
             let value = '';
 
             // Handle flex-grow-* and flex-shrink-*
-            if (first === 'flex' && node.type === 'literal' && (node.value === 'grow' || node.value === 'shrink')) {
+            if (
+                first === 'flex' &&
+                node.type === 'literal' &&
+                (node.value === 'grow' || node.value === 'shrink')
+            ) {
                 first = node.value;
                 node = parsed.nodes[2];
                 if (!node) value = '1'; // flex-grow -> flex-grow: 1
@@ -344,8 +352,13 @@ export const layoutRules: Rule[] = [
         },
         (_, { parsed }) => {
             const n0 = parsed.nodes[0] as { type: 'literal'; value: string };
-            const isCols = n0.value === 'grid-cols' || (n0.value === 'grid' && (parsed.nodes[1] as any).value === 'cols');
-            const valueNode = (n0.value === 'grid-cols' || n0.value === 'grid-rows') ? parsed.nodes[1] : parsed.nodes[2];
+            const isCols =
+                n0.value === 'grid-cols' ||
+                (n0.value === 'grid' && (parsed.nodes[1] as any).value === 'cols');
+            const valueNode =
+                n0.value === 'grid-cols' || n0.value === 'grid-rows'
+                    ? parsed.nodes[1]
+                    : parsed.nodes[2];
 
             const prop = isCols ? 'grid-template-columns' : 'grid-template-rows';
 

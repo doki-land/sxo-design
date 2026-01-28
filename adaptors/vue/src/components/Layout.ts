@@ -57,22 +57,24 @@ export const Stack = defineComponent({
         },
     },
     setup(props, { slots, attrs }) {
-        const internalClasses = computed(() => [
-            'flex',
-            ...resolveResponsive(props.direction, 'flex'),
-            ...resolveResponsive(props.gap, 'gap'),
-            ...resolveResponsive(props.align, 'items'),
-            ...resolveResponsive(props.justify, 'justify'),
-            ...(typeof props.wrap === 'boolean'
-                ? [props.wrap ? 'flex-wrap' : 'flex-nowrap']
-                : resolveResponsive(props.wrap, 'flex').map((v) =>
-                      v.includes('true')
-                          ? v.replace('-true', '-wrap')
-                          : v.replace('-false', '-nowrap'),
-                  )),
-        ]
-            .filter(Boolean)
-            .join(' '));
+        const internalClasses = computed(() =>
+            [
+                'flex',
+                ...resolveResponsive(props.direction, 'flex'),
+                ...resolveResponsive(props.gap, 'gap'),
+                ...resolveResponsive(props.align, 'items'),
+                ...resolveResponsive(props.justify, 'justify'),
+                ...(typeof props.wrap === 'boolean'
+                    ? [props.wrap ? 'flex-wrap' : 'flex-nowrap']
+                    : resolveResponsive(props.wrap, 'flex').map((v) =>
+                          v.includes('true')
+                              ? v.replace('-true', '-wrap')
+                              : v.replace('-false', '-nowrap'),
+                      )),
+            ]
+                .filter(Boolean)
+                .join(' '),
+        );
 
         useStyle(internalClasses);
 
@@ -97,14 +99,16 @@ export const Grid = defineComponent({
         },
     },
     setup(props, { slots, attrs }) {
-        const internalClasses = computed(() => [
-            'grid',
-            ...resolveResponsive(props.cols, 'grid-cols'),
-            ...resolveResponsive(props.rows, 'grid-rows'),
-            ...resolveResponsive(props.gap, 'gap'),
-        ]
-            .filter(Boolean)
-            .join(' '));
+        const internalClasses = computed(() =>
+            [
+                'grid',
+                ...resolveResponsive(props.cols, 'grid-cols'),
+                ...resolveResponsive(props.rows, 'grid-rows'),
+                ...resolveResponsive(props.gap, 'gap'),
+            ]
+                .filter(Boolean)
+                .join(' '),
+        );
 
         useStyle(internalClasses);
 
@@ -121,9 +125,9 @@ export const Container = defineComponent({
         },
     },
     setup(props, { slots, attrs }) {
-        const internalClasses = computed(() => ['container', props.center ? 'mx-auto' : '']
-            .filter(Boolean)
-            .join(' '));
+        const internalClasses = computed(() =>
+            ['container', props.center ? 'mx-auto' : ''].filter(Boolean).join(' '),
+        );
 
         useStyle(internalClasses);
 

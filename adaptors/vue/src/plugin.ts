@@ -24,7 +24,9 @@ export interface SxoState {
 /**
  * Vue Plugin for SXO
  */
-export function createSxo(options: { tokens?: Partial<DesignTokens>; mode?: 'light' | 'dark' } = {}) {
+export function createSxo(
+    options: { tokens?: Partial<DesignTokens>; mode?: 'light' | 'dark' } = {},
+) {
     // Deep merge user tokens with default tokens
     const tokens = options.tokens ? mergeTokens(defaultTokens, options.tokens) : defaultTokens;
     const mode = options.mode || 'light';
@@ -45,9 +47,9 @@ export function createSxo(options: { tokens?: Partial<DesignTokens>; mode?: 'lig
                 const scan = () => {
                     const elements = document.querySelectorAll('[class*=" "], [class]');
                     const classes = new Set<string>();
-                    elements.forEach(el => {
+                    elements.forEach((el) => {
                         const className = el.getAttribute('class') || '';
-                        className.split(/\s+/).forEach(c => {
+                        className.split(/\s+/).forEach((c) => {
                             if (c && !c.startsWith('v-') && !c.startsWith('router-')) {
                                 classes.add(c);
                             }
@@ -91,7 +93,7 @@ export function createSxo(options: { tokens?: Partial<DesignTokens>; mode?: 'lig
                     attributes: true,
                     childList: true,
                     subtree: true,
-                    attributeFilter: ['class']
+                    attributeFilter: ['class'],
                 });
             }
 

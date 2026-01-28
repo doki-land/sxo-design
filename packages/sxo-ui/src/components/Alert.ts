@@ -8,7 +8,9 @@ export function getAlertClasses(options: AlertOptions = {}) {
     const { type = 'info', variant = 'subtle', disabled = false } = options;
 
     const base = 'flex items-start gap-3 p-4 rounded-lg text-sm transition-all duration-200';
-    const disabledClasses = disabled ? 'opacity-50 grayscale-[0.2] cursor-not-allowed select-none' : '';
+    const disabledClasses = disabled
+        ? 'opacity-50 grayscale-[0.2] cursor-not-allowed select-none'
+        : '';
 
     const variants = {
         subtle: {

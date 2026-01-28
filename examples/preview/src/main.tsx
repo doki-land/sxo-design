@@ -12,7 +12,17 @@ import { useState } from 'react';
 import ReactDOM from 'react-dom/client';
 import 'virtual:sxo.css';
 import './reset.css'; // Import Global Reset
-import { Badge, Button, Card, Dialog, Icon, Input, Menu, Table, ThemeProvider } from '@sxo/react-sxo';
+import {
+    Badge,
+    Button,
+    Card,
+    Dialog,
+    Icon,
+    Input,
+    Menu,
+    Table,
+    ThemeProvider,
+} from '@sxo/react-sxo';
 
 const extendedTokens = {
     ...defaultTokens,

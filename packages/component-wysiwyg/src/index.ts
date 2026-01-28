@@ -1,5 +1,11 @@
 import { Editor, rootCtx, defaultValueCtx, editorViewCtx, parserCtx } from '@milkdown/core';
-import { commonmark, toggleStrongCommand, toggleEmphasisCommand, wrapInBulletListCommand, wrapInBlockquoteCommand } from '@milkdown/preset-commonmark';
+import {
+    commonmark,
+    toggleStrongCommand,
+    toggleEmphasisCommand,
+    wrapInBulletListCommand,
+    wrapInBlockquoteCommand,
+} from '@milkdown/preset-commonmark';
 import { gfm, insertTableCommand } from '@milkdown/preset-gfm';
 import { nord } from '@milkdown/theme-nord';
 import { listener, listenerCtx } from '@milkdown/plugin-listener';
@@ -12,7 +18,10 @@ export interface WysiwygEditorOptions {
     onMount?: (editor: Editor) => void;
 }
 
-export async function createWysiwygEditor(container: HTMLElement, options: WysiwygEditorOptions = {}) {
+export async function createWysiwygEditor(
+    container: HTMLElement,
+    options: WysiwygEditorOptions = {},
+) {
     const { defaultValue = '', onChange, onMount } = options;
 
     const editor = await Editor.make()
@@ -42,11 +51,21 @@ export async function createWysiwygEditor(container: HTMLElement, options: Wysiw
         },
         runCommand: (command: string) => {
             switch (command) {
-                case 'bold': editor.action(callCommand(toggleStrongCommand.key)); break;
-                case 'italic': editor.action(callCommand(toggleEmphasisCommand.key)); break;
-                case 'bullet_list': editor.action(callCommand(wrapInBulletListCommand.key)); break;
-                case 'blockquote': editor.action(callCommand(wrapInBlockquoteCommand.key)); break;
-                case 'table': editor.action(callCommand(insertTableCommand.key)); break;
+                case 'bold':
+                    editor.action(callCommand(toggleStrongCommand.key));
+                    break;
+                case 'italic':
+                    editor.action(callCommand(toggleEmphasisCommand.key));
+                    break;
+                case 'bullet_list':
+                    editor.action(callCommand(wrapInBulletListCommand.key));
+                    break;
+                case 'blockquote':
+                    editor.action(callCommand(wrapInBlockquoteCommand.key));
+                    break;
+                case 'table':
+                    editor.action(callCommand(insertTableCommand.key));
+                    break;
             }
         },
         destroy: () => {

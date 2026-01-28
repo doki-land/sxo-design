@@ -59,7 +59,9 @@ export function getTagClasses(options: TagOptions = {}) {
         },
     };
 
-    const disabledClasses = disabled ? 'opacity-50 cursor-not-allowed grayscale-[0.5] pointer-events-none' : '';
+    const disabledClasses = disabled
+        ? 'opacity-50 cursor-not-allowed grayscale-[0.5] pointer-events-none'
+        : '';
     const closeIcon = `cursor-pointer hover:opacity-70 transition-opacity ml-0.5 ${disabled ? 'pointer-events-none' : ''}`;
 
     const variantData = variants[variant as keyof typeof variants] || variants.solid;

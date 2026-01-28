@@ -40,7 +40,7 @@ export const Button = defineComponent({
                 e.stopImmediatePropagation();
                 return;
             }
-            
+
             // Manually trigger the onClick from attrs if it exists
             const userHandler = attrs.onClick;
             if (userHandler) {

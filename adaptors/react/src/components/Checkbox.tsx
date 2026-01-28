@@ -56,7 +56,9 @@ export const CheckboxGroup: React.FC<CheckboxGroupProps> = ({
     };
 
     return (
-        <CheckboxGroupContext.Provider value={{ value: currentValue, toggleValue, size, color, disabled }}>
+        <CheckboxGroupContext.Provider
+            value={{ value: currentValue, toggleValue, size, color, disabled }}
+        >
             <div className={`flex flex-${direction} gap-${gap} ${className}`.trim()}>
                 {children}
             </div>
@@ -110,7 +112,11 @@ export const Checkbox: React.FC<CheckboxProps> = ({
         disabled,
     });
 
-    useStyle([classes.root, classes.icon, classes.label, classes.text, className].filter(Boolean).join(' '));
+    useStyle(
+        [classes.root, classes.icon, classes.label, classes.text, className]
+            .filter(Boolean)
+            .join(' '),
+    );
 
     const handleToggle = () => {
         if (disabled) return;

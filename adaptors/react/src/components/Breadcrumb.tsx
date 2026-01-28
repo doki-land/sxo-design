@@ -26,9 +26,9 @@ export const BreadcrumbItem: React.FC<BreadcrumbItemProps> = ({
     return (
         <div className={itemClasses}>
             {href && !current ? (
-                <a 
-                    href={disabled ? undefined : href} 
-                    className={current ? styles.current : styles.link} 
+                <a
+                    href={disabled ? undefined : href}
+                    className={current ? styles.current : styles.link}
                     onClick={(e) => {
                         if (disabled) {
                             e.preventDefault();

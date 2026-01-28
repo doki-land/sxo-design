@@ -48,9 +48,13 @@ export function getButtonClasses(options: ButtonOptions = {}) {
     const disabledClass = isDisabled ? 'opacity-30 cursor-not-allowed grayscale' : 'cursor-pointer';
 
     return {
-        container: [base, variants[variant], sizes[size], roundedClasses[rounded], disabledClass].join(
-            ' ',
-        ),
+        container: [
+            base,
+            variants[variant],
+            sizes[size],
+            roundedClasses[rounded],
+            disabledClass,
+        ].join(' '),
         spinner: 'animate-spin h-4 w-4',
     };
 }

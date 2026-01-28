@@ -13,7 +13,9 @@ export function getCascaderClasses(options: CascaderOptions = {}) {
         lg: 'h-12 px-4 text-base',
     };
 
-    const disabledClasses = disabled ? 'opacity-50 cursor-not-allowed bg-neutral-50 pointer-events-none' : 'bg-white cursor-pointer hover:border-primary-500';
+    const disabledClasses = disabled
+        ? 'opacity-50 cursor-not-allowed bg-neutral-50 pointer-events-none'
+        : 'bg-white cursor-pointer hover:border-primary-500';
 
     return {
         container: `relative inline-flex items-center w-full transition-all duration-200 border border-neutral-200 ${sizes[size]} ${rounded ? 'rounded-lg' : ''} ${disabledClasses}`,

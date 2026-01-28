@@ -1,6 +1,16 @@
 import { useTabs } from '@sxo/design';
 import { getTabsClasses, type TabsOptions } from '@sxo/ui';
-import { computed, defineComponent, h, inject, type PropType, provide, ref, watch, mergeProps } from 'vue';
+import {
+    computed,
+    defineComponent,
+    h,
+    inject,
+    type PropType,
+    provide,
+    ref,
+    watch,
+    mergeProps,
+} from 'vue';
 import { useStyle } from '../hooks';
 
 const TabsSymbol = Symbol('SxoTabs');

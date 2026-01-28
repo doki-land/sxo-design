@@ -72,7 +72,13 @@ export const AdminShell = defineComponent({
         },
         menuItems: {
             type: Array as PropType<
-                { id: string; label: string; icon?: string; active?: boolean; to?: string | object }[]
+                {
+                    id: string;
+                    label: string;
+                    icon?: string;
+                    active?: boolean;
+                    to?: string | object;
+                }[]
             >,
             default: () => [],
         },
@@ -95,11 +101,16 @@ export const AdminShell = defineComponent({
                 h(
                     'aside',
                     {
-                        class: [styles.value.sidebar, isCollapsed.value ? styles.value.sidebarCollapsed : ''],
+                        class: [
+                            styles.value.sidebar,
+                            isCollapsed.value ? styles.value.sidebarCollapsed : '',
+                        ],
                     },
                     [
                         h('div', { class: styles.value.sidebarHeader }, [
-                            slots.logo ? slots.logo() : h('span', { class: 'text-lg font-bold' }, props.logo),
+                            slots.logo
+                                ? slots.logo()
+                                : h('span', { class: 'text-lg font-bold' }, props.logo),
                         ]),
                         h('nav', { class: styles.value.sidebarContent }, [
                             props.menuItems.map((item) => {
@@ -118,7 +129,7 @@ export const AdminShell = defineComponent({
                                         item.icon ? h('span', { class: 'w-5' }, item.icon) : null,
                                         h('span', item.label),
                                     ],
-                                )
+                                );
                             }),
                         ]),
                         h('div', { class: styles.value.sidebarFooter }, slots.sidebarFooter?.()),

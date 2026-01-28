@@ -24,14 +24,14 @@ export const BreadcrumbItem = defineComponent({
                 props.href && !props.current
                     ? h(
                           'a',
-                          { 
-                              href: ctx.disabled.value ? undefined : props.href, 
+                          {
+                              href: ctx.disabled.value ? undefined : props.href,
                               class: [styles.value.link, attrs.class],
                               onClick: (e: MouseEvent) => {
                                   if (ctx.disabled.value) {
                                       e.preventDefault();
                                   }
-                              }
+                              },
                           },
                           slots.default?.(),
                       )
@@ -60,10 +60,12 @@ export const Breadcrumb = defineComponent({
             disabled: computed(() => props.disabled),
         });
 
-        const styles = computed(() => getBreadcrumbClasses({ 
-            separator: props.separator,
-            disabled: props.disabled 
-        }));
+        const styles = computed(() =>
+            getBreadcrumbClasses({
+                separator: props.separator,
+                disabled: props.disabled,
+            }),
+        );
 
         useStyle(() => {
             const s = styles.value;

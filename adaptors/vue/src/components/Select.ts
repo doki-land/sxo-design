@@ -1,6 +1,16 @@
 import { useSelect } from '@sxo/design';
 import { getSelectClasses, type SelectOptions } from '@sxo/ui';
-import { computed, defineComponent, h, inject, type PropType, provide, ref, watch, mergeProps } from 'vue';
+import {
+    computed,
+    defineComponent,
+    h,
+    inject,
+    type PropType,
+    provide,
+    ref,
+    watch,
+    mergeProps,
+} from 'vue';
 import { useStyle } from '../hooks';
 import { VirtualList as SxoVirtualList } from './VirtualList';
 
@@ -126,7 +136,9 @@ export const Select = defineComponent({
                             h(
                                 'span',
                                 {
-                                    class: internalValue.value ? 'text-foreground' : 'text-neutral-400',
+                                    class: internalValue.value
+                                        ? 'text-foreground'
+                                        : 'text-neutral-400',
                                 },
                                 getSelectedLabel(),
                             ),

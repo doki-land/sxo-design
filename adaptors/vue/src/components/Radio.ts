@@ -1,5 +1,15 @@
 import { getRadioClasses, type RadioOptions } from '@sxo/ui';
-import { computed, defineComponent, h, inject, type PropType, provide, ref, watch, mergeProps } from 'vue';
+import {
+    computed,
+    defineComponent,
+    h,
+    inject,
+    type PropType,
+    provide,
+    ref,
+    watch,
+    mergeProps,
+} from 'vue';
 import { useStyle } from '../hooks';
 
 const RadioGroupSymbol = Symbol('RadioGroup');

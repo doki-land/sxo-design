@@ -40,8 +40,8 @@ export const transformRules: Rule[] = [
                     ? val.startsWith('-')
                         ? val.substring(1)
                         : val.startsWith('var(')
-                        ? `calc(${val} * -1)`
-                        : `-${val}`
+                          ? `calc(${val} * -1)`
+                          : `-${val}`
                     : val;
                 return { transform: `translate${axis}(${finalVal})` };
             }

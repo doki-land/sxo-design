@@ -1,6 +1,6 @@
 {
     "name": "@sxo/design",
-    "version": "0.0.0",
+    "version": "0.0.1",
     "description": "Core design tokens and headless logic for SXO Design System.",
     "keywords": [
         "sxo",

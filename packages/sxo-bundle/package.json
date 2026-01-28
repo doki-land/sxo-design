@@ -1,6 +1,6 @@
 {
     "name": "@sxo/bundle",
-    "version": "0.0.0",
+    "version": "0.0.1",
     "private": true,
     "description": "AOT compiled bundle for CDN usage",
     "type": "module",

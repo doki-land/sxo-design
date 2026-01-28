@@ -88,10 +88,7 @@ export const Alert: React.FC<AlertProps> = ({
                 )}
             </div>
             {closable && (
-                <div
-                    className={styles.closeButton}
-                    onClick={(e) => !disabled && onClose?.(e)}
-                >
+                <div className={styles.closeButton} onClick={(e) => !disabled && onClose?.(e)}>
                     <svg
                         viewBox="0 0 24 24"
                         fill="none"

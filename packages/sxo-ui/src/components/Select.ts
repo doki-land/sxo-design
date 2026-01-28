@@ -22,11 +22,14 @@ export function getSelectClasses(isOpen: boolean, options: SelectOptions = {}) {
     const base =
         'relative flex items-center justify-between w-full rounded transition-all duration-200 focus:outline-none';
 
-    const disabledClasses = disabled ? 'opacity-50 cursor-not-allowed bg-neutral-50' : 'cursor-pointer';
+    const disabledClasses = disabled
+        ? 'opacity-50 cursor-not-allowed bg-neutral-50'
+        : 'cursor-pointer';
 
-    const borderClass = isOpen && variant === 'outline'
-        ? 'border-primary ring-2 ring-primary/20'
-        : variants[variant];
+    const borderClass =
+        isOpen && variant === 'outline'
+            ? 'border-primary ring-2 ring-primary/20'
+            : variants[variant];
 
     const listboxBase =
         'absolute top-full left-0 min-w-full mt-1 py-1 rounded border border-neutral-200 bg-background-primary shadow-lg z-50 transition-all duration-200';
@@ -34,8 +37,7 @@ export function getSelectClasses(isOpen: boolean, options: SelectOptions = {}) {
         ? 'opacity-100 scale-100'
         : 'opacity-0 scale-95 pointer-events-none';
 
-    const optionBase =
-        'px-3 py-2 cursor-pointer transition-colors duration-150 whitespace-nowrap';
+    const optionBase = 'px-3 py-2 cursor-pointer transition-colors duration-150 whitespace-nowrap';
 
     return {
         trigger: `${base} ${borderClass} ${sizes[size]} ${disabledClasses}`,

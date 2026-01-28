@@ -17,7 +17,9 @@ export function getRadioClasses(isSelected: boolean, options: RadioOptions = {})
         'inline-flex items-center justify-center rounded-full border transition-all duration-200 focus:outline-none',
     ].join(' ');
 
-    const disabledClasses = disabled ? 'cursor-not-allowed opacity-50 bg-neutral-100 border-neutral-200' : 'cursor-pointer';
+    const disabledClasses = disabled
+        ? 'cursor-not-allowed opacity-50 bg-neutral-100 border-neutral-200'
+        : 'cursor-pointer';
 
     const colorClass = isSelected
         ? disabled

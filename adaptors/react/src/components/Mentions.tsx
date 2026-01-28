@@ -52,7 +52,9 @@ export const Mentions: React.FC<MentionsProps> = ({
         readonly,
     });
 
-    useStyle(`${classes.container} ${classes.textarea} ${classes.dropdown} ${classes.dropdownItem} ${className}`);
+    useStyle(
+        `${classes.container} ${classes.textarea} ${classes.dropdown} ${classes.dropdownItem} ${className}`,
+    );
 
     const prefixes = useMemo(() => (Array.isArray(prefix) ? prefix : [prefix]), [prefix]);
 
@@ -100,9 +102,7 @@ export const Mentions: React.FC<MentionsProps> = ({
         const pos = cursorPosition;
         const textBeforeCursor = val.substring(0, pos);
 
-        const lastPrefixIndex = Math.max(
-            ...prefixes.map((p) => textBeforeCursor.lastIndexOf(p)),
-        );
+        const lastPrefixIndex = Math.max(...prefixes.map((p) => textBeforeCursor.lastIndexOf(p)));
 
         const newVal = `${val.substring(0, lastPrefixIndex + 1) + option.value} ${val.substring(pos)}`;
 
@@ -127,7 +127,9 @@ export const Mentions: React.FC<MentionsProps> = ({
             setSuggestionIndex((prev) => (prev + 1) % Math.max(1, filteredOptions.length));
         } else if (e.key === 'ArrowUp') {
             e.preventDefault();
-            setSuggestionIndex((prev) => (prev - 1 + filteredOptions.length) % Math.max(1, filteredOptions.length));
+            setSuggestionIndex(
+                (prev) => (prev - 1 + filteredOptions.length) % Math.max(1, filteredOptions.length),
+            );
         } else if (e.key === 'Enter') {
             e.preventDefault();
             if (filteredOptions[suggestionIndex]) {
@@ -159,7 +161,11 @@ export const Mentions: React.FC<MentionsProps> = ({
                             onClick={() => selectOption(opt)}
                         >
                             {opt.avatar && (
-                                <img src={opt.avatar} className="w-5 h-5 rounded-full mr-2" alt="" />
+                                <img
+                                    src={opt.avatar}
+                                    className="w-5 h-5 rounded-full mr-2"
+                                    alt=""
+                                />
                             )}
                             <span>{opt.label || opt.value}</span>
                         </div>

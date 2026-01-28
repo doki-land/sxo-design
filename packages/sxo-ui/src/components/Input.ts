@@ -7,12 +7,12 @@ export interface InputOptions {
 }
 
 export function getInputClasses(options: InputOptions = {}) {
-    const { 
-        size = 'md', 
-        variant = 'outline', 
-        invalid = false, 
+    const {
+        size = 'md',
+        variant = 'outline',
+        invalid = false,
         disabled = false,
-        readonly = false 
+        readonly = false,
     } = options;
 
     const containerBase =
@@ -45,10 +45,17 @@ export function getInputClasses(options: InputOptions = {}) {
     const currentSize = sizes[size];
 
     return {
-        container: [containerBase, variants[variant], currentSize.container, stateClass, disabledClass, readonlyClass].join(
+        container: [
+            containerBase,
+            variants[variant],
+            currentSize.container,
+            stateClass,
+            disabledClass,
+            readonlyClass,
+        ].join(' '),
+        input: [inputBase, currentSize.input, disabled || readonly ? 'cursor-default' : ''].join(
             ' ',
         ),
-        input: [inputBase, currentSize.input, (disabled || readonly) ? 'cursor-default' : ''].join(' '),
         prefix: `flex items-center mr-2 text-text-muted ${currentSize.addon}`,
         suffix: `flex items-center ml-2 text-text-muted ${currentSize.addon}`,
     };

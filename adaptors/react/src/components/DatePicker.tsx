@@ -25,10 +25,14 @@ export const DatePicker: React.FC<DatePickerProps> = ({
     className = '',
 }) => {
     const [internalValue, setInternalValue] = useState<Date | undefined>(
-        defaultValue ? new Date(defaultValue) : undefined
+        defaultValue ? new Date(defaultValue) : undefined,
     );
     const isControlled = controlledValue !== undefined;
-    const currentValue = isControlled ? (controlledValue ? new Date(controlledValue) : undefined) : internalValue;
+    const currentValue = isControlled
+        ? controlledValue
+            ? new Date(controlledValue)
+            : undefined
+        : internalValue;
 
     const [isOpen, setIsOpen] = useState(false);
     const [viewDate, setViewDate] = useState(currentValue || new Date());
@@ -42,7 +46,9 @@ export const DatePicker: React.FC<DatePickerProps> = ({
         readonly,
     });
 
-    useStyle(`${classes.container} ${classes.input} ${classes.icon} ${classes.panel} ${classes.header} ${classes.grid} ${classes.day} ${classes.dayOutside} ${classes.daySelected} ${classes.dayToday} ${className}`);
+    useStyle(
+        `${classes.container} ${classes.input} ${classes.icon} ${classes.panel} ${classes.header} ${classes.grid} ${classes.day} ${classes.dayOutside} ${classes.daySelected} ${classes.dayToday} ${className}`,
+    );
 
     const formattedValue = useMemo(() => {
         if (!currentValue) return '';
@@ -163,16 +169,37 @@ export const DatePicker: React.FC<DatePickerProps> = ({
             {isOpen && (
                 <div className={classes.panel}>
                     <div className={classes.header}>
-                        <button onClick={() => changeMonth(-1)} className="p-1 hover:bg-neutral-100 rounded">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <button
+                            onClick={() => changeMonth(-1)}
+                            className="p-1 hover:bg-neutral-100 rounded"
+                        >
+                            <svg
+                                width="16"
+                                height="16"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="2"
+                            >
                                 <polyline points="15 18 9 12 15 6" />
                             </svg>
                         </button>
                         <span className="font-medium">
-                            {viewDate.getFullYear()} - {String(viewDate.getMonth() + 1).padStart(2, '0')}
+                            {viewDate.getFullYear()} -{' '}
+                            {String(viewDate.getMonth() + 1).padStart(2, '0')}
                         </span>
-                        <button onClick={() => changeMonth(1)} className="p-1 hover:bg-neutral-100 rounded">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <button
+                            onClick={() => changeMonth(1)}
+                            className="p-1 hover:bg-neutral-100 rounded"
+                        >
+                            <svg
+                                width="16"
+                                height="16"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="2"
+                            >
                                 <polyline points="9 18 15 12 9 6" />
                             </svg>
                         </button>

@@ -16,9 +16,7 @@ export function getSearchClasses(options: SearchOptions = {}) {
         'w-full bg-white pl-10 pr-10 text-sm placeholder:text-neutral-400 focus:outline-none transition-all duration-200',
         size === 'sm' ? 'h-8 text-xs' : size === 'lg' ? 'h-12 text-base' : 'h-10 text-sm',
         rounded ? 'rounded-full' : 'rounded-md',
-        variant === 'outline'
-            ? 'border border-neutral-200 focus:border-primary shadow-sm'
-            : '',
+        variant === 'outline' ? 'border border-neutral-200 focus:border-primary shadow-sm' : '',
         variant === 'ghost'
             ? 'border-transparent bg-neutral-100 focus:bg-white focus:border-neutral-200'
             : '',

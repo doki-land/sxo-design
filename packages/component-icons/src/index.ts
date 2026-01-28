@@ -50,17 +50,17 @@ export interface IconProps {
  * 渲染 SVG 图标的辅助函数 (框架无关)
  */
 export function getIconSvg(props: IconProps) {
-    const { 
-        name, 
-        size = '1em', 
-        color = 'currentColor', 
-        strokeWidth = 2, 
+    const {
+        name,
+        size = '1em',
+        color = 'currentColor',
+        strokeWidth = 2,
         className = '',
-        variant = 'linear'
+        variant = 'linear',
     } = props;
-    
+
     const iconDef = Icons[name] as IconDefinition;
-    const path = (variant === 'solid' && iconDef.solid) ? iconDef.solid : iconDef.linear;
+    const path = variant === 'solid' && iconDef.solid ? iconDef.solid : iconDef.linear;
     const isSolid = variant === 'solid' && !!iconDef.solid;
 
     return `

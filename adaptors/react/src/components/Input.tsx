@@ -23,7 +23,12 @@ export const Input: React.FC<InputProps> = ({
     onInput,
     ...props
 }) => {
-    const { container, input, prefix: prefixClass, suffix: suffixClass } = getInputClasses({
+    const {
+        container,
+        input,
+        prefix: prefixClass,
+        suffix: suffixClass,
+    } = getInputClasses({
         variant,
         size,
         invalid,

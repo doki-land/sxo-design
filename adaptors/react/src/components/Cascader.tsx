@@ -45,7 +45,9 @@ export const Cascader: React.FC<CascaderProps> = ({
         readonly,
     });
 
-    useStyle(`${classes.container} ${classes.input} ${classes.icon} ${classes.iconOpen} ${classes.dropdown} ${classes.menu} ${classes.menuItem} ${classes.menuItemActive} ${classes.menuItemDisabled} ${className}`);
+    useStyle(
+        `${classes.container} ${classes.input} ${classes.icon} ${classes.iconOpen} ${classes.dropdown} ${classes.menu} ${classes.menuItem} ${classes.menuItemActive} ${classes.menuItemDisabled} ${className}`,
+    );
 
     const displayText = useMemo(() => {
         if (currentValue.length === 0) return '';

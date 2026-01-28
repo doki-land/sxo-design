@@ -14,7 +14,10 @@ export { Avatar as SxoAvatar } from './components/Avatar';
 export { BackTop as SxoBackTop } from './components/BackTop';
 export { Badge as SxoBadge } from './components/Badge';
 export { Box as SxoBox } from './components/Box';
-export { Breadcrumb as SxoBreadcrumb, BreadcrumbItem as SxoBreadcrumbItem } from './components/Breadcrumb';
+export {
+    Breadcrumb as SxoBreadcrumb,
+    BreadcrumbItem as SxoBreadcrumbItem,
+} from './components/Breadcrumb';
 export { Button as SxoButton } from './components/Button';
 export { Calendar as SxoCalendar } from './components/Calendar';
 export { Card as SxoCard } from './components/Card';
@@ -22,13 +25,20 @@ export { Cascader as SxoCascader } from './components/Cascader';
 export { Checkbox as SxoCheckbox, CheckboxGroup as SxoCheckboxGroup } from './components/Checkbox';
 export { CommandPalette as SxoCommandPalette } from './components/CommandPalette';
 export { DatePicker as SxoDatePicker } from './components/DatePicker';
-export { Descriptions as SxoDescriptions, DescriptionsItem as SxoDescriptionsItem } from './components/Descriptions';
+export {
+    Descriptions as SxoDescriptions,
+    DescriptionsItem as SxoDescriptionsItem,
+} from './components/Descriptions';
 export { Dialog as SxoDialog } from './components/Dialog';
 export { Divider as SxoDivider } from './components/Divider';
 export { Drawer as SxoDrawer } from './components/Drawer';
 export { Dropdown as SxoDropdown, DropdownItem as SxoDropdownItem } from './components/Dropdown';
 export { Empty as SxoEmpty } from './components/Empty';
-export { Progress as SxoProgress, Skeleton as SxoSkeleton, Spinner as SxoSpinner } from './components/Feedback';
+export {
+    Progress as SxoProgress,
+    Skeleton as SxoSkeleton,
+    Spinner as SxoSpinner,
+} from './components/Feedback';
 export { Form as SxoForm, FormItem as SxoFormItem } from './components/Form';
 export { I18nProvider as SxoI18nProvider, useI18n } from './components/I18n';
 export { Icon as SxoIcon } from './components/Icon';

@@ -46,10 +46,7 @@ export const Select: React.FC<SelectProps> = ({
 
     return (
         <div className={`relative inline-block w-full ${className}`.trim()}>
-            <div
-                {...getTriggerProps()}
-                className={classes.trigger}
-            >
+            <div {...getTriggerProps()} className={classes.trigger}>
                 <span className={currentValue ? 'text-foreground' : 'text-neutral-400'}>
                     {currentValue || placeholder}
                 </span>
@@ -106,10 +103,7 @@ export const SelectOption: React.FC<SelectOptionProps> = ({
         : getSelectClasses(false).option(isSelected, disabled);
 
     return (
-        <div
-            className={optionClass}
-            onClick={() => !disabled && onSelect?.(value)}
-        >
+        <div className={optionClass} onClick={() => !disabled && onSelect?.(value)}>
             {children}
         </div>
     );

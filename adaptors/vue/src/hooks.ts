@@ -7,7 +7,9 @@ const injectedStyles = new Set<string>();
 /**
  * Vue Composition API for SXO styles
  */
-export function useStyle(classNames: string | (() => string) | ComputedRef<string>): ComputedRef<string> {
+export function useStyle(
+    classNames: string | (() => string) | ComputedRef<string>,
+): ComputedRef<string> {
     const { engine } = useSxo();
 
     const classes = computed(() => {
@@ -17,7 +19,7 @@ export function useStyle(classNames: string | (() => string) | ComputedRef<strin
         } else if (isRef(classNames)) {
             raw = classNames.value;
         }
-        
+
         if (!raw || typeof raw !== 'string') return [];
         return raw.split(/\s+/).filter(Boolean);
     });
@@ -29,7 +31,7 @@ export function useStyle(classNames: string | (() => string) | ComputedRef<strin
             const styleTag = document.getElementById('sxo-engine');
             if (styleTag) {
                 // 按行分割，检查哪些行没被注入过
-                const lines = css.value.split('\n').filter(l => l.trim());
+                const lines = css.value.split('\n').filter((l) => l.trim());
                 let needsUpdate = false;
                 for (const line of lines) {
                     if (!injectedStyles.has(line)) {
@@ -37,26 +39,26 @@ export function useStyle(classNames: string | (() => string) | ComputedRef<strin
                         needsUpdate = true;
                     }
                 }
-                
+
                 if (needsUpdate) {
                     styleTag.innerHTML = Array.from(injectedStyles).join('\n');
                 }
             } else {
                 const tag = document.createElement('style');
                 tag.id = 'sxo-engine';
-                const lines = css.value.split('\n').filter(l => l.trim());
-                lines.forEach(l => injectedStyles.add(l));
+                const lines = css.value.split('\n').filter((l) => l.trim());
+                lines.forEach((l) => injectedStyles.add(l));
                 tag.innerHTML = Array.from(injectedStyles).join('\n');
                 document.head.appendChild(tag);
             }
         }
     });
 
-    return isRef(classNames) 
+    return isRef(classNames)
         ? (classNames as ComputedRef<string>)
-        : (typeof classNames === 'function'
-            ? computed(classNames as any)
-            : computed(() => classNames as string));
+        : typeof classNames === 'function'
+          ? computed(classNames as any)
+          : computed(() => classNames as string);
 }
 
 /**

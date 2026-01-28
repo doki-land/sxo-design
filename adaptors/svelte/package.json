@@ -1,6 +1,6 @@
 {
     "name": "@sxo/svelte",
-    "version": "0.0.0",
+    "version": "0.0.1",
     "description": "Svelte adaptor for SXO Design System.",
     "keywords": [
         "sxo",

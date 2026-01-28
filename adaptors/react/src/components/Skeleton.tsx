@@ -26,7 +26,9 @@ export const Skeleton: React.FC<SkeletonProps> = ({
     className = '',
 }) => {
     const classes = getSkeletonClasses({ active, rounded });
-    useStyle(`${classes.root} ${classes.header} ${classes.avatar} ${classes.title} ${classes.paragraph} ${classes.line} ${classes.lineLast} ${className}`);
+    useStyle(
+        `${classes.root} ${classes.header} ${classes.avatar} ${classes.title} ${classes.paragraph} ${classes.line} ${classes.lineLast} ${className}`,
+    );
 
     if (!loading) return <>{children}</>;
 
@@ -40,10 +42,7 @@ export const Skeleton: React.FC<SkeletonProps> = ({
             )}
             <div className={classes.paragraph}>
                 {Array.from({ length: rows }).map((_, i) => (
-                    <div
-                        key={i}
-                        className={i === rows - 1 ? classes.lineLast : classes.line}
-                    />
+                    <div key={i} className={i === rows - 1 ? classes.lineLast : classes.line} />
                 ))}
             </div>
         </div>
