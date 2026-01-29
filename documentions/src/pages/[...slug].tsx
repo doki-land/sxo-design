@@ -43,15 +43,20 @@ const DocPage: React.FC = () => {
             const attrs: any = { _type: tagName };
             // Parse attributes
             attrsStr.replace(/([^:=\s]+)=(['"])(.*?)\2|:([^:=\s]+)=(['"])(.*?)\5/g, (m, k1, q1, v1, k2, q2, v2) => {
-                if (k1) attrs[k1] = v1;
-                else if (k2) {
+                if (k1) {
+                    attrs[k1] = v1;
+                } else if (k2) {
                     const jsonStr = v2.trim();
+                    const key = k2;
+                    console.log(`[Parser] Parsing attribute ${key} for ${tagName}:`, jsonStr);
                     try {
-                        // Use Function to safely evaluate JS object literal
-                        attrs[k2] = new Function(`return (${jsonStr})`)();
+                        const finalJsonStr = jsonStr.startsWith('{') ? jsonStr : `{${jsonStr}}`;
+                        const parsed = new Function(`return (${finalJsonStr})`)();
+                        console.log(`[Parser] Successfully parsed attribute ${key} for ${tagName}:`, parsed);
+                        attrs[key] = parsed;
                     } catch (e) {
-                        console.error(`Failed to parse attribute ${k2}="${jsonStr}":`, e);
-                        attrs[k2] = jsonStr;
+                        console.error(`[Parser] Failed to parse attribute ${key} for ${tagName}:`, jsonStr, e);
+                        attrs[key] = jsonStr;
                     }
                 }
                 return m;

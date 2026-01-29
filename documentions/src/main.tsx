@@ -5,6 +5,7 @@ import { createCvoRouter, CvoProvider, generateRoutesFromPages } from '@cvo/plug
 import { SxoProvider } from '@sxo/react';
 import { pages as _cvo_pages } from 'virtual:cvo-pages';
 import App from './App';
+import 'virtual:sxo.css';
 import './index.css';
 
 export async function render(url: string) {

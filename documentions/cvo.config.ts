@@ -41,12 +41,6 @@ export default defineConfig({
         '/zh-CN/adaptors/hugo',
         '/zh-CN/adaptors/vite-plugin',
     ],
-    i18n: {
-        provider: new FluentI18nProvider(),
-        defaultLocale: 'zh-CN',
-        locales: ['en-US', 'zh-CN'],
-        fallbackLocale: 'en-US',
-    },
     ssg: {
         generateEmptyPages: true,
         partialHydration: false,
