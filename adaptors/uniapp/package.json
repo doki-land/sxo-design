@@ -1,0 +1,78 @@
+{
+    "name": "@sxo/uniapp",
+    "version": "0.0.1",
+    "description": "UniApp adaptor for SXO Design System.",
+    "keywords": [
+        "sxo",
+        "design-system",
+        "ui",
+        "components",
+        "uniapp",
+        "vue"
+    ],
+    "license": "MIT",
+    "author": "sxo team",
+    "type": "module",
+    "main": "./dist/index.cjs",
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.js",
+            "require": "./dist/index.cjs"
+        }
+    },
+    "publishConfig": {
+        "access": "public",
+        "main": "./dist/index.cjs",
+        "module": "./dist/index.js",
+        "types": "./dist/index.d.ts",
+        "exports": {
+            ".": {
+                "types": "./dist/index.d.ts",
+                "import": "./dist/index.js",
+                "require": "./dist/index.cjs"
+            }
+        }
+    },
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "build": "vite build",
+        "dev": "vite build --watch",
+        "test": "vitest run"
+    },
+    "dependencies": {
+        "@sxo/component-admin": "workspace:*",
+        "@sxo/component-icons": "workspace:*",
+        "@sxo/design": "workspace:*",
+        "@sxo/engine": "workspace:*",
+        "@sxo/ui": "workspace:*",
+        "vue": "^3.5.26"
+    },
+    "peerDependencies": {
+        "vue": "^3.0.0"
+    },
+    "devDependencies": {
+        "@vitejs/plugin-vue": "^5.2.4",
+        "@vue/test-utils": "^2.4.6",
+        "happy-dom": "^20.1.0",
+        "jsdom": "^27.4.0",
+        "typescript": "^5.9.3",
+        "vite": "^7.3.1",
+        "vite-plugin-dts": "^4.5.4",
+        "vitest": "^3.2.4"
+    },
+    "packageManager": "pnpm@10.27.0",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/doki-land/sxo-engine.git",
+        "directory": "adaptors/vue-sxo"
+    },
+    "bugs": {
+        "url": "https://github.com/doki-land/sxo-engine/issues"
+    },
+    "homepage": "https://github.com/doki-land/sxo-engine/tree/main/adaptors/vue-sxo#readme"
+}

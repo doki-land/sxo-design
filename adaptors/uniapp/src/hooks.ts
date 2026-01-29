@@ -28,6 +28,9 @@ export function useStyle(
 
     const css = computed(() => engine.generateBatch(classes.value));
 
+    // UniApp 应该依赖于静态 CSS (vite-plugin-sxo 生成的 virtual:sxo.css)
+    // 这里禁用运行时注入以避免 document 访问冲突
+    /*
     watchEffect(() => {
         if (css.value && typeof document !== 'undefined') {
             let styleTag = document.getElementById('sxo-engine');
@@ -51,6 +54,7 @@ export function useStyle(
             }
         }
     });
+    */
 
     return isRef(classNames)
         ? (classNames as ComputedRef<string>)
