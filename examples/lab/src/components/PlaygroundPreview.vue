@@ -10,11 +10,6 @@
           <template v-if="currentComponent.hasSlot">
             {{ componentProps.content || 'Sample Content' }}
           </template>
-        </component>
-      </div>
-    </div>
-  </div>
-</template>
 
 <script setup>
 defineProps({
@@ -70,4 +65,3 @@ defineEmits(['componentClick']);
   background: var(--sxo-color-background-secondary);
 }
 </style>
-

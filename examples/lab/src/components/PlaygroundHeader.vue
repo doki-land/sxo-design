@@ -55,4 +55,3 @@ defineEmits(['update:themeName', 'update:locale', 'toggleDark', 'openCommandPale
   background: var(--sxo-color-background-primary);
 }
 </style>
-

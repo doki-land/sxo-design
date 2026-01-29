@@ -85,4 +85,3 @@ defineEmits(['update:selectedComponentId']);
   font-weight: 600;
 }
 </style>
-

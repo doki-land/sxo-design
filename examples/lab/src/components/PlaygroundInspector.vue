@@ -81,4 +81,3 @@ defineEmits(['resetProps']);
   color: var(--sxo-color-neutral-600);
 }
 </style>
-

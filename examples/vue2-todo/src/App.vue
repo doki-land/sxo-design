@@ -1,40 +1,3 @@
-<script setup lang="ts">
-import { ref } from 'vue';
-import { Feedback } from '@sxo/vue2-sxo';
-
-const { Spinner } = Feedback;
-
-interface Todo {
-    id: number;
-    text: string;
-    completed: boolean;
-}
-
-const todos = ref<Todo[]>([]);
-const inputValue = ref('');
-const _loading = ref(false);
-
-const _addTodo = () => {
-    if (inputValue.value.trim()) {
-        todos.value.push({
-            id: Date.now(),
-            text: inputValue.value,
-            completed: false,
-        });
-        inputValue.value = '';
-    }
-};
-
-const _toggleTodo = (id: number) => {
-    const todo = todos.value.find((t) => t.id === id);
-    if (todo) todo.completed = !todo.completed;
-};
-
-const _deleteTodo = (id: number) => {
-    todos.value = todos.value.filter((t) => t.id !== id);
-};
-</script>
-
 <template>
   <Box class="min-h-screen bg-background-primary text-neutral-0 p-8 font-sans">
     <div class="max-w-md mx-auto">
@@ -96,6 +59,43 @@ const _deleteTodo = (id: number) => {
     </div>
   </Box>
 </template>
+
+<script setup lang="ts">
+import { ref } from 'vue';
+import { Feedback } from '@sxo/vue2-sxo';
+
+const { Spinner } = Feedback;
+
+interface Todo {
+    id: number;
+    text: string;
+    completed: boolean;
+}
+
+const todos = ref<Todo[]>([]);
+const inputValue = ref('');
+const _loading = ref(false);
+
+const _addTodo = () => {
+    if (inputValue.value.trim()) {
+        todos.value.push({
+            id: Date.now(),
+            text: inputValue.value,
+            completed: false,
+        });
+        inputValue.value = '';
+    }
+};
+
+const _toggleTodo = (id: number) => {
+    const todo = todos.value.find((t) => t.id === id);
+    if (todo) todo.completed = !todo.completed;
+};
+
+const _deleteTodo = (id: number) => {
+    todos.value = todos.value.filter((t) => t.id !== id);
+};
+</script>
 
 <style>
 /* 简单样式补偿，实际由 SXO Engine 处理 */

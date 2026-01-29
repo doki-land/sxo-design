@@ -49,4 +49,3 @@ defineEmits(['copyCode']);
   overflow: auto;
 }
 </style>
-
