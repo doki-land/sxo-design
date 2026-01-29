@@ -1,7 +1,7 @@
 import React from 'react';
 import { createRoot, hydrateRoot } from 'react-dom/client';
 import { RouterProvider } from 'react-router-dom';
-import { createCvoRouter, CvoProvider, generateRoutesFromPages } from '@cvo/plugin-react';
+import { createCvoRouter, CvoProvider, generateRoutesFromPages } from '@cvo/plugin-react/client';
 import { SxoProvider } from '@sxo/react';
 import { pages as _cvo_pages } from 'virtual:cvo-pages';
 import App from './App';

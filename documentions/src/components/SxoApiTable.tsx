@@ -37,6 +37,16 @@ const componentMetadata: Record<string, ApiProp[]> = {
         { name: 'color', description: '颜色', type: 'string', default: "'primary'" },
         { name: 'closable', description: '是否可关闭', type: 'boolean', default: 'false' },
     ],
+    Search: [
+        { name: 'value', description: '搜索关键词', type: 'string', default: "''" },
+        { name: 'placeholder', description: '占位提示符', type: 'string', default: "'搜索...'" },
+        { name: 'loading', description: '是否搜索中', type: 'boolean', default: 'false' },
+    ],
+    Icon: [
+        { name: 'name', description: '图标名称', type: 'string', default: "''" },
+        { name: 'size', description: '图标大小', type: 'number | string', default: '20' },
+        { name: 'color', description: '图标颜色', type: 'string', default: "'currentColor'" },
+    ],
 };
 
 interface SxoApiTableProps {

@@ -11,6 +11,20 @@
 <SxoCodeBlock framework="vue">
 
 ```vue
+<template>
+  <Form :initialValues="initialValues" :rules="rules" @submit="handleSubmit">
+    <FormItem name="username" label="用户名">
+      <Input placeholder="请输入用户名" />
+    </FormItem>
+    
+    <FormItem name="email" label="邮箱">
+      <Input placeholder="请输入邮箱" />
+    </FormItem>
+    
+    <Button type="submit">提交</Button>
+  </Form>
+</template>
+
 <script setup>
 import { Form, FormItem, Input, Button } from '@sxo/vue';
 import { ref } from 'vue';
@@ -35,20 +49,6 @@ const handleSubmit = (values) => {
   console.log('提交成功:', values);
 };
 </script>
-
-<template>
-  <Form :initialValues="initialValues" :rules="rules" @submit="handleSubmit">
-    <FormItem name="username" label="用户名">
-      <Input placeholder="请输入用户名" />
-    </FormItem>
-    
-    <FormItem name="email" label="邮箱">
-      <Input placeholder="请输入邮箱" />
-    </FormItem>
-    
-    <Button type="submit">提交</Button>
-  </Form>
-</template>
 ```
 
 

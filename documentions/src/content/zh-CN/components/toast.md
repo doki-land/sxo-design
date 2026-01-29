@@ -13,15 +13,15 @@
 <SxoCodeBlock framework="vue">
 
 ```vue
-<script setup>
-import { ToastProvider } from '@sxo/vue';
-</script>
-
 <template>
   <ToastProvider>
     <App />
   </ToastProvider>
 </template>
+
+<script setup>
+import { ToastProvider } from '@sxo/vue';
+</script>
 ```
 
 
@@ -71,6 +71,11 @@ export default {
 <SxoCodeBlock framework="vue">
 
 ```vue
+<template>
+  <button @click="showToast">成功通知</button>
+  <button @click="customToast">自定义通知</button>
+</template>
+
 <script setup>
 import { useToast } from '@sxo/vue';
 
@@ -90,11 +95,6 @@ const customToast = () => {
   });
 };
 </script>
-
-<template>
-  <button @click="showToast">成功通知</button>
-  <button @click="customToast">自定义通知</button>
-</template>
 ```
 
 

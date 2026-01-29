@@ -13,6 +13,8 @@ export default defineConfig({
         '/',
         '/zh-CN',
         '/en-US',
+        '/en-US/guide/getting-started',
+        '/en-US/components/button',
         '/zh-CN/guide/getting-started',
         '/zh-CN/guide/whitebook',
         '/zh-CN/guide/bundle',
