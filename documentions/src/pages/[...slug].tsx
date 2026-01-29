@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import MarkdownIt from 'markdown-it';
 
 const md = new MarkdownIt({
@@ -8,34 +8,24 @@ const md = new MarkdownIt({
     typographer: true
 });
 
+// Load all markdown files
+const docs = import.meta.glob('../content/**/*.md', { query: '?raw', eager: true });
+
 const DocPage: React.FC = () => {
-    const { slug } = useParams<{ slug: string }>();
-    const [content, setContent] = useState('');
+    const location = useLocation();
+    const path = location.pathname === '/' ? '/index' : location.pathname;
+    
+    // Find the matching markdown file
+    const contentKey = `../content${path}.md`;
+    const rawContent = (docs[contentKey] as any)?.default || '';
+    const htmlContent = md.render(rawContent);
 
-    useEffect(() => {
-        const loadContent = async () => {
-            try {
-                // Determine the language and path from slug
-                // For example: zh-CN/guide/getting-started
-                const path = slug || 'index';
-                const res = await fetch(`/src/content/${path}.md`);
-                if (res.ok) {
-                    const text = await res.text();
-                    setContent(md.render(text));
-                } else {
-                    setContent('<h1>404 - Not Found</h1>');
-                }
-            } catch (err) {
-                console.error('Failed to load doc:', err);
-                setContent('<h1>Error loading documentation</h1>');
-            }
-        };
-
-        loadContent();
-    }, [slug]);
+    if (!rawContent) {
+        return <h1>404 - Not Found ({contentKey})</h1>;
+    }
 
     return (
-        <div className="prose prose-indigo max-w-none" dangerouslySetInnerHTML={{ __html: content }} />
+        <div className="prose prose-indigo max-w-none" dangerouslySetInnerHTML={{ __html: htmlContent }} />
     );
 };
 
