@@ -1,9 +1,9 @@
 import { describe, expect, it } from 'vitest';
-import { pornhubTheme } from '../../theme-pornhub/src/tokens';
+import { pronhubTheme } from '../../theme-pronhub/src/tokens';
 import { StyleEngine } from '../src/engine';
 
-describe('StyleEngine with PornHub Theme', () => {
-    const engine = new StyleEngine(pornhubTheme);
+describe('StyleEngine with PronHub Theme', () => {
+    const engine = new StyleEngine(pronhubTheme);
 
     it('should generate correct CSS for primary background', () => {
         const css = engine.generate('bg-primary');
