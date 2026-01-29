@@ -36,23 +36,23 @@ export const Divider = defineComponent({
 
         return () => {
             if (props.direction === 'vertical') {
-                return h('div', { class: [styles.value.container, attrs.class] });
+                return h('view', { class: [styles.value.container, attrs.class] });
             }
 
             const hasContent = slots.default;
 
             if (!hasContent) {
-                return h('div', { class: [styles.value.line, 'my-4', attrs.class] });
+                return h('view', { class: [styles.value.line, 'my-4', attrs.class] });
             }
 
-            return h('div', { class: [styles.value.container, attrs.class] }, [
-                h('div', { class: [styles.value.line, styles.value.lineLeft] }),
+            return h('view', { class: [styles.value.container, attrs.class] }, [
+                h('view', { class: [styles.value.line, styles.value.lineLeft] }),
                 h(
-                    'span',
+                    'text',
                     { class: styles.value.text },
                     (slots.default ? slots.default() : null) as any,
                 ),
-                h('div', { class: [styles.value.line, styles.value.lineRight] }),
+                h('view', { class: [styles.value.line, styles.value.lineRight] }),
             ]);
         };
     },

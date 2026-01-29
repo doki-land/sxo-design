@@ -37,55 +37,31 @@ export const Empty = defineComponent({
         });
 
         const renderImage = () => {
-            if (slots.image) return h('div', { class: styles.value.image }, slots.image());
+            if (slots.image) return h('view', { class: styles.value.image }, slots.image());
             if (props.image)
-                return h('img', { src: props.image, class: styles.value.image, alt: 'empty' });
+                return h('image', { src: props.image, class: styles.value.image, mode: 'aspectFit' });
 
-            // Default empty illustration (SVG - Box/Inbox)
-            return h(
-                'div',
-                { class: 'flex items-center justify-center p-4 bg-neutral-50 rounded-full w-20 h-20 mb-4 mx-auto' },
-                [
-                    h(
-                        'svg',
-                        {
-                            viewBox: '0 0 24 24',
-                            class: ['w-10 h-10', 'opacity-20'],
-                            fill: 'none',
-                            stroke: 'currentColor',
-                            'stroke-width': '1.5',
-                            'stroke-linecap': 'round',
-                            'stroke-linejoin': 'round',
-                        },
-                        [
-                            h('path', {
-                                d: 'M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z',
-                            }),
-                            h('path', { d: 'm3.3 7 8.7 5 8.7-5' }),
-                            h('path', { d: 'M12 22V12' }),
-                        ],
-                    ),
-                ],
-            );
+            // UniApp 中不直接使用 SVG，暂时简单处理
+            return h('view', { class: 'flex items-center justify-center p-4 bg-neutral-50 rounded-full w-20 h-20 mb-4 mx-auto' });
         };
 
         return () =>
-            h('div', { class: [styles.value.container, attrs.class] }, [
+            h('view', { class: [styles.value.container, attrs.class] }, [
                 renderImage(),
-                h('div', { class: 'flex flex-col gap-1' }, [
+                h('view', { class: 'flex flex-col gap-1' }, [
                     props.title &&
                         h(
-                            'div',
+                            'view',
                             { class: 'text-base font-semibold text-neutral-600' },
                             slots.title ? slots.title() : props.title,
                         ),
                     h(
-                        'div',
+                        'view',
                         { class: styles.value.description },
                         slots.default ? slots.default() : props.description,
                     ),
                 ]),
-                slots.extra && h('div', { class: styles.value.extra }, slots.extra()),
+                slots.extra && h('view', { class: styles.value.extra }, slots.extra()),
             ]);
     },
 });

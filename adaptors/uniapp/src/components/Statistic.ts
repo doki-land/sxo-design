@@ -21,19 +21,19 @@ export const Statistic = defineComponent({
         });
 
         return () =>
-            h('div', { class: [styles.value.container, attrs.class] }, [
-                h('div', { class: styles.value.label }, slots.title ? slots.title() : props.title),
-                h('div', { class: styles.value.content }, [
+            h('view', { class: [styles.value.container, attrs.class] }, [
+                h('view', { class: styles.value.label }, slots.title ? slots.title() : props.title),
+                h('view', { class: styles.value.content }, [
                     (props.prefix || slots.prefix) &&
                         h(
-                            'span',
+                            'text',
                             { class: styles.value.prefix },
                             slots.prefix ? slots.prefix() : props.prefix,
                         ),
-                    h('span', { class: styles.value.value }, formattedValue.value),
+                    h('text', { class: styles.value.value }, formattedValue.value),
                     (props.suffix || slots.suffix) &&
                         h(
-                            'span',
+                            'text',
                             { class: styles.value.suffix },
                             slots.suffix ? slots.suffix() : props.suffix,
                         ),

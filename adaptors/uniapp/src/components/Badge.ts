@@ -26,7 +26,7 @@ export const Badge = defineComponent({
 
         return () =>
             h(
-                'span',
+                'text',
                 {
                     ...attrs,
                     class: [sxoClasses.value, attrs.class],

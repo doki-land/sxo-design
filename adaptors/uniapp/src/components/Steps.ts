@@ -32,31 +32,19 @@ export const Step = defineComponent({
             ].join(' ');
 
             if (status === 'completed') {
-                return h('div', { class: iconClass }, [
-                    h(
-                        'svg',
-                        {
-                            viewBox: '0 0 24 24',
-                            class: 'w-5 h-5',
-                            fill: 'none',
-                            stroke: 'currentColor',
-                            'stroke-width': '3',
-                        },
-                        [h('polyline', { points: '20 6 9 17 4 12' })],
-                    ),
-                ]);
+                return h('view', { class: iconClass }, '√');
             }
 
-            return h('div', { class: iconClass }, (props.index! + 1).toString());
+            return h('view', { class: iconClass }, (props.index! + 1).toString());
         };
 
         return () =>
-            h('div', { class: styles.value.item }, [
-                h('div', { class: styles.value.head }, [
-                    h('div', { class: styles.value.iconContainer }, [renderIcon()]),
+            h('view', { class: styles.value.item }, [
+                h('view', { class: styles.value.head }, [
+                    h('view', { class: styles.value.iconContainer }, [renderIcon()]),
                     !props.isLast &&
                         props.direction === 'horizontal' &&
-                        h('div', {
+                        h('view', {
                             class: [
                                 styles.value.line,
                                 stepStatus.value === 'completed'
@@ -65,9 +53,9 @@ export const Step = defineComponent({
                             ],
                         }),
                 ]),
-                h('div', { class: styles.value.content }, [
+                h('view', { class: styles.value.content }, [
                     h(
-                        'div',
+                        'view',
                         {
                             class: [
                                 styles.value.title,
@@ -80,14 +68,14 @@ export const Step = defineComponent({
                     ),
                     (props.description || slots.description) &&
                         h(
-                            'div',
+                            'view',
                             { class: styles.value.description },
                             slots.description ? slots.description() : props.description,
                         ),
                 ]),
                 !props.isLast &&
                     props.direction === 'vertical' &&
-                    h('div', {
+                    h('view', {
                         class: [
                             styles.value.line,
                             stepStatus.value === 'completed'

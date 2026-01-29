@@ -13,28 +13,28 @@ export const TimelineItem = defineComponent({
         const styles = computed(() => getTimelineClasses());
 
         return () =>
-            h('div', { class: [styles.value.item, attrs.class] }, [
-                h('div', { class: styles.value.tail }),
-                h('div', {
+            h('view', { class: [styles.value.item, attrs.class] }, [
+                h('view', { class: styles.value.tail }),
+                h('view', {
                     class: styles.value.dot,
                     style: props.color ? { backgroundColor: props.color } : undefined,
                 }),
-                h('div', { class: styles.value.content }, [
+                h('view', { class: styles.value.content }, [
                     (props.label || slots.label) &&
                         h(
-                            'div',
+                            'view',
                             { class: styles.value.label },
                             slots.label ? slots.label() : props.label,
                         ),
                     (props.title || slots.title) &&
                         h(
-                            'div',
+                            'view',
                             { class: styles.value.title },
                             slots.title ? slots.title() : props.title,
                         ),
                     (props.description || slots.default) &&
                         h(
-                            'div',
+                            'view',
                             { class: styles.value.description },
                             slots.default ? slots.default() : props.description,
                         ),
@@ -51,6 +51,6 @@ export const Timeline = defineComponent({
     setup(props, { slots, attrs }) {
         const styles = computed(() => getTimelineClasses({ mode: props.mode }));
 
-        return () => h('div', { class: [styles.value.container, attrs.class] }, slots.default?.());
+        return () => h('view', { class: [styles.value.container, attrs.class] }, slots.default?.());
     },
 });

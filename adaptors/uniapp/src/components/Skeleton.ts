@@ -34,24 +34,24 @@ export const Skeleton = defineComponent({
         const renderSkeleton = () => {
             // 如果指定了除 text 以外的特定变体，则渲染单体骨架
             if (props.variant && props.variant !== 'text') {
-                return h('div', {
+                return h('view', {
                     ...attrs,
                     class: [classes.value.base, attrs.class].filter(Boolean).join(' '),
                 });
             }
 
             // 默认渲染组合型骨架
-            return h('div', { ...attrs, class: [classes.value.root, attrs.class].filter(Boolean).join(' ') }, [
+            return h('view', { ...attrs, class: [classes.value.root, attrs.class].filter(Boolean).join(' ') }, [
                 (props.avatar || props.title) &&
-                    h('div', { class: classes.value.header }, [
-                        props.avatar && h('div', { class: classes.value.avatar }),
-                        props.title && h('div', { class: classes.value.title }),
+                    h('view', { class: classes.value.header }, [
+                        props.avatar && h('view', { class: classes.value.avatar }),
+                        props.title && h('view', { class: classes.value.title }),
                     ]),
                 h(
-                    'div',
+                    'view',
                     { class: classes.value.paragraph },
                     Array.from({ length: props.rows }).map((_, i) =>
-                        h('div', {
+                        h('view', {
                             class:
                                 i === props.rows - 1 ? classes.value.lineLast : classes.value.line,
                         }),

@@ -20,23 +20,26 @@ export const BreadcrumbItem = defineComponent({
         });
 
         return () =>
-            h('div', { class: styles.value.item }, [
+            h('view', { class: styles.value.item }, [
                 props.href && !props.current
                     ? h(
-                          'a',
+                          'view',
                           {
-                              href: ctx.disabled.value ? undefined : props.href,
                               class: [styles.value.link, attrs.class],
                               onClick: (e: MouseEvent) => {
                                   if (ctx.disabled.value) {
                                       e.preventDefault();
+                                      return;
+                                  }
+                                  if (props.href) {
+                                      uni.navigateTo({ url: props.href });
                                   }
                               },
                           },
                           slots.default?.(),
                       )
                     : h(
-                          'span',
+                          'text',
                           {
                               class: [
                                   props.current ? styles.value.current : styles.value.link,
@@ -77,14 +80,14 @@ export const Breadcrumb = defineComponent({
             const items = children.reduce((acc: any[], child, index) => {
                 acc.push(child);
                 if (index < children.length - 1) {
-                    acc.push(h('span', { class: styles.value.separator }, props.separator));
+                    acc.push(h('text', { class: styles.value.separator }, props.separator));
                 }
                 return acc;
             }, []);
 
             return h(
-                'nav',
-                { class: [styles.value.container, attrs.class], 'aria-label': 'Breadcrumb' },
+                'view',
+                { class: [styles.value.container, attrs.class] },
                 items,
             );
         };

@@ -47,7 +47,7 @@ export const Tag = defineComponent({
 
         return () =>
             h(
-                'span',
+                'text',
                 {
                     ...attrs,
                     class: [classes.value.base, attrs.class],
@@ -56,7 +56,7 @@ export const Tag = defineComponent({
                     slots.default?.(),
                     props.closable &&
                         h(
-                            'span',
+                            'text',
                             {
                                 class: classes.value.closeIcon,
                                 onClick: (e: MouseEvent) => {
