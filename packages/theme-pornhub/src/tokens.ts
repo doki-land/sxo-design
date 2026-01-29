@@ -89,4 +89,4 @@ export const pornhubTheme: DesignTokens = {
     },
 };
 
-export default pornhubTheme;
+export default pronhubTheme;

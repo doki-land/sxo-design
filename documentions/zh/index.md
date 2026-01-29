@@ -11,6 +11,8 @@
 
 ## 快速导航
 
+- [架构白皮书](./guide/whitebook)
+- [CDN Bundle](./guide/bundle)
 - [开始使用](./guide/getting-started)
 - [主题系统](./guide/theme)
 - [设计令牌](./guide/tokens)

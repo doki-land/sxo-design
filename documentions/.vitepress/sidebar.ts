@@ -9,6 +9,8 @@ export function getSidebar() {
             {
                 text: '指南',
                 items: [
+                    { text: '架构白皮书', link: '/zh/guide/whitebook' },
+                    { text: 'CDN Bundle (即用型)', link: '/zh/guide/bundle' },
                     { text: '快速开始', link: '/zh/guide/getting-started' },
                     { text: '设计令牌', link: '/zh/guide/tokens' },
                     { text: '原子化 CSS', link: '/zh/guide/atomic-css' },
