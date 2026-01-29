@@ -12,7 +12,7 @@
     "dependencies": {
         "@sxo/theme-pronhub": "workspace:*",
         "vue": "^3.5.26",
-        "@sxo/vue": "workspace:*"
+        "@sxo/plugin-vue": "workspace:*"
     },
     "devDependencies": {
         "@vitejs/plugin-vue": "^5.2.4",

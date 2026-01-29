@@ -31,7 +31,7 @@ pnpm add @sxo/theme-antd
 ### Usage (Vue 3 Example)
 
 ```typescript
-import { createSxo } from '@sxo/vue';
+import { createSxo } from '@sxo/plugin-vue';
 import antdTheme from '@sxo/theme-antd';
 
 app.use(createSxo({

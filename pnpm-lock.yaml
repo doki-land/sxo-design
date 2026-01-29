@@ -7,8 +7,8 @@ settings:
 overrides:
   esbuild: '>=0.25.0'
   vite: ^7.3.1
-  '@sxo/vue>vue': ^3.5.26
-  '@sxo/vue2>vue': 2.7.16
+  '@sxo/plugin-vue>vue': ^3.5.26
+  '@sxo/plugin-vue2>vue': 2.7.16
 
 importers:
 
@@ -916,7 +916,7 @@ importers:
       '@sxo/theme-material':
         specifier: workspace:*
         version: link:../../packages/theme-material
-      '@sxo/vue':
+      '@sxo/plugin-vue':
         specifier: workspace:*
         version: link:../../adaptors/vue
       vue:
@@ -1064,7 +1064,7 @@ importers:
       '@sxo/theme-pronhub':
         specifier: workspace:*
         version: link:../../packages/theme-pronhub
-      '@sxo/vue':
+      '@sxo/plugin-vue':
         specifier: workspace:*
         version: link:../../adaptors/vue
       vue:
@@ -1092,7 +1092,7 @@ importers:
       '@sxo/theme-pronhub':
         specifier: workspace:*
         version: link:../../packages/theme-pronhub
-      '@sxo/vue2':
+      '@sxo/plugin-vue2':
         specifier: workspace:*
         version: link:../../adaptors/vue2
       vue:

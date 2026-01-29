@@ -18,7 +18,7 @@ Box 组件是 SXO 的基础原子组件，它允许你通过属性直接控制�
 </template>
 
 <script setup>
-import { Box as SxoBox } from '@sxo/vue';
+import { Box as SxoBox } from '@sxo/plugin-vue';
 </script>
 ```
 
@@ -48,7 +48,7 @@ export default () => (
 </template>
 
 <script>
-import { Box } from '@sxo/vue2';
+import { Box } from '@sxo/plugin-vue2';
 export default {
   components: { SxoBox: Box }
 }

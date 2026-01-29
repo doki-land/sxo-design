@@ -17,7 +17,7 @@ pnpm add @sxo/engine @sxo/design vue-sxo
 
 ```typescript
 import { createApp } from 'vue'
-import { createSxo } from '@sxo/vue';
+import { createSxo } from '@sxo/plugin-vue';
 import App from './App.vue'
 
 const app = createApp(App)

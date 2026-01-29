@@ -37,7 +37,7 @@
 
 <script setup>
 import { ref } from 'vue';
-import { SxoSelect, SxoSelectOption } from '@sxo/vue';
+import { SxoSelect, SxoSelectOption } from '@sxo/plugin-vue';
 
 const value = ref('');
 const value2 = ref('apple');
@@ -119,7 +119,7 @@ export default function SelectDemo() {
 </template>
 
 <script>
-import { SxoSelect, SxoSelectOption } from '@sxo/vue2';
+import { SxoSelect, SxoSelectOption } from '@sxo/plugin-vue2';
 
 export default {
   components: { SxoSelect, SxoSelectOption },

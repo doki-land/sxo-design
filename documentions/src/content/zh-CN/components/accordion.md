@@ -21,7 +21,7 @@
 </template>
 
 <script setup>
-import { Accordion as SxoAccordion, AccordionItem as SxoAccordionItem } from '@sxo/vue';
+import { Accordion as SxoAccordion, AccordionItem as SxoAccordionItem } from '@sxo/plugin-vue';
 </script>
 ```
 
@@ -61,7 +61,7 @@ export default () => (
 </template>
 
 <script>
-import { Accordion, AccordionItem } from '@sxo/vue2';
+import { Accordion, AccordionItem } from '@sxo/plugin-vue2';
 export default {
   components: { SxoAccordion: Accordion, SxoAccordionItem: AccordionItem }
 }

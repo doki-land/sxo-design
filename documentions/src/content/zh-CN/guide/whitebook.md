@@ -31,8 +31,8 @@ graph TB
 
     subgraph "框架适配层"
         C1[@sxo/react]
-        C2[@sxo/vue]
-        C3[@sxo/vue2]
+        C2[@sxo/plugin-vue]
+        C3[@sxo/plugin-vue2]
         C4[@sxo/solid]
         C5[@sxo/svelte]
         C6[@sxo/alpine]
@@ -130,7 +130,7 @@ export function usePopover(options: PopoverOptions): PopoverApi;
 
 ## 五、框架与工具链集成
 
-### 1. **`@sxo/react` & `@sxo/vue` 等**
+### 1. **`@sxo/react` & `@sxo/plugin-vue` 等**
 **定位**： 框架专属的丝滑体验层。
 **职责**：
 - **框架适配**： 提供适用于 React, Vue, Solid 等框架的 `ThemeProvider` 组件。
@@ -165,7 +165,7 @@ export function usePopover(options: PopoverOptions): PopoverApi;
 @sxo/component-*
     ^
     | (框架封装)
-@sxo/react / @sxo/vue / ...
+@sxo/react / @sxo/plugin-vue / ...
     ^
     | (构建时优化)
 @sxo/vite-plugin

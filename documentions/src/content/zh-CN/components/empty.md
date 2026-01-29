@@ -35,7 +35,7 @@
 </template>
 
 <script setup>
-import { SxoEmpty, SxoButton } from '@sxo/vue';
+import { SxoEmpty, SxoButton } from '@sxo/plugin-vue';
 </script>
 ```
 
@@ -91,7 +91,7 @@ export default function EmptyDemo() {
 </template>
 
 <script>
-import { SxoEmpty, SxoButton } from '@sxo/vue2';
+import { SxoEmpty, SxoButton } from '@sxo/plugin-vue2';
 
 export default {
   components: { SxoEmpty, SxoButton }

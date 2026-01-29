@@ -25,7 +25,7 @@
 </template>
 
 <script setup>
-import { SxoBreadcrumb, SxoBreadcrumbItem } from '@sxo/vue';
+import { SxoBreadcrumb, SxoBreadcrumbItem } from '@sxo/plugin-vue';
 </script>
 ```
 
@@ -72,7 +72,7 @@ export default function BreadcrumbDemo() {
 </template>
 
 <script>
-import { SxoBreadcrumb, SxoBreadcrumbItem } from '@sxo/vue2';
+import { SxoBreadcrumb, SxoBreadcrumbItem } from '@sxo/plugin-vue2';
 
 export default {
   components: { SxoBreadcrumb, SxoBreadcrumbItem }

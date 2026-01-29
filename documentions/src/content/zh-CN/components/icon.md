@@ -21,7 +21,7 @@
 </template>
 
 <script setup>
-import { Icon as SxoIcon } from '@sxo/vue';
+import { Icon as SxoIcon } from '@sxo/plugin-vue';
 </script>
 ```
 
@@ -57,7 +57,7 @@ export default () => (
 </template>
 
 <script>
-import { Icon } from '@sxo/vue2';
+import { Icon } from '@sxo/plugin-vue2';
 export default {
   components: { SxoIcon: Icon }
 }

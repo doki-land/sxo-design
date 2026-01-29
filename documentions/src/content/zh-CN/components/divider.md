@@ -35,7 +35,7 @@
 </template>
 
 <script setup>
-import { SxoDivider } from '@sxo/vue';
+import { SxoDivider } from '@sxo/plugin-vue';
 </script>
 ```
 
@@ -96,7 +96,7 @@ export default function DividerDemo() {
 </template>
 
 <script>
-import { SxoDivider } from '@sxo/vue2';
+import { SxoDivider } from '@sxo/plugin-vue2';
 
 export default {
   components: { SxoDivider }

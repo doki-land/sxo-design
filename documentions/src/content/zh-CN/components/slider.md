@@ -17,7 +17,7 @@
 
 <script setup>
 import { ref } from 'vue';
-import { Slider as SxoSlider } from '@sxo/vue';
+import { Slider as SxoSlider } from '@sxo/plugin-vue';
 const value = ref(30);
 </script>
 ```
@@ -46,7 +46,7 @@ export default () => {
 </template>
 
 <script>
-import { Slider } from '@sxo/vue2';
+import { Slider } from '@sxo/plugin-vue2';
 export default {
   components: { SxoSlider: Slider },
   data() {
@@ -104,7 +104,7 @@ export default () => {
 </template>
 
 <script>
-import { Slider } from '@sxo/vue2';
+import { Slider } from '@sxo/plugin-vue2';
 export default {
   components: { SxoSlider: Slider },
   data() {
@@ -162,7 +162,7 @@ export default () => {
 </template>
 
 <script>
-import { Slider } from '@sxo/vue2';
+import { Slider } from '@sxo/plugin-vue2';
 export default {
   components: { SxoSlider: Slider },
   data() {

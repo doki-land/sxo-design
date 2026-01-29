@@ -31,7 +31,7 @@ pnpm add @sxo/theme-material
 ### Usage (Vue 3 Example)
 
 ```typescript
-import { createSxo } from '@sxo/vue';
+import { createSxo } from '@sxo/plugin-vue';
 import materialTheme from '@sxo/theme-material';
 
 app.use(createSxo({

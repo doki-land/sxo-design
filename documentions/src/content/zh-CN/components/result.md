@@ -44,7 +44,7 @@
 </template>
 
 <script setup>
-import { SxoResult, SxoButton } from '@sxo/vue';
+import { SxoResult, SxoButton } from '@sxo/plugin-vue';
 </script>
 ```
 
@@ -100,7 +100,7 @@ export default function ResultDemo() {
 </template>
 
 <script>
-import { SxoResult, SxoButton } from '@sxo/vue2';
+import { SxoResult, SxoButton } from '@sxo/plugin-vue2';
 
 export default {
   components: { SxoResult, SxoButton }

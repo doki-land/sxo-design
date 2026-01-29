@@ -31,7 +31,7 @@ pnpm add @sxo/theme-cupertino
 ### Usage (Vue 3 Example)
 
 ```typescript
-import { createSxo } from '@sxo/vue';
+import { createSxo } from '@sxo/plugin-vue';
 import cupertinoTheme from '@sxo/theme-cupertino';
 
 app.use(createSxo({

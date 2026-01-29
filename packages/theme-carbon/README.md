@@ -31,7 +31,7 @@ pnpm add @sxo/theme-carbon
 ### Usage (Vue 3 Example)
 
 ```typescript
-import { createSxo } from '@sxo/vue';
+import { createSxo } from '@sxo/plugin-vue';
 import carbonTheme from '@sxo/theme-carbon';
 
 app.use(createSxo({

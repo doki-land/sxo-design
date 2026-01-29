@@ -37,7 +37,7 @@
 
 <script setup>
 import { ref } from 'vue';
-import { SxoSearch } from '@sxo/vue';
+import { SxoSearch } from '@sxo/plugin-vue';
 
 const searchValue = ref('');
 const onSearch = (val) => {
@@ -104,7 +104,7 @@ export default function SearchDemo() {
 </template>
 
 <script>
-import { SxoSearch } from '@sxo/vue2';
+import { SxoSearch } from '@sxo/plugin-vue2';
 
 export default {
   components: { SxoSearch },

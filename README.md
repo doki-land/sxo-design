@@ -47,14 +47,14 @@ SXO is not just another component library. It is a powerful **Design System Engi
 
 ```bash
 # Using pnpm (recommended)
-pnpm add @sxo/engine @sxo/design @sxo/vue
+pnpm add @sxo/engine @sxo/design @sxo/plugin-vue
 ```
 
 ### Usage (Vue 3 Example)
 
 ```typescript
 import { createApp } from 'vue'
-import { createSxo } from '@sxo/vue'
+import { createSxo } from '@sxo/plugin-vue'
 import antdTheme from '@sxo/theme-antd'
 import App from './App.vue'
 

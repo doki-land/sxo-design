@@ -20,7 +20,7 @@
 </template>
 
 <script setup>
-import { ToastProvider } from '@sxo/vue';
+import { ToastProvider } from '@sxo/plugin-vue';
 </script>
 ```
 
@@ -50,7 +50,7 @@ export default () => (
 </template>
 
 <script>
-import { ToastProvider } from '@sxo/vue2';
+import { ToastProvider } from '@sxo/plugin-vue2';
 export default {
   components: { SxoToastProvider: ToastProvider }
 }
@@ -77,7 +77,7 @@ export default {
 </template>
 
 <script setup>
-import { useToast } from '@sxo/vue';
+import { useToast } from '@sxo/plugin-vue';
 
 const { success, error, info, warning, toast } = useToast();
 
@@ -132,7 +132,7 @@ export default () => {
 </template>
 
 <script>
-import { useToast } from '@sxo/vue2';
+import { useToast } from '@sxo/plugin-vue2';
 export default {
   setup() {
     const { success } = useToast();

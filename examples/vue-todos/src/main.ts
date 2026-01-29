@@ -1,5 +1,5 @@
 import { pronhubTheme } from '@sxo/theme-pronhub';
-import { createSxo } from '@sxo/vue';
+import { createSxo } from '@sxo/plugin-vue';
 import { createApp } from 'vue';
 import App from './App.vue';
 import './style.css';

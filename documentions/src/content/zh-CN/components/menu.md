@@ -20,7 +20,7 @@
 </template>
 
 <script setup>
-import { Menu as SxoMenu } from '@sxo/vue';
+import { Menu as SxoMenu } from '@sxo/plugin-vue';
 
 const menuItems = [
   { id: 'edit', label: '编辑' },
@@ -71,7 +71,7 @@ const App = () => {
 </template>
 
 <script>
-import { Menu } from '@sxo/vue2';
+import { Menu } from '@sxo/plugin-vue2';
 
 export default {
   components: { SxoMenu: Menu },
@@ -116,7 +116,7 @@ export default {
 </template>
 
 <script setup>
-import { Menu as SxoMenu } from '@sxo/vue';
+import { Menu as SxoMenu } from '@sxo/plugin-vue';
 const items = [{ id: '1', label: 'Option 1' }];
 </script>
 ```

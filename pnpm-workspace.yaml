@@ -6,3 +6,4 @@ packages:
   - 'documentions'
   - '../cvo-framework/packages/*'
   - '../cvo-framework/plugins/*'
+  - '../cvo-framework/adaptors/*'

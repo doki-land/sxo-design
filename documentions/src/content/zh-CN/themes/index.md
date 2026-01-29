@@ -79,7 +79,7 @@ SXO 提供了丰富的官方主题包，我们将它们分为 **2C (面向消费
 
 ```typescript
 import { createApp } from 'vue'
-import { createSxo } from '@sxo/vue'
+import { createSxo } from '@sxo/plugin-vue'
 import { materialTheme } from '@sxo/theme-material'
 
 const app = createApp(App)

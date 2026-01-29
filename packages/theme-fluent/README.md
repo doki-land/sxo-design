@@ -31,7 +31,7 @@ pnpm add @sxo/theme-fluent
 ### Usage (Vue 3 Example)
 
 ```typescript
-import { createSxo } from '@sxo/vue';
+import { createSxo } from '@sxo/plugin-vue';
 import fluentTheme from '@sxo/theme-fluent';
 
 app.use(createSxo({

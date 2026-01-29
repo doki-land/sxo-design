@@ -26,7 +26,7 @@ Layout 组件库提供了一系列用于页面布局的基础组件，包括 `Bo
 </template>
 
 <script setup>
-import { Box as SxoBox } from '@sxo/vue';
+import { Box as SxoBox } from '@sxo/plugin-vue';
 </script>
 ```
 
@@ -72,7 +72,7 @@ const App = () => (
 </template>
 
 <script>
-import { Box } from '@sxo/vue2';
+import { Box } from '@sxo/plugin-vue2';
 
 export default {
   components: { SxoBox: Box }
@@ -103,7 +103,7 @@ export default {
 </template>
 
 <script setup>
-import { Stack as SxoStack, Box as SxoBox } from '@sxo/vue';
+import { Stack as SxoStack, Box as SxoBox } from '@sxo/plugin-vue';
 </script>
 ```
 
@@ -137,7 +137,7 @@ const App = () => (
 </template>
 
 <script>
-import { Stack, Box } from '@sxo/vue2';
+import { Stack, Box } from '@sxo/plugin-vue2';
 
 export default {
   components: { SxoStack: Stack, SxoBox: Box }
@@ -168,7 +168,7 @@ export default {
 </template>
 
 <script setup>
-import { Grid as SxoGrid, Box as SxoBox } from '@sxo/vue';
+import { Grid as SxoGrid, Box as SxoBox } from '@sxo/plugin-vue';
 </script>
 ```
 
@@ -202,7 +202,7 @@ const App = () => (
 </template>
 
 <script>
-import { Grid, Box } from '@sxo/vue2';
+import { Grid, Box } from '@sxo/plugin-vue2';
 
 export default {
   components: { SxoGrid: Grid, SxoBox: Box }
@@ -233,7 +233,7 @@ export default {
 </template>
 
 <script setup>
-import { Container as SxoContainer, Box as SxoBox } from '@sxo/vue';
+import { Container as SxoContainer, Box as SxoBox } from '@sxo/plugin-vue';
 </script>
 ```
 
@@ -267,7 +267,7 @@ const App = () => (
 </template>
 
 <script>
-import { Container, Box } from '@sxo/vue2';
+import { Container, Box } from '@sxo/plugin-vue2';
 
 export default {
   components: { SxoContainer: Container, SxoBox: Box }

@@ -31,7 +31,7 @@ pnpm add @sxo/theme-fate
 ### Usage (Vue 3 Example)
 
 ```typescript
-import { createSxo } from '@sxo/vue';
+import { createSxo } from '@sxo/plugin-vue';
 import fateTheme from '@sxo/theme-fate';
 
 app.use(createSxo({

@@ -1,17 +1,17 @@
 <div align="center">
-  <h1>@sxo/vue2</h1>
+  <h1>@sxo/plugin-vue2</h1>
   <p><b>Vue 2 implementation of the SXO design system. Legacy support with modern headless logic.</b></p>
 
   <p>
-    <a href="https://www.npmjs.com/package/@sxo/vue2"><img src="https://img.shields.io/npm/v/@sxo/vue2.svg?style=flat-square" alt="npm version"></a>
+    <a href="https://www.npmjs.com/package/@sxo/plugin-vue2"><img src="https://img.shields.io/npm/v/@sxo/plugin-vue2.svg?style=flat-square" alt="npm version"></a>
     <img src="https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square" alt="license">
-    <img src="https://img.shields.io/npm/dm/@sxo/vue2.svg?style=flat-square" alt="downloads">
+    <img src="https://img.shields.io/npm/dm/@sxo/plugin-vue2.svg?style=flat-square" alt="downloads">
   </p>
 </div>
 
 ---
 
-`@sxo/vue2` provides the headless component logic and atomic styling of the SXO design system to Vue 2.x projects, ensuring consistent UI across your entire tech stack.
+`@sxo/plugin-vue2` provides the headless component logic and atomic styling of the SXO design system to Vue 2.x projects, ensuring consistent UI across your entire tech stack.
 
 ## ✨ Features
 
@@ -25,14 +25,14 @@
 ### Installation
 
 ```bash
-pnpm add @sxo/vue2 @sxo/ui @sxo/engine @sxo/design
+pnpm add @sxo/plugin-vue2 @sxo/ui @sxo/engine @sxo/design
 ```
 
 ### Usage
 
 ```javascript
 import Vue from 'vue';
-import { createSxo } from '@sxo/vue2';
+import { createSxo } from '@sxo/plugin-vue2';
 import antdTheme from '@sxo/theme-antd';
 
 Vue.use(createSxo({ tokens: antdTheme }));

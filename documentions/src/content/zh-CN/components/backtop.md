@@ -19,7 +19,7 @@
 </template>
 
 <script setup>
-import { BackTop as SxoBackTop } from '@sxo/vue';
+import { BackTop as SxoBackTop } from '@sxo/plugin-vue';
 </script>
 ```
 
@@ -51,7 +51,7 @@ export default () => (
 </template>
 
 <script>
-import { BackTop } from '@sxo/vue2';
+import { BackTop } from '@sxo/plugin-vue2';
 export default {
   components: { SxoBackTop: BackTop }
 }

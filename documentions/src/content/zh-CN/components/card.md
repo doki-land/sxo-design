@@ -30,7 +30,7 @@
 </template>
 
 <script setup>
-import { SxoCard } from '@sxo/vue';
+import { SxoCard } from '@sxo/plugin-vue';
 </script>
 ```
 
@@ -83,7 +83,7 @@ export default function CardDemo() {
 </template>
 
 <script>
-import { SxoCard } from '@sxo/vue2';
+import { SxoCard } from '@sxo/plugin-vue2';
 
 export default {
   components: { SxoCard }

@@ -24,7 +24,7 @@
 </template>
 
 <script setup>
-import { Dropdown as SxoDropdown, DropdownItem as SxoDropdownItem, Button as SxoButton } from '@sxo/vue';
+import { Dropdown as SxoDropdown, DropdownItem as SxoDropdownItem, Button as SxoButton } from '@sxo/plugin-vue';
 </script>
 ```
 
@@ -69,7 +69,7 @@ export default () => (
 </template>
 
 <script>
-import { Dropdown, DropdownItem, Button } from '@sxo/vue2';
+import { Dropdown, DropdownItem, Button } from '@sxo/plugin-vue2';
 export default {
   components: { 
     SxoDropdown: Dropdown, 

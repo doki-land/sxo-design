@@ -33,7 +33,7 @@ Dialog 弹出一个对话框，适合展示内容或进行简单的表单操作�
 
 <script setup>
 import { ref } from 'vue';
-import { Dialog as SxoDialog, Button as SxoButton } from '@sxo/vue';
+import { Dialog as SxoDialog, Button as SxoButton } from '@sxo/plugin-vue';
 const isOpen = ref(false);
 </script>
 ```
@@ -97,7 +97,7 @@ export default () => {
 </template>
 
 <script>
-import { Dialog, Button } from '@sxo/vue2';
+import { Dialog, Button } from '@sxo/plugin-vue2';
 export default {
   components: { SxoDialog: Dialog, SxoButton: Button },
   data() {
@@ -137,7 +137,7 @@ export default {
 
 <script setup>
 import { ref } from 'vue';
-import { Dialog as SxoDialog, Button as SxoButton } from '@sxo/vue';
+import { Dialog as SxoDialog, Button as SxoButton } from '@sxo/plugin-vue';
 const isOpen = ref(false);
 </script>
 ```
@@ -189,7 +189,7 @@ export default () => {
 </template>
 
 <script>
-import { Dialog, Button } from '@sxo/vue2';
+import { Dialog, Button } from '@sxo/plugin-vue2';
 export default {
   components: { SxoDialog: Dialog, SxoButton: Button },
   data() {

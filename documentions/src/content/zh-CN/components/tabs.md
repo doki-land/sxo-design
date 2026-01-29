@@ -26,7 +26,7 @@
 
 <script setup>
 import { ref } from 'vue';
-import { Tabs as SxoTabs, TabList as SxoTabList, Tab as SxoTab, TabPanel as SxoTabPanel } from '@sxo/vue';
+import { Tabs as SxoTabs, TabList as SxoTabList, Tab as SxoTab, TabPanel as SxoTabPanel } from '@sxo/plugin-vue';
 const activeName = ref('first');
 </script>
 ```
@@ -76,7 +76,7 @@ export default () => {
 </template>
 
 <script>
-import { Tabs, TabList, Tab, TabPanel } from '@sxo/vue2';
+import { Tabs, TabList, Tab, TabPanel } from '@sxo/plugin-vue2';
 export default {
   components: { SxoTabs: Tabs, SxoTabList: TabList, SxoTab: Tab, SxoTabPanel: TabPanel },
   data() {

@@ -19,7 +19,7 @@
 
 <script setup>
 import { ref } from 'vue';
-import { RadioGroup as SxoRadioGroup, Radio as SxoRadio } from '@sxo/vue';
+import { RadioGroup as SxoRadioGroup, Radio as SxoRadio } from '@sxo/plugin-vue';
 const value = ref('apple');
 </script>
 ```
@@ -58,7 +58,7 @@ export default () => {
 </template>
 
 <script>
-import { RadioGroup, Radio } from '@sxo/vue2';
+import { RadioGroup, Radio } from '@sxo/plugin-vue2';
 export default {
   components: { SxoRadioGroup: RadioGroup, SxoRadio: Radio },
   data() {

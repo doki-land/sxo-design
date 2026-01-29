@@ -26,7 +26,7 @@
 </template>
 
 <script setup>
-import { Form, FormItem, Input, Button } from '@sxo/vue';
+import { Form, FormItem, Input, Button } from '@sxo/plugin-vue';
 import { ref } from 'vue';
 
 const initialValues = {
@@ -115,7 +115,7 @@ export default () => {
 </template>
 
 <script>
-import { Form, FormItem, Input, Button } from '@sxo/vue2';
+import { Form, FormItem, Input, Button } from '@sxo/plugin-vue2';
 
 export default {
   components: { SxoForm: Form, SxoFormItem: FormItem, SxoInput: Input, SxoButton: Button },

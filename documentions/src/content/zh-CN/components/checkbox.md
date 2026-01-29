@@ -43,7 +43,7 @@
 
 <script setup>
 import { ref } from 'vue';
-import { SxoCheckbox, SxoCheckboxGroup } from '@sxo/vue';
+import { SxoCheckbox, SxoCheckboxGroup } from '@sxo/plugin-vue';
 
 const checked = ref(false);
 const groupValue = ref(['apple']);
@@ -125,7 +125,7 @@ export default function CheckboxDemo() {
 </template>
 
 <script>
-import { SxoCheckbox, SxoCheckboxGroup } from '@sxo/vue2';
+import { SxoCheckbox, SxoCheckboxGroup } from '@sxo/plugin-vue2';
 
 export default {
   components: { SxoCheckbox, SxoCheckboxGroup },

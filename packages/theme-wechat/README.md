@@ -31,7 +31,7 @@ pnpm add @sxo/theme-wechat
 ### Usage (Vue 3 Example)
 
 ```typescript
-import { createSxo } from '@sxo/vue';
+import { createSxo } from '@sxo/plugin-vue';
 import wechatTheme from '@sxo/theme-wechat';
 
 app.use(createSxo({

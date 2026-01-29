@@ -31,7 +31,7 @@ pnpm add @sxo/theme-pronhub
 ### Usage (Vue 3 Example)
 
 ```typescript
-import { createSxo } from '@sxo/vue';
+import { createSxo } from '@sxo/plugin-vue';
 import pronhubTheme from '@sxo/theme-pronhub';
 
 app.use(createSxo({

@@ -30,7 +30,7 @@
 
 <script setup>
 import { ref } from 'vue';
-import { SxoPagination } from '@sxo/vue';
+import { SxoPagination } from '@sxo/plugin-vue';
 
 const currentPage = ref(1);
 const handleChange = (page) => {
@@ -89,7 +89,7 @@ export default function PaginationDemo() {
 </template>
 
 <script>
-import { SxoPagination } from '@sxo/vue2';
+import { SxoPagination } from '@sxo/plugin-vue2';
 
 export default {
   components: { SxoPagination },

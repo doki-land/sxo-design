@@ -31,7 +31,7 @@ pnpm add @sxo/theme-github
 ### Usage (Vue 3 Example)
 
 ```typescript
-import { createSxo } from '@sxo/vue';
+import { createSxo } from '@sxo/plugin-vue';
 import githubTheme from '@sxo/theme-github';
 
 app.use(createSxo({

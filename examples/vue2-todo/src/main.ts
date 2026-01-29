@@ -1,6 +1,6 @@
 import { pronhubTheme } from '@sxo/theme-pronhub';
 import Vue from 'vue';
-import { SxoPlugin, ThemeProvider } from '@sxo/vue2-sxo';
+import { SxoPlugin, ThemeProvider } from '@sxo/plugin-vue2-sxo';
 import App from './App.vue';
 
 Vue.use(SxoPlugin, { tokens: pronhubTheme });

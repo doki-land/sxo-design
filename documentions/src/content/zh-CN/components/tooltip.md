@@ -41,7 +41,7 @@
 </template>
 
 <script setup>
-import { SxoTooltip, SxoButton, SxoIcon } from '@sxo/vue';
+import { SxoTooltip, SxoButton, SxoIcon } from '@sxo/plugin-vue';
 </script>
 ```
 
@@ -106,7 +106,7 @@ export default function TooltipDemo() {
 </template>
 
 <script>
-import { SxoTooltip, SxoButton } from '@sxo/vue2';
+import { SxoTooltip, SxoButton } from '@sxo/plugin-vue2';
 
 export default {
   components: { SxoTooltip, SxoButton }
