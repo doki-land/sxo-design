@@ -1,24 +1,33 @@
 import React from 'react';
 import { createRoot, hydrateRoot } from 'react-dom/client';
 import { RouterProvider } from 'react-router-dom';
-import { createCvoRouter, CvoProvider } from '@cvo/plugin-react';
+import { createCvoRouter, CvoProvider, generateRoutesFromPages } from '@cvo/plugin-react';
+import { SxoProvider } from '@sxo/react';
+import { pages as _cvo_pages } from 'virtual:cvo-pages';
 import App from './App';
-
-// Auto-discover pages
-const pages = import.meta.glob('./pages/**/*.tsx', { eager: true });
+import './index.css';
 
 export async function render(url: string) {
     const { renderToString } = await import('react-dom/server');
     
     const router = createCvoRouter({
-        pages,
         ssr: true,
-        initialEntries: [url]
+        initialEntries: [url],
+        pages: {},
+        routes: [
+            {
+                path: '/',
+                element: <App />,
+                children: generateRoutesFromPages(_cvo_pages)
+            }
+        ]
     });
 
     const html = renderToString(
         <CvoProvider>
-            <RouterProvider router={router} />
+            <SxoProvider>
+                <RouterProvider router={router} />
+            </SxoProvider>
         </CvoProvider>
     );
 
@@ -27,23 +36,35 @@ export async function render(url: string) {
 
 if (typeof document !== 'undefined') {
     const router = createCvoRouter({
-        pages,
-        ssr: false
+        pages: {},
+        routes: [
+            {
+                path: '/',
+                element: <App />,
+                children: generateRoutesFromPages(_cvo_pages)
+            }
+        ]
     });
 
-    const container = document.getElementById('app')!;
-    if (container.innerHTML) {
-        hydrateRoot(
-            container,
-            <CvoProvider>
-                <RouterProvider router={router} />
-            </CvoProvider>
-        );
-    } else {
-        createRoot(container).render(
-            <CvoProvider>
-                <RouterProvider router={router} />
-            </CvoProvider>
-        );
+    const container = document.getElementById('app');
+    if (container) {
+        if (container.hasChildNodes()) {
+            hydrateRoot(
+                container,
+                <CvoProvider>
+                    <SxoProvider>
+                        <RouterProvider router={router} />
+                    </SxoProvider>
+                </CvoProvider>
+            );
+        } else {
+            createRoot(container).render(
+                <CvoProvider>
+                    <SxoProvider>
+                        <RouterProvider router={router} />
+                    </SxoProvider>
+                </CvoProvider>
+            );
+        }
     }
 }

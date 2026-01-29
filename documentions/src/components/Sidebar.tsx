@@ -87,10 +87,10 @@ const Sidebar: React.FC = () => {
                             <li key={j}>
                                 <Link
                                     to={item.link}
-                                    className={`block text-sm transition-colors duration-200 ${
+                                    className={`sidebar-link ${
                                         location.pathname === item.link
-                                            ? 'text-indigo-600 font-medium'
-                                            : 'text-gray-600 hover:text-gray-900'
+                                            ? 'sidebar-link-active'
+                                            : 'sidebar-link-inactive'
                                     }`}
                                 >
                                     {item.text}

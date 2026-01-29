@@ -8,8 +8,8 @@ const App: React.FC = () => {
     const isZh = location.pathname.startsWith('/zh-CN');
 
     return (
-        <SxoBox as="div" className="min-h-screen bg-gray-50 flex flex-col">
-            <header className="bg-white border-b border-gray-200 sticky top-0 z-50">
+        <SxoBox as="div" className="min-h-screen bg-white flex flex-col">
+            <header className="nav-blur">
                 <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
                     <div className="flex items-center gap-8">
                         <Link to={isZh ? "/zh-CN" : "/en-US"} className="flex items-center gap-2">
@@ -61,7 +61,7 @@ const App: React.FC = () => {
                 </aside>
 
                 <main className="flex-1 min-w-0 py-10">
-                    <div className="bg-white rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100/50 p-8 md:p-12 min-h-[600px]">
+                    <div className="min-h-[600px]">
                         <Outlet />
                     </div>
                 </main>

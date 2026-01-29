@@ -1,7 +1,7 @@
 import React from 'react';
 import { useStyle } from '../hooks.ts';
 
-export interface BoxProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface SxoBoxProps extends React.HTMLAttributes<HTMLDivElement> {
     as?: React.ElementType;
     className?: string;
     p?: string | number;
@@ -20,10 +20,10 @@ export interface BoxProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 /**
- * Box 组件是 SXO 的原子组件
+ * SxoBox 组件是 SXO 的原子组件
  * 它允许你直接在 className 中使用 sxo-engine 的原子类
  */
-export const Box: React.FC<BoxProps> = ({
+export const SxoBox: React.FC<SxoBoxProps> = ({
     as: Component = 'div',
     className = '',
     children,
@@ -70,3 +70,6 @@ export const Box: React.FC<BoxProps> = ({
         </Comp>
     );
 };
+
+export const Box = SxoBox;
+export type BoxProps = SxoBoxProps;

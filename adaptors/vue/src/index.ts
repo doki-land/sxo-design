@@ -53,7 +53,7 @@ export { Radio as SxoRadio } from './components/Radio';
 export { Rate as SxoRate } from './components/Rate';
 export { Result as SxoResult } from './components/Result';
 export { Search as SxoSearch } from './components/Search';
-export { Select as SxoSelect } from './components/Select';
+export { Select as SxoSelect, SelectOption as SxoOption } from './components/Select';
 export { Skeleton as SxoSkeletonBase } from './components/Skeleton';
 export { Slider as SxoSlider } from './components/Slider';
 export { Statistic as SxoStatistic } from './components/Statistic';

@@ -1,10 +1,10 @@
 import { type RenderOptions, type RenderResult, render } from '@testing-library/react';
 import type React from 'react';
 import type { ReactElement } from 'react';
-import { ThemeProvider } from '../src/provider';
+import { SxoProvider } from '../src/provider';
 
 const AllTheProviders = ({ children }: { children: React.ReactNode }) => {
-    return <ThemeProvider>{children}</ThemeProvider>;
+    return <SxoProvider>{children}</SxoProvider>;
 };
 
 const customRender = (ui: ReactElement, options?: Omit<RenderOptions, 'wrapper'>): RenderResult =>

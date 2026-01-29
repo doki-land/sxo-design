@@ -3,13 +3,13 @@ import { StyleEngine } from '@sxo/engine';
 import React, { useEffect, useMemo } from 'react';
 import { SxoContext } from './context.ts';
 
-export interface ThemeProviderProps {
+export interface SxoProviderProps {
     tokens?: DesignTokens;
     mode?: 'light' | 'dark';
     children: React.ReactNode;
 }
 
-export const ThemeProvider: React.FC<ThemeProviderProps> = ({
+export const SxoProvider: React.FC<SxoProviderProps> = ({
     tokens = defaultTokens,
     mode = 'light',
     children,
@@ -64,3 +64,6 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
 
     return React.createElement(SxoContext.Provider, { value: { tokens, engine } }, children);
 };
+
+export const ThemeProvider = SxoProvider;
+export type ThemeProviderProps = SxoProviderProps;

@@ -1,11 +1,46 @@
 import { defineConfig } from '@cvo/core';
-import { FluentI18nProvider } from '@cvo/plugin-i18n-fluent';
+import { cvoReact } from '@cvo/plugin-react';
 
 export default defineConfig({
     port: 3000,
     type: 'frontend',
     mode: 'ssg',
-    routes: ['/', '/zh-CN/guide/getting-started', '/zh-CN/components/button'],
+    targets: ['web'],
+    plugins: [
+        cvoReact(),
+    ],
+    routes: [
+        '/',
+        '/zh-CN',
+        '/en-US',
+        '/zh-CN/guide/getting-started',
+        '/zh-CN/guide/whitebook',
+        '/zh-CN/guide/bundle',
+        '/zh-CN/guide/tokens',
+        '/zh-CN/guide/atomic-css',
+        '/zh-CN/guide/i18n',
+        '/zh-CN/guide/comparison',
+        '/zh-CN/components/button',
+        '/zh-CN/components/input',
+        '/zh-CN/components/search',
+        '/zh-CN/components/badge',
+        '/zh-CN/components/avatar',
+        '/zh-CN/components/tag',
+        '/zh-CN/components/icon',
+        '/zh-CN/components/layout',
+        '/zh-CN/components/divider',
+        '/zh-CN/components/box',
+        '/zh-CN/adaptors/vue',
+        '/zh-CN/adaptors/react',
+        '/zh-CN/adaptors/vue2',
+        '/zh-CN/adaptors/solid',
+        '/zh-CN/adaptors/svelte',
+        '/zh-CN/adaptors/alpine',
+        '/zh-CN/adaptors/spring-boot',
+        '/zh-CN/adaptors/hexo',
+        '/zh-CN/adaptors/hugo',
+        '/zh-CN/adaptors/vite-plugin',
+    ],
     i18n: {
         provider: new FluentI18nProvider(),
         defaultLocale: 'zh-CN',
@@ -14,5 +49,6 @@ export default defineConfig({
     },
     ssg: {
         generateEmptyPages: true,
+        partialHydration: false,
     },
 });

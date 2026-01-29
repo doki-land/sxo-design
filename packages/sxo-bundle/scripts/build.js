@@ -5,8 +5,15 @@ import { tokensToCssVars } from '../../sxo-design/src/index.ts';
 import { StyleEngine } from '../../sxo-engine/src/index.ts';
 import * as components from '../../sxo-ui/src/components/index.ts';
 import { antdTheme } from '../../theme-antd/src/index.ts';
+import { carbonTheme } from '../../theme-carbon/src/index.ts';
+import { cupertinoTheme } from '../../theme-cupertino/src/index.ts';
+import { fateTheme } from '../../theme-fate/src/index.ts';
+import { fluentTheme } from '../../theme-fluent/src/index.ts';
 import { githubTheme } from '../../theme-github/src/index.ts';
+import { halloweenTheme } from '../../theme-halloween/src/index.ts';
+import { materialTheme } from '../../theme-material/src/index.ts';
 import { pronhubTheme } from '../../theme-pronhub/src/index.ts';
+import { wechatTheme } from '../../theme-wechat/src/index.ts';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const distDir = path.resolve(__dirname, '../dist');
@@ -94,6 +101,13 @@ async function build() {
         pronhub: pronhubTheme,
         github: githubTheme,
         antd: antdTheme,
+        carbon: carbonTheme,
+        cupertino: cupertinoTheme,
+        fate: fateTheme,
+        fluent: fluentTheme,
+        halloween: halloweenTheme,
+        material: materialTheme,
+        wechat: wechatTheme,
     };
 
     for (const [name, tokens] of Object.entries(themes)) {
