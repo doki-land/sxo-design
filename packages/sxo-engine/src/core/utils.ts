@@ -9,6 +9,21 @@ export const getVar = (path: string, fallback: string, opacity?: string) => {
     return base;
 };
 
+export const withUnit = (value: number | string, unit?: 'px' | 'rpx' | 'rem') => {
+    if (typeof value === 'string') {
+        if (!unit || unit === 'px') return value;
+        // 如果已经有单位了，就不处理
+        if (/[a-z%]$/.test(value)) return value;
+        // 如果是纯数字字符串
+        if (/^\d+(\.\d+)?$/.test(value)) {
+            return `${value}${unit}`;
+        }
+        return value;
+    }
+    const targetUnit = unit || 'px';
+    return `${value}${targetUnit}`;
+};
+
 export function resolveColor(
     parsed: ParsedClass,
     tokens: DesignTokens,

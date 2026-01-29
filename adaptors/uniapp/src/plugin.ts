@@ -35,7 +35,9 @@ export function createSxo(
     const userTokens = options.tokens || options.theme;
     const tokens = userTokens ? mergeTokens(defaultTokens, userTokens) : defaultTokens;
     const mode = options.mode || 'light';
-    const engine = new StyleEngine(tokens);
+    const engine = new StyleEngine(tokens, {
+        unit: 'rpx',
+    });
 
     return {
         install(app: App) {

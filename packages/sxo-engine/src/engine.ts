@@ -99,7 +99,11 @@ export class StyleEngine {
     }
 
     private resolveStyles(parsed: any): string | Record<string, any> | undefined {
-        const context: RuleContext = { tokens: this.tokens, parsed };
+        const context: RuleContext = {
+            tokens: this.tokens,
+            parsed,
+            unit: this.options.unit,
+        };
         const rawUtility = parsed.utility;
 
         for (const [match, handler] of this.rules) {

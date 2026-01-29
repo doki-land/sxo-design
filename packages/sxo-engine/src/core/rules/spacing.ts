@@ -1,6 +1,6 @@
 import { ValueResolver } from '../resolver';
 import type { Rule } from '../types';
-import { getVar } from '../utils';
+import { getVar, withUnit } from '../utils';
 
 export const spacingRules: Rule[] = [
     // 1. Spacing (Margin & Padding)
@@ -15,7 +15,7 @@ export const spacingRules: Rule[] = [
                 parsed.nodes.length === 2
             );
         },
-        (_, { tokens, parsed }) => {
+        (_, { tokens, parsed, unit }) => {
             const first = (parsed.nodes[0] as any).value;
             const type = first[0] === 'm' ? 'margin' : 'padding';
             const side = first[1];
@@ -39,7 +39,7 @@ export const spacingRules: Rule[] = [
                 if (value === 'auto') return { [`${type}${suffix}`]: 'auto' };
             } else if (node.type === 'numeric' && !node.unit) {
                 // Tailwind 默认数值转 4px 比例
-                value = `${node.value * 4}px`;
+                value = withUnit(node.value * 4, unit);
             } else if (node.type === 'arbitrary') {
                 value = node.value.replace(/_/g, ' ');
             }
@@ -68,7 +68,7 @@ export const spacingRules: Rule[] = [
                 parsed.nodes.length >= 3
             );
         },
-        (_, { tokens, parsed }) => {
+        (_, { tokens, parsed, unit }) => {
             const axis = (parsed.nodes[1] as any).value;
             const node = parsed.nodes[2];
 
@@ -76,7 +76,7 @@ export const spacingRules: Rule[] = [
             if (!value && node.type === 'literal') {
                 value = node.value;
             } else if (node.type === 'numeric' && !node.unit) {
-                value = `${node.value * 4}px`;
+                value = withUnit(node.value * 4, unit);
             } else if (node.type === 'arbitrary') {
                 value = node.value.replace(/_/g, ' ');
             }

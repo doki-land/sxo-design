@@ -1,0 +1,63 @@
+/* sxo-uniapp.css - 针对小程序环境的样式修复补丁 */
+
+/* 1. 基础重置：解决小程序原生组件默认样式干扰 */
+button, 
+.sxo-button {
+  margin: 0;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  line-height: normal;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+  box-sizing: border-box;
+}
+
+button::after {
+  display: none;
+  border: none;
+}
+
+/* 2. 居中补丁：小程序下 flex 居中往往需要更强力的声明 */
+.flex-center {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* 3. 变量穿透修复：小程序组件隔离导致 CSS 变量失效的补充 */
+page {
+  --sxo-primary: #228AFF;
+  --sxo-primary-hover: #1C6ED9;
+  --sxo-bg-base: #F7F9FC;
+  --sxo-radius-base: 12rpx;
+  --sxo-radius-lg: 24rpx;
+}
+
+/* 4. 图标渲染修正 */
+.sxo-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  line-height: 1;
+}
+
+/* 5. 间距适配：小程序更适合使用 rpx */
+.sxo-p-base { padding: 32rpx; }
+.sxo-m-base { margin: 32rpx; }
+
+/* 6. 响应式与阴影补丁 */
+.sxo-shadow-sm {
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.05);
+}
+
+/* 7. 解决 scroll-view 内部高度坍塌 */
+scroll-view.flex-1 {
+  height: 0;
+  min-height: 0;
+  flex: 1;
+}

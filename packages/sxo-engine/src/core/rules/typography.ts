@@ -1,5 +1,5 @@
 import type { Rule } from '../types';
-import { getVar, resolveColor } from '../utils';
+import { getVar, resolveColor, withUnit } from '../utils';
 
 export const typographyRules: Rule[] = [
     // Text Alignment, Balance, Antialiasing
@@ -24,7 +24,7 @@ export const typographyRules: Rule[] = [
             parsed.nodes[0]?.type === 'literal' &&
             parsed.nodes[0].value === 'text' &&
             parsed.nodes.length >= 2,
-        (_, { tokens, parsed }) => {
+        (_, { tokens, parsed, unit }) => {
             const node1 = parsed.nodes[1];
             // 1. 尝试从 tokens.typography.fontSize 中寻找 (优先支持 2xl, 4xl 等)
             const key = (node1 as any).raw || (node1 as any).value;
@@ -41,7 +41,7 @@ export const typographyRules: Rule[] = [
             if (node1.type === 'numeric') {
                 return {
                     'font-size': (node1 as any).raw.match(/^\d+$/)
-                        ? `${(node1 as any).raw}px`
+                        ? withUnit((node1 as any).raw, unit)
                         : (node1 as any).raw,
                 };
             } else if (

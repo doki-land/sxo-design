@@ -1,8 +1,16 @@
 import type { DesignTokens } from '@sxo/design';
 import type { SxoNode } from '../parser';
 
+export interface ResolverOptions {
+    unit?: 'px' | 'rpx' | 'rem';
+}
+
 export class ValueResolver {
-    static resolveSpacing(node: SxoNode, tokens: DesignTokens): string | undefined {
+    static resolveSpacing(
+        node: SxoNode,
+        tokens: DesignTokens,
+        options: ResolverOptions = {},
+    ): string | undefined {
         if (node.type === 'literal') {
             return tokens.spacing[node.value];
         }
@@ -10,6 +18,10 @@ export class ValueResolver {
             // 优先匹配 spacing tokens 中的数值键 (如 '4' -> '16px')
             if (tokens.spacing[node.raw]) {
                 return tokens.spacing[node.raw];
+            }
+            // 如果没有单位，且设置了 unit，则加上单位
+            if (!node.unit && options.unit) {
+                return `${node.value}${options.unit}`;
             }
             return node.raw;
         }
@@ -23,7 +35,12 @@ export class ValueResolver {
         return undefined;
     }
 
-    static resolveSize(node: SxoNode, tokens: DesignTokens, property: string): string | undefined {
+    static resolveSize(
+        node: SxoNode,
+        tokens: DesignTokens,
+        property: string,
+        options: ResolverOptions = {},
+    ): string | undefined {
         // 优先检查 max-width 专用 tokens
         if (property === 'max-width' && tokens.maxWidth) {
             if (node.type === 'literal' && tokens.maxWidth[node.value]) {
@@ -34,7 +51,7 @@ export class ValueResolver {
             }
         }
 
-        const val = ValueResolver.resolveSpacing(node, tokens);
+        const val = ValueResolver.resolveSpacing(node, tokens, options);
         if (val) return val;
 
         if (node.type === 'literal') {
@@ -49,11 +66,19 @@ export class ValueResolver {
         return undefined;
     }
 
-    static resolveNumeric(node: SxoNode, tokens: any, tokenGroup?: string): string | undefined {
+    static resolveNumeric(
+        node: SxoNode,
+        tokens: any,
+        tokenGroup?: string,
+        options: ResolverOptions = {},
+    ): string | undefined {
         if (node.type === 'literal' && tokenGroup && tokens[tokenGroup]) {
             return tokens[tokenGroup][node.value];
         }
         if (node.type === 'numeric') {
+            if (!node.unit && options.unit) {
+                return `${node.value}${options.unit}`;
+            }
             return node.raw;
         }
         if (node.type === 'arbitrary') {
