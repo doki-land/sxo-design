@@ -39,7 +39,7 @@ console.log(IconSearch.path);
 
 ## 📖 Documentation
 
-For a full list of available icons, visit the [Icons Documentation](https://sxo-engine.pages.dev/zh/components/icon.html).
+For a full list of available icons, visit the [Icons Documentation](https://sxo-engine.pages.dev/zh-CN/components/icon.html).
 
 ## 📄 License
 

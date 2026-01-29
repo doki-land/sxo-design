@@ -6,7 +6,7 @@ import { StyleEngine } from '../../sxo-engine/src/index.ts';
 import * as components from '../../sxo-ui/src/components/index.ts';
 import { antdTheme } from '../../theme-antd/src/index.ts';
 import { githubTheme } from '../../theme-github/src/index.ts';
-import { pornhubTheme } from '../../theme-pornhub/src/index.ts';
+import { pronhubTheme } from '../../theme-pronhub/src/index.ts';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const distDir = path.resolve(__dirname, '../dist');
@@ -84,14 +84,14 @@ async function build() {
 
     // 2. Generate Core CSS (using a default theme for the rules, but variables will be used)
     console.log('🎨 Generating core CSS...');
-    const engine = new StyleEngine(pornhubTheme); // Use any theme for rules
+    const engine = new StyleEngine(pronhubTheme); // Use any theme for rules
     const coreCss = engine.generateSheet(allClassNames);
     fs.writeFileSync(path.join(distDir, 'sxo-core.css'), coreCss);
 
     // 3. Generate Theme CSS files
     console.log('🌈 Generating theme files...');
     const themes = {
-        pornhub: pornhubTheme,
+        pronhub: pronhubTheme,
         github: githubTheme,
         antd: antdTheme,
     };
@@ -112,7 +112,7 @@ async function build() {
             localStorage.setItem('sxo-theme', themeName);
         },
         init: function() {
-            const savedTheme = localStorage.getItem('sxo-theme') || 'pornhub';
+            const savedTheme = localStorage.getItem('sxo-theme') || 'pronhub';
             this.setTheme(savedTheme);
             console.log('SXO Runtime Initialized');
         }

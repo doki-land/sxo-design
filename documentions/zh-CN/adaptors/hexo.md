@@ -34,7 +34,7 @@ Hexo 用户通常希望在 `_config.yml` 中配置 UI 选项。建议添加以�
 sxo:
   enable: true
   version: latest
-  default_theme: github # 可选: github, pornhub
+  default_theme: github # 可选: github, pronhub
 ```
 
 然后在模板中动态引用：
@@ -69,8 +69,8 @@ title: 使用 SXO 增强我的博客
 如果您想为读者提供主题切换功能，可以在页面中添加一个按钮：
 
 ```html
-<button class="sxo-btn" onclick="SXO.setTheme('pornhub')">
-  切换到暗色模式 (Pornhub)
+<button class="sxo-btn" onclick="SXO.setTheme('pronhub')">
+  切换到暗色模式 (Pronhub)
 </button>
 ```
 

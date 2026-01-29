@@ -63,7 +63,7 @@ flowchart TD
 
 <!-- 2. 主题变量定义 (可多选) -->
 <link rel="stylesheet" href="https://cdn.sxoui.com/sxo-theme-github.css">
-<link rel="stylesheet" href="https://cdn.sxoui.com/sxo-theme-pornhub.css">
+<link rel="stylesheet" href="https://cdn.sxoui.com/sxo-theme-pronhub.css">
 
 <!-- 3. 轻量运行时 -->
 <script src="https://cdn.sxoui.com/sxo.js"></script>

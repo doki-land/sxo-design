@@ -10,7 +10,7 @@
         "type-check": "tsc --noEmit"
     },
     "dependencies": {
-        "@sxo/theme-pornhub": "workspace:*",
+        "@sxo/theme-pronhub": "workspace:*",
         "solid-js": "^1.9.10",
         "@sxo/solid": "workspace:*"
     },

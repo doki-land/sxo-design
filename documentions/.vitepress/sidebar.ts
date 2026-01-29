@@ -1,25 +1,25 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-const DOCS_ROOT = path.resolve(__dirname, '../../zh');
+const DOCS_ROOT = path.resolve(__dirname, '../../zh-CN');
 
 export function getSidebar() {
     return {
-        '/zh/guide/': [
+        '/zh-CN/guide/': [
             {
                 text: '指南',
                 items: [
-                    { text: '架构白皮书', link: '/zh/guide/whitebook' },
-                    { text: 'CDN Bundle (即用型)', link: '/zh/guide/bundle' },
-                    { text: '快速开始', link: '/zh/guide/getting-started' },
-                    { text: '设计令牌', link: '/zh/guide/tokens' },
-                    { text: '原子化 CSS', link: '/zh/guide/atomic-css' },
-                    { text: '国际化 (i18n)', link: '/zh/guide/i18n' },
-                    { text: '与主流库对比', link: '/zh/guide/comparison' },
+                    { text: '架构白皮书', link: '/zh-CN/guide/whitebook' },
+                    { text: 'CDN Bundle (即用型)', link: '/zh-CN/guide/bundle' },
+                    { text: '快速开始', link: '/zh-CN/guide/getting-started' },
+                    { text: '设计令牌', link: '/zh-CN/guide/tokens' },
+                    { text: '原子化 CSS', link: '/zh-CN/guide/atomic-css' },
+                    { text: '国际化 (i18n)', link: '/zh-CN/guide/i18n' },
+                    { text: '与主流库对比', link: '/zh-CN/guide/comparison' },
                 ],
             },
         ],
-        '/zh/components/': [
+        '/zh-CN/components/': [
             {
                 text: '通用组件',
                 items: generateItems('components', [
@@ -52,6 +52,7 @@ export function getSidebar() {
                     'switch',
                     'upload',
                     'rate',
+                    'with-field',
                 ]),
             },
             {
@@ -97,7 +98,7 @@ export function getSidebar() {
                 items: generateItems('components', ['admin', 'command-palette']),
             },
         ],
-        '/zh/adaptors/': [
+        '/zh-CN/adaptors/': [
             {
                 text: '框架适配',
                 items: generateItems('adaptors', [
@@ -132,7 +133,7 @@ function generateItems(dir: string, files: string[]) {
 
         return {
             text,
-            link: `/zh/${dir}/${file}`,
+            link: `/zh-CN/${dir}/${file}`,
         };
     });
 }

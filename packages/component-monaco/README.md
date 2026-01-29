@@ -58,7 +58,7 @@ editorInstance.destroy();
 
 ## 📖 Documentation
 
-For more details, visit the [Monaco Component Documentation](https://sxo-engine.pages.dev/zh/guide/getting-started.html).
+For more details, visit the [Monaco Component Documentation](https://sxo-engine.pages.dev/zh-CN/guide/getting-started.html).
 
 ## 📄 License
 

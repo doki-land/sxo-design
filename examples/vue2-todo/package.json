@@ -10,7 +10,7 @@
         "type-check": "tsc --noEmit"
     },
     "dependencies": {
-        "@sxo/theme-pornhub": "workspace:*",
+        "@sxo/theme-pronhub": "workspace:*",
         "vue": "^2.7.16",
         "@sxo/vue2": "workspace:*"
     },

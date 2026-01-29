@@ -1,15 +1,15 @@
 import { type DesignTokens, defaultTokens } from '@sxo/design';
 
-export const pornhubTheme: DesignTokens = {
+export const pronhubTheme: DesignTokens = {
     ...defaultTokens,
     color: {
         ...defaultTokens.color,
         primary: {
-            DEFAULT: '#FF9900', // PornHub Brand Orange
+            DEFAULT: '#FF9900', // PronHub Brand Orange
             foreground: '#000000',
         },
         secondary: {
-            DEFAULT: '#1B1B1B', // PornHub Container Background
+            DEFAULT: '#1B1B1B', // PronHub Container Background
             foreground: '#FFFFFF',
         },
         accent: {

@@ -43,7 +43,7 @@ sxo theme list
 
 ## 📖 Documentation
 
-For full command reference and advanced usage, visit the [CLI Documentation](https://sxo-engine.pages.dev/zh/guide/getting-started.html).
+For full command reference and advanced usage, visit the [CLI Documentation](https://sxo-engine.pages.dev/zh-CN/guide/getting-started.html).
 
 ## 📄 License
 

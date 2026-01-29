@@ -1,14 +1,14 @@
 {
-    "name": "@sxo/theme-pornhub",
+    "name": "@sxo/theme-pronhub",
     "version": "0.0.1",
-    "description": "Pornhub theme for SXO Design System.",
+    "description": "Pronhub theme for SXO Design System.",
     "keywords": [
         "sxo",
         "design-system",
         "ui",
         "components",
         "theme",
-        "pornhub"
+        "pronhub"
     ],
     "license": "MIT",
     "author": "sxo team",

@@ -6,7 +6,7 @@ import { fateTheme } from '@sxo/theme-fate';
 import { fluentTheme } from '@sxo/theme-fluent';
 import { githubTheme } from '@sxo/theme-github';
 import { materialTheme } from '@sxo/theme-material';
-import { pornhubTheme } from '@sxo/theme-pornhub';
+import { pronhubTheme } from '@sxo/theme-pronhub';
 import { wechatTheme } from '@sxo/theme-wechat';
 import { useState } from 'react';
 import ReactDOM from 'react-dom/client';
@@ -134,9 +134,9 @@ export const App = () => {
                                         onClick: () => handleThemeChange(materialTheme),
                                     },
                                     {
-                                        id: 'pornhub',
-                                        label: 'PornHub',
-                                        onClick: () => handleThemeChange(pornhubTheme),
+                                        id: 'pronhub',
+                                        label: 'PronHub',
+                                        onClick: () => handleThemeChange(pronhubTheme),
                                     },
                                     {
                                         id: 'antd',

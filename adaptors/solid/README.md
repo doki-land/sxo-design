@@ -49,7 +49,7 @@ function App() {
 
 ## 📖 Documentation
 
-For full documentation and examples, visit the [SolidJS Adaptor Documentation](https://sxo-engine.pages.dev/zh/adaptors/solid.html).
+For full documentation and examples, visit the [SolidJS Adaptor Documentation](https://sxo-engine.pages.dev/zh-CN/adaptors/solid.html).
 
 ## 📄 License
 

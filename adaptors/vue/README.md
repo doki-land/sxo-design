@@ -82,7 +82,7 @@ const { expandedItems, toggleItem } = useAccordion({ allowMultiple: false });
 
 ## 📖 Documentation
 
-For full documentation and examples, visit the [Vue Adaptor Documentation](https://sxo-engine.pages.dev/zh/adaptors/vue.html).
+For full documentation and examples, visit the [Vue Adaptor Documentation](https://sxo-engine.pages.dev/zh-CN/adaptors/vue.html).
 
 ## 📄 License
 

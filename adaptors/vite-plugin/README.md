@@ -47,7 +47,7 @@ export default defineConfig({
 
 ## 📖 Documentation
 
-For full configuration options, visit the [Vite Plugin Documentation](https://sxo-engine.pages.dev/zh/adaptors/vite-plugin.html).
+For full configuration options, visit the [Vite Plugin Documentation](https://sxo-engine.pages.dev/zh-CN/adaptors/vite-plugin.html).
 
 ## 📄 License
 

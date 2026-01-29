@@ -63,7 +63,7 @@ import type { ButtonProps } from '@sxo/ui';
 
 ## 📖 Documentation
 
-For full documentation and examples, visit the [Components Index](https://sxo-engine.pages.dev/zh/components/button.html).
+For full documentation and examples, visit the [Components Index](https://sxo-engine.pages.dev/zh-CN/components/button.html).
 
 ## 📄 License
 

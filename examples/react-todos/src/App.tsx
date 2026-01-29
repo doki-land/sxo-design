@@ -1,4 +1,4 @@
-import { pornhubTheme } from '@sxo/theme-pornhub';
+import { pronhubTheme } from '@sxo/theme-pronhub';
 import type React from 'react';
 import { useState } from 'react';
 import { Button, Input, Tag, ThemeProvider } from '@sxo/react-sxo';
@@ -31,7 +31,7 @@ const App = () => {
     };
 
     return (
-        <ThemeProvider tokens={pornhubTheme}>
+        <ThemeProvider tokens={pronhubTheme}>
             <div className="min-h-screen bg-background-primary text-neutral-0 p-8 font-sans">
                 <div className="max-w-md mx-auto">
                     <header className="mb-12 flex items-center justify-between">

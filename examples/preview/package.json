@@ -18,7 +18,7 @@
         "@sxo/theme-fluent": "workspace:*",
         "@sxo/theme-github": "workspace:*",
         "@sxo/theme-material": "workspace:*",
-        "@sxo/theme-pornhub": "workspace:*",
+        "@sxo/theme-pronhub": "workspace:*",
         "@sxo/theme-wechat": "workspace:*",
         "react": "^18.3.1",
         "react-dom": "^18.3.1",

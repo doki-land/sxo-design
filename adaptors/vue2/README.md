@@ -40,7 +40,7 @@ Vue.use(createSxo({ tokens: antdTheme }));
 
 ## 📖 Documentation
 
-For full documentation and examples, visit the [Vue 2 Adaptor Documentation](https://sxo-engine.pages.dev/zh/adaptors/vue2.html).
+For full documentation and examples, visit the [Vue 2 Adaptor Documentation](https://sxo-engine.pages.dev/zh-CN/adaptors/vue2.html).
 
 ## 📄 License
 

@@ -13,7 +13,7 @@
         "@sxo/engine": "workspace:*",
         "@sxo/theme-antd": "workspace:*",
         "@sxo/theme-github": "workspace:*",
-        "@sxo/theme-pornhub": "workspace:*",
+        "@sxo/theme-pronhub": "workspace:*",
         "@sxo/ui": "workspace:*"
     },
     "devDependencies": {

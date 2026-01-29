@@ -1,4 +1,4 @@
-import { pornhubTheme } from '@sxo/theme-pornhub';
+import { pronhubTheme } from '@sxo/theme-pronhub';
 import vue from '@vitejs/plugin-vue';
 import oxc from 'unplugin-oxc/vite';
 import { defineConfig } from 'vite';
@@ -21,7 +21,7 @@ export default defineConfig({
         oxc(),
         vue(),
         vitePluginSxo({
-            tokens: pornhubTheme,
+            tokens: pronhubTheme,
         }),
     ],
     server: {

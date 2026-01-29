@@ -21,7 +21,7 @@ const commonConfig = {
             '@sxo/ui': path.resolve(__dirname, 'packages/sxo-ui/src'),
             '@sxo/design': path.resolve(__dirname, 'packages/sxo-design/src'),
             '@sxo/engine': path.resolve(__dirname, 'packages/sxo-engine/src'),
-            '@sxo/theme-pornhub': path.resolve(__dirname, 'packages/theme-pornhub/src'),
+            '@sxo/theme-pronhub': path.resolve(__dirname, 'packages/theme-pronhub/src'),
             'react-sxo': path.resolve(__dirname, 'adaptors/react-sxo/src'),
             'vue-sxo': path.resolve(__dirname, 'adaptors/vue-sxo/src'),
             'solid-sxo': path.resolve(__dirname, 'adaptors/solid-sxo/src'),

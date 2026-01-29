@@ -41,7 +41,7 @@ app.use(createSxo({
 
 ## 📖 Documentation
 
-For full documentation and theme customization, visit the [Theme Documentation](https://sxo-engine.pages.dev/zh/guide/tokens.html).
+For full documentation and theme customization, visit the [Theme Documentation](https://sxo-engine.pages.dev/zh-CN/guide/tokens.html).
 
 ## 📄 License
 

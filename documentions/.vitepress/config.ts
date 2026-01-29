@@ -23,22 +23,22 @@ export default defineConfig({
     locales: {
         root: {
             label: 'English',
-            lang: 'en',
-            link: '/en/',
+            lang: 'en-US',
+            link: '/en-US/',
         },
-        zh: {
+        'zh-CN': {
             label: '简体中文',
             lang: 'zh-CN',
-            link: '/zh/',
+            link: '/zh-CN/',
         },
     },
 
     themeConfig: {
         logo: '/logo.svg',
         nav: [
-            { text: '指南', link: '/zh/guide/getting-started' },
-            { text: '组件', link: '/zh/components/button' },
-            { text: '实验室', link: '/zh/playground' },
+            { text: '指南', link: '/zh-CN/guide/getting-started' },
+            { text: '组件', link: '/zh-CN/components/button' },
+            { text: '实验室', link: '/zh-CN/playground' },
         ],
         sidebar: getSidebar(),
         socialLinks: [{ icon: 'github', link: 'https://github.com/sxo-design/sxo' }],

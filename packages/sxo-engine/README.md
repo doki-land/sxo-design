@@ -57,7 +57,7 @@ engine.generate('hover:bg-primary-DEFAULT focus:ring-2');
 
 ## 📖 Documentation
 
-For full documentation and examples, visit the [Atomic CSS Documentation](https://sxo-engine.pages.dev/zh/guide/atomic-css.html).
+For full documentation and examples, visit the [Atomic CSS Documentation](https://sxo-engine.pages.dev/zh-CN/guide/atomic-css.html).
 
 ## 📄 License
 

@@ -194,7 +194,7 @@ export function usePopover(options: PopoverOptions): PopoverApi;
 ### 1. 当前状态 (Current State)
 *   **核心层 (Stable)**: `@sxo/design`, `@sxo/engine`, `@sxo/ui` 已发布 1.0.0-beta 版本。
 *   **适配层 (Extensive)**: 已覆盖 React, Vue 2/3, Solid, Svelte, Alpine 等主流框架，并提供一致의 API。
-*   **主题层 (Rich)**: 内置 Antd, GitHub, Material, Carbon, Pornhub, Fluent, Wechat, Fate 等 10+ 款主题。
+*   **主题层 (Rich)**: 内置 Antd, GitHub, Material, Carbon, PronHub, Fluent, Wechat, Fate 等 10+ 款主题。
 *   **工具层 (Functional)**: `@sxo/vite-plugin` 支持 JIT 预览与诊断，`@sxo/cli` 支持项目初始化与主题管理。
 *   **CDN 落地**: `@sxo/bundle` 已实现 AOT 编译流程，支持核心样式与主题样式分离。
 

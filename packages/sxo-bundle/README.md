@@ -47,7 +47,7 @@ SXO.setTheme('github');
 
 ## 📖 Documentation
 
-For integration guides with static site generators, visit the [AOT Integration Guide](https://sxo-engine.pages.dev/zh/guide/getting-started.html).
+For integration guides with static site generators, visit the [AOT Integration Guide](https://sxo-engine.pages.dev/zh-CN/guide/getting-started.html).
 
 ## 📄 License
 

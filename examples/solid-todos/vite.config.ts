@@ -1,4 +1,4 @@
-import { pornhubTheme } from '@sxo/theme-pornhub';
+import { pronhubTheme } from '@sxo/theme-pronhub';
 import { defineConfig } from 'vite';
 import solidPlugin from 'vite-plugin-solid';
 import { vitePluginSxo } from '@sxo/vite-plugin-sxo';
@@ -9,7 +9,7 @@ export default defineConfig({
     plugins: [
         solidPlugin(),
         vitePluginSxo({
-            tokens: pornhubTheme,
+            tokens: pronhubTheme,
         }),
     ],
     css: {

@@ -70,7 +70,7 @@ function CustomAccordion() {
 
 ## 📖 Documentation
 
-For full documentation and examples, visit the [React Adaptor Documentation](https://sxo-engine.pages.dev/zh/adaptors/react.html).
+For full documentation and examples, visit the [React Adaptor Documentation](https://sxo-engine.pages.dev/zh-CN/adaptors/react.html).
 
 ## 📄 License
 

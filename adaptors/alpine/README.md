@@ -49,7 +49,7 @@ pnpm add @sxo/alpine @sxo/ui @sxo/engine @sxo/design
 
 ## 📖 Documentation
 
-For full documentation and examples, visit the [Alpine.js Adaptor Documentation](https://sxo-engine.pages.dev/zh/adaptors/alpine.html).
+For full documentation and examples, visit the [Alpine.js Adaptor Documentation](https://sxo-engine.pages.dev/zh-CN/adaptors/alpine.html).
 
 ## 📄 License
 

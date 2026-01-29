@@ -62,7 +62,7 @@ const primaryColor = defaultTokens.color.primary.DEFAULT;
 
 ## 📖 Documentation
 
-For full documentation and examples, visit the [Design Tokens Documentation](https://sxo-engine.pages.dev/zh/guide/tokens.html).
+For full documentation and examples, visit the [Design Tokens Documentation](https://sxo-engine.pages.dev/zh-CN/guide/tokens.html).
 
 ## 📄 License
 

@@ -1,5 +1,5 @@
 /** @jsxImportSource solid-js */
-import { pornhubTheme } from '@sxo/theme-pornhub';
+import { pronhubTheme } from '@sxo/theme-pronhub';
 import { createSignal, For, Show } from 'solid-js';
 import { Button, Input, Tag, ThemeProvider } from '@sxo/solid-sxo';
 
@@ -33,7 +33,7 @@ const App = () => {
     };
 
     return (
-        <ThemeProvider theme={{ tokens: pornhubTheme }}>
+        <ThemeProvider theme={{ tokens: pronhubTheme }}>
             <div class="min-h-screen bg-background-primary text-neutral-0 p-8 font-sans">
                 <div class="max-w-md mx-auto">
                     <header class="mb-12 flex items-center justify-between">

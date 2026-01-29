@@ -47,7 +47,7 @@ pnpm add @sxo/svelte @sxo/ui @sxo/engine @sxo/design
 
 ## 📖 Documentation
 
-For full documentation and examples, visit the [Svelte Adaptor Documentation](https://sxo-engine.pages.dev/zh/adaptors/svelte.html).
+For full documentation and examples, visit the [Svelte Adaptor Documentation](https://sxo-engine.pages.dev/zh-CN/adaptors/svelte.html).
 
 ## 📄 License
 

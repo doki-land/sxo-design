@@ -17,5 +17,5 @@ export default defineConfig({
     css: {
         transformer: 'lightningcss',
     },
-    build: sharedBuildOptions(__dirname, 'ThemePornhub'),
+    build: sharedBuildOptions(__dirname, 'ThemePronhub'),
 });

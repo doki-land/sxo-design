@@ -1,4 +1,4 @@
-import { pornhubTheme } from '@sxo/theme-pornhub';
+import { pronhubTheme } from '@sxo/theme-pronhub';
 import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 import { vitePluginSxo } from '@sxo/vite-plugin-sxo';
@@ -9,7 +9,7 @@ export default defineConfig({
     plugins: [
         react(),
         vitePluginSxo({
-            tokens: pornhubTheme,
+            tokens: pronhubTheme,
         }),
     ],
     css: {

@@ -2,7 +2,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 
 const COMPONENTS_DIR = path.join(__dirname, '../adaptors/vue-sxo/src/components');
-const DOCS_DIR = path.join(__dirname, '../documentions/zh/components');
+const DOCS_DIR = path.join(__dirname, '../documentions/zh-CN/components');
 
 function extractProps(content: string) {
     const propsMatch = content.match(/props:\s*{([\s\S]*?)\s*},\s*(emits|setup)/);

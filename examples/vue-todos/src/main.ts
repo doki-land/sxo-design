@@ -1,9 +1,9 @@
-import { pornhubTheme } from '@sxo/theme-pornhub';
-import { createApp } from 'vue';
+import { pronhubTheme } from '@sxo/theme-pronhub';
 import { createSxo } from '@sxo/vue';
+import { createApp } from 'vue';
 import App from './App.vue';
-import 'virtual:sxo.css';
+import './style.css';
 
 const app = createApp(App);
-app.use(createSxo({ tokens: pornhubTheme }));
+app.use(createSxo({ tokens: pronhubTheme }));
 app.mount('#app');

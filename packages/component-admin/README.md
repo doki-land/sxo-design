@@ -44,7 +44,7 @@ console.log(layout.sidebarClasses);
 
 ## 📖 Documentation
 
-For full documentation and layout examples, visit the [Admin Component Documentation](https://sxo-engine.pages.dev/zh/components/admin.html).
+For full documentation and layout examples, visit the [Admin Component Documentation](https://sxo-engine.pages.dev/zh-CN/components/admin.html).
 
 ## 📄 License
 

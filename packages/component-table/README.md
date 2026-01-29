@@ -47,7 +47,7 @@ console.log(table.rows);
 
 ## 📖 Documentation
 
-For full documentation and advanced examples, visit the [Table Component Documentation](https://sxo-engine.pages.dev/zh/components/table.html).
+For full documentation and advanced examples, visit the [Table Component Documentation](https://sxo-engine.pages.dev/zh-CN/components/table.html).
 
 ## 📄 License
 
