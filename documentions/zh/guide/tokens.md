@@ -53,7 +53,7 @@ const primaryColor = useToken('color.primary.DEFAULT');
 
 ## 切换主题
 
-SXO 支持动态切换主题。你只需要为 `SxoProvider` (React) 或 `createSxo` (Vue) 提供不同的令牌对象。
+SXO 支持动态切换主题。你只需要为 `SxoProvider` (React) 或 `createSxo` (Vue) 提供不同的令牌对象。更多官方主题请参考 [主题系统](./theme)。
 
 ## 深色模式 (Dark Mode)
 

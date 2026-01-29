@@ -1,5 +1,5 @@
-import { getSkeletonClasses } from '@sxo/ui';
-import { computed, defineComponent, h } from 'vue';
+import { type SkeletonOptions, getSkeletonClasses } from '@sxo/ui';
+import { computed, defineComponent, h, type PropType } from 'vue';
 
 export const Skeleton = defineComponent({
     name: 'SxoSkeleton',
@@ -8,6 +8,11 @@ export const Skeleton = defineComponent({
         active: { type: Boolean, default: true },
         /** 是否圆角 */
         rounded: { type: Boolean, default: true },
+        /** 骨架屏变体 */
+        variant: {
+            type: String as PropType<SkeletonOptions['variant']>,
+            default: 'text',
+        },
         /** 是否展示头像占位 */
         avatar: { type: Boolean, default: false },
         /** 是否展示标题占位 */
@@ -17,16 +22,26 @@ export const Skeleton = defineComponent({
         /** 是否正在加载。如果为 false，则展示子组件内容 */
         loading: { type: Boolean, default: true },
     },
-    setup(props, { slots }) {
+    setup(props, { slots, attrs }) {
         const classes = computed(() =>
             getSkeletonClasses({
                 active: props.active,
                 rounded: props.rounded,
+                variant: props.variant,
             }),
         );
 
         const renderSkeleton = () => {
-            return h('div', { class: classes.value.root }, [
+            // 如果指定了除 text 以外的特定变体，则渲染单体骨架
+            if (props.variant && props.variant !== 'text') {
+                return h('div', {
+                    ...attrs,
+                    class: [classes.value.base, attrs.class].filter(Boolean).join(' '),
+                });
+            }
+
+            // 默认渲染组合型骨架
+            return h('div', { ...attrs, class: [classes.value.root, attrs.class].filter(Boolean).join(' ') }, [
                 (props.avatar || props.title) &&
                     h('div', { class: classes.value.header }, [
                         props.avatar && h('div', { class: classes.value.avatar }),

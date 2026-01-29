@@ -12,7 +12,7 @@ import {
     type StatCardOptions,
     useShell,
 } from '@sxo/component-admin';
-import { defineComponent, h, onUnmounted, type PropType, ref, resolveComponent } from 'vue';
+import { computed, defineComponent, h, onUnmounted, type PropType, ref, resolveComponent } from 'vue';
 
 export const StatCard = defineComponent({
     name: 'SxoStatCard',

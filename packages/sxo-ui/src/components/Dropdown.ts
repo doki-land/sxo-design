@@ -1,5 +1,5 @@
 export interface DropdownOptions {
-    placement?: 'bottom-left' | 'bottom-right' | 'top-left' | 'top-right';
+    placement?: 'bottom-left' | 'bottom-right' | 'bottom-center' | 'top-left' | 'top-right' | 'top-center';
     disabled?: boolean;
 }
 
@@ -8,13 +8,15 @@ export function getDropdownClasses(options: DropdownOptions = {}) {
 
     const container = 'relative inline-block';
     const menu =
-        'absolute z-[200] min-w-[160px] py-1 mt-2 bg-white border border-neutral-200 shadow-xl rounded-xl overflow-hidden focus:outline-none';
+        'absolute z-[200] min-w-[180px] py-2 mt-1.5 bg-neutral-0 border border-neutral-100 shadow-md rounded-lg overflow-hidden focus:outline-none';
 
     const placements = {
         'bottom-left': 'top-full left-0',
         'bottom-right': 'top-full right-0',
-        'top-left': 'bottom-full left-0 mb-2',
-        'top-right': 'bottom-full right-0 mb-2',
+        'bottom-center': 'top-full left-1/2 -translate-x-1/2',
+        'top-left': 'bottom-full left-0 mb-1.5',
+        'top-right': 'bottom-full right-0 mb-1.5',
+        'top-center': 'bottom-full left-1/2 -translate-x-1/2 mb-1.5',
     };
 
     const disabledClass = disabled ? 'opacity-50 pointer-events-none' : '';
@@ -22,10 +24,10 @@ export function getDropdownClasses(options: DropdownOptions = {}) {
     return {
         container: [container, disabledClass].join(' '),
         menu: [menu, placements[placement]].join(' '),
-        item: 'flex items-center w-full px-4 py-2 text-sm text-neutral-700 hover:bg-neutral-50 hover:text-neutral-900 transition-colors cursor-pointer',
-        itemActive: 'bg-neutral-50 text-neutral-900 font-medium',
+        item: 'flex items-center w-full px-4 py-3 text-[15px] text-neutral-800 hover:bg-neutral-50 active:bg-neutral-100 transition-colors cursor-pointer leading-tight',
+        itemActive: 'bg-neutral-50 text-primary font-medium',
         itemDisabled: 'opacity-40 cursor-not-allowed hover:bg-transparent',
-        divider: 'my-1 border-t border-neutral-100',
+        divider: 'my-1.5 border-t border-neutral-100',
         header: 'px-4 py-2 text-xs font-bold text-neutral-400 uppercase tracking-wider',
     };
 }

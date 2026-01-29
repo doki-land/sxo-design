@@ -25,10 +25,15 @@ export interface SxoState {
  * Vue Plugin for SXO
  */
 export function createSxo(
-    options: { tokens?: Partial<DesignTokens>; mode?: 'light' | 'dark' } = {},
+    options: {
+        tokens?: Partial<DesignTokens>;
+        theme?: Partial<DesignTokens>;
+        mode?: 'light' | 'dark';
+    } = {},
 ) {
     // Deep merge user tokens with default tokens
-    const tokens = options.tokens ? mergeTokens(defaultTokens, options.tokens) : defaultTokens;
+    const userTokens = options.tokens || options.theme;
+    const tokens = userTokens ? mergeTokens(defaultTokens, userTokens) : defaultTokens;
     const mode = options.mode || 'light';
     const engine = new StyleEngine(tokens);
 
@@ -128,6 +133,10 @@ export const ThemeProvider = defineComponent({
             type: Object as PropType<Partial<DesignTokens>>,
             default: () => ({}),
         },
+        theme: {
+            type: Object as PropType<Partial<DesignTokens>>,
+            default: () => ({}),
+        },
         injectVars: {
             type: Boolean,
             default: true,
@@ -135,16 +144,17 @@ export const ThemeProvider = defineComponent({
     },
     setup(props, { slots }) {
         const parentSxo = inject<SxoState>(SXO_KEY, null as any);
+        const userTokens = Object.keys(props.tokens).length > 0 ? props.tokens : props.theme;
 
         const state = reactive<SxoState>({
             tokens: {
                 ...(parentSxo?.tokens || defaultTokens),
-                ...props.tokens,
+                ...userTokens,
             } as DesignTokens,
             engine: markRaw(
                 new StyleEngine({
                     ...(parentSxo?.tokens || defaultTokens),
-                    ...props.tokens,
+                    ...userTokens,
                 } as DesignTokens),
             ),
             mode: parentSxo?.mode || 'light',

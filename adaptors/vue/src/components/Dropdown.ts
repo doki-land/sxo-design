@@ -26,9 +26,9 @@ export const DropdownItem = defineComponent({
                         props.disabled && styles.value.itemDisabled,
                         attrs.class,
                     ],
-                    onClick: (_e: MouseEvent) => {
+                    onClick: (e: MouseEvent) => {
                         if (props.disabled) return;
-                        // Emit or handle click
+                        (attrs as any).onClick?.(e);
                     },
                 },
                 slots.default?.(),
@@ -42,10 +42,10 @@ export const Dropdown = defineComponent({
     props: {
         placement: {
             type: String as PropType<DropdownOptions['placement']>,
-            default: 'bottom-left',
+            default: 'bottom-center',
         },
-        trigger: { type: String as PropType<'click' | 'hover'>, default: 'click' },
         disabled: { type: Boolean, default: false },
+        trigger: { type: String as PropType<'hover' | 'click'>, default: 'hover' },
     },
     setup(props, { slots, attrs }) {
         const isOpen = ref(false);
@@ -122,7 +122,10 @@ export const Dropdown = defineComponent({
                             'div',
                             {
                                 class: styles.value.menu,
-                                onClick: (e: MouseEvent) => e.stopPropagation(),
+                                onClick: (e: MouseEvent) => {
+                                    e.stopPropagation();
+                                    close();
+                                },
                             },
                             slots.overlay?.(),
                         ),

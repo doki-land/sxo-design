@@ -27,8 +27,8 @@ export function getEmptyClasses(options: EmptyOptions = {}) {
 
     return {
         container: [base, sizes[size].container].join(' '),
-        image: [sizes[size].image, 'opacity-40'].join(' '),
-        description: [sizes[size].description, 'text-neutral-500'].join(' '),
-        extra: 'mt-4',
+        image: [sizes[size].image, 'text-neutral-300'].join(' '),
+        description: [sizes[size].description, 'text-neutral-400'].join(' '),
+        extra: 'mt-6',
     };
 }

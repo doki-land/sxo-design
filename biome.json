@@ -12,7 +12,22 @@
         "lineWidth": 100
     },
     "linter": {
-        "enabled": false
+        "enabled": true,
+        "rules": {
+            "recommended": true,
+            "style": {
+                "useConst": "warn"
+            },
+            "suspicious": {
+                "noExplicitAny": "off"
+            },
+            "complexity": {
+                "noForEach": "off"
+            },
+            "correctness": {
+                "noUnusedVariables": "warn"
+            }
+        }
     },
     "javascript": {
         "formatter": {
@@ -22,13 +37,13 @@
     },
     "overrides": [
         {
-            "includes": ["*.vue"],
+            "include": ["*.vue"],
             "formatter": {
                 "indentWidth": 2
             }
         },
         {
-            "includes": ["*.yaml", "*.yml"],
+            "include": ["*.yaml", "*.yml"],
             "formatter": {
                 "indentWidth": 2
             }

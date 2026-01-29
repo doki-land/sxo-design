@@ -1,15 +1,19 @@
 import { useDialog, useDraggable } from '@sxo/design';
 import { type DialogStylesOptions, getDialogClasses } from '@sxo/ui';
-import { defineComponent, h, type PropType, reactive, mergeProps } from 'vue';
+import { defineComponent, h, type PropType, reactive, mergeProps, computed } from 'vue';
 import { useStyle } from '../hooks';
 
 export const Dialog = defineComponent({
     name: 'SxoDialog',
     inheritAttrs: false,
     props: {
+        modelValue: {
+            type: Boolean,
+            default: undefined,
+        },
         isOpen: {
             type: Boolean,
-            required: true,
+            default: false,
         },
         title: String,
         description: String,
@@ -26,14 +30,19 @@ export const Dialog = defineComponent({
             default: false,
         },
     },
-    emits: ['close'],
+    emits: ['close', 'update:modelValue'],
     setup(props, { slots, emit, attrs }) {
         const offset = reactive({ x: 0, y: 0 });
 
+        const isOpened = computed(() => props.modelValue !== undefined ? props.modelValue : props.isOpen);
+
         // 1. 获取 Headless 逻辑
         const { getDialogProps, getOverlayProps, getCloseButtonProps } = useDialog({
-            isOpen: props.isOpen,
-            onClose: () => emit('close'),
+            isOpen: isOpened.value,
+            onClose: () => {
+                emit('close');
+                emit('update:modelValue', false);
+            },
         });
 
         const { getDragProps } = useDraggable({
@@ -53,7 +62,7 @@ export const Dialog = defineComponent({
         useStyle(() => Object.values(styles).join(' '));
 
         return () => {
-            if (!props.isOpen) return null;
+            if (!isOpened.value) return null;
 
             return h('div', mergeProps(attrs, { class: styles.container }), [
                 // 遮罩层
@@ -98,11 +107,13 @@ export const Dialog = defineComponent({
                             ],
                         ),
 
-                        // 内容
-                        h('div', { class: 'dialog-body' }, slots.default?.()),
+                        // 主体内容
+                        h('div', { class: styles.body }, slots.default?.()),
 
-                        // 底部
-                        slots.footer ? h('div', { class: styles.footer }, slots.footer()) : null,
+                        // 底部操作栏
+                        slots.footer
+                            ? h('div', { class: styles.footer }, slots.footer?.())
+                            : null,
                     ],
                 ),
             ]);

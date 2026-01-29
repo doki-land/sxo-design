@@ -28,6 +28,7 @@ export const MediaIcons = {
     },
     Video: {
         linear: 'M23 7l-7 5 7 5V7z M1 5h15v14H1z',
+        solid: 'M16 6H4c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm7 11l-4-4v4l4-4z',
     },
     Camera: {
         linear: 'M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z M12 13a4 4 0 1 0 0 8 4 4 0 0 0 0-8z',

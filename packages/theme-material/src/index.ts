@@ -1,2 +1,2 @@
-export * from './tokens.ts';
-export { default } from './tokens.ts';
+export * from './tokens';
+export { default } from './tokens';

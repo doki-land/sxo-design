@@ -1,4 +1,4 @@
-export { Accordion as SxoAccordion } from './components/Accordion';
+export { Accordion as SxoAccordion, AccordionItem as SxoAccordionItem } from './components/Accordion';
 export {
     AdminShell as SxoAdminShell,
     DescriptionList as SxoDescriptionList,
@@ -60,7 +60,12 @@ export { Statistic as SxoStatistic } from './components/Statistic';
 export { Step as SxoStep, Steps as SxoSteps } from './components/Steps';
 export { Switch as SxoSwitch } from './components/Switch';
 export { Table as SxoTable } from './components/Table';
-export { Tabs as SxoTabs } from './components/Tabs';
+export {
+    Tabs as SxoTabs,
+    TabList as SxoTabList,
+    Tab as SxoTab,
+    TabPanel as SxoTabPanel,
+} from './components/Tabs';
 export { Tag as SxoTag } from './components/Tag';
 export { Timeline as SxoTimeline, TimelineItem as SxoTimelineItem } from './components/Timeline';
 export { ToastProvider as SxoToastProvider, useToast } from './components/Toast';
