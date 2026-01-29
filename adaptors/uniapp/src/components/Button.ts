@@ -64,7 +64,7 @@ export const Button = defineComponent({
                 },
                 [
                     props.loading &&
-                        h('span', { class: styles.value.spinner }, [
+                        h('text', { class: styles.value.spinner }, [
                             h(
                                 'svg',
                                 {

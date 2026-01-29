@@ -38,14 +38,14 @@ export const Avatar = defineComponent({
 
         return () =>
             h(
-                'div',
+                'view',
                 {
                     ...attrs,
                     class: styles.value.root,
                 },
                 [
                     props.src
-                        ? h('img', {
+                        ? h('image', {
                               src: props.src,
                               alt: props.alt,
                               class: styles.value.image,
@@ -53,7 +53,7 @@ export const Avatar = defineComponent({
                               onError: (e: Event) => emits('error', e),
                           })
                         : h(
-                              'span',
+                              'text',
                               {
                                   class: styles.value.fallback,
                               },

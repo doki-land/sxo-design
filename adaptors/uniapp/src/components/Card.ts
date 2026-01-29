@@ -37,7 +37,7 @@ export const Card = defineComponent({
 
         return () =>
             h(
-                'div',
+                'view',
                 {
                     ...attrs,
                     class: classes.value,

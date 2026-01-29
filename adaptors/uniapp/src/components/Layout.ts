@@ -78,7 +78,7 @@ export const Stack = defineComponent({
 
         useStyle(internalClasses);
 
-        return () => h('div', { ...attrs, class: internalClasses.value }, slots.default?.());
+        return () => h('view', { ...attrs, class: internalClasses.value }, slots.default?.());
     },
 });
 
@@ -112,7 +112,7 @@ export const Grid = defineComponent({
 
         useStyle(internalClasses);
 
-        return () => h('div', { ...attrs, class: internalClasses.value }, slots.default?.());
+        return () => h('view', { ...attrs, class: internalClasses.value }, slots.default?.());
     },
 });
 
@@ -131,6 +131,6 @@ export const Container = defineComponent({
 
         useStyle(internalClasses);
 
-        return () => h('div', { ...attrs, class: internalClasses.value }, slots.default?.());
+        return () => h('view', { ...attrs, class: internalClasses.value }, slots.default?.());
     },
 });
