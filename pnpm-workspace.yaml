@@ -4,3 +4,5 @@ packages:
   - 'projects/*'
   - 'examples/*'
   - 'documentions'
+  - '../cvo-framework/packages/*'
+  - '../cvo-framework/plugins/*'
