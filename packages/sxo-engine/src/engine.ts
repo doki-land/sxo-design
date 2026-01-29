@@ -5,6 +5,7 @@ import { SxoParser } from './parser';
 
 export interface EngineOptions {
     debug?: boolean;
+    unit?: 'px' | 'rpx' | 'rem';
 }
 
 export class StyleEngine {

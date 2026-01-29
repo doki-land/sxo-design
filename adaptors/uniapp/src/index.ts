@@ -1,3 +1,5 @@
+import './uniapp.css';
+
 export { Accordion as SxoAccordion, AccordionItem as SxoAccordionItem } from './components/Accordion';
 export {
     AdminShell as SxoAdminShell,

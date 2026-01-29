@@ -4,6 +4,7 @@ import type { ParsedClass, SxoNode } from '../parser';
 export type RuleContext = {
     tokens: DesignTokens;
     parsed: ParsedClass;
+    unit?: 'px' | 'rpx' | 'rem';
 };
 
 export type RuleResult = string | Record<string, any> | undefined;

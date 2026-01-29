@@ -1,5 +1,5 @@
 {
-    "name": "@sxo/uniapp",
+    "name": "@sxo/plugin-uniapp",
     "version": "0.0.1",
     "description": "UniApp adaptor for SXO Design System.",
     "keywords": [
