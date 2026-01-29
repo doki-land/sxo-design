@@ -4,14 +4,28 @@
     "private": true,
     "type": "module",
     "scripts": {
-        "dev": "vitepress dev . --port 3000",
-        "build": "vitepress build .",
-        "cloudflare": "pnpm --filter sxo-documentions^... build && vitepress build .",
-        "preview": "vitepress preview ."
+        "dev": "cvo dev",
+        "build": "cvo build",
+        "preview": "cvo preview"
     },
-    "devDependencies": {
+    "dependencies": {
+        "@cvo/client": "workspace:*",
+        "@cvo/core": "workspace:*",
+        "@cvo/i18n": "workspace:*",
+        "@cvo/plugin-i18n-fluent": "workspace:*",
+        "@cvo/plugin-react": "workspace:*",
+        "@cvo/server": "workspace:*",
         "@sxo/design": "workspace:*",
         "@sxo/engine": "workspace:*",
+        "@sxo/react": "workspace:*",
+        "react": "^18.3.1",
+        "react-dom": "^18.3.1",
+        "react-router-dom": "^6.26.2",
+        "markdown-it": "^14.1.0"
+    },
+    "devDependencies": {
+        "@cvo/cli": "workspace:*",
+        "@cvo/compiler": "workspace:*",
         "@sxo/theme-antd": "workspace:*",
         "@sxo/theme-carbon": "workspace:*",
         "@sxo/theme-cupertino": "workspace:*",
@@ -21,8 +35,9 @@
         "@sxo/theme-material": "workspace:*",
         "@sxo/ui": "workspace:*",
         "@sxo/vite-plugin": "workspace:*",
-        "vitepress": "^1.6.4",
-        "vue": "^3.5.26",
-        "@sxo/vue": "workspace:*"
+        "@types/react": "^18.3.1",
+        "@types/react-dom": "^18.3.1",
+        "@vitejs/plugin-react": "^4.3.1",
+        "vite": "^5.4.2"
     }
 }
