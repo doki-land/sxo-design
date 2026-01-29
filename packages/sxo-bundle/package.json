@@ -12,8 +12,15 @@
         "@sxo/design": "workspace:*",
         "@sxo/engine": "workspace:*",
         "@sxo/theme-antd": "workspace:*",
+        "@sxo/theme-carbon": "workspace:*",
+        "@sxo/theme-cupertino": "workspace:*",
+        "@sxo/theme-fate": "workspace:*",
+        "@sxo/theme-fluent": "workspace:*",
         "@sxo/theme-github": "workspace:*",
+        "@sxo/theme-halloween": "workspace:*",
+        "@sxo/theme-material": "workspace:*",
         "@sxo/theme-pronhub": "workspace:*",
+        "@sxo/theme-wechat": "workspace:*",
         "@sxo/ui": "workspace:*"
     },
     "devDependencies": {
