@@ -2,6 +2,15 @@ export const NavigationIcons = {
     ArrowLeft: {
         linear: 'M19 12H5 M12 19l-7-7 7-7',
     },
+    ChevronDown: {
+        linear: 'M6 9l6 6 6-6',
+    },
+    ChevronRight: {
+        linear: 'M9 18l6-6-6-6',
+    },
+    ChevronLeft: {
+        linear: 'M15 18l-6-6 6-6',
+    },
     Globe: {
         linear: 'M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10zm0 0c-2.5 0-4.5-4.477-4.5-10S9.5 2 12 2s4.5 4.477 4.5 10-2 10-4.5 10zM2 12h20',
     },
