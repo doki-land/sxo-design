@@ -8,4 +8,10 @@ export const NavigationIcons = {
     Languages: {
         linear: 'm5 8 6 6 M4 14l6-6 M2 5h12 M7 2h1 M7 5h1 M22 22l-5-5 M17 22l5-5',
     },
+    Home: {
+        linear: 'M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z M9 22V12h6v10',
+    },
+    Bookmark: {
+        linear: 'M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z',
+    },
 };

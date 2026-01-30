@@ -1,5 +1,5 @@
 import { defaultTokens } from '@sxo/design';
-import { StyleEngine } from '@sxo/engine';
+import { StyleEngine, escapeClassName } from '@sxo/engine';
 import type { Plugin, ViteDevServer } from 'vite';
 
 export interface VitePluginSxoOptions {
@@ -24,6 +24,12 @@ export interface VitePluginSxoOptions {
      * Theme tokens to use for static analysis
      */
     tokens?: any;
+    /**
+     * Special handling for UniApp / Mini Program environments.
+     * Replaces problematic characters in class names with safe alternatives.
+     * @default true if process.env.UNI_PLATFORM is set
+     */
+    uniapp?: boolean;
 }
 
 export function vitePluginSxo(options: VitePluginSxoOptions = {}): Plugin {
@@ -40,6 +46,7 @@ export function vitePluginSxo(options: VitePluginSxoOptions = {}): Plugin {
         exclude = [/[\\/]node_modules[\\/]/, /[\\/](dist|build|target|out|temp)[\\/]/],
         warnUnknown = false,
         debug = false,
+        uniapp = typeof process !== 'undefined' && !!process.env.UNI_PLATFORM,
     } = options;
 
     /**
@@ -457,9 +464,41 @@ export function vitePluginSxo(options: VitePluginSxoOptions = {}): Plugin {
             if (id === resolvedVirtualModuleId) {
                 try {
                     const vars = engine.generateTokenCssVars();
-                    const styles = engine.generateSheet(classes);
+                    let styles = '';
+
+                    if (uniapp) {
+                        // For UniApp, we generate styles for each class and manually escape the selector
+                        const styleParts: string[] = [];
+                        classes.forEach((cls) => {
+                            const css = engine.generate(cls);
+                            if (css) {
+                                const escaped = escapeClassName(cls);
+                                // engine.generate(cls) returns something like ".cls { ... }"
+                                // We need to replace the selector part
+                                // Since we know the engine generates ".<escaped_cls> { ... }"
+                                // where <escaped_cls> is the CSS-escaped version of cls
+                                // but we want our own UniApp-safe escaped version.
+
+                                // A simpler way: engine.generate might return the full rule.
+                                // Let's try to just replace the first occurrence of the class name
+                                // after the dot.
+                                const cssEscapedCls = cls.replace(
+                                    /([!"#$%&'()*+,./:;<=>?@\[\\\]^`{|}~])/g,
+                                    '\\$1',
+                                );
+                                const rule = css.replace(`.${cssEscapedCls}`, `.${escaped}`);
+                                styleParts.push(rule);
+                            }
+                        });
+                        styles = styleParts.join('\n');
+                    } else {
+                        styles = engine.generateSheet(classes);
+                    }
+
                     if (debug) {
-                        console.log(`[SXO] Generated ${classes.size} classes`);
+                        console.log(
+                            `[SXO] Generated ${classes.size} classes${uniapp ? ' (UniApp mode)' : ''}`,
+                        );
                     }
                     return `${vars}\n\n${styles}`;
                 } catch (e: any) {
@@ -498,12 +537,46 @@ export function vitePluginSxo(options: VitePluginSxoOptions = {}): Plugin {
                     // Compatible way to invalidate and reload
                     server.moduleGraph.invalidateModule(mod);
                     if (server.reloadModule) {
-                        server.reloadModule(mod).catch(() => {});
-                    } else {
-                        server.ws.send({
-                            type: 'full-reload',
+                        server.reloadModule(mod).catch(() => {
+                            /* ignore */
                         });
                     }
+                }
+            }
+
+            if (uniapp) {
+                let transformedCode = code;
+                let hasChanges = false;
+
+                // Sort classes by length descending to avoid partial replacements
+                // (e.g., replacing 'bg-red' inside 'bg-red-500')
+                const sortedClasses = Array.from(classes).sort((a, b) => b.length - a.length);
+
+                for (const cls of sortedClasses) {
+                    const escaped = escapeClassName(cls);
+                    if (escaped === cls) continue;
+
+                    const escapedCls = cls.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                    // We use the same boundaries as the scan regex
+                    const replaceRegex = new RegExp(
+                        `(?<![a-zA-Z0-9-])${escapedCls}(?![a-zA-Z0-9-:])`,
+                        'g',
+                    );
+
+                    if (replaceRegex.test(transformedCode)) {
+                        transformedCode = transformedCode.replace(replaceRegex, escaped);
+                        hasChanges = true;
+                    }
+                }
+
+                if (hasChanges) {
+                    if (debug) {
+                        console.log(`[SXO] Transformed classes for UniApp in ${id.split('/').pop()}`);
+                    }
+                    return {
+                        code: transformedCode,
+                        map: null,
+                    };
                 }
             }
 

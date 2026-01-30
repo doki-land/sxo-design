@@ -149,6 +149,20 @@ export function resolveColor(
     if (typeof current !== 'string') return undefined;
 
     return { color: current, varPath: varParts.join('-'), opacity: opacity };
+}
 
-    return undefined;
+/**
+ * Escapes class names for UniApp / Mini Program environments.
+ * Replaces problematic characters with safe alternatives.
+ */
+export function escapeClassName(className: string): string {
+    return className
+        .replace(/\:/g, '_')
+        .replace(/\[/g, '_')
+        .replace(/\]/g, '_')
+        .replace(/\./g, '_d_')
+        .replace(/\//g, '_s_')
+        .replace(/\%/g, '_p_')
+        .replace(/\#/g, '_h_')
+        .replace(/\!/g, '_i_');
 }

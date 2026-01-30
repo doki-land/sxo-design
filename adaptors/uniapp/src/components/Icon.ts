@@ -45,8 +45,8 @@ export const Icon = defineComponent({
             // UniApp 小程序不支持直接渲染 SVG 标签，转换为 Data URI 并使用背景图渲染
             const svgContent = `
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" 
-                     fill="${isSolid ? props.color : 'none'}" 
-                     stroke="${isSolid ? 'none' : props.color}" 
+                     fill="${isSolid ? 'black' : 'none'}" 
+                     stroke="${isSolid ? 'none' : 'black'}" 
                      stroke-width="${isSolid ? 0 : props.strokeWidth}" 
                      stroke-linecap="round" 
                      stroke-linejoin="round">
@@ -60,11 +60,12 @@ export const Icon = defineComponent({
 
             return h('view', {
                 ...attrs,
+                class: ['sxo-icon', attrs.class],
                 style: {
                     display: 'inline-block',
                     width: props.size,
                     height: props.size,
-                    backgroundColor: props.color,
+                    backgroundColor: props.color === 'currentColor' ? 'currentColor' : props.color,
                     maskImage: `url("${dataUri}")`,
                     maskRepeat: 'no-repeat',
                     maskSize: '100% 100%',

@@ -51,7 +51,8 @@ export function createSxo(
 
             // UniApp 小程序环境不支持运行时 DOM 扫描与样式注入
             // 样式应由 vite-plugin-sxo 在编译时生成并包含在 virtual:sxo.css 中
-            console.log('[Sxo] UniApp Adapter Initialized');
+            // vite-plugin-sxo 还会自动对代码中的 class name 进行转义处理以适配小程序
+            console.log('[Sxo] UniApp Adapter Initialized (Mini Program mode)');
         },
     };
 }
