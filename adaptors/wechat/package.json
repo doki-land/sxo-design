@@ -1,0 +1,14 @@
+{
+    "name": "@sxo/plugin-wechat",
+    "version": "1.0.0",
+    "description": "Wechat Native adaptor for SXO Design System",
+    "main": "src/index.ts",
+    "dependencies": {
+        "@sxo/design": "workspace:*",
+        "@sxo/engine": "workspace:*",
+        "@sxo/ui": "workspace:*"
+    },
+    "devDependencies": {
+        "typescript": "^5.0.0"
+    }
+}
