@@ -352,7 +352,8 @@ export const Kanban = defineComponent({
             required: true,
         },
     },
-    setup(props, { slots }) {
+    emits: ['item-click', 'column-action'],
+    setup(props, { slots, emit }) {
         const styles = getKanbanClasses();
 
         return () =>
@@ -368,33 +369,41 @@ export const Kanban = defineComponent({
                         ]),
                         h('div', { class: styles.itemList }, [
                             col.items.map((item: KanbanItem) =>
-                                h('div', { class: styles.item, key: item.id }, [
-                                    h('div', { class: styles.itemTitle }, item.title),
-                                    item.description &&
-                                        h('div', { class: styles.itemDesc }, item.description),
-                                    h('div', { class: styles.itemFooter }, [
-                                        h('div', { class: styles.avatarGroup }, [
-                                            // Mock avatar
-                                            h('div', {
-                                                class: 'w-6 h-6 rounded-full bg-neutral-200 border-2 border-white',
-                                            }),
-                                        ]),
-                                        item.tags &&
-                                            h(
-                                                'div',
-                                                { class: 'flex gap-1' },
-                                                item.tags.map((t: string) =>
-                                                    h(
-                                                        'span',
-                                                        {
-                                                            class: 'text-[10px] px-1.5 py-0.5 rounded bg-neutral-100',
-                                                        },
-                                                        t,
+                                h(
+                                    'div',
+                                    {
+                                        class: styles.item,
+                                        key: item.id,
+                                        onClick: () => emit('item-click', { item, column: col }),
+                                    },
+                                    [
+                                        h('div', { class: styles.itemTitle }, item.title),
+                                        item.description &&
+                                            h('div', { class: styles.itemDesc }, item.description),
+                                        h('div', { class: styles.itemFooter }, [
+                                            h('div', { class: styles.avatarGroup }, [
+                                                // Mock avatar
+                                                h('div', {
+                                                    class: 'w-6 h-6 rounded-full bg-neutral-200 border-2 border-white',
+                                                }),
+                                            ]),
+                                            item.tags &&
+                                                h(
+                                                    'div',
+                                                    { class: 'flex gap-1' },
+                                                    item.tags.map((t: string) =>
+                                                        h(
+                                                            'span',
+                                                            {
+                                                                class: 'text-[10px] px-1.5 py-0.5 rounded bg-neutral-100',
+                                                            },
+                                                            t,
+                                                        ),
                                                     ),
                                                 ),
-                                            ),
-                                    ]),
-                                ]),
+                                        ]),
+                                    ],
+                                ),
                             ),
                         ]),
                     ]),
