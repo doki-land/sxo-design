@@ -21,6 +21,6 @@
             "vite-plugin-sxo": ["adaptors/vite-plugin-sxo/src"]
         }
     },
-    "include": ["packages", "adaptors", "examples"],
+    "include": ["packages", "adaptors", "examples", "plugins/component-monaco"],
     "exclude": ["node_modules", "**/dist"]
 }
