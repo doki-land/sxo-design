@@ -95,46 +95,45 @@ export type TokenPath = Leaves<DesignTokens>;
 export const defaultTokens: DesignTokens = {
     color: {
         white: '#ffffff',
-        black: '#000000',
+        black: '#0f172a',
         primary: {
-            DEFAULT: '#000000',
-            foreground: '#FFFFFF',
+            DEFAULT: '#6366f1', // Indigo 500
+            foreground: '#ffffff',
         },
         secondary: {
-            DEFAULT: '#fafafa', // Light Gray for secondary backgrounds
-            foreground: '#000000',
+            DEFAULT: '#f8fafc', // Slate 50
+            foreground: '#0f172a',
         },
         accent: {
-            DEFAULT: '#0070f3', // Vercel Blue
-            neon: '#7928ca', // Vercel Purple
-            vivid: '#ff0080', // Vercel Pink
+            DEFAULT: '#0ea5e9', // Sky 500
+            neon: '#8b5cf6', // Violet 500
+            vivid: '#ec4899', // Pink 500
         },
         success: {
-            DEFAULT: '#0070f3', // Blue is often used for success in some contexts, but let's stick to standard or Vercel cyan
+            DEFAULT: '#10b981', // Emerald 500
         },
         warning: {
-            DEFAULT: '#f5a623',
+            DEFAULT: '#f59e0b', // Amber 500
         },
         error: {
-            DEFAULT: '#ff0000', // Red
+            DEFAULT: '#ef4444', // Red 500
         },
         info: {
-            DEFAULT: '#0070f3',
+            DEFAULT: '#3b82f6', // Blue 500
         },
         neutral: {
-            0: '#FFFFFF',
-            50: '#fafafa',
-            100: '#eaeaea',
-            200: '#999999',
-            300: '#888888',
-            400: '#666666',
-            500: '#444444',
-            600: '#333333',
-            700: '#111111',
-            800: '#000000',
-            900: '#000000',
-            950: '#000000',
-            1000: '#000000',
+            0: '#ffffff',
+            50: '#f8fafc',
+            100: '#f1f5f9',
+            200: '#e2e8f0',
+            300: '#cbd5e1',
+            400: '#94a3b8',
+            500: '#64748b',
+            600: '#475569',
+            700: '#334155',
+            800: '#1e293b',
+            900: '#0f172a',
+            950: '#020617',
         },
         background: {
             primary: '#FFFFFF',

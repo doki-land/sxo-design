@@ -122,7 +122,7 @@ export const Table = defineComponent({
                         classes.value.tr,
                         classes.value.trStriped,
                         selection.isSelected(row) && classes.value.trSelected,
-                        'w-full flex', // For virtual scroll layout consistency
+                        props.virtual && 'w-full flex', // For virtual scroll layout consistency
                     ],
                     style: props.virtual ? { height: `${props.itemHeight}px` } : {},
                 },
@@ -151,7 +151,9 @@ export const Table = defineComponent({
                                                   : col.width,
                                           flexShrink: 0,
                                       }
-                                    : { flex: 1 },
+                                    : props.virtual
+                                      ? { flex: 1 }
+                                      : {},
                             },
                             col.render ? col.render(row) : row[col.key],
                         ),

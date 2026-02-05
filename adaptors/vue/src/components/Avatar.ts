@@ -22,7 +22,7 @@ export const Avatar = defineComponent({
         },
     },
     emits: ['load', 'error'],
-    setup(props, { attrs, emits }) {
+    setup(props, { attrs, emit }) {
         const styles = computed(() =>
             getAvatarClasses({
                 size: props.size,
@@ -49,8 +49,8 @@ export const Avatar = defineComponent({
                               src: props.src,
                               alt: props.alt,
                               class: styles.value.image,
-                              onLoad: (e: Event) => emits('load', e),
-                              onError: (e: Event) => emits('error', e),
+                              onLoad: (e: Event) => emit('load', e),
+                              onError: (e: Event) => emit('error', e),
                           })
                         : h(
                               'span',

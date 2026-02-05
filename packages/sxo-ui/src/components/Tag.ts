@@ -1,5 +1,5 @@
 export interface TagOptions {
-    variant?: 'solid' | 'outline' | 'subtle';
+    variant?: 'solid' | 'outline' | 'subtle' | 'ghost';
     color?: 'primary' | 'secondary' | 'success' | 'warning' | 'error' | 'neutral';
     rounded?: 'none' | 'sm' | 'md' | 'full';
     size?: 'sm' | 'md' | 'lg';
@@ -9,7 +9,7 @@ export interface TagOptions {
 
 export function getTagClasses(options: TagOptions = {}) {
     const {
-        variant = 'solid',
+        variant = 'subtle',
         color = 'primary',
         rounded = 'sm',
         size = 'md',
@@ -17,7 +17,7 @@ export function getTagClasses(options: TagOptions = {}) {
         disabled = false,
     } = options;
 
-    const base = 'inline-flex items-center transition-all duration-300 gap-1.5';
+    const base = 'inline-flex items-center transition-all duration-300 gap-1.5 font-medium select-none';
 
     const roundedClasses = {
         none: 'rounded-none',
@@ -28,34 +28,42 @@ export function getTagClasses(options: TagOptions = {}) {
 
     const sizeClasses = {
         sm: 'px-1.5 py-0.5 text-[10px]',
-        md: 'px-2.5 py-1 text-xs',
-        lg: 'px-3 py-1.5 text-sm',
+        md: 'px-2 py-0.5 text-[11px]',
+        lg: 'px-3 py-1 text-sm',
     };
 
     const variants = {
         solid: {
-            primary: 'bg-primary-500 text-white shadow-sm',
-            secondary: 'bg-neutral-800 text-white shadow-sm',
-            success: 'bg-success-500 text-white shadow-sm',
-            warning: 'bg-warning-500 text-white shadow-sm',
-            error: 'bg-error-500 text-white shadow-sm',
-            neutral: 'bg-neutral-200 text-neutral-800 shadow-sm',
+            primary: 'bg-primary text-white shadow-sm',
+            secondary: 'bg-slate-800 text-white shadow-sm',
+            success: 'bg-emerald-500 text-white shadow-sm',
+            warning: 'bg-amber-500 text-white shadow-sm',
+            error: 'bg-rose-500 text-white shadow-sm',
+            neutral: 'bg-slate-200 text-slate-800 shadow-sm',
         },
         outline: {
-            primary: 'border border-primary-500 text-primary-500 hover:bg-primary-50',
-            secondary: 'border border-neutral-800 text-neutral-800 hover:bg-neutral-50',
-            success: 'border border-success-500 text-success-500 hover:bg-success-50',
-            warning: 'border border-warning-500 text-warning-500 hover:bg-warning-50',
-            error: 'border border-error-500 text-error-500 hover:bg-error-50',
-            neutral: 'border border-neutral-300 text-neutral-600 hover:bg-neutral-50',
+            primary: 'border border-primary/30 text-primary hover:bg-primary/5',
+            secondary: 'border border-slate-300 text-slate-600 hover:bg-slate-50',
+            success: 'border border-emerald-500/30 text-emerald-600 hover:bg-emerald-50',
+            warning: 'border border-amber-500/30 text-amber-600 hover:bg-amber-50',
+            error: 'border border-rose-500/30 text-rose-600 hover:bg-rose-50',
+            neutral: 'border border-slate-300 text-slate-500 hover:bg-slate-50',
         },
         subtle: {
-            primary: 'bg-primary-50 text-primary-600 border border-primary-100',
-            secondary: 'bg-neutral-100 text-neutral-600 border border-neutral-200',
-            success: 'bg-success-50 text-success-600 border border-success-100',
-            warning: 'bg-warning-50 text-warning-600 border border-warning-100',
-            error: 'bg-error-50 text-error-600 border border-error-100',
-            neutral: 'bg-neutral-50 text-neutral-500 border border-neutral-100',
+            primary: 'bg-primary/10 text-primary border border-primary/20',
+            secondary: 'bg-slate-100 text-slate-600 border border-slate-200',
+            success: 'bg-emerald-50 text-emerald-700 border border-emerald-100',
+            warning: 'bg-amber-50 text-amber-700 border border-amber-100',
+            error: 'bg-rose-50 text-rose-700 border border-rose-100',
+            neutral: 'bg-slate-50 text-slate-500 border border-slate-100',
+        },
+        ghost: {
+            primary: 'bg-primary/5 text-primary hover:bg-primary/10',
+            secondary: 'bg-slate-100/50 text-slate-600 hover:bg-slate-100',
+            success: 'bg-emerald-50/50 text-emerald-700 hover:bg-emerald-50',
+            warning: 'bg-amber-50/50 text-amber-700 hover:bg-amber-50',
+            error: 'bg-rose-50/50 text-rose-700 hover:bg-rose-50',
+            neutral: 'bg-slate-50/50 text-slate-500 hover:bg-slate-50',
         },
     };
 

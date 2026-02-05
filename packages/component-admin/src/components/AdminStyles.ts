@@ -81,8 +81,8 @@ export function getShellClasses(options: ShellOptions = {}) {
             sidebar: 'bg-neutral-900 text-white',
             sidebarHeader: 'border-white/10',
             sidebarFooter: 'border-white/10',
-            navItem: 'text-white/70 hover:bg-white/5 hover:text-white',
-            navItemActive: 'bg-primary text-white',
+            navItem: 'text-white/70 hover:bg-white/5 hover:text-white cursor-pointer',
+            navItemActive: 'bg-primary text-white cursor-pointer',
             main: 'bg-neutral-950',
             header: 'bg-neutral-900 border-white/10 shadow-lg',
         },
@@ -90,22 +90,19 @@ export function getShellClasses(options: ShellOptions = {}) {
             sidebar: 'bg-white text-neutral-900 border-r border-neutral-200',
             sidebarHeader: 'border-neutral-100',
             sidebarFooter: 'border-neutral-100',
-            navItem: 'text-neutral-600 hover:bg-neutral-50 hover:text-neutral-900',
-            navItemActive: 'bg-primary/5 text-primary border-r-2 border-primary',
+            navItem: 'text-neutral-600 hover:bg-neutral-50 hover:text-neutral-900 cursor-pointer',
+            navItemActive: 'bg-primary/5 text-primary border-r-2 border-primary cursor-pointer',
             main: 'bg-neutral-50',
             header: 'bg-white border-neutral-200 shadow-sm',
         },
         modern: {
-            sidebar:
-                'bg-neutral-50/80 backdrop-blur-xl text-neutral-900 border-r border-neutral-200/50',
-            sidebarHeader: 'border-neutral-200/50',
-            sidebarFooter: 'border-neutral-200/50',
-            navItem:
-                'mx-3 my-1 rounded-xl text-neutral-500 hover:bg-white hover:shadow-sm hover:text-neutral-900 transition-all duration-300',
-            navItemActive:
-                'mx-3 my-1 rounded-xl bg-white shadow-md shadow-primary/5 text-primary ring-1 ring-primary/10',
-            main: 'bg-neutral-100/30',
-            header: 'bg-white/70 backdrop-blur-md border-b border-neutral-200/50 shadow-sm',
+            sidebar: 'bg-slate-900 text-slate-300 border-r border-slate-800',
+            sidebarHeader: 'border-slate-800',
+            sidebarFooter: 'border-slate-800',
+            navItem: 'mx-3 my-1 rounded-lg text-slate-400 hover:bg-slate-800/50 hover:text-slate-100 transition-all duration-200 cursor-pointer',
+            navItemActive: 'mx-3 my-1 rounded-lg bg-primary/10 text-primary border-none cursor-pointer',
+            main: 'bg-slate-50/50',
+            header: 'bg-white/70 backdrop-blur-xl border-b border-slate-200/60 shadow-none',
         },
     };
 
@@ -184,14 +181,13 @@ export function getResultClasses(
 export function getPageHeaderClasses() {
     return {
         container: 'mb-8',
-        breadcrumb:
-            'text-xs font-bold uppercase tracking-widest text-neutral-400 mb-3 flex items-center gap-2',
+        breadcrumb: 'text-xs font-medium text-slate-400 mb-3 flex items-center gap-2',
         heading: 'flex items-center justify-between',
         left: 'flex flex-col gap-1',
-        title: 'text-2xl font-black text-neutral-900 tracking-tight',
-        subtitle: 'text-sm font-medium text-neutral-400',
+        title: 'text-2xl font-bold text-slate-900 tracking-tight',
+        subtitle: 'text-sm font-medium text-slate-400/80',
         extra: 'flex items-center gap-3',
-        footer: 'mt-6 pt-6 border-t border-neutral-100',
+        footer: 'mt-6 pt-6 border-t border-slate-100',
     };
 }
 

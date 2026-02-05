@@ -6,16 +6,16 @@ export interface CardOptions {
 }
 
 export function getCardClasses(options: CardOptions = {}) {
-    const { variant = 'outline', padding = 'md', rounded = 'lg', interactive = false } = options;
+    const { variant = 'outline', padding = 'md', rounded = 'xl', interactive = false } = options;
 
     const base =
-        'bg-background-primary text-text-primary transition-all duration-300 overflow-hidden border border-neutral-200/60';
+        'bg-white text-slate-900 transition-all duration-300 overflow-hidden border border-slate-200/60';
 
     const variants = {
-        outline: 'bg-white/80 backdrop-blur-md',
-        elevated: 'shadow-sm hover:shadow-md bg-white border-neutral-100',
+        outline: 'bg-white',
+        elevated: 'shadow-sm hover:shadow-md bg-white border-slate-100',
         accent: 'border-primary/20 shadow-lg shadow-primary/5 bg-gradient-to-br from-white to-primary/5',
-        ghost: 'border-none bg-neutral-100/50 backdrop-blur-sm',
+        ghost: 'border-none bg-slate-50/50 backdrop-blur-sm',
     };
 
     const paddings = {
@@ -28,17 +28,17 @@ export function getCardClasses(options: CardOptions = {}) {
 
     const roundeds = {
         none: 'rounded-none',
-        sm: 'rounded-sm',
-        md: 'rounded-md',
-        lg: 'rounded-lg',
-        xl: 'rounded-xl',
-        '2xl': 'rounded-2xl',
-        '3xl': 'rounded-3xl',
+        sm: 'rounded-lg',
+        md: 'rounded-xl',
+        lg: 'rounded-2xl',
+        xl: 'rounded-3xl',
+        '2xl': 'rounded-[2rem]',
+        '3xl': 'rounded-[3rem]',
         full: 'rounded-full',
     };
 
     const interactiveClass = interactive
-        ? 'cursor-pointer hover:border-neutral-300 hover:shadow-md active:scale-[0.99]'
+        ? 'cursor-pointer hover:border-primary/30 hover:shadow-xl hover:shadow-primary/5 active:scale-[0.99]'
         : '';
 
     return [base, variants[variant], paddings[padding], roundeds[rounded], interactiveClass].join(

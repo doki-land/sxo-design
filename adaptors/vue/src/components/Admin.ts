@@ -87,7 +87,6 @@ export const AdminShell = defineComponent({
         const shell = useShell();
         const isCollapsed = ref(shell.isCollapsed);
         const styles = computed(() => getShellClasses({ theme: props.theme }));
-        const RouterLink = resolveComponent('router-link');
 
         const unsubscribe = shell.subscribe((collapsed: boolean) => {
             isCollapsed.value = collapsed;
@@ -98,12 +97,6 @@ export const AdminShell = defineComponent({
         return () =>
             h('div', { 
                 class: styles.value.layout,
-                onMousedown: (e) => {
-                    // 阻止布局层面的意外干扰
-                    if (e.target === e.currentTarget) {
-                        console.log('Layout mousedown');
-                    }
-                }
             }, [
                 // Sidebar
                 h(
@@ -113,8 +106,6 @@ export const AdminShell = defineComponent({
                             styles.value.sidebar,
                             isCollapsed.value ? styles.value.sidebarCollapsed : '',
                         ],
-                        // 确保侧边栏不会因为点击被折叠或拦截
-                        onClick: (e) => e.stopPropagation(),
                     },
                     [
                         h('div', { class: styles.value.sidebarHeader }, [
@@ -124,22 +115,32 @@ export const AdminShell = defineComponent({
                         ]),
                         h('nav', { class: styles.value.sidebarContent }, [
                             props.menuItems.map((item) => {
-                                const tag = item.to ? RouterLink : 'div'; // 改为 div 避免 a 标签默认行为
+                                // 优先检查是否有 to 属性，如果有则尝试解析 router-link
+                                // 如果解析失败或没有 to，则回退到 button 保证点击可用
+                                let tag: any = 'button';
+                                if (item.to) {
+                                    const resolved = resolveComponent('router-link');
+                                    if (typeof resolved !== 'string') {
+                                        tag = resolved;
+                                    }
+                                }
+                                
                                 return h(
-                                    tag as any,
+                                    tag,
                                     {
                                         key: item.id,
-                                        to: item.to,
+                                        // 仅当是链接时传递 to 属性
+                                        ...(item.to ? { to: item.to } : { type: 'button' }),
                                         class: [
                                             styles.value.navItem,
                                             item.active ? styles.value.navItemActive : '',
-                                            'cursor-pointer select-none', // 强制手型和不可选中
+                                            'w-full text-left border-none bg-transparent cursor-pointer select-none',
                                         ],
+                                        style: { display: 'flex', alignItems: 'center', width: '100%', outline: 'none' },
                                         onClick: (e: MouseEvent) => {
-                                            e.preventDefault();
-                                            e.stopPropagation();
-                                            console.log('Sidebar item clicked:', item.id);
-                                            (item as any).onClick?.();
+                                            if (typeof (item as any).onClick === 'function') {
+                                                (item as any).onClick();
+                                            }
                                         },
                                     },
                                     [

@@ -19,28 +19,28 @@ export function getInputClasses(options: InputOptions = {}) {
         'flex items-center w-full transition-all duration-200 outline-none font-normal relative';
 
     const inputBase =
-        'w-full bg-transparent border-none outline-none focus:outline-none focus:ring-0 placeholder:text-text-muted transition-colors appearance-none shadow-none';
+        'w-full bg-transparent border-none outline-none focus:outline-none focus:ring-0 placeholder:text-slate-400 transition-colors appearance-none shadow-none';
 
     const variants = {
         outline:
-            'bg-background-primary border border-border rounded-md focus-within:border-primary',
+            'bg-white border border-slate-200 rounded-lg focus-within:border-primary focus-within:ring-4 focus-within:ring-primary/10',
         'bottom-line':
-            'bg-transparent border-t-0 border-x-0 border-b border-border rounded-none focus-within:border-primary',
-        ghost: 'bg-secondary border border-transparent rounded-md focus-within:bg-background-primary focus-within:border-border',
+            'bg-transparent border-t-0 border-x-0 border-b border-slate-200 rounded-none focus-within:border-primary',
+        ghost: 'bg-slate-100 border border-transparent rounded-lg focus-within:bg-white focus-within:border-slate-200',
     };
 
     const sizes = {
-        sm: { container: 'h-8 px-2', input: 'text-xs', addon: 'text-xs' },
-        md: { container: 'h-10 px-3', input: 'text-sm', addon: 'text-sm' },
+        sm: { container: 'h-8.5 px-3', input: 'text-xs', addon: 'text-xs' },
+        md: { container: 'h-10 px-3.5', input: 'text-sm', addon: 'text-sm' },
         lg: { container: 'h-12 px-4', input: 'text-base', addon: 'text-base' },
     };
 
     const stateClass = invalid
-        ? 'border-error text-error focus-within:border-error placeholder:text-error/50'
-        : 'text-text-primary';
+        ? 'border-error text-error focus-within:border-error focus-within:ring-error/10 placeholder:text-error/50'
+        : 'text-slate-900';
 
-    const disabledClass = disabled ? 'opacity-50 cursor-not-allowed bg-neutral-50' : '';
-    const readonlyClass = readonly ? 'bg-neutral-50/50' : '';
+    const disabledClass = disabled ? 'opacity-50 cursor-not-allowed bg-slate-50' : '';
+    const readonlyClass = readonly ? 'bg-slate-50/50' : '';
 
     const currentSize = sizes[size];
 
