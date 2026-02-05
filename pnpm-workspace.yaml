@@ -7,3 +7,5 @@ packages:
   - '../cvo-framework/packages/*'
   - '../cvo-framework/plugins/*'
   - '../cvo-framework/adaptors/*'
+  - '../Programs/projects/gm'
+  - '../Programs/projects/common'

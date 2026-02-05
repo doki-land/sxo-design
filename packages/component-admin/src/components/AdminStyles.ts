@@ -124,7 +124,7 @@ export function getShellClasses(options: ShellOptions = {}) {
         sidebarContent: 'flex-1 overflow-y-auto py-6',
         sidebarFooter: ['p-4 border-t', activeTheme.sidebarFooter].join(' '),
         navItem: [
-            'flex items-center gap-3 px-6 py-3 text-sm font-medium transition-all duration-200',
+            'flex items-center gap-3 px-6 py-3 text-sm font-medium transition-all duration-200 cursor-pointer select-none',
             activeTheme.navItem,
         ].join(' '),
         navItemActive: activeTheme.navItemActive,

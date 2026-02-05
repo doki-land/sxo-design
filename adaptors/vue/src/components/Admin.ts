@@ -96,7 +96,15 @@ export const AdminShell = defineComponent({
         onUnmounted(unsubscribe);
 
         return () =>
-            h('div', { class: styles.value.layout }, [
+            h('div', { 
+                class: styles.value.layout,
+                onMousedown: (e) => {
+                    // 阻止布局层面的意外干扰
+                    if (e.target === e.currentTarget) {
+                        console.log('Layout mousedown');
+                    }
+                }
+            }, [
                 // Sidebar
                 h(
                     'aside',
@@ -105,6 +113,8 @@ export const AdminShell = defineComponent({
                             styles.value.sidebar,
                             isCollapsed.value ? styles.value.sidebarCollapsed : '',
                         ],
+                        // 确保侧边栏不会因为点击被折叠或拦截
+                        onClick: (e) => e.stopPropagation(),
                     },
                     [
                         h('div', { class: styles.value.sidebarHeader }, [
@@ -114,7 +124,7 @@ export const AdminShell = defineComponent({
                         ]),
                         h('nav', { class: styles.value.sidebarContent }, [
                             props.menuItems.map((item) => {
-                                const tag = item.to ? RouterLink : 'a';
+                                const tag = item.to ? RouterLink : 'div'; // 改为 div 避免 a 标签默认行为
                                 return h(
                                     tag as any,
                                     {
@@ -123,7 +133,14 @@ export const AdminShell = defineComponent({
                                         class: [
                                             styles.value.navItem,
                                             item.active ? styles.value.navItemActive : '',
+                                            'cursor-pointer select-none', // 强制手型和不可选中
                                         ],
+                                        onClick: (e: MouseEvent) => {
+                                            e.preventDefault();
+                                            e.stopPropagation();
+                                            console.log('Sidebar item clicked:', item.id);
+                                            (item as any).onClick?.();
+                                        },
                                     },
                                     [
                                         item.icon ? h('span', { class: 'w-5' }, item.icon) : null,
@@ -143,7 +160,11 @@ export const AdminShell = defineComponent({
                             'button',
                             {
                                 class: 'p-2 hover:bg-neutral-100 rounded-md lg:hidden',
-                                onClick: () => shell.toggle(),
+                                onClick: (e) => {
+                                    e.preventDefault();
+                                    e.stopPropagation();
+                                    shell.toggle();
+                                },
                             },
                             '☰',
                         ),

@@ -9,60 +9,60 @@ export const fateTheme: DesignTokens = {
     color: {
         ...defaultTokens.color,
         primary: {
-            DEFAULT: '#4A90E2', // 蓝色
-            foreground: '#FFFFFF',
+            DEFAULT: '#D4AF37', // 金色 (修仙主题)
+            foreground: '#1A1A1A',
         },
         secondary: {
-            DEFAULT: '#F06292', // 粉色
+            DEFAULT: '#8B4513', // 古木色
             foreground: '#FFFFFF',
         },
         accent: {
-            DEFAULT: '#9B59B6', // 紫色
-            neon: '#48C9B0', // 绿色
-            vivid: '#F39C12', // 橙色
+            DEFAULT: '#2E8B57', // 灵气绿
+            neon: '#00FF7F',
+            vivid: '#FFD700',
         },
         success: {
-            DEFAULT: '#48C9B0',
+            DEFAULT: '#52C41A',
         },
         warning: {
-            DEFAULT: '#F39C12',
+            DEFAULT: '#FAAD14',
         },
         error: {
-            DEFAULT: '#E74C3C',
+            DEFAULT: '#FF4D4F',
         },
         info: {
-            DEFAULT: '#4A90E2',
+            DEFAULT: '#D4AF37',
         },
         neutral: {
             0: '#FFFFFF',
-            50: '#F5F7FA',
-            100: '#E0E6ED',
-            200: '#D1D9E6',
-            300: '#B0BCCB',
-            400: '#94A3B8',
-            500: '#7F8C8D',
-            600: '#64748B',
-            700: '#475569',
-            800: '#334155',
-            900: '#2C3E50',
-            950: '#1E293B',
-            1000: '#0F172A',
+            50: '#FAF9F6', // 宣纸色
+            100: '#F0EEE9',
+            200: '#E6E1D6',
+            300: '#D9D1C0',
+            400: '#BFB59B',
+            500: '#A69B7C',
+            600: '#8C8161',
+            700: '#736A4D',
+            800: '#59523B',
+            900: '#403B2A',
+            950: '#262319',
+            1000: '#0D0C09',
         },
         background: {
-            primary: '#F5F7FA',
-            secondary: 'rgba(255, 255, 255, 0.8)', // 模拟毛玻璃
-            inverse: '#0B0E14',
+            primary: '#FDFCF8',
+            secondary: 'rgba(253, 252, 248, 0.9)',
+            inverse: '#1A1A1A',
         },
     },
     borderRadius: {
-        DEFAULT: '16px',
+        DEFAULT: '4px', // 更硬朗的边框，符合古风
         none: '0px',
-        xs: '4px',
-        sm: '12px',
-        md: '16px',
-        lg: '24px',
+        xs: '2px',
+        sm: '4px',
+        md: '8px',
+        lg: '12px',
         full: '9999px',
-        xl: '12px',
+        xl: '16px',
     },
     boxShadow: {
         none: 'none',
