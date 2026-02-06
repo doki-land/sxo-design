@@ -1,6 +1,6 @@
 {
     "name": "@sxo/plugin-vue",
-    "version": "0.0.1",
+    "version": "0.0.0",
     "description": "Vue 3 adaptor for SXO Design System.",
     "keywords": [
         "sxo",
