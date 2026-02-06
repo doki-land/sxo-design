@@ -7,6 +7,10 @@ export interface Toast {
     position?: 'top' | 'bottom' | 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
 }
 
+export function useToast() {
+    return useToastManager();
+}
+
 export function useToastManager() {
     let toasts: Toast[] = [];
     const listeners = new Set<(toasts: Toast[]) => void>();

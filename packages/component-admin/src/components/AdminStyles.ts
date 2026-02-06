@@ -7,23 +7,23 @@ export function getStatCardClasses(options: StatCardOptions = {}) {
     const { variant = 'bordered', color = 'primary' } = options;
 
     const container = {
-        base: 'p-6 rounded-xl transition-all duration-300',
-        bordered: 'border border-neutral-200 bg-white shadow-sm hover:shadow-md',
+        base: 'p-5 rounded-sm transition-all duration-200',
+        bordered: 'border border-[#f0f0f0] bg-white hover:border-[#1677ff] group',
         simple: 'bg-transparent',
-        solid: 'text-white shadow-lg',
+        solid: 'text-white',
     };
 
     const solidColors = {
-        primary: 'bg-primary',
-        success: 'bg-success',
-        warning: 'bg-warning',
-        error: 'bg-error',
-        info: 'bg-info',
+        primary: 'bg-[#1677ff]',
+        success: 'bg-[#52c41a]',
+        warning: 'bg-[#faad14]',
+        error: 'bg-[#ff4d4f]',
+        info: 'bg-[#1677ff]',
     };
 
-    const title = 'text-sm font-medium opacity-60 mb-2 uppercase tracking-wider';
-    const value = 'text-3xl font-bold mb-1';
-    const trend = 'text-xs font-semibold flex items-center gap-1';
+    const title = 'text-sm text-zinc-500 mb-2 font-normal';
+    const value = 'text-2xl font-semibold text-zinc-900 leading-none';
+    const trend = 'text-xs mt-2 flex items-center gap-1 font-medium';
 
     return {
         container: [
@@ -96,13 +96,13 @@ export function getShellClasses(options: ShellOptions = {}) {
             header: 'bg-white border-neutral-200 shadow-sm',
         },
         modern: {
-            sidebar: 'bg-slate-900 text-slate-300 border-r border-slate-800',
-            sidebarHeader: 'border-slate-800',
-            sidebarFooter: 'border-slate-800',
-            navItem: 'mx-3 my-1 rounded-lg text-slate-400 hover:bg-slate-800/50 hover:text-slate-100 transition-all duration-200 cursor-pointer',
-            navItemActive: 'mx-3 my-1 rounded-lg bg-primary/10 text-primary border-none cursor-pointer',
-            main: 'bg-slate-50/50',
-            header: 'bg-white/70 backdrop-blur-xl border-b border-slate-200/60 shadow-none',
+            sidebar: 'bg-[#001529] text-white/65 shadow-[2px_0_8px_0_rgba(29,35,41,0.05)]',
+            sidebarHeader: 'h-[64px] flex items-center px-6',
+            sidebarFooter: 'p-4',
+            navItem: 'text-white/65 hover:text-white transition-colors duration-200 cursor-pointer px-4 py-3 flex items-center gap-3 font-normal text-[14px]',
+            navItemActive: 'bg-[#1677ff] text-white cursor-pointer px-4 py-3 flex items-center gap-3 font-medium text-[14px]',
+            main: 'bg-[#f0f2f5]',
+            header: 'bg-white sticky top-0 z-30 h-[64px] flex items-center px-6 shadow-[0_1px_4px_rgba(0,21,41,0.08)]',
         },
     };
 
@@ -111,26 +111,26 @@ export function getShellClasses(options: ShellOptions = {}) {
     return {
         layout: 'flex h-screen overflow-hidden',
         sidebar: [
-            'fixed inset-y-0 left-0 z-50 w-64 transition-transform duration-300 lg:static lg:translate-x-0',
+            'fixed inset-y-0 left-0 z-50 w-52 transition-transform duration-300 lg:static lg:translate-x-0',
             activeTheme.sidebar,
         ].join(' '),
         sidebarCollapsed: '-translate-x-full',
-        sidebarHeader: ['flex items-center h-16 px-6 border-b', activeTheme.sidebarHeader].join(
+        sidebarHeader: ['flex items-center h-16 px-6', activeTheme.sidebarHeader].join(
             ' ',
         ),
-        sidebarContent: 'flex-1 overflow-y-auto py-6',
-        sidebarFooter: ['p-4 border-t', activeTheme.sidebarFooter].join(' '),
+        sidebarContent: 'flex-1 overflow-y-auto py-2',
+        sidebarFooter: ['p-4', activeTheme.sidebarFooter].join(' '),
         navItem: [
-            'flex items-center gap-3 px-6 py-3 text-sm font-medium transition-all duration-200 cursor-pointer select-none',
+            'flex items-center gap-3 px-4 py-3 text-sm transition-all duration-200 cursor-pointer select-none',
             activeTheme.navItem,
         ].join(' '),
         navItemActive: activeTheme.navItemActive,
         main: ['flex-1 flex flex-col min-w-0 overflow-hidden', activeTheme.main].join(' '),
         header: [
-            'flex items-center justify-between h-16 px-8 border-b shadow-sm',
+            'flex items-center justify-between h-16 px-6 border-b',
             activeTheme.header,
         ].join(' '),
-        content: 'flex-1 overflow-y-auto p-8',
+        content: 'flex-1 overflow-y-auto p-6',
     };
 }
 
@@ -180,14 +180,14 @@ export function getResultClasses(
 
 export function getPageHeaderClasses() {
     return {
-        container: 'mb-8',
-        breadcrumb: 'text-xs font-medium text-slate-400 mb-3 flex items-center gap-2',
+        container: 'mb-10',
+        breadcrumb: 'text-[12px] font-medium text-zinc-400 mb-4 flex items-center gap-2',
         heading: 'flex items-center justify-between',
-        left: 'flex flex-col gap-1',
-        title: 'text-2xl font-bold text-slate-900 tracking-tight',
-        subtitle: 'text-sm font-medium text-slate-400/80',
+        left: 'flex flex-col gap-2',
+        title: 'text-[28px] font-bold text-zinc-900 tracking-[-0.02em] leading-none',
+        subtitle: 'text-[14px] font-medium text-zinc-500/80',
         extra: 'flex items-center gap-3',
-        footer: 'mt-6 pt-6 border-t border-slate-100',
+        footer: 'mt-8 pt-8 border-t border-zinc-100',
     };
 }
 

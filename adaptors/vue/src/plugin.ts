@@ -35,7 +35,7 @@ export function createSxo(
     const userTokens = options.tokens || options.theme;
     const tokens = userTokens ? mergeTokens(defaultTokens, userTokens) : defaultTokens;
     const mode = options.mode || 'light';
-    const engine = new StyleEngine(tokens);
+    const engine = new StyleEngine(tokens, { debug: true });
 
     return {
         install(app: App) {
@@ -46,6 +46,12 @@ export function createSxo(
             });
 
             app.provide(SXO_KEY, state);
+
+            // Expose for devtools
+            if (typeof window !== 'undefined') {
+                (window as any).__sxo = state;
+                (window as any).__cvo = state;
+            }
 
             // 全局样式扫描 (Runtime Scanner)
             if (typeof document !== 'undefined') {

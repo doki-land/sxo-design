@@ -134,9 +134,9 @@ export const AdminShell = defineComponent({
                                         class: [
                                             styles.value.navItem,
                                             item.active ? styles.value.navItemActive : '',
-                                            'w-full text-left border-none bg-transparent cursor-pointer select-none',
+                                            'text-left border-none bg-transparent cursor-pointer select-none',
                                         ],
-                                        style: { display: 'flex', alignItems: 'center', width: '100%', outline: 'none' },
+                                        style: { display: 'flex', alignItems: 'center', outline: 'none' },
                                         onClick: (e: MouseEvent) => {
                                             if (typeof (item as any).onClick === 'function') {
                                                 (item as any).onClick();

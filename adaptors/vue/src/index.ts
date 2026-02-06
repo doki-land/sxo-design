@@ -75,5 +75,17 @@ export { Tree as SxoTree } from './components/Tree';
 export { TreeSelect as SxoTreeSelect } from './components/TreeSelect';
 export { Upload as SxoUpload } from './components/Upload';
 export { VirtualList as SxoVirtualList } from './components/VirtualList';
+
+// Headless logic re-exports
+export {
+    useMenu,
+    useSelection,
+    useTable,
+    useTabs,
+    useForm,
+    useDialog,
+    useToast as useHeadlessToast,
+} from '@sxo/design';
+
 export * from './hooks';
 export * from './plugin';
