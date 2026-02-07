@@ -28,6 +28,31 @@ export const layoutRules: Rule[] = [
     ],
     ['appearance-none', () => ({ appearance: 'none' })],
 
+    // Container
+    [
+        'container',
+        (_, { tokens }) => {
+            const styles: any = {
+                width: '100%',
+                'margin-left': 'auto',
+                'margin-right': 'auto',
+            };
+            if (tokens.breakpoints) {
+                // Generate responsive max-widths for container
+                // Note: The engine's variant system will handle the media queries
+                // if we were generating sm:container, but the base 'container' class
+                // in Tailwind intrinsically changes max-width.
+                // In SXO, we can return a nested object with media queries.
+                Object.entries(tokens.breakpoints).forEach(([name, width]) => {
+                    styles[`@media (min-width: ${width})`] = {
+                        'max-width': width,
+                    };
+                });
+            }
+            return styles;
+        },
+    ],
+
     // Position
     ['static', () => ({ position: 'static' })],
     ['fixed', () => ({ position: 'fixed' })],

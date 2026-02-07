@@ -10,9 +10,21 @@ declare const uni: any;
  * Vue Composition API for SXO styles
  */
 export function useStyle(
-    classNames: string | (() => string) | ComputedRef<string>,
+    classNames: string | (() => string) | ComputedRef<string> | any,
 ): ComputedRef<string> {
     const { engine } = useSxo();
+
+    const normalize = (val: any): string[] => {
+        if (!val) return [];
+        if (typeof val === 'string') return val.split(/\s+/).filter(Boolean);
+        if (Array.isArray(val)) return val.flatMap(normalize);
+        if (typeof val === 'object') {
+            return Object.entries(val)
+                .filter(([_, active]) => active)
+                .map(([className]) => className);
+        }
+        return [];
+    };
 
     const classes = computed(() => {
         let raw: any = classNames;
@@ -21,12 +33,10 @@ export function useStyle(
         } else if (isRef(classNames)) {
             raw = classNames.value;
         }
-
-        if (!raw || typeof raw !== 'string') return [];
-        return raw.split(/\s+/).filter(Boolean);
+        return normalize(raw);
     });
 
-    const css = computed(() => engine.generateBatch(classes.value));
+    const css = computed(() => engine.generateBatch(new Set(classes.value)));
 
     watchEffect(() => {
         if (css.value && typeof document !== 'undefined') {
@@ -37,11 +47,18 @@ export function useStyle(
                 document.head.appendChild(styleTag);
             }
 
-            const lines = css.value.split('\n').filter((l) => l.trim());
+            // 使用更健壮的注入逻辑：按规则块分割
+            // 简单的规则分割逻辑，假设每个规则以 } 结尾
+            const rules = css.value
+                .split('}')
+                .map((r) => r.trim())
+                .filter(Boolean)
+                .map((r) => r + '}');
+
             let needsUpdate = false;
-            for (const line of lines) {
-                if (!injectedStyles.has(line)) {
-                    injectedStyles.add(line);
+            for (const rule of rules) {
+                if (!injectedStyles.has(rule)) {
+                    injectedStyles.add(rule);
                     needsUpdate = true;
                 }
             }
@@ -56,7 +73,7 @@ export function useStyle(
         ? (classNames as ComputedRef<string>)
         : typeof classNames === 'function'
           ? computed(classNames as any)
-          : computed(() => classNames as string);
+          : computed(() => (typeof classNames === 'string' ? classNames : classes.value.join(' ')));
 }
 
 /**

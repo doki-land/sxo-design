@@ -47,6 +47,25 @@ export function createSxo(
 
             app.provide(SXO_KEY, state);
 
+            // 注入 CSS 变量
+            if (typeof document !== 'undefined') {
+                watchEffect(() => {
+                    const vars = tokensToCssVars(state.tokens);
+                    const css = `:root {\n${Object.entries(vars)
+                        .map(([k, v]) => `  ${k}: ${v};`)
+                        .join('\n')}\n}`;
+                    
+                    const styleId = 'sxo-tokens';
+                    let styleEl = document.getElementById(styleId) as HTMLStyleElement;
+                    if (!styleEl) {
+                        styleEl = document.createElement('style');
+                        styleEl.id = styleId;
+                        document.head.prepend(styleEl);
+                    }
+                    styleEl.textContent = css;
+                });
+            }
+
             // Expose for devtools
             if (typeof window !== 'undefined') {
                 (window as any).__sxo = state;

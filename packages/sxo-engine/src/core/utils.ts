@@ -80,75 +80,54 @@ export function resolveColor(
             return { color: part, varPath: '', opacity: opacity };
         }
 
-        // 特殊逻辑：处理 foreground 语义
-        if (part === 'foreground') {
-            if (current && typeof current === 'object' && 'foreground' in current) {
-                current = current.foreground;
-                varParts.push('foreground');
-                continue;
-            } else if (tokens.color?.text?.primary) {
-                // 如果在当前层级没找到 foreground，且是全局查找，优先映射到 text.primary
-                // 这符合 bg-foreground = 黑色的直觉 (在浅色模式下)
-                return {
-                    color: tokens.color.text.primary,
-                    varPath: 'color-text-primary',
-                    opacity: opacity,
-                };
-            } else if (tokens.color?.primary?.foreground) {
-                // 回退到全局 primary.foreground
-                return {
-                    color: tokens.color.primary.foreground,
-                    varPath: 'color-primary-foreground',
-                    opacity: opacity,
-                };
-            }
-        }
-
-        // 处理 DEFAULT
-        if (part === 'DEFAULT') {
-            if (current && typeof current === 'object' && 'DEFAULT' in current) {
-                current = current.DEFAULT;
-                varParts.push('DEFAULT');
-                continue;
-            }
-        }
-
-        if (current && typeof current === 'object' && part in current) {
-            current = (current as any)[part];
-            varParts.push(part);
+        // 特殊处理：如果 part 是数值且我们在根部，尝试进入 neutral (Tailwind 习惯)
+        if (node.type === 'numeric' && i === 0 && tokens.color?.neutral?.[part]) {
+            current = tokens.color.neutral[part];
+            varParts = ['color', 'neutral', part];
             continue;
         }
 
-        // 如果是 literal 但在 tokens 中没找到，尝试 fallback 到 DEFAULT 或 primary
-        if (current && typeof current === 'object' && i === colorNodes.length - 1) {
-            if ('DEFAULT' in current) {
-                current = (current as any).DEFAULT;
-                varParts.push('DEFAULT');
-                continue;
-            } else if ('primary' in current) {
-                current = (current as any).primary;
-                varParts.push('primary');
-                continue;
+        if (current && typeof current === 'object' && part in current) {
+            current = current[part];
+            varParts.push(part);
+        } else if (current && typeof current === 'object' && part === 'foreground' && 'foreground' in current) {
+            // 支持显式的 foreground 节点
+            current = current.foreground;
+            varParts.push('foreground');
+        } else {
+            return undefined;
+        }
+    }
+
+    // 处理对象类型的颜色（通常带有 DEFAULT）
+    let colorValue = current;
+    if (typeof current === 'object' && current !== null) {
+        if ('DEFAULT' in current) {
+            colorValue = current.DEFAULT;
+            varParts.push('DEFAULT');
+        } else if ('foreground' in current) {
+            // 如果只有 foreground，则使用 it (常用于某些语义组)
+            colorValue = current.foreground;
+            varParts.push('foreground');
+        } else {
+            // 如果没有 DEFAULT，尝试取第一个值
+            const firstKey = Object.keys(current)[0];
+            if (firstKey) {
+                colorValue = current[firstKey];
+                varParts.push(firstKey);
+            } else {
+                return undefined;
             }
         }
-
-        return undefined;
     }
 
-    // 如果循环结束 current 仍是对象，尝试取其 DEFAULT 或 primary
-    if (current && typeof current === 'object') {
-        if ('DEFAULT' in current) {
-            current = (current as any).DEFAULT;
-            varParts.push('DEFAULT');
-        } else if ('primary' in current) {
-            current = (current as any).primary;
-            varParts.push('primary');
-        }
-    }
+    if (typeof colorValue !== 'string') return undefined;
 
-    if (typeof current !== 'string') return undefined;
-
-    return { color: current, varPath: varParts.join('-'), opacity: opacity };
+    return {
+        color: colorValue,
+        varPath: varParts.join('-'),
+        opacity: opacity,
+    };
 }
 
 /**
