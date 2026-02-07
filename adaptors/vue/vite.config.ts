@@ -4,8 +4,6 @@ import dts from 'vite-plugin-dts';
 import { sharedBuildOptions } from '../../vite.workspace';
 
 export default defineConfig({
-    // @ts-expect-error
-    builder: 'rolldown',
     plugins: [
         vue(),
         dts({
@@ -15,7 +13,7 @@ export default defineConfig({
         }),
     ],
     css: {
-        transformer: 'lightningcss',
+        // transformer: 'lightningcss',
     },
     build: sharedBuildOptions(__dirname, 'VueSxo'),
 });

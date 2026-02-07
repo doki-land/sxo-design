@@ -299,6 +299,34 @@ export function vitePluginSxo(options: VitePluginSxoOptions = {}): Plugin {
         return foundNew;
     };
 
+    let timer: NodeJS.Timeout | undefined;
+    const invalidate = () => {
+        if (timer) clearTimeout(timer);
+        timer = setTimeout(() => {
+            if (server) {
+                const mod = server.moduleGraph.getModuleById(resolvedVirtualModuleId);
+                if (mod) {
+                    server.moduleGraph.invalidateModule(mod);
+                    // Use standard HMR update instead of full reload or reloadModule
+                    server.ws.send({
+                        type: 'update',
+                        updates: [
+                            {
+                                type: 'js-update',
+                                path: `/@id/${virtualModuleId}`,
+                                acceptedPath: `/@id/${virtualModuleId}`,
+                                timestamp: Date.now(),
+                            },
+                        ],
+                    });
+                    if (debug) {
+                        console.log(`[SXO] HMR update sent for ${virtualModuleId}`);
+                    }
+                }
+            }
+        }, 100);
+    };
+
     return {
         name: 'vite-plugin-sxo',
 
@@ -309,6 +337,7 @@ export function vitePluginSxo(options: VitePluginSxoOptions = {}): Plugin {
         },
 
         buildEnd() {
+            if (timer) clearTimeout(timer);
             if (debug && missedClasses.size > 0) {
                 console.log('\n[SXO] --- Diagnostic Report (Missed Classes) ---');
                 missedClasses.forEach((files, cls) => {
@@ -532,16 +561,7 @@ export function vitePluginSxo(options: VitePluginSxoOptions = {}): Plugin {
             const foundNew = scan(code, id);
 
             if (foundNew && server) {
-                const mod = server.moduleGraph.getModuleById(resolvedVirtualModuleId);
-                if (mod) {
-                    // Compatible way to invalidate and reload
-                    server.moduleGraph.invalidateModule(mod);
-                    if (server.reloadModule) {
-                        server.reloadModule(mod).catch(() => {
-                            /* ignore */
-                        });
-                    }
-                }
+                invalidate();
             }
 
             if (uniapp) {

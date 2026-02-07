@@ -32,7 +32,7 @@ export {
 export { Dialog as SxoDialog } from './components/Dialog';
 export { Divider as SxoDivider } from './components/Divider';
 export { Drawer as SxoDrawer } from './components/Drawer';
-export { Dropdown as SxoDropdown, DropdownItem as SxoDropdownItem } from './components/Dropdown';
+export { Dropdown as SxoDropdown, DropdownItem as SxoDropdownItem, DropdownMenu as SxoDropdownMenu } from './components/Dropdown';
 export { Empty as SxoEmpty } from './components/Empty';
 export {
     Progress as SxoProgress,

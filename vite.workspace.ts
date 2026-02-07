@@ -37,5 +37,5 @@ export const sharedBuildOptions = (dir: string, name: string, entry = 'src/index
         },
         outDir: 'dist',
         emptyOutDir: true,
-        cssMinify: 'lightningcss' as const,
+        cssMinify: false as any,
     }) as import('vite').UserConfig['build'];

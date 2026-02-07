@@ -37,6 +37,13 @@ export const DropdownItem = defineComponent({
     },
 });
 
+export const DropdownMenu = defineComponent({
+    name: 'SxoDropdownMenu',
+    setup(props, { slots }) {
+        return () => h('div', { class: 'sxo-dropdown-menu' }, slots.default?.());
+    },
+});
+
 export const Dropdown = defineComponent({
     name: 'SxoDropdown',
     props: {
@@ -127,7 +134,7 @@ export const Dropdown = defineComponent({
                                     close();
                                 },
                             },
-                            slots.overlay?.(),
+                            slots.dropdown?.() || slots.overlay?.(),
                         ),
                 ],
             );
