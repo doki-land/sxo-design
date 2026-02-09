@@ -1,5 +1,14 @@
 # sxo-documentions
 
+## 0.0.3
+
+### Patch Changes
+
+- Updated dependencies
+  - @sxo/design@0.1.1
+  - @sxo/engine@0.1.1
+  - @sxo/react@0.1.1
+
 ## 0.0.2
 
 ### Patch Changes

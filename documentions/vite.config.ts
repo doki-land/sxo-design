@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { resolve } from 'path';
-import { vitePluginSxo } from '@sxo/vite-plugin';
+import { vitePluginSxo } from 'vite-plugin-sxo';
 
 export default defineConfig({
     plugins: [

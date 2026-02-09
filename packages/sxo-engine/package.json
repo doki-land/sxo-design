@@ -1,6 +1,6 @@
 {
     "name": "@sxo/engine",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "High-performance dynamic style engine for SXO Design System.",
     "keywords": [
         "sxo",

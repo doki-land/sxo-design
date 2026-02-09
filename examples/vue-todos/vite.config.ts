@@ -2,7 +2,7 @@ import { pronhubTheme } from '@sxo/theme-pronhub';
 import vue from '@vitejs/plugin-vue';
 import oxc from 'unplugin-oxc/vite';
 import { defineConfig } from 'vite';
-import { vitePluginSxo } from '@sxo/vite-plugin-sxo';
+import { vitePluginSxo } from 'vite-plugin-sxo';
 
 export default defineConfig({
     environments: {

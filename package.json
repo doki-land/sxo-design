@@ -8,8 +8,7 @@
     "author": "sxo team",
     "main": "index.js",
     "dependencies": {
-        "@cvo/core": "workspace:*",
-        "@cvo/cli": "workspace:*"
+        "vite-plugin-sxo": "link:adaptors/vite-plugin"
     },
     "scripts": {
         "dev": "pnpm -r --parallel --if-present dev",

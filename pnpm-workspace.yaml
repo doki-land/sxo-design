@@ -1,6 +1,9 @@
 packages:
-  - 'packages/*'
-  - 'adaptors/*'
-  - 'projects/*'
-  - 'examples/*'
-  - 'documentions'
+  - packages/*
+  - adaptors/*
+  - projects/*
+  - examples/*
+  - documentions
+
+overrides:
+  vite-plugin-sxo: link:adaptors/vite-plugin

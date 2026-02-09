@@ -18,7 +18,7 @@
             "@sxo/*": ["packages/sxo-*/src", "packages/*/src"],
             "react-sxo": ["adaptors/react-sxo/src"],
             "*-sxo": ["adaptors/*-sxo/src"],
-            "vite-plugin-sxo": ["adaptors/vite-plugin-sxo/src"]
+            "vite-plugin-sxo": ["adaptors/vite-plugin/src"]
         }
     },
     "include": ["packages", "adaptors", "examples", "plugins/component-monaco"],

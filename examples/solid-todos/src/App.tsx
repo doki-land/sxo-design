@@ -1,7 +1,6 @@
-/** @jsxImportSource solid-js */
 import { pronhubTheme } from '@sxo/theme-pronhub';
 import { createSignal, For, Show } from 'solid-js';
-import { Button, Input, Tag, ThemeProvider } from '@sxo/solid-sxo';
+import { Button, Input, Tag, ThemeProvider } from '@sxo/solid';
 
 interface Todo {
     id: number;

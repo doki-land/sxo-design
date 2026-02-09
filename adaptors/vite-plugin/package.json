@@ -1,6 +1,6 @@
 {
-    "name": "@sxo/vite-plugin-sxo",
-    "version": "0.1.0",
+    "name": "vite-plugin-sxo",
+    "version": "0.1.1",
     "description": "Vite plugin for SXO Design System with auto-import and HMR support.",
     "keywords": [
         "sxo",
@@ -54,12 +54,12 @@
     "repository": {
         "type": "git",
         "url": "git+https://github.com/doki-land/sxo-engine.git",
-        "directory": "adaptors/vite-plugin-sxo"
+        "directory": "adaptors/vite-plugin"
     },
     "bugs": {
         "url": "https://github.com/doki-land/sxo-engine/issues"
     },
-    "homepage": "https://github.com/doki-land/sxo-engine/tree/main/adaptors/vite-plugin-sxo#readme",
+    "homepage": "https://github.com/doki-land/sxo-engine/tree/main/adaptors/vite-plugin#readme",
     "devDependencies": {
         "tsup": "^8.3.6",
         "typescript": "^5.7.3",

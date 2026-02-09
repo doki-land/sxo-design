@@ -1,7 +1,7 @@
 {
     "name": "solid-todos",
     "private": true,
-    "version": "0.0.2",
+    "version": "0.0.3",
     "type": "module",
     "scripts": {
         "dev": "vite --port 5001",
@@ -17,8 +17,9 @@
     "devDependencies": {
         "typescript": "^5.9.3",
         "vite": "^7.3.1",
+        "lightningcss": "^1.29.1",
         "vite-plugin-solid": "^2.11.10",
-        "@sxo/vite-plugin-sxo": "workspace:*"
+        "vite-plugin-sxo": "workspace:*"
     },
     "publishConfig": {
         "access": "restricted"

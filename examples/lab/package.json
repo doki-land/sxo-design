@@ -1,6 +1,6 @@
 {
     "name": "sxo-lab",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "private": true,
     "type": "module",
     "scripts": {
@@ -25,6 +25,6 @@
         "@vitejs/plugin-vue": "^6.0.4",
         "typescript": "^5.7.2",
         "vite": "^7.3.1",
-        "@sxo/vite-plugin-sxo": "workspace:*"
+        "vite-plugin-sxo": "workspace:*"
     }
 }

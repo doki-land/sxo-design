@@ -1,5 +1,14 @@
 # @sxo/plugin-vue2
 
+## 0.1.1
+
+### Patch Changes
+
+- Updated dependencies
+  - @sxo/design@0.1.1
+  - @sxo/engine@0.1.1
+  - @sxo/ui@0.1.1
+
 ## 0.1.0
 
 ### Minor Changes
