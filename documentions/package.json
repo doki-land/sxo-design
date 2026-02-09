@@ -1,12 +1,12 @@
 {
     "name": "sxo-documentions",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "private": true,
     "type": "module",
     "scripts": {
-        "dev": "cvo dev",
-        "build": "cvo build",
-        "preview": "cvo preview"
+        "dev": "vite",
+        "build": "vite build",
+        "preview": "vite preview"
     },
     "dependencies": {
         "@sxo/design": "workspace:*",

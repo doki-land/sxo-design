@@ -1,6 +1,6 @@
 {
     "name": "@sxo/plugin-wechat",
-    "version": "0.0.0",
+    "version": "0.1.0",
     "description": "Wechat Native adaptor for SXO Design System",
     "main": "src/index.ts",
     "dependencies": {

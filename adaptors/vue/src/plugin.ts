@@ -69,7 +69,6 @@ export function createSxo(
             // Expose for devtools
             if (typeof window !== 'undefined') {
                 (window as any).__sxo = state;
-                (window as any).__cvo = state;
             }
 
             // 全局样式扫描 (Runtime Scanner)

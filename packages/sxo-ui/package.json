@@ -1,6 +1,6 @@
 {
     "name": "@sxo/ui",
-    "version": "0.0.0",
+    "version": "0.1.0",
     "description": "Framework-agnostic UI component logic and style generators for SXO.",
     "keywords": [
         "sxo",

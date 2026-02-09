@@ -1,71 +1,37 @@
 import React from 'react';
-import { createRoot, hydrateRoot } from 'react-dom/client';
-import { RouterProvider } from 'react-router-dom';
-import { createCvoRouter, CvoProvider, generateRoutesFromPages } from '@cvo/plugin-react/client';
+import { createRoot } from 'react-dom/client';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { SxoProvider } from '@sxo/react';
-import { pages as _cvo_pages } from 'virtual:cvo-pages';
 import App from './App';
+import Home from './pages/index';
+import DocPage from './pages/[...slug]';
 import 'virtual:sxo.css';
 import './index.css';
 
-export async function render(url: string) {
-    const { renderToString } = await import('react-dom/server');
-    
-    const router = createCvoRouter({
-        ssr: true,
-        initialEntries: [url],
-        pages: {},
-        routes: [
-            {
-                path: '/',
-                element: <App />,
-                children: generateRoutesFromPages(_cvo_pages)
-            }
-        ]
-    });
-
-    const html = renderToString(
-        <CvoProvider>
-            <SxoProvider>
-                <RouterProvider router={router} />
-            </SxoProvider>
-        </CvoProvider>
-    );
-
-    return { html };
-}
-
 if (typeof document !== 'undefined') {
-    const router = createCvoRouter({
-        pages: {},
-        routes: [
-            {
-                path: '/',
-                element: <App />,
-                children: generateRoutesFromPages(_cvo_pages)
-            }
-        ]
-    });
+    const router = createBrowserRouter([
+        {
+            path: '/',
+            element: <App />,
+            children: [
+                {
+                    index: true,
+                    element: <Home />
+                },
+                {
+                    path: '*',
+                    element: <DocPage />
+                }
+            ]
+        }
+    ]);
 
     const container = document.getElementById('app');
     if (container) {
-        if (container.hasChildNodes()) {
-            hydrateRoot(
-                container,
-                <CvoProvider>
-                    <SxoProvider>
-                        <RouterProvider router={router} />
-                    </SxoProvider>
-                </CvoProvider>
-            );
-        } else {
-            createRoot(container).render(
-                <CvoProvider>
-                    <SxoProvider>
-                        <RouterProvider router={router} />
-                    </SxoProvider>
-                </CvoProvider>
-            );
-        }
+        createRoot(container).render(
+            <SxoProvider>
+                <RouterProvider router={router} />
+            </SxoProvider>
+        );
     }
 }
