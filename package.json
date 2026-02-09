@@ -8,6 +8,8 @@
     "author": "sxo team",
     "main": "index.js",
     "dependencies": {
+        "@cvo/core": "workspace:*",
+        "@cvo/cli": "workspace:*"
     },
     "scripts": {
         "dev": "pnpm -r --parallel --if-present dev",

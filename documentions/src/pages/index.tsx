@@ -9,7 +9,7 @@ const Home: React.FC = () => {
             </h1>
             <p className="text-xl text-gray-600 mb-10 max-w-2xl mx-auto">
                 A modern, modular, cross-framework design system engine. 
-                Now powered by CVO SSG with React.
+                Now powered by Vite with React.
             </p>
             <div className="flex justify-center gap-4">
                 <Link to="/zh-CN/guide/getting-started" className="px-8 py-3 bg-indigo-600 text-white rounded-lg font-semibold hover:bg-indigo-700 transition">

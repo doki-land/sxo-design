@@ -26,8 +26,8 @@
         "!src/**/*.test.ts"
     ],
     "scripts": {
-        "build": "vite build",
-        "dev": "vite build --watch",
+        "build": "tsup src/index.ts --format cjs --format esm --dts",
+        "dev": "tsup src/index.ts --format cjs --format esm --dts --watch",
         "cli": "node bin/sxo.js"
     },
     "dependencies": {
@@ -41,9 +41,8 @@
         "@types/fs-extra": "^11.0.4",
         "@types/node": "^20.19.28",
         "@types/prompts": "^2.4.9",
-        "typescript": "^5.9.3",
-        "vite": "^7.3.1",
-        "vite-plugin-dts": "^4.5.4"
+        "tsup": "^8.3.6",
+        "typescript": "^5.9.3"
     },
     "repository": {
         "type": "git",

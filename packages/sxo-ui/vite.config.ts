@@ -4,8 +4,7 @@ import dts from 'vite-plugin-dts';
 import { sharedBuildOptions } from '../../vite.workspace';
 
 export default defineConfig({
-    // @ts-expect-error - Experimental Rolldown support in Vite 6
-    builder: 'rolldown',
+    // builder: 'rolldown',
     plugins: [
         oxc(),
         dts({

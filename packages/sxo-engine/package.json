@@ -37,8 +37,8 @@
         }
     },
     "scripts": {
-        "build": "vite build",
-        "dev": "vite build --watch",
+        "build": "tsup src/index.ts --format cjs --format esm --dts --clean --sourcemap",
+        "dev": "tsup src/index.ts --format cjs --format esm --dts --clean --sourcemap --watch",
         "test": "vitest run"
     },
     "dependencies": {

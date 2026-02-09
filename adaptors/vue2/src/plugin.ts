@@ -58,7 +58,7 @@ export const SxoPlugin = {
         injectVars();
 
         // In Vue 2, we can use a global mixin to provide the state to all components
-        // or use the Vue prototype. CVO preference is provide/inject.
+        // or use the Vue prototype. SXO preference is provide/inject.
         VueInstance.mixin({
             provide() {
                 return {

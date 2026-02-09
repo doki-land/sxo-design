@@ -19,9 +19,9 @@ export function getDialogClasses(options: DialogStylesOptions = {}) {
 
     return {
         overlay:
-            'fixed inset-0 z-50 bg-black/80 backdrop-blur-sm transition-opacity duration-300 animate-fade-in',
+            'absolute inset-0 z-0 bg-black/80 backdrop-blur-sm transition-opacity duration-300 animate-fade-in',
         container: `fixed inset-0 z-50 flex items-center justify-center p-4 ${isCentered ? 'items-center' : 'items-start pt-20'}`,
-        content: `relative w-full ${sizes[size]} bg-white border-4 border-primary shadow-hard-accent p-8 transition-all duration-300 animate-zoom-in`,
+        content: `relative z-50 w-full ${sizes[size]} bg-white border-4 border-primary shadow-hard-accent p-8 transition-all duration-300 animate-zoom-in`,
         header: 'mb-6 flex flex-col space-y-2',
         title: 'text-2xl font-black uppercase tracking-tighter text-primary',
         description: 'text-neutral-500 text-sm font-medium',

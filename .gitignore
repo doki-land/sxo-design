@@ -6,6 +6,7 @@
 node_modules/
 dist/
 coverage/
+generated/
 cache/
 tsconfig.tsbuildinfo
 
