@@ -31,10 +31,14 @@ async function build() {
     // Helper to add classes
     const addClasses = (classes) => {
         if (!classes) return;
-        classes
-            .split(/\s+/)
-            .filter(Boolean)
-            .forEach((c) => allClassNames.add(c));
+        if (typeof classes === 'string') {
+            classes
+                .split(/\s+/)
+                .filter(Boolean)
+                .forEach((c) => allClassNames.add(c));
+        } else if (typeof classes === 'object') {
+            Object.values(classes).forEach(addClasses);
+        }
     };
 
     // Iterate through components and variants (This is a simplified version for AOT)
