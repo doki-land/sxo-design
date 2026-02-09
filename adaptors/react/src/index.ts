@@ -35,7 +35,7 @@ export * from './components/Table.tsx';
 export * from './components/Tabs.tsx';
 export * from './components/Tag.tsx';
 export * from './components/Timeline.tsx';
-export * from './components/Toast.tsx';
+export { ToastProvider, useToast } from './components/Toast.tsx';
 export * from './components/Tooltip.tsx';
 export * from './components/VirtualList.tsx';
 export * from './context.ts';

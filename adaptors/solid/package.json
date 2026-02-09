@@ -39,8 +39,8 @@
         "dist"
     ],
     "scripts": {
-        "build": "tsup src/index.tsx --format cjs --format esm --dts",
-        "dev": "tsup src/index.tsx --format cjs --format esm --dts --watch",
+        "build": "tsup",
+        "dev": "tsup --watch",
         "test": "vitest run"
     },
     "dependencies": {
@@ -61,6 +61,7 @@
     "homepage": "https://github.com/doki-land/sxo-engine/tree/main/adaptors/solid-sxo#readme",
     "devDependencies": {
         "@solidjs/testing-library": "^0.8.10",
+        "esbuild-plugin-solid": "^0.6.0",
         "happy-dom": "^17.1.8",
         "solid-js": "^1.9.10",
         "tsup": "^8.3.6",

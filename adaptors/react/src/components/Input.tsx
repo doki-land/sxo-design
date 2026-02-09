@@ -4,7 +4,7 @@ import { useStyle } from '../hooks.ts';
 
 export interface InputProps
     extends InputOptions,
-        Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
+        Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size' | 'prefix'> {
     prefix?: React.ReactNode;
     suffix?: React.ReactNode;
     readonly?: boolean;

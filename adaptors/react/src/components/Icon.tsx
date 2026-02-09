@@ -14,8 +14,12 @@ export const Icon: React.FC<IconProps> = ({
     strokeWidth = 2,
     className = '',
     style,
+    variant = 'linear',
 }) => {
-    const path = Icons[name];
+    const iconDef = Icons[name] as any;
+    const path = variant === 'solid' && iconDef.solid ? iconDef.solid : iconDef.linear;
+    const isSolid = variant === 'solid' && !!iconDef.solid;
+
     useStyle(className);
 
     return (
@@ -24,8 +28,8 @@ export const Icon: React.FC<IconProps> = ({
             width={size}
             height={size}
             viewBox="0 0 24 24"
-            fill="none"
-            stroke={color}
+            fill={isSolid ? color : 'none'}
+            stroke={isSolid ? 'none' : color}
             strokeWidth={strokeWidth}
             strokeLinecap="round"
             strokeLinejoin="round"

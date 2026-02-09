@@ -7,7 +7,9 @@ import {
 import type React from 'react';
 import { useStyle } from '../hooks.ts';
 
-export interface SpinnerProps extends SpinnerOptions, React.HTMLAttributes<HTMLDivElement> {}
+export interface SpinnerProps
+    extends SpinnerOptions,
+        Omit<React.HTMLAttributes<HTMLDivElement>, 'color'> {}
 
 export const Spinner: React.FC<SpinnerProps> = ({
     size = 'md',
@@ -18,10 +20,12 @@ export const Spinner: React.FC<SpinnerProps> = ({
     const sxoClasses = getSpinnerClasses({ size, color });
     const finalClasses = useStyle(`${sxoClasses} ${className}`.trim());
 
-    return <div className={finalClasses} {...props} />;
+    return <div className={finalClasses} {...(props as any)} />;
 };
 
-export interface ProgressProps extends ProgressOptions, React.HTMLAttributes<HTMLDivElement> {}
+export interface ProgressProps
+    extends ProgressOptions,
+        Omit<React.HTMLAttributes<HTMLDivElement>, 'color'> {}
 
 export const Progress: React.FC<ProgressProps> = ({
     value,
@@ -35,7 +39,7 @@ export const Progress: React.FC<ProgressProps> = ({
     useStyle(`${classes.root} ${classes.bar}`);
 
     return (
-        <div className={`${classes.root} ${className}`.trim()} {...props}>
+        <div className={`${classes.root} ${className}`.trim()} {...(props as any)}>
             <div className={classes.bar} style={{ width: `${classes.percentage}%` }} />
         </div>
     );

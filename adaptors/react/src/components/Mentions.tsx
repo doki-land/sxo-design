@@ -53,7 +53,7 @@ export const Mentions: React.FC<MentionsProps> = ({
     });
 
     useStyle(
-        `${classes.container} ${classes.textarea} ${classes.dropdown} ${classes.dropdownItem} ${className}`,
+        `${classes.container} ${classes.textarea} ${classes.dropdown} ${classes.item} ${className}`,
     );
 
     const prefixes = useMemo(() => (Array.isArray(prefix) ? prefix : [prefix]), [prefix]);
@@ -157,7 +157,7 @@ export const Mentions: React.FC<MentionsProps> = ({
                     {filteredOptions.map((opt, i) => (
                         <div
                             key={opt.value}
-                            className={`${classes.dropdownItem} ${i === suggestionIndex ? 'bg-neutral-100' : ''}`}
+                            className={`${classes.item} ${i === suggestionIndex ? 'bg-neutral-100' : ''}`}
                             onClick={() => selectOption(opt)}
                         >
                             {opt.avatar && (

@@ -39,8 +39,8 @@
         "dist"
     ],
     "scripts": {
-        "build": "vite build",
-        "dev": "vite build --watch",
+        "build": "tsup src/index.ts --format cjs --format esm --dts",
+        "dev": "tsup src/index.ts --format cjs --format esm --dts --watch",
         "test": "vitest run"
     },
     "dependencies": {
@@ -59,9 +59,8 @@
         "@vue/test-utils": "^2.4.6",
         "happy-dom": "^20.1.0",
         "jsdom": "^27.4.0",
+        "tsup": "^8.3.6",
         "typescript": "^5.9.3",
-        "vite": "^7.3.1",
-        "vite-plugin-dts": "^4.5.4",
         "vitest": "^3.2.4"
     },
     "packageManager": "pnpm@10.27.0",

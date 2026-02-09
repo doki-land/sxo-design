@@ -100,9 +100,9 @@ export const Tab: React.FC<{
         <div
             {...tabProps}
             className={`${ctx.styles.tab(isActive, disabled)} ${className}`.trim()}
-            onClick={(e) => {
+            onClick={() => {
                 if (disabled) return;
-                tabProps.onClick?.(e);
+                tabProps.onClick();
             }}
         >
             {children}

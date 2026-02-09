@@ -2,10 +2,11 @@ export interface CascaderOptions {
     size?: 'sm' | 'md' | 'lg';
     rounded?: boolean;
     disabled?: boolean;
+    readonly?: boolean;
 }
 
 export function getCascaderClasses(options: CascaderOptions = {}) {
-    const { size = 'md', rounded = true, disabled = false } = options;
+    const { size = 'md', rounded = true, disabled = false, readonly = false } = options;
 
     const sizes = {
         sm: 'h-8 px-2 text-xs',
@@ -13,9 +14,10 @@ export function getCascaderClasses(options: CascaderOptions = {}) {
         lg: 'h-12 px-4 text-base',
     };
 
-    const disabledClasses = disabled
-        ? 'opacity-50 cursor-not-allowed bg-neutral-50 pointer-events-none'
-        : 'bg-white cursor-pointer hover:border-primary-500';
+    const disabledClasses =
+        disabled || readonly
+            ? 'opacity-50 cursor-not-allowed bg-neutral-50 pointer-events-none'
+            : 'bg-white cursor-pointer hover:border-primary-500';
 
     return {
         container: `relative inline-flex items-center w-full transition-all duration-200 border border-neutral-200 ${sizes[size]} ${rounded ? 'rounded-lg' : ''} ${disabledClasses}`,
