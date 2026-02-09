@@ -9,11 +9,6 @@
         "preview": "cvo preview"
     },
     "dependencies": {
-        "@cvo/client": "workspace:*",
-        "@cvo/core": "workspace:*",
-        "@cvo/plugin-i18n": "workspace:*",
-        "@cvo/plugin-i18n-fluent": "workspace:*",
-        "@cvo/server": "workspace:*",
         "@sxo/design": "workspace:*",
         "@sxo/engine": "workspace:*",
         "@sxo/react": "workspace:*",
@@ -23,20 +18,6 @@
         "react-router-dom": "^6.26.2"
     },
     "devDependencies": {
-        "@cvo/cli": "workspace:*",
-        "@cvo/compiler": "workspace:*",
-        "@sxo/theme-antd": "workspace:*",
-        "@sxo/theme-carbon": "workspace:*",
-        "@sxo/theme-cupertino": "workspace:*",
-        "@sxo/theme-fate": "workspace:*",
-        "@sxo/theme-fluent": "workspace:*",
-        "@sxo/theme-github": "workspace:*",
-        "@sxo/theme-material": "workspace:*",
-        "@sxo/ui": "workspace:*",
-        "@sxo/vite-plugin": "workspace:*",
-        "@types/react": "^18.3.1",
-        "@types/react-dom": "^18.3.1",
-        "@vitejs/plugin-react": "^4.3.4",
         "vite": "^7.3.1"
     }
 }
