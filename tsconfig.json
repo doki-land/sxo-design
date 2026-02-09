@@ -10,7 +10,7 @@
         "isolatedModules": true,
         "resolveJsonModule": true,
         "jsx": "preserve",
-        "incremental": true,
+        "incremental": false,
         "declarationDir": "dist",
         "allowImportingTsExtensions": true,
         "baseUrl": ".",

@@ -31,26 +31,24 @@ export const halloweenTheme: DesignTokens = {
     },
     modes: {
         dark: {
-            color: {
-                primary: {
-                    DEFAULT: '#FF9668', // Pumpkin Orange (Dark)
-                    foreground: '#000000',
-                },
-                secondary: {
-                    DEFAULT: '#A371F7', // Ghostly Purple (Dark)
-                    foreground: '#FFFFFF',
-                },
-                background: {
-                    primary: '#0D1117', // Abyss Black (Dark)
-                    secondary: '#161B22',
-                    inverse: '#F6F8FA',
-                },
-                text: {
-                    primary: '#F0F6FC',
-                    secondary: '#8B949E',
-                    muted: '#484F58',
-                    inverse: '#0D1117',
-                },
+            primary: {
+                DEFAULT: '#FF9668', // Pumpkin Orange (Dark)
+                foreground: '#000000',
+            },
+            secondary: {
+                DEFAULT: '#A371F7', // Ghostly Purple (Dark)
+                foreground: '#FFFFFF',
+            },
+            background: {
+                primary: '#0D1117', // Abyss Black (Dark)
+                secondary: '#161B22',
+                inverse: '#F6F8FA',
+            },
+            text: {
+                primary: '#F0F6FC',
+                secondary: '#8B949E',
+                muted: '#484F58',
+                inverse: '#0D1117',
             },
         },
     },

@@ -39,8 +39,8 @@
         "dist"
     ],
     "scripts": {
-        "build": "vite build",
-        "dev": "vite build --watch",
+        "build": "tsup src/index.tsx --format cjs --format esm --dts",
+        "dev": "tsup src/index.tsx --format cjs --format esm --dts --watch",
         "test": "vitest run"
     },
     "dependencies": {
@@ -63,9 +63,8 @@
         "@solidjs/testing-library": "^0.8.10",
         "happy-dom": "^17.1.8",
         "solid-js": "^1.9.10",
+        "tsup": "^8.3.6",
         "typescript": "^5.9.3",
-        "vite": "^7.3.1",
-        "vite-plugin-dts": "^4.5.4",
         "vite-plugin-solid": "^2.11.10",
         "vitest": "^3.2.4"
     }

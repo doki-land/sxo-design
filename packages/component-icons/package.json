@@ -20,13 +20,11 @@
         "dist"
     ],
     "scripts": {
-        "build": "tsup",
-        "dev": "tsup --watch"
+        "build": "tsup src/index.ts --format cjs --format esm --dts",
+        "dev": "tsup src/index.ts --format cjs --format esm --dts --watch"
     },
     "devDependencies": {
         "tsup": "^8.5.1",
-        "typescript": "^5.9.3",
-        "vite": "^7.3.1",
-        "vite-plugin-dts": "^4.5.4"
+        "typescript": "^5.9.3"
     }
 }
