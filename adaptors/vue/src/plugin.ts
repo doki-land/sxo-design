@@ -12,6 +12,7 @@ import {
     reactive,
     watchEffect,
 } from 'vue';
+import * as components from './index';
 
 export const SXO_KEY = Symbol('sxo');
 
@@ -39,6 +40,13 @@ export function createSxo(
 
     return {
         install(app: App) {
+            // 全局注册所有 SXO 组件
+            Object.entries(components).forEach(([name, comp]) => {
+                if (name.startsWith('Sxo') && comp && typeof comp === 'object') {
+                    app.component(name, comp);
+                }
+            });
+
             const state = reactive<SxoState>({
                 tokens,
                 engine: markRaw(engine),
