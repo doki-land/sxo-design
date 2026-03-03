@@ -1,6 +1,6 @@
 {
     "name": "@sxo/solid",
-    "version": "0.1.1",
+    "version": "0.0.2",
     "description": "SolidJS adaptor for SXO Design System.",
     "keywords": [
         "sxo",

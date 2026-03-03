@@ -1,6 +1,6 @@
 {
     "name": "@sxo/plugin-flash",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "description": "Flash (Ruffle) plugin for SXO.",
     "type": "module",
     "main": "./dist/index.cjs",
