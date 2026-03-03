@@ -25,7 +25,8 @@
         "docs:generate": "npx tsx scripts/clean-dts.ts",
         "changeset": "changeset",
         "version-packages": "changeset version",
-        "release": "pnpm build && pnpm changeset publish"
+        "release": "pnpm build && pnpm changeset publish",
+        "p": "pnpm -r publish --access public --no-git-checks"
     },
     "devDependencies": {
         "@biomejs/biome": "^2.3.11",
