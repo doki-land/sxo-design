@@ -1,8 +1,18 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import { execSync } from 'node:child_process';
 
-const targetVersion = '0.0.1';
+const targetVersion = process.argv[2];
+
+if (!targetVersion) {
+    console.error('Usage: npx tsx scripts/bump-version.ts <version>');
+    console.error('Example: npx tsx scripts/bump-version.ts 0.0.2');
+    process.exit(1);
+}
+
+if (!/^\d+\.\d+\.\d+(-[\w.]+)?$/.test(targetVersion)) {
+    console.error(`Invalid version format: ${targetVersion}`);
+    process.exit(1);
+}
 
 function getAllPackageJsons(dir: string, fileList: string[] = []): string[] {
     const files = fs.readdirSync(dir);
@@ -21,16 +31,20 @@ function getAllPackageJsons(dir: string, fileList: string[] = []): string[] {
 
 const rootDir = path.resolve(process.cwd());
 const packageJsons = getAllPackageJsons(rootDir);
+let updatedCount = 0;
 
 for (const pkgPath of packageJsons) {
     const content = fs.readFileSync(pkgPath, 'utf8');
     const pkg = JSON.parse(content);
 
-    if (pkg.version !== targetVersion) {
-        console.log(`Bumping ${pkg.name || pkgPath} to ${targetVersion}`);
+    if (pkg.version && pkg.version !== targetVersion) {
+        const relativePath = path.relative(rootDir, pkgPath);
+        const privateTag = pkg.private ? ' [private]' : '';
+        console.log(`${relativePath}${privateTag}: ${pkg.version} -> ${targetVersion}`);
         pkg.version = targetVersion;
         fs.writeFileSync(pkgPath, JSON.stringify(pkg, null, 4) + '\n', 'utf8');
+        updatedCount++;
     }
 }
 
-console.log('All packages bumped successfully.');
+console.log(`\nUpdated ${updatedCount} packages to version ${targetVersion}`);
