@@ -4,7 +4,7 @@
 
 ### Patch Changes
 
-- Remove CVO dependencies and configurations. Standalone SXO release.
+- Remove VMZ dependencies and configurations. Standalone SXO release.
 - Updated dependencies
   - @sxo/ui@0.1.1
 
