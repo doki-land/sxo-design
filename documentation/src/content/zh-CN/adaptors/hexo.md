@@ -40,10 +40,10 @@ sxo:
 然后在模板中动态引用：
 
 ```html
-<% if (theme.sxo && theme.sxo.enable) { %>
+<$ if (theme.sxo && theme.sxo.enable) { $>
   <link rel="stylesheet" href="https://cdn.sxoui.com/sxo-core.css">
-  <link rel="stylesheet" href="https://cdn.sxoui.com/sxo-theme-<%= theme.sxo.default_theme %>.css">
-<% } %>
+  <link rel="stylesheet" href="https://cdn.sxoui.com/sxo-theme-<$= theme.sxo.default_theme $>.css">
+<$ } $>
 ```
 
 ## 📝 在 Markdown 中使用

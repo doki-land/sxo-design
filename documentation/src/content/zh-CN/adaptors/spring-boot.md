@@ -35,7 +35,7 @@ SXO 为使用 Spring Boot 配合 Thymeleaf、FreeMarker 或 JSP 的项目提供�
 在 JSP 页面中引入：
 
 ```jsp
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<$@ page contentType="text/html;charset=UTF-8" language="java" $>
 <html>
 <head>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/sxo-core.css">
